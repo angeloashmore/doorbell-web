@@ -8,6 +8,10 @@ class AuthenticationStore {
     this.user = null;
   }
 
+  restoreCurrentUser(user) {
+    this.logInUser(user);
+  }
+
   logInUser(user) {
     this.user = user;
   }

@@ -1,8 +1,11 @@
 import React from 'react';
 import { Link, RouteHandler } from 'react-router';
 
+import Parse from '../stores/Parse';
+
 import Navigation from '../components/Navigation';
 
+import AuthenticationActions from '../actions/AuthenticationActions';
 import AuthenticationStore from '../stores/AuthenticationStore';
 
 export default class extends React.Component {
@@ -20,6 +23,7 @@ export default class extends React.Component {
 
   componentDidMount() {
     AuthenticationStore.listen(this.onChange.bind(this));
+    AuthenticationActions.restoreCurrentUser();
   }
 
   componentWillUnmount() {
