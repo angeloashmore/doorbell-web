@@ -6,6 +6,8 @@ import Home from './containers/Home';
 import LogIn from './containers/LogIn';
 import SignUp from './containers/SignUp';
 import Dashboard from './containers/Dashboard';
+import Plans from './containers/Plans';
+import Billing from './containers/Billing';
 
 export default (
   <Route name="app" path="/" handler={ App }>
@@ -13,5 +15,7 @@ export default (
     <Route name="login" handler={ LogIn } />
     <Route name="signup" handler={ SignUp } />
     <Route name="dashboard" handler={ Dashboard } />
+    <Route name="plans" handler={ Plans } />
+    <Route name="billing" handler={ Billing } />
   </Route>
 );
