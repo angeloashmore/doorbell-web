@@ -25,7 +25,7 @@ class AuthenticationStore {
   }
 
   static isLoggedIn() {
-    return !!this.user;
+    return !!this.getState().user;
   }
 }
 

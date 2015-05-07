@@ -10,13 +10,19 @@ export default class SignUp extends React.Component {
     this.state = {
       username: '',
       password: '',
-      email: ''
+      email: '',
+      errorMessage: ''
     };
   }
 
   signUp(e) {
     e.preventDefault();
-    AuthenticationActions.signUpUser(this.state.username, this.state.password, { email: this.state.email });
+
+    var { router } = this.context;
+
+    AuthenticationActions.signUpUser(this.state.username, this.state.password, { email: this.state.email })
+      .then(() => router.transitionTo('dashboard'))
+      .fail((error) => this.setState({ errorMessage: error.message }));
   }
 
   render() {
@@ -29,9 +35,14 @@ export default class SignUp extends React.Component {
           <input type="text" valueLink={this.linkState('email')} placeholder="Email" />
           <button type="submit" onClick={this.signUp.bind(this)}>Submit</button>
         </form>
+        {!!this.state.errorMessage ? (<p>{this.state.errorMessage}</p>) : (null)}
       </div>
     );
   }
 }
+
+SignUp.contextTypes = {
+  router: React.PropTypes.func
+};
 
 reactMixin(SignUp.prototype, React.addons.LinkedStateMixin);

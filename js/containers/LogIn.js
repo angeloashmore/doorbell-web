@@ -9,13 +9,21 @@ export default class Login extends React.Component {
 
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      errorMessage: ''
     };
   }
 
   logIn(e) {
     e.preventDefault();
+
+    var { router } = this.context;
+
     AuthenticationActions.logInUser(this.state.username, this.state.password)
+      .then(() => router.transitionTo('dashboard'))
+      .fail((error) => this.setState({ errorMessage: error.message }));
+
+    console.log(this.state.errorMessage)
   }
 
   render() {
@@ -27,9 +35,14 @@ export default class Login extends React.Component {
           <input type="password" valueLink={this.linkState('password')} placeholder="Password" />
           <button type="submit" onClick={this.logIn.bind(this)}>Submit</button>
         </form>
+        {!!this.state.errorMessage ? (<p>{this.state.errorMessage}</p>) : (null)}
       </div>
     );
   }
 }
+
+Login.contextTypes = {
+  router: React.PropTypes.func
+};
 
 reactMixin(Login.prototype, React.addons.LinkedStateMixin);
