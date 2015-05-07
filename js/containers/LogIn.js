@@ -22,8 +22,6 @@ export default class Login extends React.Component {
     AuthenticationActions.logInUser(this.state.username, this.state.password)
       .then(() => router.transitionTo('dashboard'))
       .fail((error) => this.setState({ errorMessage: error.message }));
-
-    console.log(this.state.errorMessage)
   }
 
   render() {
