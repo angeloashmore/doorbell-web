@@ -20,7 +20,7 @@ export default class SignUp extends React.Component {
 
     var { router } = this.context;
 
-    AuthenticationActions.signUpUser(this.state.username, this.state.password, { email: this.state.email })
+    AuthenticationActions.signUpUser(this.state.username, this.state.password, this.state.email)
       .then(() => router.transitionTo('dashboard'))
       .fail((error) => this.setState({ errorMessage: error.message }));
   }

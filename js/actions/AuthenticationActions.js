@@ -18,9 +18,15 @@ class AuthenticationActions {
       .then(() => this.dispatch())
   }
 
-  signUpUser(username, password, attrs) {
-    return Parse.User.signUp(username, password, attrs)
-      .then((user) => this.dispatch(user))
+  signUpUser(username, password, email) {
+    let data = {
+      username: username,
+      password: password,
+      email: email
+    };
+
+    return Parse.Cloud.run('User__create', data)
+      .then((user) => this.dispatch(user));
   }
 }
 

@@ -3,7 +3,7 @@ import reactMixin from 'react-mixin';
 
 import AuthenticationActions from '../actions/AuthenticationActions';
 
-export default class Login extends React.Component {
+export default class LogIn extends React.Component {
   constructor() {
     super();
 
@@ -39,8 +39,8 @@ export default class Login extends React.Component {
   }
 }
 
-Login.contextTypes = {
+LogIn.contextTypes = {
   router: React.PropTypes.func
 };
 
-reactMixin(Login.prototype, React.addons.LinkedStateMixin);
+reactMixin(LogIn.prototype, React.addons.LinkedStateMixin);
