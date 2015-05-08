@@ -6,32 +6,6 @@ import Parse from '../stores/Parse';
 import AuthenticatedComponent from '../decorators/AuthenticatedComponent';
 
 class Billing extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      plan: ''
-    };
-  }
-
-  buttonHandler(e) {
-    e.preventDefault();
-
-    Parse.Cloud.run('createCustomer',
-      {
-        email: this.props.user.attributes.email,
-        planName: this.state.plan
-      }, {
-      success: function(result) {
-        // result is 'Hello world!'
-        console.log(result);
-      },
-      error: function(error) {
-        console.log(error);
-      }
-    });
-  }
-
   render() {
     return(
       <div>
