@@ -28,6 +28,11 @@ class AuthenticationActions {
     return Parse.Cloud.run('User__create', data)
       .then((user) => this.dispatch(user));
   }
+
+  addCardToken(token) {
+    return Parse.Cloud.run('User__addCardToken', data)
+      .then((user) => console.log(user));
+  }
 }
 
 export default alt.createActions(AuthenticationActions);
