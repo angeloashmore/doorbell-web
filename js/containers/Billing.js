@@ -1,83 +1,32 @@
 import React from 'react';
-import reactMixin from 'react-mixin';
-import ReactScriptLoader from 'react-script-loader';
-
-import config from '../config';
 
 import AuthenticatedComponent from '../decorators/AuthenticatedComponent';
-
-const ReactScriptLoaderMixin = ReactScriptLoader.ReactScriptLoaderMixin;
+import StripeCardForm from '../components/StripeCardForm';
 
 class Billing extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      scriptLoading: true,
-      scriptLoadError: false
-    };
+  onAddCardSuccess() {
+    console.log("Success! :)");
   }
 
-  getScriptURL() {
-    return 'https://js.stripe.com/v2/';
-  }
-
-  onScriptLoaded() {
-    this.setState({ scriptLoading: false });
-    Stripe.setPublishableKey(config.Stripe.PUBLISHABLE_KEY);
-  }
-
-  onScriptError() {
-    this.setState({ scriptLoading: false, scriptLoadError: true });
-  }
-
-  onSubmit(e) {
-    e.preventDefault();
-
-    var { router } = this.context;
-    var form = React.findDOMNode(this.refs.form);
-
-    Stripe.card.createToken(form, function(status, response) {
-      if (response.error) {
-        return console.log(status, response);
-      }
-
-      AuthenticationActions.addCardToken(response.id)
-        .then(() => router.transitionTo('dashboard'));
-    });
+  onAddCardFailure(error) {
+    console.log("Failure! :(")
   }
 
   render() {
-    var content;
-
-    if (this.state.scriptLoading) {
-      content = 'Loading Stripe...';
-
-    } else if (this.state.scriptLoadError) {
-      content = 'Loading failed...';
-
-    } else {
-      content = (
-        <form ref="form">
-          <input type="text" data-stripe="number" />
-          <input type="text" data-stripe="cvc" />
-          <input type="text" data-stripe="exp-month" />
-          <input type="text" data-stripe="exp-year" />
-          <button onClick={this.onSubmit.bind(this)}>Submit</button>
-        </form>
-      );
-    }
-
     return(
-      <div>{content}</div>
+      <div>
+        <dl>
+          <dt>Card Brand</dt>
+          <dd>{this.props.user.get("billingBrand")}</dd>
+          <dt>Card Last 4</dt>
+          <dd>{this.props.user.get("billingLast4")}</dd>
+        </dl>
+        <StripeCardForm
+          onSuccess={this.onAddCardSuccess.bind(this)}
+          onFailure={this.onAddCardFailure.bind(this)} />
+      </div>
     );
   }
 }
-
-Billing.contextTypes = {
-  router: React.PropTypes.func
-};
-
-reactMixin(Billing.prototype, ReactScriptLoaderMixin);
 
 export default AuthenticatedComponent(Billing);

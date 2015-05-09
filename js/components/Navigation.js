@@ -18,7 +18,7 @@ export default class Navigation extends React.Component {
         <li><Link to="dashboard">Dashboard</Link></li>
         <li><Link to="plans">Plans</Link></li>
         <li><Link to="billing">Billing</Link></li>
-        <li>Logged in as: {this.props.user.attributes.username}</li>
+        <li>Logged in as: {this.props.user.get("username")} ({this.props.user.get("email")})</li>
         <li><a onClick={() => this.logOutUser()}>Log Out</a></li>
       </ul>
     );

@@ -24,6 +24,10 @@ class AuthenticationStore {
     this.logInUser(user);
   }
 
+  addCardToken(user) {
+    this.user = user;
+  }
+
   static isLoggedIn() {
     return !!this.getState().user;
   }

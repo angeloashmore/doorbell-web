@@ -4,6 +4,7 @@ import Parse from '../stores/Parse';
 class AuthenticationActions {
   restoreCurrentUser() {
     if (!!Parse.User.current()) {
+      Parse.User.current().fetch();
       this.dispatch(Parse.User.current());
     }
   }
@@ -30,8 +31,9 @@ class AuthenticationActions {
   }
 
   addCardToken(token) {
-    return Parse.Cloud.run('User__addCardToken', data)
-      .then((user) => console.log(user));
+    return Parse.Cloud.run('User__addCardToken', { token: token })
+      .then((user) => this.dispatch(user))
+      .then(() => Parse.User.current().fetch());
   }
 }
 
