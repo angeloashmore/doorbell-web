@@ -1,7 +1,7 @@
 import React from 'react/addons';
 import reactMixin from 'react-mixin';
 
-import AuthenticationActions from '../actions/AuthenticationActions';
+import AuthenticationActions from '../../actions/AuthenticationActions';
 
 export default class LogIn extends React.Component {
   constructor() {

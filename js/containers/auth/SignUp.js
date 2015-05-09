@@ -1,7 +1,7 @@
 import React from 'react/addons';
 import reactMixin from 'react-mixin';
 
-import AuthenticationActions from '../actions/AuthenticationActions';
+import AuthenticationActions from '../../actions/AuthenticationActions';
 
 export default class SignUp extends React.Component {
   constructor() {
@@ -11,6 +11,7 @@ export default class SignUp extends React.Component {
       username: '',
       password: '',
       email: '',
+      name: '',
       errorMessage: ''
     };
   }
@@ -20,7 +21,14 @@ export default class SignUp extends React.Component {
 
     var { router } = this.context;
 
-    AuthenticationActions.signUpUser(this.state.username, this.state.password, this.state.email)
+    let data = {
+      username: this.state.username,
+      password: this.state.password,
+      email: this.state.email,
+      name: this.state.name
+    };
+
+    AuthenticationActions.signUpUser(data)
       .then(() => router.transitionTo('dashboard'))
       .fail((error) => this.setState({ errorMessage: error.message }));
   }
@@ -32,7 +40,8 @@ export default class SignUp extends React.Component {
         <form>
           <input type="text" valueLink={this.linkState('username')} placeholder="Username" />
           <input type="password" valueLink={this.linkState('password')} placeholder="Password" />
-          <input type="text" valueLink={this.linkState('email')} placeholder="Email" />
+          <input type="email" valueLink={this.linkState('email')} placeholder="Email" />
+          <input type="text" valueLink={this.linkState('name')} placeholder="Name" />
           <button type="submit" onClick={this.signUp.bind(this)}>Submit</button>
         </form>
         {!!this.state.errorMessage ? (<p>{this.state.errorMessage}</p>) : (null)}

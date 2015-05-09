@@ -31,6 +31,14 @@ class AuthenticationStore {
   static isLoggedIn() {
     return !!this.getState().user;
   }
+
+  static hasCard() {
+    if (this.isLoggedIn()) {
+      return !!this.getState().user.get("billingBrand") && !!this.getState().user.get("billingLast4");
+    } else {
+      return false;
+    }
+  }
 }
 
 export default alt.createStore(AuthenticationStore, 'AuthenticationStore');

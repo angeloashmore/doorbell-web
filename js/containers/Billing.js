@@ -1,7 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 import AuthenticatedComponent from '../decorators/AuthenticatedComponent';
-import StripeCardForm from '../components/StripeCardForm';
+// import StripeCardForm from '../components/StripeCardForm';
+import StripeCheckoutButton from '../components/StripeCheckoutButton';
 
 class Billing extends React.Component {
   onAddCardSuccess() {
@@ -21,9 +23,7 @@ class Billing extends React.Component {
           <dt>Card Last 4</dt>
           <dd>{this.props.user.get("billingLast4")}</dd>
         </dl>
-        <StripeCardForm
-          onSuccess={this.onAddCardSuccess.bind(this)}
-          onFailure={this.onAddCardFailure.bind(this)} />
+        <StripeCheckoutButton />
       </div>
     );
   }

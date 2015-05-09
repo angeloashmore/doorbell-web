@@ -7,14 +7,15 @@ import AuthenticationStore from '../stores/AuthenticationStore';
 export default AuthenticatedComponent(
   class extends React.Component {
     render() {
-      return(
+      return (
         <div>
-          <p>Plans page</p>
-          {AuthenticationStore.hasCard ? (
-            <p>Has card, show options</p>
-          ) : (
-            <p>No card, please add one before subscribing</p>
-          )}
+          <dl>
+            <dt>Name</dt>
+            <dd>{this.props.user.get("name")}</dd>
+            <dt>Email</dt>
+            <dd>{this.props.user.get("email")}</dd>
+          </dl>
+          <Link to="profile__edit">Edit Account</Link>
         </div>
       );
     }
