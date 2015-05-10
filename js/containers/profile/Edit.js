@@ -1,7 +1,7 @@
 import React from 'react';
 
 import AuthenticatedComponent from '../../decorators/AuthenticatedComponent';
-import AuthenticationStore from '../../stores/AuthenticationStore';
+import UserStore from '../../stores/UserStore';
 
 export default AuthenticatedComponent(
   class extends React.Component {

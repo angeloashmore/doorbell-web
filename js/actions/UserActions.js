@@ -1,7 +1,7 @@
 import alt from '../flux/alt';
 import Parse from '../stores/Parse';
 
-class AuthenticationActions {
+class UserActions {
   restoreCurrentUser() {
     if (!!Parse.User.current()) {
       this.dispatch(Parse.User.current());
@@ -31,4 +31,4 @@ class AuthenticationActions {
   }
 }
 
-export default alt.createActions(AuthenticationActions);
+export default alt.createActions(UserActions);

@@ -4,18 +4,18 @@ import AltContainer from 'alt/AltContainer';
 
 import Navigation from '../components/Navigation';
 
-import AuthenticationActions from '../actions/AuthenticationActions';
-import AuthenticationStore from '../stores/AuthenticationStore';
+import UserActions from '../actions/UserActions';
+import UserStore from '../stores/UserStore';
 
 export default class extends React.Component {
   componentDidMount() {
-    AuthenticationActions.restoreCurrentUser();
+    UserActions.restoreCurrentUser();
   }
 
   render() {
     return (
       <div className="app">
-        <AltContainer store={AuthenticationStore} component={Navigation} />
+        <AltContainer store={UserStore} component={Navigation} />
 
         <RouteHandler />
       </div>

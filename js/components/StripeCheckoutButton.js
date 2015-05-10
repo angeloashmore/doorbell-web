@@ -3,8 +3,8 @@ import ReactScriptLoader from 'react-script-loader';
 
 import config from '../config';
 
-import AuthenticationActions from '../actions/AuthenticationActions';
-import AuthenticationStore from '../stores/AuthenticationStore';
+import UserActions from '../actions/UserActions';
+import UserStore from '../stores/UserStore';
 
 const ReactScriptLoaderMixin = ReactScriptLoader.ReactScriptLoaderMixin;
 
@@ -31,7 +31,7 @@ export default class StripeCheckoutButton extends React.Component {
   }
 
   onSuccessfulToken(token) {
-    AuthenticationActions.addCardToken(token.id)
+    UserActions.addCardToken(token.id)
   }
 
   handler() {
@@ -49,7 +49,7 @@ export default class StripeCheckoutButton extends React.Component {
       description: "Subscription",
       panelLabel: "Subscribe",
       allowRememberMe: false,
-      email: AuthenticationStore.getState().user.get("email")
+      email: UserStore.getState().user.get("email")
     });
   }
 

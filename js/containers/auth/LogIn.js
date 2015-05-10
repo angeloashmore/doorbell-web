@@ -1,7 +1,7 @@
 import React from 'react/addons';
 import reactMixin from 'react-mixin';
 
-import AuthenticationActions from '../../actions/AuthenticationActions';
+import UserActions from '../../actions/UserActions';
 
 export default class LogIn extends React.Component {
   constructor() {
@@ -19,7 +19,7 @@ export default class LogIn extends React.Component {
 
     var { router } = this.context;
 
-    AuthenticationActions.logInUser(this.state.username, this.state.password)
+    UserActions.logInUser(this.state.username, this.state.password)
       .then(() => router.transitionTo('dashboard'))
       .fail((error) => this.setState({ errorMessage: error.message }));
   }

@@ -1,10 +1,10 @@
 import React from 'react';
 import Router from 'react-router';
 
-import AuthenticationActions from './actions/AuthenticationActions';
+import UserActions from './actions/UserActions';
 import routes from './routes';
 
-AuthenticationActions.restoreCurrentUser();
+UserActions.restoreCurrentUser();
 
 Router.run(routes, function (Handler) {
   React.render(<Handler />, document.body);

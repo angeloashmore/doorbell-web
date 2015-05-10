@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-import AuthenticationActions from '../actions/AuthenticationActions';
+import UserActions from '../actions/UserActions';
 
 export default class Navigation extends React.Component {
   logOutUser() {
     var { router } = this.context;
 
-    AuthenticationActions.logOutUser();
+    UserActions.logOutUser();
     router.transitionTo('login');
   }
 

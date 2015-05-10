@@ -1,9 +1,9 @@
 import alt from '../flux/alt';
-import AuthenticationActions from '../actions/AuthenticationActions';
+import UserActions from '../actions/UserActions';
 
-class AuthenticationStore {
+class UserStore {
   constructor() {
-    this.bindActions(AuthenticationActions);
+    this.bindActions(UserActions);
 
     this.user = null;
   }
@@ -41,4 +41,4 @@ class AuthenticationStore {
   }
 }
 
-export default alt.createStore(AuthenticationStore, 'AuthenticationStore');
+export default alt.createStore(UserStore, 'UserStore');

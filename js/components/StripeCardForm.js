@@ -4,7 +4,7 @@ import ReactScriptLoader from 'react-script-loader';
 
 import config from '../config';
 
-import AuthenticationActions from '../actions/AuthenticationActions';
+import UserActions from '../actions/UserActions';
 
 const ReactScriptLoaderMixin = ReactScriptLoader.ReactScriptLoaderMixin;
 
@@ -48,7 +48,7 @@ export default class StripeCardForm extends React.Component {
       }
 
       let token = response.id;
-      AuthenticationActions.addCardToken(token)
+      UserActions.addCardToken(token)
         .then(() => component.props.onSuccess())
         .fail(function(error) {
           component.setState({ errorMessage: error.message });
