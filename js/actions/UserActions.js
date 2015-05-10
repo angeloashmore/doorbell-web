@@ -24,6 +24,15 @@ class UserActions {
       .then(() => Parse.User.logIn(attrs.username, attrs.password));
   }
 
+  updateUser(user, data) {
+    for (let key in data) {
+      user.set(key, data[key]);
+    }
+
+    return user.save()
+      .then((user) => this.dispatch(user));
+  }
+
   addCardToken(token) {
     return Parse.Cloud.run('User__addCardToken', { token: token })
       .then((user) => this.dispatch(user))

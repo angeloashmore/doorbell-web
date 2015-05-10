@@ -24,6 +24,10 @@ class UserStore {
     this.logInUser(user);
   }
 
+  updateUser(user) {
+    this.user = user;
+  }
+
   addCardToken(user) {
     this.user = user;
   }
