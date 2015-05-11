@@ -7,8 +7,8 @@ export default class Navigation extends React.Component {
   logOutUser() {
     var { router } = this.context;
 
-    UserActions.logOutUser();
-    router.transitionTo('login');
+    UserActions.logOutUser()
+      .then(() => router.transitionTo('login'));
   }
 
   renderLoggedIn() {

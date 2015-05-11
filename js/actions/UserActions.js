@@ -1,42 +1,77 @@
+import Promise from 'bluebird';
+
 import alt from '../flux/alt';
 import Parse from '../stores/Parse';
 
 class UserActions {
   restoreCurrentUser() {
-    if (!!Parse.User.current()) {
-      this.dispatch(Parse.User.current());
-    }
+    return Promise.bind(this).then(function() {
+      if (!!Parse.User.current()) {
+        this.dispatch(Parse.User.current());
+      }
+    });
   }
 
   logInUser(username, password) {
-    return Parse.User.logIn(username, password)
-      .then((user) => this.dispatch(user));
+    return Promise.bind(this).then(function() {
+      return Parse.User.logIn(username, password)
+
+    }).then(function(user) {
+      this.dispatch(user);
+
+    });
   }
 
   logOutUser() {
-    return Parse.User.logOut()
-      .then(() => this.dispatch())
+    return Promise.bind(this).then(function() {
+      return Parse.User.logOut();
+
+    }).then(function() {
+      this.dispatch();
+
+    });
   }
 
   signUpUser(attrs) {
-    return Parse.Cloud.run('User__create', attrs)
-      .then((user) => this.dispatch(user))
-      .then(() => Parse.User.logIn(attrs.username, attrs.password));
+    return Promise.bind(this).then(function() {
+      return Parse.Cloud.run("User__create", attrs)
+
+    }).then(function(user) {
+      user.set("password", attrs.password);
+      return user.logIn()
+
+    }).then(function(user) {
+      this.dispatch(user);
+
+    });
   }
 
   updateUser(user, data) {
-    for (let key in data) {
-      user.set(key, data[key]);
-    }
+    return Promise.bind(this).then(function() {
+      for (let key of data) {
+        user.set(key, data[key]);
+      }
 
-    return user.save()
-      .then((user) => this.dispatch(user));
+      return user.save();
+
+    }).then(function(user) {
+      this.dispatch(user);
+
+    });
   }
 
   addCardToken(token) {
-    return Parse.Cloud.run('User__addCardToken', { token: token })
-      .then((user) => this.dispatch(user))
-      .then(() => Parse.User.current().fetch());
+    return Promise.bind(this).then(function() {
+      let data = { token: token };
+      return Parse.Cloud.run("User__addCardToken", data)
+
+    }).then(function(user) {
+      this.dispatch(user);
+
+    }).then(function() {
+      Parse.User.current().fetch();
+
+    });
   }
 }
 

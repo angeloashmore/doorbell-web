@@ -30,7 +30,7 @@ export default class SignUp extends React.Component {
 
     UserActions.signUpUser(data)
       .then(() => router.transitionTo('dashboard'))
-      .fail((error) => this.setState({ errorMessage: error.message }));
+      .catch((error) => this.setState({ errorMessage: error.message }));
   }
 
   render() {
