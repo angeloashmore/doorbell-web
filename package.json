@@ -1,7 +1,7 @@
 {
   "name": "doorbell-web",
   "version": "1.0.0",
-  "description": "Web interface to the Doorbell service",
+  "description": "Web interface for Doorbell",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --hot --progress --colors",
@@ -10,18 +10,20 @@
   "author": "Angelo Ashmore",
   "license": "ISC",
   "devDependencies": {
-    "alt": "^0.16.2",
     "babel-core": "^5.2.13",
     "babel-loader": "^5.0.0",
-    "bluebird": "^2.9.25",
     "json-loader": "^0.5.1",
-    "parse": "^1.4.2",
-    "react": "^0.13.2",
     "react-hot-loader": "^1.2.6",
-    "react-mixin": "^1.2.2",
-    "react-router": "^0.13.3",
     "react-script-loader": "0.0.1",
     "webpack": "^1.8.11",
     "webpack-dev-server": "^1.8.2"
+  },
+  "dependencies": {
+    "alt": "^0.16.2",
+    "bluebird": "^2.9.25",
+    "parse": "^1.4.2",
+    "react": "^0.13.2",
+    "react-mixin": "^1.2.2",
+    "react-router": "^0.13.3"
   }
 }
