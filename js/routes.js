@@ -18,7 +18,7 @@ export default (
     <Route name="signup" handler={ AuthSignUp } />
     <Route name="dashboard" handler={ Dashboard } />
     <Route name="profile" handler={ Profile } />
-    <Route name="profile__edit" handler={ ProfileEdit } />
+    <Route name="profile__edit" path="profile/edit" handler={ ProfileEdit } />
     <Route name="plans" handler={ Plans } />
     <Route name="billing" handler={ Billing } />
   </Route>
