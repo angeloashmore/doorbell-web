@@ -48,7 +48,7 @@ class UserActions {
 
   updateUser(user, data) {
     return Promise.bind(this).then(function() {
-      for (let key of data) {
+      for (let key in data) {
         user.set(key, data[key]);
       }
 

@@ -28,7 +28,7 @@ class ProfileEdit extends React.Component {
 
     UserActions.updateUser(this.props.user, data)
       .then(() => router.transitionTo('profile'))
-      .fail((error) => this.setState({ errorMessage: error.message }));
+      .catch((error) => this.setState({ errorMessage: error.message }));
   }
 
   render() {
