@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-import AuthenticatedComponent from '../decorators/AuthenticatedComponent';
-// import StripeCardForm from '../components/StripeCardForm';
-import StripeCheckoutButton from '../components/StripeCheckoutButton';
+import AuthenticatedComponent from 'decorators/AuthenticatedComponent';
+// import StripeCardForm from 'components/StripeCardForm';
+import StripeCheckoutButton from 'components/StripeCheckoutButton';
 
 export default AuthenticatedComponent(
   class extends React.Component {

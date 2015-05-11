@@ -1,7 +1,7 @@
 import Promise from 'bluebird';
 
-import alt from '../flux/alt';
-import Parse from '../stores/Parse';
+import alt from 'flux/alt';
+import Parse from 'stores/Parse';
 
 class UserActions {
   restoreCurrentUser() {
@@ -66,10 +66,10 @@ class UserActions {
       return Parse.Cloud.run("User__addCardToken", data)
 
     }).then(function(user) {
-      this.dispatch(user);
+      return Parse.User.current().fetch();
 
-    }).then(function() {
-      Parse.User.current().fetch();
+    }).then(function(user) {
+      this.dispatch(user);
 
     });
   }

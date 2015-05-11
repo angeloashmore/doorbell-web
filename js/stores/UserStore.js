@@ -1,5 +1,5 @@
-import alt from '../flux/alt';
-import UserActions from '../actions/UserActions';
+import alt from 'flux/alt';
+import UserActions from 'actions/UserActions';
 
 class UserStore {
   constructor() {

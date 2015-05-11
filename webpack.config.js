@@ -1,4 +1,4 @@
-var webpack = require('webpack');
+var webpack = require("webpack");
 
 module.exports = {
   entry: [
@@ -7,14 +7,19 @@ module.exports = {
   ],
 
   output: {
-    path: __dirname + '/build',
+    path: __dirname + "/build",
     filename: "bundle.js"
+  },
+
+  resolve: {
+    modulesDirectories: ["node_modules", "./js"],
+    extensions: ["", ".js", ".json"]
   },
 
   module: {
     loaders: [
-      { test: /\.js?$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/ },
-      { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'},
+      { test: /\.js?$/, loaders: ["react-hot", "babel"], exclude: /node_modules/ },
+      { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader"},
       { test: /\.json?$/, loader: "json", exclude: /node_modules/ },
       { test: /\.css$/, loader: "style!css" }
     ]

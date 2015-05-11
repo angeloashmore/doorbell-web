@@ -1,26 +1,34 @@
 import React from 'react/addons';
 import reactMixin from 'react-mixin';
 
-import UserActions from '../../actions/UserActions';
-import UserStore from '../../stores/UserStore';
+import UserActions from 'actions/UserActions';
 
-export default class LogIn extends React.Component {
+export default class SignUp extends React.Component {
   constructor() {
     super();
 
     this.state = {
       username: '',
       password: '',
+      email: '',
+      name: '',
       errorMessage: ''
     };
   }
 
-  logIn(e) {
+  signUp(e) {
     e.preventDefault();
 
     var { router } = this.context;
 
-    UserActions.logInUser(this.state.username, this.state.password)
+    let data = {
+      username: this.state.username,
+      password: this.state.password,
+      email: this.state.email,
+      name: this.state.name
+    };
+
+    UserActions.signUpUser(data)
       .then(() => router.transitionTo('dashboard'))
       .catch((error) => this.setState({ errorMessage: error.message }));
   }
@@ -28,11 +36,13 @@ export default class LogIn extends React.Component {
   render() {
     return (
       <div>
-        <p>Log In</p>
+        <p>Sign Up</p>
         <form>
           <input type="text" valueLink={this.linkState('username')} placeholder="Username" />
           <input type="password" valueLink={this.linkState('password')} placeholder="Password" />
-          <button type="submit" onClick={this.logIn.bind(this)}>Submit</button>
+          <input type="email" valueLink={this.linkState('email')} placeholder="Email" />
+          <input type="text" valueLink={this.linkState('name')} placeholder="Name" />
+          <button type="submit" onClick={this.signUp.bind(this)}>Submit</button>
         </form>
         {!!this.state.errorMessage ? (<p>{this.state.errorMessage}</p>) : (null)}
       </div>
@@ -40,8 +50,8 @@ export default class LogIn extends React.Component {
   }
 }
 
-LogIn.contextTypes = {
+SignUp.contextTypes = {
   router: React.PropTypes.func
 };
 
-reactMixin(LogIn.prototype, React.addons.LinkedStateMixin);
+reactMixin(SignUp.prototype, React.addons.LinkedStateMixin);

@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router';
 import reactMixin from 'react-mixin';
 
-import AuthenticatedComponent from '../../decorators/AuthenticatedComponent';
-import UserActions from '../../actions/UserActions';
+import AuthenticatedComponent from 'decorators/AuthenticatedComponent';
+import UserActions from 'actions/UserActions';
 
 class ProfileEdit extends React.Component {
   constructor(props) {

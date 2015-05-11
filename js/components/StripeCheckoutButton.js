@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactScriptLoader from 'react-script-loader';
 
-import config from '../config';
+import config from 'config';
 
-import UserActions from '../actions/UserActions';
-import UserStore from '../stores/UserStore';
+import UserActions from 'actions/UserActions';
+import UserStore from 'stores/UserStore';
 
 const ReactScriptLoaderMixin = ReactScriptLoader.ReactScriptLoaderMixin;
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import AuthenticatedComponent from '../decorators/AuthenticatedComponent';
+import AuthenticatedComponent from 'decorators/AuthenticatedComponent';
 
 export default AuthenticatedComponent(
   class extends React.Component {
