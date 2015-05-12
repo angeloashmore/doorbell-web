@@ -9,13 +9,17 @@ class UserStore {
         UserActions.LOG_IN_USER,
         UserActions.SIGN_UP_USER,
         UserActions.UPDATE_USER,
+      ],
+      setBilling: [
+        UserActions.FETCH_BILLING,
         UserActions.ADD_CARD_TOKEN
       ],
-      unsetUser: UserActions.LOG_OUT_USER
+      unsetAll: UserActions.LOG_OUT_USER
     });
 
     this.state = {
-      user: null
+      user: null,
+      billing: null
     };
   }
 
@@ -23,17 +27,32 @@ class UserStore {
     this.setState({ user: user });
   }
 
-  unsetUser() {
-    this.setState({ user: null });
+  setBilling(billing) {
+    this.setState({ billing: billing });
+  }
+
+  unsetAll() {
+    this.setState({
+      user: null,
+      billing: null
+    });
   }
 
   static isLoggedIn() {
     return !!this.getState().user;
   }
 
-  static hasCard() {
+  static hasStripeCustomer() {
     if (this.isLoggedIn()) {
-      return !!this.getState().user.get("billingBrand") && !!this.getState().user.get("billingLast4");
+      return !!this.getState().billing;
+    } else {
+      return false;
+    }
+  }
+
+  static hasCard() {
+    if (this.isLoggedIn() && this.hasStripeCustomer()) {
+      return !!this.getState().billing.get("last4");
     } else {
       return false;
     }

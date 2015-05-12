@@ -60,16 +60,23 @@ class UserActions {
     });
   }
 
+  fetchBilling(user) {
+    return Promise.bind(this).then(function() {
+      return user.get("billing").fetch();
+
+    }).then(function(billing) {
+      this.dispatch(billing);
+
+    });
+  }
+
   addCardToken(token) {
     return Promise.bind(this).then(function() {
       let data = { token: token };
       return Parse.Cloud.run("User__addCardToken", data)
 
-    }).then(function(user) {
-      return Parse.User.current().fetch();
-
-    }).then(function(user) {
-      this.dispatch(user);
+    }).then(function(billing) {
+      this.dispatch(billing);
 
     });
   }

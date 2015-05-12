@@ -31,7 +31,7 @@ export default class StripeCheckoutButton extends React.Component {
   }
 
   onSuccessfulToken(token) {
-    UserActions.addCardToken(token.id)
+    this.props.onSuccess(token);
   }
 
   handler() {

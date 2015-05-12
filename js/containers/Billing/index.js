@@ -2,29 +2,52 @@ import React from 'react';
 import { Link } from 'react-router';
 
 import AuthenticatedComponent from 'decorators/AuthenticatedComponent';
-// import StripeCardForm from 'components/StripeCardForm';
 import StripeCheckoutButton from 'components/StripeCheckoutButton';
+import UserStore from 'stores/UserStore';
+import UserActions from 'actions/UserActions';
 
 export default AuthenticatedComponent(
   class extends React.Component {
-    onAddCardSuccess() {
-      console.log("Success! :)");
+    constructor() {
+      super();
+
+      this.state = {
+        loadingBilling: true,
+        errorLoadingBilling: false
+      }
     }
 
-    onAddCardFailure(error) {
-      console.log("Failure! :(")
+    componentWillMount() {
+      if (!UserStore.getState().billing) {
+        UserActions.fetchBilling(UserStore.getState().user)
+          .then(() => this.setState({ loadingBilling: false }))
+          .catch((error) => this.setState({ loadingBilling: false, errorLoadingBilling: true }));
+      } else {
+        this.setState({ loadingBilling: false });
+      }
+    }
+
+    onSuccess(token) {
+      UserActions.addCardToken(token.id)
+        .catch((error) => console.log(error));
     }
 
     render() {
       return(
         <div>
-          <dl>
-            <dt>Card Brand</dt>
-            <dd>{this.props.user.get("billingBrand")}</dd>
-            <dt>Card Last 4</dt>
-            <dd>{this.props.user.get("billingLast4")}</dd>
-          </dl>
-          <StripeCheckoutButton />
+          {this.state.loadingBilling ? (
+            <p>Loading...</p>
+          ) : (
+            <div>
+              <dl>
+                <dt>Card Brand</dt>
+                <dd>{UserStore.getState().billing.get("brand")}</dd>
+                <dt>Card Last 4</dt>
+                <dd>{UserStore.getState().billing.get("last4")}</dd>
+              </dl>
+              <StripeCheckoutButton onSuccess={this.onSuccess} />
+            </div>
+          )}
         </div>
       );
     }
