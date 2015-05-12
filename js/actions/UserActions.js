@@ -4,17 +4,38 @@ import alt from 'flux/alt';
 import Parse from 'stores/Parse';
 
 class UserActions {
+  static eagerLoadCurrentUser() {
+    return Promise.bind(this).then(function() {
+      if (!Parse.User.current()) {
+        throw new Promise.CancellationError("No user logged in");
+      }
+
+      let query = new Parse.Query(Parse.User);
+      query.include("billing");
+
+      return query.get(Parse.User.current().id);
+    });
+  }
+
   restoreCurrentUser() {
     return Promise.bind(this).then(function() {
-      if (!!Parse.User.current()) {
-        this.dispatch(Parse.User.current());
-      }
+      return UserActions.eagerLoadCurrentUser();
+
+    }).then(function(user) {
+      this.dispatch(user);
+
+    }).catch(Promise.CancellationError, function(error) {
+      return true;
+
     });
   }
 
   logInUser(username, password) {
     return Promise.bind(this).then(function() {
-      return Parse.User.logIn(username, password)
+      return Parse.User.logIn(username, password);
+
+    }).then(function() {
+      return UserActions.eagerLoadCurrentUser();
 
     }).then(function(user) {
       this.dispatch(user);
@@ -40,6 +61,9 @@ class UserActions {
       user.set("password", attrs.password);
       return user.logIn()
 
+    }).then(function() {
+      return UserActions.eagerLoadCurrentUser();
+
     }).then(function(user) {
       this.dispatch(user);
 
@@ -54,18 +78,11 @@ class UserActions {
 
       return user.save();
 
+    }).then(function() {
+      return UserActions.eagerLoadCurrentUser();
+
     }).then(function(user) {
       this.dispatch(user);
-
-    });
-  }
-
-  fetchBilling(user) {
-    return Promise.bind(this).then(function() {
-      return user.get("billing").fetch();
-
-    }).then(function(billing) {
-      this.dispatch(billing);
 
     });
   }
@@ -73,10 +90,13 @@ class UserActions {
   addCardToken(token) {
     return Promise.bind(this).then(function() {
       let data = { token: token };
-      return Parse.Cloud.run("User__addCardToken", data)
+      return Parse.Cloud.run("User__addCardToken", data);
 
-    }).then(function(billing) {
-      this.dispatch(billing);
+    }).then(function() {
+      return UserActions.eagerLoadCurrentUser();
+
+    }).then(function(user) {
+      this.dispatch(user);
 
     });
   }
