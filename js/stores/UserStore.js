@@ -9,7 +9,8 @@ class UserStore {
         UserActions.LOG_IN_USER,
         UserActions.SIGN_UP_USER,
         UserActions.UPDATE_USER,
-        UserActions.ADD_CARD_TOKEN
+        UserActions.ADD_CARD_TOKEN,
+        UserActions.SUBSCRIBE_TO
       ],
       unsetAll: UserActions.LOG_OUT_USER
     });

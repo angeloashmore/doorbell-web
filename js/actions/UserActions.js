@@ -100,6 +100,20 @@ class UserActions {
 
     });
   }
+
+  subscribeTo(plan) {
+    return Promise.bind(this).then(function() {
+      let data = { planId: plan.id };
+      return Parse.Cloud.run("User__subscribeTo", data);
+
+    }).then(function() {
+      return UserActions.eagerLoadCurrentUser();
+
+    }).then(function(user) {
+      this.dispatch(user);
+
+    });
+  }
 }
 
 export default alt.createActions(UserActions);
