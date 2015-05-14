@@ -55,11 +55,11 @@ class UserActions {
 
   signUpUser(attrs) {
     return Promise.bind(this).then(function() {
-      return Parse.Cloud.run("User__create", attrs)
+      return Parse.Cloud.run("User__create", attrs);
 
     }).then(function(user) {
       user.set("password", attrs.password);
-      return user.logIn()
+      return user.logIn();
 
     }).then(function() {
       return UserActions.eagerLoadCurrentUser();
