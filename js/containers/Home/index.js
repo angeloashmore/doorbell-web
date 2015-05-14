@@ -1,7 +1,6 @@
-import React from 'react/addons';
+import React from 'react';
 
 import Parse from 'stores/Parse';
-import AuthenticatedComponent from 'decorators/AuthenticatedComponent';
 
 export default class extends React.Component {
   render() {

@@ -1,15 +1,14 @@
 import React from 'react';
 
-import AuthenticatedComponent from 'decorators/AuthenticatedComponent';
+import authenticatedComponent from 'decorators/authenticatedComponent';
 
-export default AuthenticatedComponent(
-  class extends React.Component {
-    render() {
-      return (
-        <div>
-          <p>Viewing the <strong>protected</strong> Dashboard.</p>
-        </div>
-      );
-    }
+@authenticatedComponent
+export default class extends React.Component {
+  render() {
+    return (
+      <div>
+        <p>Viewing the <strong>protected</strong> Dashboard.</p>
+      </div>
+    );
   }
-);
+}

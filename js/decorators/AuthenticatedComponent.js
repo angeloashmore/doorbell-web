@@ -1,11 +1,9 @@
 import React from 'react';
-import AltContainer from 'alt/AltContainer';
-
 import UserStore from 'stores/UserStore';
 
-export default (ComposedComponent) => {
+export default function authenticatedComponent(Component) {
   return class AuthenticatedComponent extends React.Component {
-    willTransitionTo(transition) {
+    static willTransitionTo(transition) {
       // This method is called before transitioning to this component. If the
       // user is not logged in, we'll send him or her to the Log In page.
       if (!UserStore.isLoggedIn()) {
@@ -14,9 +12,7 @@ export default (ComposedComponent) => {
     }
 
     render() {
-      return (
-        <ComposedComponent />
-      );
+      return React.createElement(Component);
     }
   }
 }
