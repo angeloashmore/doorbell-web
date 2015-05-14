@@ -1,9 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router';
+import connectToStores from 'alt/utils/connectToStores';
 
+import UserStore from 'stores/UserStore';
 import UserActions from 'actions/UserActions';
 
+@connectToStores
 export default class Navigation extends React.Component {
+  static getStores() {
+    return [UserStore];
+  }
+
+  static getPropsFromStores(props) {
+    return UserStore.getState();
+  }
+
   logOutUser() {
     var { router } = this.context;
 

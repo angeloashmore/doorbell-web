@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import connectToStores from 'alt/utils/connectToStores';
 
 import AuthenticatedComponent from 'decorators/AuthenticatedComponent';
 import UserStore from 'stores/UserStore';
@@ -7,7 +8,19 @@ import PlansStore from 'stores/PlansStore';
 import UserActions from 'actions/UserActions';
 
 export default AuthenticatedComponent(
+  @connectToStores
   class extends React.Component {
+    static getStores() {
+      return [UserStore, PlansStore];
+    }
+
+    static getPropsFromStores() {
+      return {
+        user: UserStore.getState().user,
+        plans: PlansStore.getState().plans
+      }
+    }
+
     handlePress(plan) {
       UserActions.subscribeTo(plan)
         .catch((error) => console.log(error));
@@ -17,7 +30,7 @@ export default AuthenticatedComponent(
       if (UserStore.hasCard()) {
         return (
           <ul>
-            {PlansStore.getState().plans.map((plan) => {
+            {this.props.plans.map((plan) => {
               return (
                 <li key={plan.id}>
                   {plan.get("name")}

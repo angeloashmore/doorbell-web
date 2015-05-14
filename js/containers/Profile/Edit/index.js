@@ -1,11 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router';
+import connectToStores from 'alt/utils/connectToStores';
 import reactMixin from 'react-mixin';
 
 import AuthenticatedComponent from 'decorators/AuthenticatedComponent';
 import UserActions from 'actions/UserActions';
+import UserStore from 'stores/UserStore';
 
+@connectToStores
 class ProfileEdit extends React.Component {
+  static getStores() {
+    return [UserStore];
+  }
+
+  static getPropsFromStores() {
+    return UserStore.getState();
+  }
+
   constructor(props) {
     super(props);
 

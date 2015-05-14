@@ -2,7 +2,6 @@ import React from 'react/addons';
 import reactMixin from 'react-mixin';
 
 import UserActions from 'actions/UserActions';
-import UserStore from 'stores/UserStore';
 
 export default class LogIn extends React.Component {
   constructor() {

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import connectToStores from 'alt/utils/connectToStores';
 
 import AuthenticatedComponent from 'decorators/AuthenticatedComponent';
 import StripeCheckoutButton from 'components/StripeCheckoutButton';
@@ -7,7 +8,16 @@ import UserStore from 'stores/UserStore';
 import UserActions from 'actions/UserActions';
 
 export default AuthenticatedComponent(
+  @connectToStores
   class extends React.Component {
+    static getStores() {
+      return [UserStore];
+    }
+
+    static getPropsFromStores() {
+      return UserStore.getState();
+    }
+
     onSuccess(token) {
       UserActions.addCardToken(token.id)
         .catch((error) => console.log(error));

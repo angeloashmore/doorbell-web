@@ -15,9 +15,7 @@ export default (ComposedComponent) => {
 
     render() {
       return (
-        <AltContainer
-          store={UserStore}
-          component={ComposedComponent} />
+        <ComposedComponent />
       );
     }
   }
