@@ -8,14 +8,10 @@ import UserActions from 'actions/UserActions';
 import UserStore from 'stores/UserStore';
 
 export default class extends React.Component {
-  componentDidMount() {
-    UserActions.restoreCurrentUser();
-  }
-
   render() {
     return (
       <div className="app">
-        <AltContainer store={UserStore} component={Navigation} />
+        <Navigation />
 
         <RouteHandler />
       </div>
