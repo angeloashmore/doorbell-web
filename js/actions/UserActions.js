@@ -55,7 +55,8 @@ class UserActions {
 
   signUpUser(attrs) {
     return Promise.bind(this).then(function() {
-      let user = new Parse.User.set(attrs);
+      let user = new Parse.User;
+      user.set(attrs);
       return user.signUp();
 
     }).then(function() {

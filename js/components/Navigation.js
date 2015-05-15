@@ -15,11 +15,14 @@ export default class Navigation extends React.Component {
     return UserStore.getState();
   }
 
+  static contextTypes = {
+    router: React.PropTypes.func
+  }
+
   logOutUser() {
     var { router } = this.context;
 
     UserActions.logOutUser()
-      .then(() => router.transitionTo('login'))
       .catch((error) => console.log(error));
   }
 
@@ -32,7 +35,7 @@ export default class Navigation extends React.Component {
         <li><Link to="billing">Billing</Link></li>
         <li><Link to="plans">Plans</Link></li>
         <li>Logged in as: {this.props.user.get("name")} ({this.props.user.get("username")})</li>
-        <li><a onClick={() => this.logOutUser()}>Log Out</a></li>
+        <li><Link to="login" onClick={() => this.logOutUser()}>Log Out</Link></li>
       </ul>
     );
   }
@@ -55,7 +58,3 @@ export default class Navigation extends React.Component {
     );
   }
 }
-
-Navigation.contextTypes = {
-  router: React.PropTypes.func
-};

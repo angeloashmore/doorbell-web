@@ -3,7 +3,12 @@ import reactMixin from 'react-mixin';
 
 import UserActions from 'actions/UserActions';
 
+@reactMixin.decorate(React.addons.LinkedStateMixin)
 export default class LogIn extends React.Component {
+  static contextTypes = {
+    router: React.PropTypes.func
+  }
+
   constructor() {
     super();
 
@@ -38,9 +43,3 @@ export default class LogIn extends React.Component {
     );
   }
 }
-
-LogIn.contextTypes = {
-  router: React.PropTypes.func
-};
-
-reactMixin(LogIn.prototype, React.addons.LinkedStateMixin);

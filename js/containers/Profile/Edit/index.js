@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react/addons';
 import { Link } from 'react-router';
 import connectToStores from 'alt/utils/connectToStores';
 import reactMixin from 'react-mixin';
@@ -9,6 +9,7 @@ import UserStore from 'stores/UserStore';
 
 @authenticatedComponent
 @connectToStores
+@reactMixin.decorate(React.addons.LinkedStateMixin)
 export default class ProfileEdit extends React.Component {
   static getStores() {
     return [UserStore];
@@ -16,6 +17,10 @@ export default class ProfileEdit extends React.Component {
 
   static getPropsFromStores() {
     return UserStore.getState();
+  }
+
+  static contextTypes = {
+    router: React.PropTypes.func
   }
 
   constructor(props) {
@@ -59,9 +64,3 @@ export default class ProfileEdit extends React.Component {
     );
   }
 }
-
-ProfileEdit.contextTypes = {
-  router: React.PropTypes.func
-};
-
-reactMixin(ProfileEdit.prototype, React.addons.LinkedStateMixin);
