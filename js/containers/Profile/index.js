@@ -20,8 +20,10 @@ export default class extends React.Component {
     return (
       <div>
         <dl>
-          <dt>Name</dt>
-          <dd>{this.props.user.get("name")}</dd>
+          <dt>First Name</dt>
+          <dd>{this.props.user.get("firstName")}</dd>
+          <dt>Last Name</dt>
+          <dd>{this.props.user.get("lastName")}</dd>
           <dt>Email</dt>
           <dd>{this.props.user.get("email")}</dd>
         </dl>

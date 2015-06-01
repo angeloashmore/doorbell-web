@@ -27,7 +27,8 @@ export default class ProfileEdit extends React.Component {
     super(props);
 
     this.state = {
-      name: this.props.user.get("name"),
+      firstName: this.props.user.get("firstName"),
+      lastName: this.props.user.get("lastName"),
       email: this.props.user.get("email"),
       errorMessage: ''
     };
@@ -39,7 +40,8 @@ export default class ProfileEdit extends React.Component {
     var { router } = this.context;
 
     let data = {
-      name: this.state.name,
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
       email: this.state.email
     };
 
@@ -53,7 +55,8 @@ export default class ProfileEdit extends React.Component {
       <div>
         <form>
           <label>Name</label>
-          <input type="text" valueLink={this.linkState('name')} placeholder="Name" />
+          <input type="text" valueLink={this.linkState('firstName')} placeholder="First Name" />
+          <input type="text" valueLink={this.linkState('lastName')} placeholder="Last Name" />
           <label>Email</label>
           <input type="email" valueLink={this.linkState('email')} placeholder="Email" />
           <button type="submit" onClick={this.updateUser.bind(this)}>Submit</button>

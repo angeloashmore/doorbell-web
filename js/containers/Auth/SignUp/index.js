@@ -16,7 +16,8 @@ export default class SignUp extends React.Component {
       username: '',
       password: '',
       email: '',
-      name: '',
+      firstName: '',
+      lastName: '',
       errorMessage: ''
     };
   }
@@ -30,7 +31,8 @@ export default class SignUp extends React.Component {
       username: this.state.username,
       password: this.state.password,
       email: this.state.email,
-      name: this.state.name
+      firstName: this.state.firstName,
+      lastName: this.state.lastName
     };
 
     UserActions.signUpUser(data)
@@ -46,7 +48,8 @@ export default class SignUp extends React.Component {
           <input type="text" valueLink={this.linkState('username')} placeholder="Username" />
           <input type="password" valueLink={this.linkState('password')} placeholder="Password" />
           <input type="email" valueLink={this.linkState('email')} placeholder="Email" />
-          <input type="text" valueLink={this.linkState('name')} placeholder="Name" />
+          <input type="text" valueLink={this.linkState('firstName')} placeholder="First Name" />
+          <input type="text" valueLink={this.linkState('lastName')} placeholder="Last Name" />
           <button type="submit" onClick={this.signUp.bind(this)}>Submit</button>
         </form>
         {!!this.state.errorMessage ? (<p>{this.state.errorMessage}</p>) : (null)}
