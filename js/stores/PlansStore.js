@@ -15,6 +15,20 @@ class PlansStore {
   replacePlans(plans) {
     this.setState({ plans: plans });
   }
+
+  _plansForType(type) {
+    return this.getState().plans.filter(function(plan) {
+      return plan.get("type") == type;
+    });
+  }
+
+  static plansForUsers() {
+    return this._plansForType("user");
+  }
+
+  static plansForOrganizations() {
+    return this._plansForType("organization");
+  }
 }
 
 export default alt.createStore(PlansStore, 'PlansStore');
