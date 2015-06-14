@@ -23,15 +23,16 @@ class BillingStore {
     });
   }
 
+  // MARK: Public interface
   static forCurrentUser() {
     return this._billingsForType("user")[0];
   }
 
   static forOrganizationWithId(organizationId) {
     const billings = this._billingsForType("organization");
-    return billings.filter(function(billing) {
-      return billing.id == organizationId;
-    })[0];
+    return billings.find(function(billing, index, array) {
+      return billing.relationship.objectId == organizationId
+    });
   }
 }
 

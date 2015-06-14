@@ -32,6 +32,7 @@ class UserStore {
     });
   }
 
+  // MARK: Public interface
   static isLoggedIn() {
     return !!this.getState().user;
   }

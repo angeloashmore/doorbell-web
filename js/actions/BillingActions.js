@@ -1,7 +1,7 @@
 import Promise from 'bluebird';
 
 import alt from 'flux/alt';
-import Parse from 'stores/Parse';
+import Parse from 'lib/Parse';
 
 class BillingActions {
   fetchAllWithinACL() {

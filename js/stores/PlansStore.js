@@ -22,6 +22,7 @@ class PlansStore {
     });
   }
 
+  // MARK: Public interface
   static plansForUsers() {
     return this._plansForType("user");
   }
