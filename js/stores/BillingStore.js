@@ -4,34 +4,37 @@ import BillingActions from 'actions/BillingActions';
 class BillingStore {
   constructor() {
     this.bindListeners({
-      replaceBillings: BillingActions.FETCH_ALL_WITHIN_ACL
+      setObjects: BillingActions.FETCH_ALL_WITHIN_ACL
     });
 
     this.state = {
-      billings: []
+      objects: []
     };
   }
 
-  replaceBillings(billings) {
-    this.setState({ billings: billings });
+  // MARK: Store methods
+  setObjects(objects) {
+    this.setState({ objects: objects });
   }
 
-  _billingsForType(type) {
-    return this.getState().plans.filter(function(plan) {
-      const relationship = plan.get("relationship");
-      relationship.className == type;
+  // MARK: Private methods
+  _objectsWithType(type) {
+    const objects = this.getState().objects;
+    return this.getState().objects.filter(function(object) {
+      const relation = object.get("relation");
+      relation.className == type;
     });
   }
 
-  // MARK: Public interface
+  // MARK: Public methods
   static forCurrentUser() {
-    return this._billingsForType("user")[0];
+    return this._objectsWithType("user")[0];
   }
 
-  static forOrganizationWithId(organizationId) {
-    const billings = this._billingsForType("organization");
-    return billings.find(function(billing, index, array) {
-      return billing.relationship.objectId == organizationId
+  static forOrganizationWithId(id) {
+    const objects = this._objectsWithType("organization");
+    return objects.find(function(object, index, array) {
+      return object.relation.objectId == id
     });
   }
 }
