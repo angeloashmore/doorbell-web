@@ -16,7 +16,8 @@ class UserStore {
     });
 
     this.state = {
-      user: null
+      user: null,
+      profiles: []
     };
   }
 
@@ -25,24 +26,19 @@ class UserStore {
   }
 
   unsetAll() {
-    this.setState({ user: null });
+    this.setState({
+      user: null,
+      profiles: []
+    });
   }
 
   static isLoggedIn() {
     return !!this.getState().user;
   }
 
-  static hasStripeCustomer() {
-    if (this.isLoggedIn()) {
-      return !!this.getState().user.get("billing");
-    } else {
-      return false;
-    }
-  }
-
   static hasCard() {
-    if (this.isLoggedIn() && this.hasStripeCustomer()) {
-      return !!this.getState().user.get("billing").get("last4");
+    if (this.getState().billing != null) {
+      return !!this.getState().billing.get("last4");
     } else {
       return false;
     }

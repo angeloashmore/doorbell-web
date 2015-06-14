@@ -5,15 +5,23 @@ import Parse from 'stores/Parse';
 
 class UserActions {
   static eagerLoadCurrentUser() {
+    const user = Parse.User.current();
+    var profiles;
+
+    if (!user) return Promise.CancellationError("No user logged in");
+
     return Promise.bind(this).then(function() {
-      if (!Parse.User.current()) {
-        throw new Promise.CancellationError("No user logged in");
-      }
+      let query = new Parse.Query("Profile");
+      query.equalTo("user", user);
+      return query.find();
 
-      let query = new Parse.Query(Parse.User);
-      query.include("billing");
+    }).then(function(_profiles) {
+      profiles = _profiles;
 
-      return query.get(Parse.User.current().id);
+      return {
+        user: user,
+        profiles: profiles
+      };
     });
   }
 
@@ -21,8 +29,8 @@ class UserActions {
     return Promise.bind(this).then(function() {
       return UserActions.eagerLoadCurrentUser();
 
-    }).then(function(user) {
-      this.dispatch(user);
+    }).then(function(userObjects) {
+      this.dispatch(userObjects);
 
     }).catch(Promise.CancellationError, function(error) {
       return true;
@@ -37,8 +45,8 @@ class UserActions {
     }).then(function() {
       return UserActions.eagerLoadCurrentUser();
 
-    }).then(function(user) {
-      this.dispatch(user);
+    }).then(function(userObjects) {
+      this.dispatch(userObjects);
 
     });
   }
@@ -62,8 +70,8 @@ class UserActions {
     }).then(function() {
       return UserActions.eagerLoadCurrentUser();
 
-    }).then(function(user) {
-      this.dispatch(user);
+    }).then(function(userObjects) {
+      this.dispatch(userObjects);
 
     });
   }
@@ -79,8 +87,8 @@ class UserActions {
     }).then(function() {
       return UserActions.eagerLoadCurrentUser();
 
-    }).then(function(user) {
-      this.dispatch(user);
+    }).then(function(userObjects) {
+      this.dispatch(userObjects);
 
     });
   }
@@ -93,8 +101,8 @@ class UserActions {
     }).then(function() {
       return UserActions.eagerLoadCurrentUser();
 
-    }).then(function(user) {
-      this.dispatch(user);
+    }).then(function(userObjects) {
+      this.dispatch(userObjects);
 
     });
   }
@@ -107,8 +115,8 @@ class UserActions {
     }).then(function() {
       return UserActions.eagerLoadCurrentUser();
 
-    }).then(function(user) {
-      this.dispatch(user);
+    }).then(function(userObjects) {
+      this.dispatch(userObjects);
 
     });
   }
