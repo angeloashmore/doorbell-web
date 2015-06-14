@@ -4,7 +4,7 @@ import BillingActions from 'actions/BillingActions';
 class BillingStore {
   constructor() {
     this.bindListeners({
-      replaceBillings: BillingActions.FETCH_ALL
+      replaceBillings: BillingActions.FETCH_ALL_WITHIN_ACL
     });
 
     this.state = {
