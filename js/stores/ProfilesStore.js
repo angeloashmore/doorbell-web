@@ -4,23 +4,29 @@ import ProfilesActions from 'actions/ProfilesActions';
 class ProfilesStore {
   constructor() {
     this.bindListeners({
-      replaceProfiles: ProfilesActions.FETCH_ALL_FOR_CURRENT_USER
+      replaceObjects: ProfilesActions.FETCH_ALL_FOR_CURRENT_USER
     });
 
     this.state = {
-      profiles: []
+      objects: []
     };
   }
 
-  replaceProfiles(profiles) {
-    this.setState({ profiles: profiles });
+
+  // MARK: Store methods
+  replaceObjects(objects) {
+    this.setState({ objects: objects });
   }
 
-  // MARK: Public interface
-  static forOrganization(organization) {
-    const profiles = this.getState().profiles;
-    return profiles.find(function(profile, index, array) {
-      return profile.get("organization") == organization;
+
+  // MARK: Private methods
+
+
+  // MARK: Public methods
+  static forOrganizationWithId(id) {
+    const objects = this.getState().objects;
+    return objects.find(function(object, index, array) {
+      return object.get("organization").id == id;
     });
   }
 }

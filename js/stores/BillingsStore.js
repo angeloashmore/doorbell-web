@@ -1,10 +1,10 @@
 import alt from 'flux/alt';
-import BillingActions from 'actions/BillingActions';
+import BillingsActions from 'actions/BillingsActions';
 
-class BillingStore {
+class BillingsStore {
   constructor() {
     this.bindListeners({
-      setObjects: BillingActions.FETCH_ALL_WITHIN_ACL
+      setObjects: BillingsActions.FETCH_ALL_FOR_CURRENT_USER
     });
 
     this.state = {
@@ -12,10 +12,12 @@ class BillingStore {
     };
   }
 
+
   // MARK: Store methods
   setObjects(objects) {
     this.setState({ objects: objects });
   }
+
 
   // MARK: Private methods
   _objectsWithType(type) {
@@ -26,6 +28,7 @@ class BillingStore {
     });
   }
 
+
   // MARK: Public methods
   static forCurrentUser() {
     return this._objectsWithType("user")[0];
@@ -34,9 +37,9 @@ class BillingStore {
   static forOrganizationWithId(id) {
     const objects = this._objectsWithType("organization");
     return objects.find(function(object, index, array) {
-      return object.relation.objectId == id
+      return object.get("relation").objectId == id
     });
   }
 }
 
-export default alt.createStore(BillingStore, 'BillingStore');
+export default alt.createStore(BillingsStore, 'BillingsStore');

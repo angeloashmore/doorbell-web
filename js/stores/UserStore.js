@@ -21,6 +21,7 @@ class UserStore {
     };
   }
 
+  // MARK: Store methods
   setUser(user) {
     this.setState({ user: user });
   }
@@ -32,17 +33,13 @@ class UserStore {
     });
   }
 
-  // MARK: Public interface
+
+  // MARK: Private methods
+
+
+  // MARK: Public methods
   static isLoggedIn() {
     return !!this.getState().user;
-  }
-
-  static hasCard() {
-    if (this.getState().billing != null) {
-      return !!this.getState().billing.get("last4");
-    } else {
-      return false;
-    }
   }
 }
 

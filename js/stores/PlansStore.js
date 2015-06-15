@@ -4,31 +4,36 @@ import PlansActions from 'actions/PlansActions';
 class PlansStore {
   constructor() {
     this.bindListeners({
-      replacePlans: PlansActions.FETCH_ALL
+      replaceObjects: PlansActions.FETCH_ALL
     });
 
     this.state = {
-      plans: []
+      objects: []
     };
   }
 
-  replacePlans(plans) {
-    this.setState({ plans: plans });
+
+  // MARK: Store methods
+  replaceObjects(objects) {
+    this.setState({ objects: objects });
   }
 
-  _plansForType(type) {
-    return this.getState().plans.filter(function(plan) {
-      return plan.get("type") == type;
+
+  // MARK: Private methods
+  _objectsForType(type) {
+    return this.getState().objects.filter(function(object) {
+      return object.get("type") == type;
     });
   }
 
+
   // MARK: Public interface
-  static plansForUsers() {
-    return this._plansForType("user");
+  static forUsers() {
+    return this._objectsForType("user");
   }
 
-  static plansForOrganizations() {
-    return this._plansForType("organization");
+  static forOrganizations() {
+    return this._objectsForType("organization");
   }
 }
 

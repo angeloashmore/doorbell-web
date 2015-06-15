@@ -3,8 +3,8 @@ import Promise from 'bluebird';
 import alt from 'flux/alt';
 import Parse from 'lib/Parse';
 
-class BillingActions {
-  fetchAllWithinACL() {
+class BillingsActions {
+  fetchAllForCurrentUser() {
     return Promise.bind(this).then(function() {
       const query = new Parse.Query("Billing");
       return query.find();
@@ -16,4 +16,4 @@ class BillingActions {
   }
 }
 
-export default alt.createActions(BillingActions);
+export default alt.createActions(BillingsActions);

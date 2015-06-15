@@ -4,23 +4,29 @@ import OrganizationsActions from 'actions/OrganizationsActions';
 class OrganizationsStore {
   constructor() {
     this.bindListeners({
-      replaceOrganizations OrganizationsActions.FETCH_ALL_FOR_CURRENT_USER
+      replaceObjects: OrganizationsActions.FETCH_ALL_FOR_CURRENT_USER
     });
 
     this.state = {
-      organizations: []
+      objects: []
     };
   }
 
-  replaceOrganizations(organizations) {
-    this.setState({ organizations: organizations });
+
+  // MARK: Store methods
+  replaceObjects(objects) {
+    this.setState({ objects: objects });
   }
 
-  // MARK: Public interface
-  static getWithId(id) {
-    const organizations = this.getState().organizations;
-    return organizations.find(function(organization, index, array) {
-      return organization.id == id;
+
+  // MARK: Private methods
+
+
+  // MARK: Public methods
+  static withId(id) {
+    const objects = this.getState().objects;
+    return objects.find(function(object, index, array) {
+      return object.id == id;
     });
   }
 }
