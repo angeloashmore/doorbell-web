@@ -30,6 +30,12 @@ class BillingsStore {
 
 
   // MARK: Public methods
+  static forId(id) {
+    return objects.find(function(object, index, array) {
+      return object.id == id;
+    });
+  }
+
   static forCurrentUser() {
     return this._objectsWithType("user")[0];
   }
@@ -39,6 +45,11 @@ class BillingsStore {
     return objects.find(function(object, index, array) {
       return object.get("relation").objectId == id
     });
+  }
+
+  static hasCardForId(id) {
+    const object = this.forId(id);
+    return !!object.get("last4");
   }
 }
 

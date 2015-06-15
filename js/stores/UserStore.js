@@ -16,8 +16,7 @@ class UserStore {
     });
 
     this.state = {
-      user: null,
-      profiles: []
+      user: null
     };
   }
 
@@ -27,10 +26,7 @@ class UserStore {
   }
 
   unsetAll() {
-    this.setState({
-      user: null,
-      profiles: []
-    });
+    this.setState({ user: null });
   }
 
 
