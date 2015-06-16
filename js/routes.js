@@ -28,7 +28,7 @@ export default (
     <Route path="organizations" component={Organizations} />
     <Route path="organizations/new" component={OrganizationsNew} />
     <Route path="organizations/:id" component={OrganizationsView} />
-    <Route path="organizations/:id/edit" component={OrganizationEdit} />
+    <Route path="organizations/:id/edit" component={OrganizationsEdit} />
 
     // User
     <Route path="user" component={User} />

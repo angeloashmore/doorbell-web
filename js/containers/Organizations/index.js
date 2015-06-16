@@ -4,7 +4,7 @@ export default class extends React.Component {
   render() {
     return (
       <div>
-          <p>Welcome to the home page</p>
+          <p>Welcome to the Organizations page</p>
       </div>
     );
   }

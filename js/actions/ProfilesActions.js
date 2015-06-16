@@ -2,10 +2,11 @@ import Promise from 'bluebird';
 
 import alt from 'flux/alt';
 import Parse from 'lib/Parse';
+import UserStore from 'stores/UserStore';
 
 class ProfilesActions {
   fetchAllForCurrentUser() {
-    const currentUser = UserStore.getState().user();
+    const currentUser = UserStore.getState().user;
     if (!currentUser) return Promise.CancellationError("No user logged in");
 
     return Promise.bind(this).then(function() {

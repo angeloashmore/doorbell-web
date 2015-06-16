@@ -4,37 +4,10 @@ import alt from 'flux/alt';
 import Parse from 'lib/Parse';
 
 class UserActions {
-  static eagerLoadCurrentUser() {
-    const user = Parse.User.current();
-    var profiles;
-
-    if (!user) return Promise.CancellationError("No user logged in");
-
-    return Promise.bind(this).then(function() {
-      let query = new Parse.Query("Profile");
-      query.equalTo("user", user);
-      return query.find();
-
-    }).then(function(_profiles) {
-      profiles = _profiles;
-
-      return {
-        user: user,
-        profiles: profiles
-      };
-    });
-  }
-
   restoreCurrentUser() {
     return Promise.bind(this).then(function() {
-      return UserActions.eagerLoadCurrentUser();
-
-    }).then(function(userObjects) {
-      this.dispatch(userObjects);
-
-    }).catch(Promise.CancellationError, function(error) {
-      return true;
-
+      const user = Parse.User.current();
+      if (!!user) this.dispatch(user);
     });
   }
 
@@ -42,11 +15,8 @@ class UserActions {
     return Promise.bind(this).then(function() {
       return Parse.User.logIn(username, password);
 
-    }).then(function() {
-      return UserActions.eagerLoadCurrentUser();
-
-    }).then(function(userObjects) {
-      this.dispatch(userObjects);
+    }).then(function(user) {
+      this.dispatch(user);
 
     });
   }
@@ -56,6 +26,9 @@ class UserActions {
       return Parse.User.logOut();
 
     }).then(function() {
+      // Clear all stores
+      alt.recycle();
+
       this.dispatch();
 
     });
@@ -67,11 +40,8 @@ class UserActions {
       user.set(attrs);
       return user.signUp();
 
-    }).then(function() {
-      return UserActions.eagerLoadCurrentUser();
-
-    }).then(function(userObjects) {
-      this.dispatch(userObjects);
+    }).then(function(user) {
+      this.dispatch(user);
 
     });
   }
@@ -84,11 +54,8 @@ class UserActions {
 
       return user.save();
 
-    }).then(function() {
-      return UserActions.eagerLoadCurrentUser();
-
-    }).then(function(userObjects) {
-      this.dispatch(userObjects);
+    }).then(function(user) {
+      this.dispatch(user);
 
     });
   }
