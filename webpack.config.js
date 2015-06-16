@@ -1,6 +1,8 @@
 var webpack = require("webpack");
 
 module.exports = {
+  devtool: 'sourcemap',
+
   entry: [
     "webpack/hot/only-dev-server",
     "./js/app.js"
