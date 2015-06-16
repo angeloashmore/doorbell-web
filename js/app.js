@@ -18,9 +18,9 @@ UserActions.restoreCurrentUser()
   });
 
 // Handle unhandled promise errors.
-window.addEventListener("unhandledrejection", function(error) {
-  error.preventDefault();
-  console.log(error.detail);
+window.addEventListener("unhandledrejection", function(event) {
+  event.preventDefault();
+  console.error("An error occured within a Promise and was not handled. The raw error object has been included.", event.detail);
 });
 
 Router.run(routes, function (Handler) {
