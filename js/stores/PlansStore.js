@@ -4,36 +4,53 @@ import PlansActions from 'actions/PlansActions';
 class PlansStore {
   constructor() {
     this.bindListeners({
-      replaceObjects: PlansActions.FETCH_ALL
+      setObjects: PlansActions.FETCH_ALL
     });
 
     this.state = {
-      objects: []
+      objects: {}
     };
   }
 
 
   // MARK: Store methods
-  replaceObjects(objects) {
-    this.setState({ objects: objects });
+  setObjects(objects) {
+    for (let object of objects) {
+      this.setObject(object);
+    }
+  }
+
+  setObject(object) {
+    this.setState({ objects[object.id]: object });
+    // this.setState({
+    //   objects: {
+    //     `${object.id}`: object
+    //   }
+    // });
   }
 
 
   // MARK: Private methods
-  _objectsForType(type) {
-    return this.getState().objects.filter(function(object) {
-      return object.get("type") == type;
-    });
+  _objectsWithType(type) {
+    const objects = this.getState().objects;
+    const filteredObjects = {};
+
+    for (let key in objects) {
+      let object = objects[key];
+      if (object.get("type") == type) filteredObjects[object.id] = object;
+    }
+
+    return filteredObjects;
   }
 
 
   // MARK: Public interface
   static forUsers() {
-    return this._objectsForType("user");
+    return this._objectsWithType("user");
   }
 
   static forOrganizations() {
-    return this._objectsForType("organization");
+    return this._objectsWithType("organization");
   }
 }
 

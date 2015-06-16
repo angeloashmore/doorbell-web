@@ -4,18 +4,29 @@ import OrganizationsActions from 'actions/OrganizationsActions';
 class OrganizationsStore {
   constructor() {
     this.bindListeners({
-      replaceObjects: OrganizationsActions.FETCH_ALL_FOR_CURRENT_USER
+      setObjects: OrganizationsActions.FETCH_ALL_FOR_CURRENT_USER
     });
 
     this.state = {
-      objects: []
+      objects: {}
     };
   }
 
 
   // MARK: Store methods
-  replaceObjects(objects) {
-    this.setState({ objects: objects });
+  setObjects(objects) {
+    for (let object of objects) {
+      this.setObject(object);
+    }
+  }
+
+  setObject(object) {
+    this.setState({ objects[object.id]: object });
+    // this.setState({
+    //   objects: {
+    //     `${object.id}`: object
+    //   }
+    // });
   }
 
 
@@ -25,9 +36,7 @@ class OrganizationsStore {
   // MARK: Public methods
   static withId(id) {
     const objects = this.getState().objects;
-    return objects.find(function(object, index, array) {
-      return object.id == id;
-    });
+    return objects[id];
   }
 }
 

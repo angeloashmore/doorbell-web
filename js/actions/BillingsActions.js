@@ -14,6 +14,28 @@ class BillingsActions {
 
     });
   }
+
+  addCardWithTokenForId(id, token) {
+    return Promise.bind(this).then(function() {
+      let data = { id: id, token: token };
+      return Parse.Cloud.run("Billing__addCard", data);
+
+    }).then(function(billing) {
+      this.dispatch(billing);
+
+    });
+  }
+
+  subscribeToPlanWithIdForId(id, planId) {
+    return Promise.bind(this).then(function() {
+      let data = { id: id, planId: plan.id };
+      return Parse.Cloud.run("Billing__subscribeToPlan", data);
+
+    }).then(function(billing) {
+      this.dispatch(billing);
+
+    });
+  }
 }
 
 export default alt.createActions(BillingsActions);

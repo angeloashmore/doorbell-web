@@ -92,34 +92,6 @@ class UserActions {
 
     });
   }
-
-  addCardToken(token) {
-    return Promise.bind(this).then(function() {
-      let data = { token: token };
-      return Parse.Cloud.run("User__addCardToken", data);
-
-    }).then(function() {
-      return UserActions.eagerLoadCurrentUser();
-
-    }).then(function(userObjects) {
-      this.dispatch(userObjects);
-
-    });
-  }
-
-  subscribeTo(plan) {
-    return Promise.bind(this).then(function() {
-      let data = { planId: plan.id };
-      return Parse.Cloud.run("User__subscribeTo", data);
-
-    }).then(function() {
-      return UserActions.eagerLoadCurrentUser();
-
-    }).then(function(userObjects) {
-      this.dispatch(userObjects);
-
-    });
-  }
 }
 
 export default alt.createActions(UserActions);

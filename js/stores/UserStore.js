@@ -4,29 +4,22 @@ import UserActions from 'actions/UserActions';
 class UserStore {
   constructor() {
     this.bindListeners({
-      setUser: [
+      setObject: [
         UserActions.RESTORE_CURRENT_USER,
         UserActions.LOG_IN_USER,
         UserActions.SIGN_UP_USER,
-        UserActions.UPDATE_USER,
-        UserActions.ADD_CARD_TOKEN,
-        UserActions.SUBSCRIBE_TO
-      ],
-      unsetAll: UserActions.LOG_OUT_USER
+        UserActions.UPDATE_USER
+      ]
     });
 
     this.state = {
-      user: null
+      object: null
     };
   }
 
   // MARK: Store methods
-  setUser(user) {
-    this.setState({ user: user });
-  }
-
-  unsetAll() {
-    this.setState({ user: null });
+  setObject(object) {
+    this.setState({ object: object });
   }
 
 
@@ -35,7 +28,7 @@ class UserStore {
 
   // MARK: Public methods
   static isLoggedIn() {
-    return !!this.getState().user;
+    return !!this.getState().object;
   }
 }
 
