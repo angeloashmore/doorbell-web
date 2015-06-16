@@ -25,13 +25,13 @@ export default (
     <Route name="dashboard" handler={ Dashboard } />
 
     // Organizations
-    <Route name="organizations" path="organizations" component={Organizations} />
-    <Route name="organizationsNew" path="organizations/new" component={OrganizationsNew} />
-    <Route name="organizationsView" path="organizations/:id" component={OrganizationsView} />
-    <Route name="organizationsEdit" path="organizations/:id/edit" component={OrganizationsEdit} />
+    <Route name="organizations" path="organizations" handler={Organizations} />
+    <Route name="organizationsNew" path="organizations/new" handler={OrganizationsNew} />
+    <Route name="organizationsView" path="organizations/:id" handler={OrganizationsView} />
+    <Route name="organizationsEdit" path="organizations/:id/edit" handler={OrganizationsEdit} />
 
     // User
-    <Route path="user" component={User} />
-    <Route path="user/edit" component={UserEdit} />
+    <Route path="user" handler={User} />
+    <Route path="user/edit" handler={UserEdit} />
   </Route>
 );
