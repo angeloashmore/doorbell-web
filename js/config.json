@@ -1,7 +1,7 @@
 {
   "Parse": {
-    "APP_ID": "DJlID2KyyrJHkOCqrqUmnmZt1lfuYJLFZ5gcuXeq",
-    "JS_KEY": "I5JOLZNVjYACMY4hufmgU0uzj78suBhZ3d6frsne"
+    "APP_ID": "ePrkeRlmdOHOzi5oF9g2QBr5JYu0igBXITvJfaCT",
+    "JS_KEY": "oiT1OKBQBrGOKKT69aNLK6njP9sXgOIXWgcDrpvd"
   },
   "Stripe": {
     "PUBLISHABLE_KEY": "pk_test_ULJPlMTxKNqHQJp3qt9c7Jz9"
