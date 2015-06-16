@@ -4,7 +4,7 @@ import UserActions from 'actions/UserActions';
 class UserStore {
   constructor() {
     this.bindListeners({
-      setObject: [
+      setUser: [
         UserActions.RESTORE_CURRENT_USER,
         UserActions.LOG_IN_USER,
         UserActions.SIGN_UP_USER,
@@ -13,13 +13,13 @@ class UserStore {
     });
 
     this.state = {
-      object: null
+      user: null
     };
   }
 
   // MARK: Store methods
-  setObject(object) {
-    this.setState({ object: object });
+  setUser(user) {
+    this.setState({ user: user });
   }
 
 
@@ -28,7 +28,7 @@ class UserStore {
 
   // MARK: Public methods
   static isLoggedIn() {
-    return !!this.getState().object;
+    return !!this.getState().user;
   }
 }
 

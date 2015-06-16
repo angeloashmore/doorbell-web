@@ -25,10 +25,10 @@ export default (
     <Route name="dashboard" handler={ Dashboard } />
 
     // Organizations
-    <Route path="organizations" component={Organizations} />
-    <Route path="organizations/new" component={OrganizationsNew} />
-    <Route path="organizations/:id" component={OrganizationsView} />
-    <Route path="organizations/:id/edit" component={OrganizationsEdit} />
+    <Route name="organizations" path="organizations" component={Organizations} />
+    <Route name="organizationsNew" path="organizations/new" component={OrganizationsNew} />
+    <Route name="organizationsView" path="organizations/:id" component={OrganizationsView} />
+    <Route name="organizationsEdit" path="organizations/:id/edit" component={OrganizationsEdit} />
 
     // User
     <Route path="user" component={User} />

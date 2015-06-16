@@ -11,13 +11,17 @@ import routes from 'routes';
 UserActions.restoreCurrentUser()
   .then(function() {
     if (UserStore.isLoggedIn()) {
-      console.log(UserStore.isLoggedIn());
-      console.log(UserStore.getState());
       BillingsActions.fetchAllForCurrentUser();
       PlansActions.fetchAll();
       ProfilesActions.fetchAllForCurrentUser();
     }
   });
+
+// Handle unhandled promise errors.
+window.addEventListener("unhandledrejection", function(error) {
+  error.preventDefault();
+  console.log(error.detail);
+});
 
 Router.run(routes, function (Handler) {
   React.render(<Handler />, document.body);

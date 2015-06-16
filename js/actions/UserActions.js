@@ -5,10 +5,18 @@ import Parse from 'lib/Parse';
 
 class UserActions {
   restoreCurrentUser() {
-    return Promise.bind(this).then(function() {
+    const promise = Promise.resolve().cancellable().then(() => {
       const user = Parse.User.current();
-      if (!!user) this.dispatch(user);
+
+      if (!!user) {
+        this.dispatch(user);
+      } else {
+        promise.cancel("User is not logged in");
+      }
+
     });
+
+    return promise;
   }
 
   logInUser(username, password) {
