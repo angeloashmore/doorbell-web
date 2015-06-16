@@ -6,7 +6,9 @@ import PlansActions from 'actions/PlansActions';
 import routes from 'routes';
 
 UserActions.restoreCurrentUser();
+BillingsActions.fetchAllForCurrentUser();
 PlansActions.fetchAll();
+ProfilesActions.fetchAllForCurrentUser();
 
 Router.run(routes, function (Handler) {
   React.render(<Handler />, document.body);
