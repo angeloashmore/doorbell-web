@@ -1,10 +1,11 @@
 import alt from 'flux/alt';
-import OrganizationsActions from 'actions/OrganizationsActions';
+import TeamsActions from 'actions/TeamsActions';
 
-class OrganizationsStore {
+class TeamsStore {
   constructor() {
     this.bindListeners({
-      setObjects: OrganizationsActions.FETCH_ALL_FOR_CURRENT_USER
+      setObjects: TeamsActions.FETCH_ALL_FOR_CURRENT_USER,
+      setObject: TeamsActions.CREATE
     });
 
     this.state = {
@@ -40,4 +41,4 @@ class OrganizationsStore {
   }
 }
 
-export default alt.createStore(OrganizationsStore, 'OrganizationsStore');
+export default alt.createStore(TeamsStore, 'TeamsStore');

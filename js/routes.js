@@ -6,10 +6,10 @@ import Home from 'containers/Home';
 import AuthLogIn from 'containers/Auth/LogIn';
 import AuthSignUp from 'containers/Auth/SignUp';
 import Dashboard from 'containers/Dashboard';
-import Organizations from 'containers/Organizations';
-import OrganizationsNew from 'containers/Organizations/New';
-import OrganizationsView from 'containers/Organizations/View';
-import OrganizationsEdit from 'containers/Organizations/Edit';
+import Teams from 'containers/Teams';
+import TeamsNew from 'containers/Teams/New';
+import TeamsView from 'containers/Teams/View';
+import TeamsEdit from 'containers/Teams/Edit';
 import User from 'containers/User';
 import UserEdit from 'containers/User/Edit';
 
@@ -24,11 +24,11 @@ export default (
     // Dashboard
     <Route name="dashboard" handler={ Dashboard } />
 
-    // Organizations
-    <Route name="organizations" path="organizations" handler={Organizations} />
-    <Route name="organizationsNew" path="organizations/new" handler={OrganizationsNew} />
-    <Route name="organizationsView" path="organizations/:id" handler={OrganizationsView} />
-    <Route name="organizationsEdit" path="organizations/:id/edit" handler={OrganizationsEdit} />
+    // Teams
+    <Route name="teams" path="teams" handler={Teams} />
+    <Route name="teamsNew" path="teams/new" handler={TeamsNew} />
+    <Route name="teamsView" path="teams/:id" handler={TeamsView} />
+    <Route name="teamsEdit" path="teams/:id/edit" handler={TeamsEdit} />
 
     // User
     <Route path="user" handler={User} />
