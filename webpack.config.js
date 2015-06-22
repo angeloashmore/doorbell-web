@@ -3,10 +3,13 @@ var webpack = require("webpack");
 module.exports = {
   devtool: 'sourcemap',
 
-  entry: [
-    "webpack/hot/only-dev-server",
-    "./js/app.js"
-  ],
+  entry: {
+    main : [
+      __dirname + "/node_modules/babel-core/browser-polyfill.js",
+      "webpack/hot/only-dev-server",
+      "./js/app.js"
+    ]
+  },
 
   output: {
     path: __dirname + "/build",
@@ -24,6 +27,9 @@ module.exports = {
       { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader?stage=0"},
       { test: /\.json?$/, loader: "json", exclude: /node_modules/ },
       { test: /\.css$/, loader: "style!css" }
+    ],
+    noParse : [
+      /\/babel-core\/browser-polyfill\.js$/
     ]
   },
 
