@@ -4,30 +4,27 @@ import TeamsActions from 'actions/TeamsActions';
 class TeamsStore {
   constructor() {
     this.bindListeners({
-      setObjects: TeamsActions.FETCH_ALL_FOR_CURRENT_USER,
-      setObject: TeamsActions.CREATE
+      setTeams: TeamsActions.FETCH_ALL_FOR_CURRENT_USER,
+      setTeam: TeamsActions.CREATE
     });
 
-    this.state = {
-      objects: {}
-    };
+    this.teams = {};
   }
 
 
   // MARK: Store methods
-  setObjects(objects) {
-    for (let object of objects) {
-      this.setObject(object);
+  setTeams(teams) {
+    for (let team of teams) {
+      this.setTeam(team);
     }
   }
 
-  setObject(object) {
-    this.setState({ objects[object.id]: object });
-    // this.setState({
-    //   objects: {
-    //     `${object.id}`: object
-    //   }
-    // });
+  setTeam(team) {
+    this.teams[team.id] = team;
+  }
+
+  destroyTeam(team) {
+    delete teams[team.id];
   }
 
 
@@ -36,8 +33,8 @@ class TeamsStore {
 
   // MARK: Public methods
   static withId(id) {
-    const objects = this.getState().objects;
-    return objects[id];
+    const { teams } = this.getState();
+    return teams[id];
   }
 }
 

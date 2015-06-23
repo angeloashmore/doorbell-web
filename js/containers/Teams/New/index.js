@@ -13,7 +13,7 @@ export default class TeamsNew extends React.Component {
     super();
 
     this.state = {
-      name: 'Doorbell',
+      name: '',
       email: 'angelo@doorbell.im',
       errorMessage: ''
     };
@@ -30,7 +30,7 @@ export default class TeamsNew extends React.Component {
     };
 
     TeamsActions.create(data)
-      .then(() => router.transitionTo('dashboard'))
+      .then(() => router.transitionTo('teams'))
       .catch((error) => this.setState({ errorMessage: error.message }));
   }
 
