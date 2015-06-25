@@ -16,18 +16,16 @@ class UserStore {
       ]
     });
 
-    this.state = {
-      user: null
-    };
+    this.user = null
   }
 
   // MARK: Store methods
   setUser(user) {
-    this.setState({ user: user });
+    this.user = user;
   }
 
   clear() {
-    this.setState({ user: null });
+    this.user = null
   }
 
 
@@ -36,7 +34,8 @@ class UserStore {
 
   // MARK: Public methods
   static isLoggedIn() {
-    return !!this.getState().user;
+    const { user } = this.getState();
+    return !!user;
   }
 }
 

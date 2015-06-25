@@ -4,41 +4,37 @@ import ProfilesActions from 'actions/ProfilesActions';
 class ProfilesStore {
   constructor() {
     this.bindListeners({
-      setObjects: ProfilesActions.FETCH_ALL_FOR_CURRENT_USER
+      setProfiles: ProfilesActions.FETCH_ALL_FOR_CURRENT_USER
     });
 
-    this.state = {
-      objects: {}
-    };
+    this.profiles = {};
   }
 
 
   // MARK: Store methods
-  setObjects(objects) {
-    for (let object of objects) {
-      this.setObject(object);
+  setProfiles(profiles) {
+    for (let profile of profiles) {
+      this.setProfile(profile);
     }
   }
 
-  setObject(object) {
-    this.setState({ objects[object.id]: object });
-    // this.setState({
-    //   objects: {
-    //     `${object.id}`: object
-    //   }
-    // });
+  setProfile(profile) {
+    this.profiles[profile.id] = profile;
   }
 
+  destroyProfile(profile) {
+    delete this.profiles[profile.id];
+  }
 
   // MARK: Private methods
 
 
   // MARK: Public methods
   static forOrganizationWithId(id) {
-    const objects = this.getState().objects;
-    for (let key in objects) {
-      let object = objects[key];
-      if (object.get("organization").id == id) return object;
+    const { profiles } = this.getState();
+    for (let key in profiles) {
+      let profile = profiles[key];
+      if (profile.get("organization").id == id) return profile;
     }
   }
 }

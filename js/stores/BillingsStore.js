@@ -4,73 +4,69 @@ import BillingsActions from 'actions/BillingsActions';
 class BillingsStore {
   constructor() {
     this.bindListeners({
-      setObjects: BillingsActions.FETCH_ALL_FOR_CURRENT_USER,
-      setObject: [
+      setBillings: BillingsActions.FETCH_ALL_FOR_CURRENT_USER,
+      setBilling: [
         BillingsActions.ADD_CARD_WITH_TOKEN_FOR_ID,
         BillingsActions.SUBSCRIBE_TO_PLAN_WITH_ID_FOR_ID
       ]
     });
 
-    this.state = {
-      objects: {}
-    };
+    this.billings = {}
   }
 
 
   // MARK: Store methods
-  setObjects(objects) {
-    for (let object of objects) {
-      this.setObject(object);
+  setBillings(billings) {
+    for (let billing of billings) {
+      this.setBilling(billing);
     }
   }
 
-  setObject(object) {
-    this.setState({ objects[object.id]: object });
-    // this.setState({
-    //   objects: {
-    //     `${object.id}`: object
-    //   }
-    // });
+  setBilling(billing) {
+    this.billings[billing.id] = billing;
+  }
+
+  destroyBilling(billing) {
+    delete this.billings[billing.id];
   }
 
 
   // MARK: Private methods
-  _objectsWithType(type) {
-    const objects = this.getState().objects;
-    const filteredObjects = {};
+  _billingsWithType(type) {
+    const filteredBillings = {};
 
-    for (let key in objects) {
-      let object = objects[key];
-      if (object.get("type") == type) filteredObjects[object.id] = object;
+    for (let key in this.billings) {
+      let billing = billings[key];
+      if (billing.get("type") == type) filteredBillings[billing.id] = billing;
     }
 
-    return filteredObjects;
+    return filteredBillings;
   }
 
 
   // MARK: Public methods
   static forId(id) {
-    const objects = this.getState().objects;
-    return objects[id];
+    const { billings } = this.getState();
+    return billings[id];
   }
 
   static forCurrentUser() {
-    let objects = this._objectsWithType("user");
-    let id = Object.keys(objects)[0];
-    return objects[id];
+    let billings = this._billingsWithType("user");
+    let id = Billing.keys(billings)[0];
+    return billings[id];
   }
 
   static forOrganizationWithId(id) {
-    const objects = this._objectsWithType("organization");
-    for (let key in objects) {
-      let object = objects[key];
-      if (object.get("relation").get("objectId") == id) return object;
+    const billings = this._billingsWithType("organization");
+    for (let key in billings) {
+      let billing = billings[key];
+      if (billing.get("relation").get("billingId") == id) return billing;
     }
   }
 
   static hasCardForId(id) {
-    const object = BillingStore.forId(id);
-    return !!object.get("last4");
+    const billing = BillingStore.forId(id);
+    return !!billing.get("last4");
   }
 }
 

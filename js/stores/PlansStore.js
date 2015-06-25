@@ -4,53 +4,49 @@ import PlansActions from 'actions/PlansActions';
 class PlansStore {
   constructor() {
     this.bindListeners({
-      setObjects: PlansActions.FETCH_ALL
+      setPlans: PlansActions.FETCH_ALL
     });
 
-    this.state = {
-      objects: {}
-    };
+    this.plans = {}
   }
 
 
   // MARK: Store methods
-  setObjects(objects) {
-    for (let object of objects) {
-      this.setObject(object);
+  setPlans(plans) {
+    for (let plan of plans) {
+      this.setPlan(plan);
     }
   }
 
-  setObject(object) {
-    this.setState({ objects[object.id]: object });
-    // this.setState({
-    //   objects: {
-    //     `${object.id}`: object
-    //   }
-    // });
+  setPlan(plan) {
+    this.plans[plan.id] = plan;
+  }
+
+  destroyPlan(plan) {
+    delete this.plans[plan.id];
   }
 
 
   // MARK: Private methods
-  _objectsWithType(type) {
-    const objects = this.getState().objects;
-    const filteredObjects = {};
+  _plansWithType(type) {
+    const filteredPlans = {};
 
-    for (let key in objects) {
-      let object = objects[key];
-      if (object.get("type") == type) filteredObjects[object.id] = object;
+    for (let key in this.plans) {
+      let plan = plans[key];
+      if (plan.get("type") == type) filteredPlans[plan.id] = plan;
     }
 
-    return filteredObjects;
+    return filteredPlans;
   }
 
 
-  // MARK: Public interface
+  // MARK: Public methods
   static forUsers() {
-    return this._objectsWithType("user");
+    return this._plansWithType("user");
   }
 
   static forOrganizations() {
-    return this._objectsWithType("organization");
+    return this._plansWithType("organization");
   }
 }
 

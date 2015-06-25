@@ -24,7 +24,7 @@ class TeamsStore {
   }
 
   destroyTeam(team) {
-    delete teams[team.id];
+    delete this.teams[team.id];
   }
 
 
