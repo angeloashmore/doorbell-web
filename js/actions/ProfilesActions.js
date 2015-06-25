@@ -1,20 +1,19 @@
-import Promise from 'bluebird';
-
 import alt from 'flux/alt';
 import Parse from 'lib/Parse';
+import { UserNotLoggedIn } from 'errors';
 import UserStore from 'stores/UserStore';
 
 class ProfilesActions {
   fetchAllForCurrentUser() {
     const currentUser = UserStore.getState().user;
-    if (!currentUser) return Promise.CancellationError("No user logged in");
+    if (!currentUser) throw new UserNotLoggedIn();
 
-    return Promise.bind(this).then(function() {
+    return Promise.resolve().then(() => {
       const query = new Parse.Query("Profile");
       query.equalTo("user", currentUser);
       return query.find();
 
-    }).then(function(results) {
+    }).then((results) => {
       this.dispatch(results);
 
     });

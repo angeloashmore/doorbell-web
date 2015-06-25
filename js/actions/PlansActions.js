@@ -1,15 +1,13 @@
-import Promise from 'bluebird';
-
 import alt from 'flux/alt';
 import Parse from 'lib/Parse';
 
 class PlansActions {
   fetchAll() {
-    return Promise.bind(this).then(function() {
+    return Promise.resolve().then(() => {
       const query = new Parse.Query("Plan");
       return query.find();
 
-    }).then(function(results) {
+    }).then((results) => {
       this.dispatch(results);
 
     });

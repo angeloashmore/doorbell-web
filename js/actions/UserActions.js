@@ -1,17 +1,16 @@
-import Promise from 'bluebird';
-
 import alt from 'flux/alt';
 import Parse from 'lib/Parse';
+import { UserNotLoggedIn } from 'errors';
 
 class UserActions {
   restoreCurrentUser() {
-    const promise = Promise.resolve().cancellable().then(() => {
+    const promise = Promise.resolve().then(() => {
       const user = Parse.User.current();
 
       if (!!user) {
         this.dispatch(user);
       } else {
-        promise.cancel("User is not logged in");
+        throw new UserNotLoggedIn();
       }
 
     });
@@ -20,20 +19,20 @@ class UserActions {
   }
 
   logInUser(username, password) {
-    return Promise.bind(this).then(function() {
+    return Promise.resolve().then(() => {
       return Parse.User.logIn(username, password);
 
-    }).then(function(user) {
+    }).then((user) => {
       this.dispatch(user);
 
     });
   }
 
   logOutUser() {
-    return Promise.bind(this).then(function() {
+    return Promise.resolve().then(() => {
       return Parse.User.logOut();
 
-    }).then(function() {
+    }).then(() => {
       // Clear all stores
       alt.recycle();
 
@@ -43,26 +42,26 @@ class UserActions {
   }
 
   signUpUser(attrs) {
-    return Promise.bind(this).then(function() {
-      let user = new Parse.User;
+    return Promise.resolve().then(() => {
+      const user = new Parse.User;
       user.set(attrs);
       return user.signUp();
 
-    }).then(function(user) {
+    }).then((user) => {
       this.dispatch(user);
 
     });
   }
 
   updateUser(user, data) {
-    return Promise.bind(this).then(function() {
+    return Promise.resolve().then(() => {
       for (let key in data) {
         user.set(key, data[key]);
       }
 
       return user.save();
 
-    }).then(function(user) {
+    }).then((user) => {
       this.dispatch(user);
 
     });
