@@ -59,8 +59,8 @@ export default class extends React.Component {
     return (
       <ul style={styles.navigationItems}>
         <HeaderNavItem link="true" first="true" to="support">Support</HeaderNavItem>
-        <HeaderNavItem link="true" to="/">Register</HeaderNavItem>
-        <HeaderNavItem link="true" last="true" to="/">Sign In</HeaderNavItem>
+        <HeaderNavItem link="true" to="signup">Register</HeaderNavItem>
+        <HeaderNavItem link="true" last="true" to="login">Sign In</HeaderNavItem>
       </ul>
     );
   }

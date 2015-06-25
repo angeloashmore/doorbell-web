@@ -3,9 +3,10 @@ import { Link } from 'react-router';
 import Radium from 'radium';
 import connectToStores from 'alt/utils/connectToStores';
 
-import hoverable from 'decorators/hoverable';
+import { hoverable } from 'decorators/hoverable';
 import HeaderNavItem from 'elements/HeaderNavItem';
 import UserStore from 'stores/UserStore';
+import UserActions from 'actions/UserActions';
 
 import colors from 'styles/colors';
 
@@ -25,10 +26,6 @@ export default class extends React.Component {
     router: React.PropTypes.func
   }
 
-  constructor(props) {
-    super(props);
-  }
-
   arrow() {
     if (this.props.hovered) {
       return <img src="/assets/images/triangle-down-open.svg" />
@@ -37,31 +34,50 @@ export default class extends React.Component {
     }
   }
 
+  signOut() {
+    UserActions.logOutUser();
+  }
+
   render() {
     return (
       <HeaderNavItem
         {...this.props.hoverableProps}
-        onClick={() => this.handleClick()}
         style={[
-          styles.menu,
-          this.props.hovered && styles.open
+          styles.navItem,
+          this.props.hovered && styles.navItemOpen
         ]}>
         <img src="/assets/images/profilePhoto.png" style={styles.profilePhoto} />
         <div style={styles.profileArrow}>{this.arrow()}</div>
+
+        <nav
+          style={[
+            styles.menu,
+            this.props.hovered && styles.menuOpen
+          ]}>
+          <ul>
+            <li style={styles.linkItem}>
+              <Link to="/" key="userMenu__account" style={styles.link}>Your Account</Link>
+            </li>
+            <li style={[styles.linkItem, styles.linkItemLast]}>
+              <span onClick={() => this.signOut()} key="userMenu__signOut" style={styles.link}>Sign Out</span>
+            </li>
+          </ul>
+        </nav>
       </HeaderNavItem>
     );
   }
 }
 
 const styles = {
-  menu: {
+  navItem: {
     borderLeft: `1px solid ${colors.red__dark__20}`,
     cursor: "pointer",
     color: colors.red__dark__20,
-    padding: "0 20px"
+    padding: "0 20px",
+    position: "relative"
   },
 
-  open: {
+  navItemOpen: {
     backgroundColor: colors.white,
   },
 
@@ -74,5 +90,38 @@ const styles = {
 
   profileArrow: {
     marginLeft: 10
+  },
+
+  menu: {
+    backgroundColor: colors.white,
+    color: colors.gray,
+    display: "none",
+    paddingLeft: 20,
+    position: "absolute",
+    right: 0,
+    top: "100%",
+    width: 180
+  },
+
+  menuOpen: {
+    display: "block"
+  },
+
+  linkItem: {
+    borderBottom: `1px solid ${colors.gray__light}`
+  },
+
+  linkItemLast: {
+    borderBottomWidth: 0
+  },
+
+  link: {
+    display: "block",
+    padding: "16px 20px 16px 0",
+    textDecoration: "none",
+
+    ":hover": {
+      color: colors.red
+    }
   }
 };

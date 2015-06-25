@@ -9,6 +9,10 @@ class UserStore {
         UserActions.LOG_IN_USER,
         UserActions.SIGN_UP_USER,
         UserActions.UPDATE_USER
+      ],
+
+      clear: [
+        UserActions.LOG_OUT_USER
       ]
     });
 
@@ -20,6 +24,10 @@ class UserStore {
   // MARK: Store methods
   setUser(user) {
     this.setState({ user: user });
+  }
+
+  clear() {
+    this.setState({ user: null });
   }
 
 

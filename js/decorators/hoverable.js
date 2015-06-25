@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function hoverable(Component) {
+export function hoverable(Component) {
   return class extends React.Component {
     constructor() {
       super();

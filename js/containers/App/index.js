@@ -25,9 +25,10 @@ export default class extends React.Component {
 const styles = {
   app: {
     alignItems: "stretch",
-    backgroundColor: colors.gray,
+    backgroundColor: colors.gray__light,
     display: "flex",
     flexFlow: "column nowrap",
+    fontSize: 16,
     height: "100%",
     width: "100%"
   },
