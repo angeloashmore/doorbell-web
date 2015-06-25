@@ -15,8 +15,6 @@ export default class extends React.Component {
           {...this.props}
           style={[
             styles.link,
-            this.props.first && styles.first,
-            this.props.last && styles.last,
             this.props.style
           ]}>
           {this.props.children}
@@ -32,9 +30,8 @@ export default class extends React.Component {
           {...this.props}
           style={[
             styles.link,
-            this.props.first && styles.first,
-            this.props.last && styles.last,
-            this.isActive(this.props.to, this.props.params, this.props.query) && styles.active
+            this.isActive(this.props.to, this.props.params, this.props.query) && styles.active,
+            this.props.style
           ]}>
           <div>{this.props.children}</div>
         </Link>
@@ -58,20 +55,12 @@ const styles = {
     color: colors.red__dark,
     display: "flex",
     lineHeight: "100%",
-    padding: "0 10px",
+    padding: "0 20px",
     textDecoration: "none",
 
     ":hover": {
       color: colors.white
     }
-  },
-
-  first: {
-    paddingLeft: 20
-  },
-
-  last: {
-    paddingRight: 20
   },
 
   active: {

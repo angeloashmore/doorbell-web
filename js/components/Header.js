@@ -48,8 +48,8 @@ export default class extends React.Component {
   navSignedIn() {
     return (
       <ul style={styles.navigationItems}>
-        <HeaderNavItem link="true" first="true" to="teams">Teams</HeaderNavItem>
-        <HeaderNavItem link="true" last="true" to="support">Support</HeaderNavItem>
+        <HeaderNavItem link="true" to="teams">Teams</HeaderNavItem>
+        <HeaderNavItem link="true" to="support">Support</HeaderNavItem>
         <UserMenu />
       </ul>
     );
@@ -58,9 +58,9 @@ export default class extends React.Component {
   navSignedOut() {
     return (
       <ul style={styles.navigationItems}>
-        <HeaderNavItem link="true" first="true" to="support">Support</HeaderNavItem>
+        <HeaderNavItem link="true" to="support">Support</HeaderNavItem>
         <HeaderNavItem link="true" to="signup">Register</HeaderNavItem>
-        <HeaderNavItem link="true" last="true" to="login">Sign In</HeaderNavItem>
+        <HeaderNavItem link="true" to="login">Sign In</HeaderNavItem>
       </ul>
     );
   }
@@ -69,7 +69,7 @@ export default class extends React.Component {
     return (
       <header style={styles.header}>
         <h1 style={styles.logo}>
-          <Link to="/" style={styles.logo__link}>Doorbell</Link>
+          <Link to="teams" style={styles.logo__link}>Doorbell</Link>
         </h1>
         <nav style={styles.nav}>
           {!!this.props.user ? this.navSignedIn() : this.navSignedOut()}

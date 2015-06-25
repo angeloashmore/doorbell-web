@@ -73,7 +73,7 @@ const styles = {
     borderLeft: `1px solid ${colors.red__dark__20}`,
     cursor: "pointer",
     color: colors.red__dark__20,
-    padding: "0 20px",
+    marginLeft: 20,
     position: "relative"
   },
 
