@@ -22,9 +22,9 @@
     "alt": "^0.16.2",
     "bluebird": "^2.9.25",
     "parse": "^1.4.2",
+    "radium": "^0.13.0",
     "react": "^0.13.2",
     "react-mixin": "^1.2.2",
-    "react-router": "^0.13.3",
-    "react-style": "^0.5.5"
+    "react-router": "^0.13.3"
   }
 }
