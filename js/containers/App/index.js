@@ -27,7 +27,6 @@ const styles = {
     alignItems: "stretch",
     backgroundColor: colors.gray,
     display: "flex",
-    fontFamily: "DIN1451W01-Mittelschrif",
     flexFlow: "column nowrap",
     height: "100%",
     width: "100%"

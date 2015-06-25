@@ -9,6 +9,7 @@ import Teams from 'containers/Teams';
 import TeamsNew from 'containers/Teams/New';
 import TeamsView from 'containers/Teams/View';
 import TeamsEdit from 'containers/Teams/Edit';
+import Support from 'containers/Support';
 
 export default (
   <Route name="app" path="/" handler={ App }>
@@ -23,5 +24,8 @@ export default (
     <Route name="teamsNew" path="teams/new" handler={TeamsNew} />
     <Route name="teamsView" path="teams/:id" handler={TeamsView} />
     <Route name="teamsEdit" path="teams/:id/edit" handler={TeamsEdit} />
+
+    // Support
+    <Route name="support" path="support" handler={Support} />
   </Route>
 );

@@ -3,14 +3,15 @@ import { Link } from 'react-router';
 import Radium from 'radium';
 import connectToStores from 'alt/utils/connectToStores';
 
-import NavigationItem from 'elements/NavigationItem';
-import colors from 'styles/colors';
-
 import UserStore from 'stores/UserStore';
+
+import UserMenu from 'components/UserMenu';
+import HeaderNavItem from 'elements/HeaderNavItem';
+import colors from 'styles/colors';
 
 @connectToStores
 @Radium
-export default class Header extends React.Component {
+export default class extends React.Component {
   static getStores() {
     return [UserStore];
   }
@@ -23,11 +24,33 @@ export default class Header extends React.Component {
     router: React.PropTypes.func
   }
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      userMenuOpen: false,
+      userMenuHover: false
+    };
+  }
+
+  handleUserMenu() {
+    this.setState({ userMenuOpen: !this.state.userMenuOpen });
+  }
+
+  handleUserMouseOver() {
+    this.setState({ userMenuHover: true });
+  }
+
+  handleUserMouseOut() {
+    this.setState({ userMenuHover: false });
+  }
+
   navSignedIn() {
     return (
       <ul style={styles.navigationItems}>
-        <NavigationItem to="/" title="Teams" first="true" active="true" />
-        <NavigationItem to="/" title="Support" last="true" />
+        <HeaderNavItem link="true" first="true" to="teams">Teams</HeaderNavItem>
+        <HeaderNavItem link="true" last="true" to="support">Support</HeaderNavItem>
+        <UserMenu />
       </ul>
     );
   }
@@ -35,8 +58,9 @@ export default class Header extends React.Component {
   navSignedOut() {
     return (
       <ul style={styles.navigationItems}>
-        <NavigationItem to="/" title="Register" first="true" />
-        <NavigationItem to="/" title="Sign In" last="true" />
+        <HeaderNavItem link="true" first="true" to="support">Support</HeaderNavItem>
+        <HeaderNavItem link="true" to="/">Register</HeaderNavItem>
+        <HeaderNavItem link="true" last="true" to="/">Sign In</HeaderNavItem>
       </ul>
     );
   }
@@ -85,5 +109,28 @@ const styles = {
 
   navigationItems: {
     display: "flex"
+  },
+
+  userMenu: {
+    borderLeft: "1px solid",
+    cursor: "pointer",
+    color: colors.red__dark__20,
+    padding: "0 20px"
+  },
+
+  userMenuHover: {
+    backgroundColor: colors.white,
+    borderColor: colors.white,
+  },
+
+  profilePhoto: {
+    borderRadius: "50em",
+    display: "block",
+    height: 30,
+    width: 30
+  },
+
+  profileArrow: {
+    marginLeft: 10
   }
 };
