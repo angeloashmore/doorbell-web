@@ -3,8 +3,6 @@ import { Link, RouteHandler } from 'react-router';
 import Radium from 'radium';
 
 import Header from 'components/Header';
-import Sidebar from 'components/Sidebar';
-import Navigation from 'components/Navigation';
 
 import colors from 'styles/colors';
 

@@ -65,8 +65,8 @@ const styles = {
 
   logo: {
     fontSize: 20,
-    fontWeight: "normal",
     lineHeight: "100%",
+    fontWeight: "normal",
     textTransform: "uppercase",
     flexGrow: 1
   },
