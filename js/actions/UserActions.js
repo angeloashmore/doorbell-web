@@ -33,6 +33,9 @@ class UserActions {
       return Parse.User.logOut();
 
     }).then(() => {
+      // Clear all stores.
+      alt.recycle();
+
       this.dispatch();
 
     });
