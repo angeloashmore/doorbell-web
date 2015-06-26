@@ -74,6 +74,7 @@ const styles = {
     cursor: "pointer",
     color: colors.red__dark__20,
     marginLeft: 20,
+    padding: "0 20px 0 25px",
     position: "relative"
   },
 
@@ -112,7 +113,7 @@ const styles = {
   },
 
   linkItemLast: {
-    borderBottomWidth: 0
+    borderBottom: 0
   },
 
   link: {
