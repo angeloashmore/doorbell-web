@@ -2,8 +2,8 @@ import React from 'react';
 
 export function hoverable(Component) {
   return class extends React.Component {
-    constructor() {
-      super();
+    constructor(props) {
+      super(props);
 
       this.state = {
         hovered: false
@@ -28,6 +28,7 @@ export function hoverable(Component) {
     render() {
       return (
         <Component
+          {...this.props}
           hovered={this.state.hovered}
           hoverableProps={this.hoverableProps()}
           />

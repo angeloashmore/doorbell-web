@@ -26,6 +26,7 @@ const styles = {
   app: {
     alignItems: "stretch",
     backgroundColor: colors.gray__light,
+    color: colors.gray,
     display: "flex",
     flexFlow: "column nowrap",
     fontSize: 16,
@@ -39,6 +40,7 @@ const styles = {
   },
 
   body: {
+    display: "flex",
     flexGrow: 1,
     width: "100%"
   }

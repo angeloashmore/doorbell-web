@@ -24,27 +24,6 @@ export default class extends React.Component {
     router: React.PropTypes.func
   }
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      userMenuOpen: false,
-      userMenuHover: false
-    };
-  }
-
-  handleUserMenu() {
-    this.setState({ userMenuOpen: !this.state.userMenuOpen });
-  }
-
-  handleUserMouseOver() {
-    this.setState({ userMenuHover: true });
-  }
-
-  handleUserMouseOut() {
-    this.setState({ userMenuHover: false });
-  }
-
   navSignedIn() {
     return (
       <ul style={styles.navigationItems}>
@@ -69,7 +48,7 @@ export default class extends React.Component {
     return (
       <header style={styles.header}>
         <h1 style={styles.logo}>
-          <Link to="teams" style={styles.logo__link}>Doorbell</Link>
+          <Link to="/" style={styles.logo__link}>Doorbell</Link>
         </h1>
         <nav style={styles.nav}>
           {!!this.props.user ? this.navSignedIn() : this.navSignedOut()}

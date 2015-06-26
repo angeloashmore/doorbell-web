@@ -25,7 +25,7 @@ export default class LogIn extends React.Component {
     var { router } = this.context;
 
     UserActions.logInUser(this.state.username, this.state.password)
-      .then(() => router.transitionTo('teams'))
+      .then(() => router.transitionTo('/'))
       .catch((error) => this.setState({ errorMessage: error.message }));
   }
 

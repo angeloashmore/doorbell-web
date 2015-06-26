@@ -1,8 +1,7 @@
 import React from 'react';
-import UserStore from 'stores/UserStore';
 
 export default function authenticatedComponent(Component) {
-  return class AuthenticatedComponent extends React.Component {
+  class AuthenticatedComponent extends React.Component {
     static willTransitionTo(transition) {
       // This method is called before transitioning to this component. If the
       // user is not logged in, we'll send him or her to the Log In page.
@@ -15,4 +14,6 @@ export default function authenticatedComponent(Component) {
       return React.createElement(Component);
     }
   }
+
+  return AuthenticatedComponent;
 }

@@ -13,11 +13,11 @@ import Support from 'containers/Support';
 
 export default (
   <Route name="app" path="/" handler={ App }>
-    <DefaultRoute handler={ Home } />
+    <DefaultRoute handler={Home} />
 
     // Authentication
-    <Route name="login" handler={ AuthLogIn } />
-    <Route name="signup" handler={ AuthSignUp } />
+    <Route name="login" handler={AuthLogIn} />
+    <Route name="signup" handler={AuthSignUp} />
 
     // Teams
     <Route name="teams" path="teams" handler={Teams} />
