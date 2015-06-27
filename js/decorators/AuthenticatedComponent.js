@@ -1,4 +1,5 @@
 import React from 'react';
+import UserStore from 'stores/UserStore';
 
 export default function authenticatedComponent(Component) {
   class AuthenticatedComponent extends React.Component {
