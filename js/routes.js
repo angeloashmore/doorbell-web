@@ -8,7 +8,6 @@ import AuthSignUp from 'containers/Auth/SignUp';
 import Teams from 'containers/Teams';
 import TeamsNew from 'containers/Teams/New';
 import TeamsView from 'containers/Teams/View';
-import TeamsEdit from 'containers/Teams/Edit';
 import Support from 'containers/Support';
 
 export default (
@@ -20,10 +19,10 @@ export default (
     <Route name="signup" handler={AuthSignUp} />
 
     // Teams
-    <Route name="teams" path="teams" handler={Teams} />
-    <Route name="teamsNew" path="teams/new" handler={TeamsNew} />
-    <Route name="teamsView" path="teams/:id" handler={TeamsView} />
-    <Route name="teamsEdit" path="teams/:id/edit" handler={TeamsEdit} />
+    <Route name="teams" path="teams" handler={Teams}>
+      <Route name="teamsNew" path="new" handler={TeamsNew} />
+      <Route name="teamsView" path=":id" handler={TeamsView} />
+    </Route>
 
     // Support
     <Route name="support" path="support" handler={Support} />

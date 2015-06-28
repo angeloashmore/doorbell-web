@@ -18,6 +18,8 @@ export default class extends React.Component {
     params: React.PropTypes.object,
     query: React.PropTypes.object,
 
+    onClick: React.PropTypes.func,
+
     style: React.PropTypes.object
   }
 
@@ -27,8 +29,8 @@ export default class extends React.Component {
   }
 
   icon() {
-    const hoveredTag = ((this.props.hovered || this.props.selected) ? "-hovered" : "");
-    const src = `/assets/images/icon-${this.props.icon}${hoveredTag}.svg`;
+    const selected = ((this.props.hovered || this.props.selected) ? "-selected" : "");
+    const src = `/assets/images/icons/${this.props.icon}${selected}.svg`;
     return <img src={src} style={this.styles().icon} />;
   }
 
@@ -40,6 +42,7 @@ export default class extends React.Component {
           to={this.props.to}
           params={this.props.params}
           query={this.props.query}
+          onClick={this.props.onClick}
           style={this.styles().link}
           >
           {this.icon()}
@@ -66,9 +69,16 @@ export default class extends React.Component {
 
       icon: {
         display: "block",
+        flexShrink: 0,
         height: 25,
         marginRight: (this.props.iconOnly ? 0 : 10),
         width: 25
+      },
+
+      title: {
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        whiteSpace: "nowrap",
       }
     };
   }

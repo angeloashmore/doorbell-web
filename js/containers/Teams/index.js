@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, RouteHandler } from 'react-router';
 import Radium from 'radium';
 import connectToStores from 'alt/utils/connectToStores';
 
@@ -57,12 +57,10 @@ export default class extends React.Component {
         <Pane>
           <PaneHeading>Teams</PaneHeading>
           {teamsPaneItems}
-          <PaneItem to="teamsNew" icon="plus" iconOnly="true" last="true" />
+          <PaneItem to="teamsNew" icon="plus" iconOnly="true" last="true" onClick={() => this.handleSelection(null)} />
         </Pane>
-        <Pane last="true">
-          <PaneHeading>Menu</PaneHeading>
-          <PaneItem to="/" title="Team Info" icon="team" />
-        </Pane>
+
+        <RouteHandler />
       </div>
     );
   }

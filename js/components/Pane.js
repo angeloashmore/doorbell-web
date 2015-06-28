@@ -8,12 +8,7 @@ import colors from 'styles/colors';
 export default class extends React.Component {
   render() {
     return (
-      <div
-        style={[
-          styles.pane,
-          this.props.last && styles.last
-        ]}
-        >
+      <div style={styles.pane}>
         {this.props.children}
       </div>
     );
@@ -24,11 +19,7 @@ const styles = {
   pane: {
     backgroundColor: colors.white,
     borderRight: `1px solid ${colors.gray__light}`,
-    padding: "20px 0 0 20px",
+    paddingLeft: 20,
     width: 240
-  },
-
-  last: {
-    borderRight: `1px solid ${colors.gray__light__darker}`
   }
 };

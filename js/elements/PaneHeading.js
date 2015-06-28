@@ -17,8 +17,14 @@ export default class extends React.Component {
 const styles = {
   heading: {
     color: colors.gray,
+    display: "block",
     fontSize: 10,
     letterSpacing: 1,
-    textTransform: "uppercase"
+    marginTop: 20,
+    overflow: "hidden",
+    paddingRight: 20,
+    textOverflow: "ellipsis",
+    textTransform: "uppercase",
+    whiteSpace: "nowrap"
   }
 }
