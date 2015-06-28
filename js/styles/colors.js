@@ -1,5 +1,6 @@
 export default {
   white: "#fff",
+  black: "#000",
   gray: "#9b9b9b",
   gray__light: "#f1f1f1",
   gray__light__darker: "#e5e5e5",

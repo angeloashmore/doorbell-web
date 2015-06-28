@@ -57,7 +57,13 @@ export default class extends React.Component {
         <Pane>
           <PaneHeading>Teams</PaneHeading>
           {teamsPaneItems}
-          <PaneItem to="teamsNew" icon="plus" iconOnly="true" last="true" onClick={() => this.handleSelection(null)} />
+          <PaneItem
+            to="teamsNew"
+            icon="plus"
+            iconOnly={true}
+            last={true}
+            onClick={() => this.handleSelection(null)}
+          />
         </Pane>
 
         <RouteHandler />

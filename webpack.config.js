@@ -25,7 +25,7 @@ module.exports = {
     loaders: [
       { test: /\.js?$/, loaders: ["react-hot", "babel"], exclude: /node_modules/ },
       { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader?stage=0"},
-      { test: /\.json?$/, loader: "json", exclude: /node_modules/ },
+      { test: /\.json?$/, loader: "json" },
       { test: /\.css$/, loader: "style!css" }
     ],
     noParse : [
