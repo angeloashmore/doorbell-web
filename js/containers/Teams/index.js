@@ -22,12 +22,34 @@ export default class extends React.Component {
     return TeamsStore.getState();
   }
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      selectedId: null
+    };
+  }
+
+  handleSelection(id) {
+    this.setState({ selectedId: id });
+  }
+
   render() {
     const { teams } = this.props;
 
     const teamsPaneItems = [];
     for (let id in this.props.teams) {
-      teamsPaneItems.push(<PaneItem key={id} to="/" title={teams[id].get("name")} icon="team" />);
+      teamsPaneItems.push(
+        <PaneItem
+          key={id}
+          icon="team"
+          title={teams[id].get("name")}
+          to="teamsView"
+          params={{id: id}}
+          selected={this.state.selectedId == id}
+          onClick={() => this.handleSelection(id)}
+        />
+      );
     }
 
     return (
