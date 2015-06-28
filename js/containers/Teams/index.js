@@ -23,15 +23,23 @@ export default class extends React.Component {
   }
 
   render() {
+    const { teams } = this.props;
+
+    const teamsPaneItems = [];
+    for (let id in this.props.teams) {
+      teamsPaneItems.push(<PaneItem key={id} to="/" title={teams[id].get("name")} icon="team" />);
+    }
+
     return (
       <div style={styles.container}>
         <Pane>
           <PaneHeading>Teams</PaneHeading>
-          <PaneItem to="/" title="Dower Realty" />
+          {teamsPaneItems}
+          <PaneItem to="teamsNew" icon="plus" iconOnly="true" last="true" />
         </Pane>
         <Pane last="true">
           <PaneHeading>Menu</PaneHeading>
-          <PaneItem to="/" title="Team Info" />
+          <PaneItem to="/" title="Team Info" icon="team" />
         </Pane>
       </div>
     );

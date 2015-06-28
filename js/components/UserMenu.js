@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import Radium from 'radium';
 import connectToStores from 'alt/utils/connectToStores';
 
-import { hoverable } from 'decorators/hoverable';
+import hoverable from 'decorators/hoverable';
 import HeaderNavItem from 'elements/HeaderNavItem';
 import UserStore from 'stores/UserStore';
 import UserActions from 'actions/UserActions';
