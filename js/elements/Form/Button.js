@@ -29,7 +29,7 @@ const styles = {
     textTransform: "uppercase",
 
     ":hover": {
-      backgroundColor: colors.red__dark
+      backgroundColor: colors.red__dark__20
     }
   }
 }

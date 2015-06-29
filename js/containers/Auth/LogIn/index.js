@@ -9,7 +9,7 @@ import colors from 'styles/colors';
 
 @reactMixin.decorate(React.addons.LinkedStateMixin)
 @Radium
-export default class LogIn extends React.Component {
+export default class extends React.Component {
   static contextTypes = {
     router: React.PropTypes.func
   }

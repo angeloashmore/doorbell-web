@@ -1,10 +1,15 @@
 import React from 'react/addons';
 import reactMixin from 'react-mixin';
+import Radium from 'radium';
 
 import UserActions from 'actions/UserActions';
+import Sheet from 'elements/Sheet';
+import Form from 'elements/Form';
+import colors from 'styles/colors';
 
 @reactMixin.decorate(React.addons.LinkedStateMixin)
-export default class SignUp extends React.Component {
+@Radium
+export default class extends React.Component {
   static contextTypes = {
     router: React.PropTypes.func
   }
@@ -36,24 +41,46 @@ export default class SignUp extends React.Component {
     };
 
     UserActions.signUpUser(data)
-      .then(() => router.transitionTo('dashboard'))
+      .then(() => router.transitionTo('/'))
       .catch((error) => this.setState({ errorMessage: error.message }));
   }
 
   render() {
     return (
-      <div>
-        <p>Sign Up</p>
-        <form>
-          <input type="text" valueLink={this.linkState('username')} placeholder="Username" />
-          <input type="password" valueLink={this.linkState('password')} placeholder="Password" />
-          <input type="email" valueLink={this.linkState('email')} placeholder="Email" />
-          <input type="text" valueLink={this.linkState('name')} placeholder="Name" />
-          <input type="checkbox" valueLink={this.linkState('professional')} checked={this.linkState('professional')} /> Professional?
-          <button type="submit" onClick={this.signUp.bind(this)}>Submit</button>
-        </form>
-        {!!this.state.errorMessage ? (<p>{this.state.errorMessage}</p>) : (null)}
+      <div style={styles.container}>
+        <Sheet>
+          <Sheet.Heading>Sign Up</Sheet.Heading>
+          <Form>
+            <Form.Label title="Username">
+              <Form.Input type="text" valueLink={this.linkState('username')} placeholder="Username" spellCheck={false} />
+            </Form.Label>
+            <Form.Label title="Password">
+              <Form.Input type="password" valueLink={this.linkState('password')} placeholder="Password" />
+            </Form.Label>
+            <Form.Label title="Email">
+              <Form.Input type="email" valueLink={this.linkState('email')} placeholder="Email" />
+            </Form.Label>
+            <Form.Label title="Name">
+              <Form.Input type="text" valueLink={this.linkState('name')} placeholder="Name" />
+            </Form.Label>
+            <Form.Label title="Professional">
+              <input type="checkbox" valueLink={this.linkState('professional')} checked={this.linkState('professional')} />
+            </Form.Label>
+            <Form.Button title="Sign Up" onClick={this.signUp.bind(this)} />
+          </Form>
+          {!!this.state.errorMessage ? (<p>{this.state.errorMessage}</p>) : (null)}
+        </Sheet>
       </div>
     );
   }
 }
+
+const styles = {
+  container: {
+    alignContent: "center",
+    alignItems: "center",
+    display: "flex",
+    justifyContent: "center",
+    width: "100%"
+  }
+};
