@@ -83,3 +83,7 @@ img {
   height: auto;
   border: 0;
 }
+
+input:focus {
+  outline: 0;
+}
