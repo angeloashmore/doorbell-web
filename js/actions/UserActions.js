@@ -56,7 +56,7 @@ class UserActions {
 
   signUp(attrs) {
     return Promise.resolve().then(() => {
-      if (attrs.username === undefined) attrs.username = attrs.email;
+      attrs.username = attrs.email;
 
       const user = new Parse.User;
       user.set(attrs);
