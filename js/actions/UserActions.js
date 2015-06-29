@@ -27,9 +27,9 @@ class UserActions {
     return promise;
   }
 
-  signIn(username, password) {
+  signIn(email, password) {
     return Promise.resolve().then(() => {
-      return Parse.User.logIn(username, password);
+      return Parse.User.logIn(email, password);
 
     }).then((user) => {
       this.dispatch(user);
@@ -56,6 +56,8 @@ class UserActions {
 
   signUp(attrs) {
     return Promise.resolve().then(() => {
+      if (attrs.username === undefined) attrs.username = attrs.email;
+
       const user = new Parse.User;
       user.set(attrs);
       return user.signUp();

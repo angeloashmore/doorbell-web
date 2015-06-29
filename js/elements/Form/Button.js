@@ -24,6 +24,7 @@ const styles = {
     borderRadius: 5,
     color: colors.white,
     letterSpacing: 1,
+    marginTop: 10,
     padding: "13px 15px",
     textAlign: "center",
     textTransform: "uppercase",

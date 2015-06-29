@@ -18,11 +18,9 @@ export default class extends React.Component {
     super();
 
     this.state = {
-      username: '',
-      password: '',
-      email: '',
       name: '',
-      professional: true,
+      email: '',
+      password: '',
       errorMessage: ''
     };
   }
@@ -33,10 +31,9 @@ export default class extends React.Component {
     var { router } = this.context;
 
     let data = {
-      email: this.state.email,
-      password: this.state.password,
       name: this.state.name,
-      professional: this.state.professional
+      email: this.state.email,
+      password: this.state.password
     };
 
     UserActions.signUp(data)
@@ -50,17 +47,14 @@ export default class extends React.Component {
         <Sheet>
           <Sheet.Heading>Sign Up</Sheet.Heading>
           <Form>
+            <Form.Label title="Name">
+              <Form.Input type="text" valueLink={this.linkState('name')} placeholder="Name" spellCheck={false} />
+            </Form.Label>
             <Form.Label title="Email">
-              <Form.Input type="email" valueLink={this.linkState('email')} placeholder="Email" />
+              <Form.Input type="email" valueLink={this.linkState('email')} placeholder="Email" spellCheck={false} />
             </Form.Label>
             <Form.Label title="Password">
               <Form.Input type="password" valueLink={this.linkState('password')} placeholder="Password" />
-            </Form.Label>
-            <Form.Label title="Name">
-              <Form.Input type="text" valueLink={this.linkState('name')} placeholder="Name" />
-            </Form.Label>
-            <Form.Label title="Professional">
-              <input type="checkbox" valueLink={this.linkState('professional')} checked={this.linkState('professional')} />
             </Form.Label>
             <Form.Button title="Sign Up" onClick={this.signUp.bind(this)} />
           </Form>
