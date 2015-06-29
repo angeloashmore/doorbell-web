@@ -7,7 +7,12 @@ import AuthLogIn from 'containers/Auth/LogIn';
 import AuthSignUp from 'containers/Auth/SignUp';
 import Teams from 'containers/Teams';
 import TeamsNew from 'containers/Teams/New';
-import TeamsView from 'containers/Teams/View';
+import Team from 'containers/Team';
+import TeamInfo from 'containers/Team/Info';
+import TeamProfile from 'containers/Team/Profile';
+import TeamMembers from 'containers/Team/Members';
+import TeamBilling from 'containers/Team/Billing';
+import TeamSettings from 'containers/Team/Settings';
 import Support from 'containers/Support';
 
 export default (
@@ -21,7 +26,13 @@ export default (
     // Teams
     <Route name="teams" path="teams" handler={Teams}>
       <Route name="teamsNew" path="new" handler={TeamsNew} />
-      <Route name="teamsView" path=":id" handler={TeamsView} />
+      <Route name="team" path=":id" handler={Team}>
+        <Route name="teamInfo" path="info" handler={TeamInfo} />
+        <Route name="teamProfile" path="profile" handler={TeamProfile} />
+        <Route name="teamMembers" path="members" handler={TeamMembers} />
+        <Route name="teamBilling" path="billing" handler={TeamBilling} />
+        <Route name="teamSettings" path="settings" handler={TeamSettings} />
+      </Route>
     </Route>
 
     // Support

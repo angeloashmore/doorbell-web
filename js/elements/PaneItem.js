@@ -31,7 +31,7 @@ export default class extends React.Component {
   icon() {
     const selected = ((this.props.hovered || this.props.selected) ? "-selected" : "");
     const src = `/assets/images/icons/${this.props.icon}${selected}.svg`;
-    return <img src={src} style={this.styles().icon} />;
+    return <img src={src} width="25" height="25" style={this.styles().icon} />;
   }
 
   render() {
@@ -71,7 +71,7 @@ export default class extends React.Component {
         display: "block",
         flexShrink: 0,
         height: 25,
-        marginRight: (this.props.iconOnly ? 0 : 10),
+        marginRight: (this.props.iconOnly ? null : 10),
         width: 25
       },
 

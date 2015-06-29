@@ -44,7 +44,7 @@ export default class extends React.Component {
           key={id}
           icon="team"
           title={teams[id].get("name")}
-          to="teamsView"
+          to="team"
           params={{id: id}}
           selected={this.state.selectedId == id}
           onClick={() => this.handleSelection(id)}
