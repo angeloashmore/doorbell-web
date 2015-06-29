@@ -42,7 +42,7 @@ export default class extends React.Component {
           <Sheet.Heading>Sign In</Sheet.Heading>
           <Form style={styles.form}>
             <Form.Label title="Email">
-              <Form.Input type="email" valueLink={this.linkState('email')} placeholder="Email" />
+              <Form.Input type="email" valueLink={this.linkState('email')} placeholder="Email" spellCheck={false} />
             </Form.Label>
             <Form.Label title="Password">
               <Form.Input type="password" valueLink={this.linkState('password')} placeholder="Password" />
