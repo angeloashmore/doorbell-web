@@ -1,6 +1,11 @@
 import alt from 'flux/alt';
 import Parse from 'lib/Parse';
+
 import { UserNotLoggedIn } from 'errors';
+import TeamsActions from 'actions/TeamsActions';
+import BillingsActions from 'actions/BillingsActions';
+import PlansActions from 'actions/PlansActions';
+import ProfilesActions from 'actions/ProfilesActions';
 
 class UserActions {
   restoreCurrentUser() {
@@ -9,6 +14,10 @@ class UserActions {
 
       if (!!user) {
         this.dispatch(user);
+        TeamsActions.fetchAllForCurrentUser();
+        BillingsActions.fetchAllForCurrentUser();
+        PlansActions.fetchAll();
+        ProfilesActions.fetchAllForCurrentUser();
       } else {
         throw new UserNotLoggedIn();
       }
@@ -24,6 +33,10 @@ class UserActions {
 
     }).then((user) => {
       this.dispatch(user);
+      TeamsActions.fetchAllForCurrentUser();
+      BillingsActions.fetchAllForCurrentUser();
+      PlansActions.fetchAll();
+      ProfilesActions.fetchAllForCurrentUser();
 
     });
   }
