@@ -1,4 +1,5 @@
 import React from 'react/addons';
+import { Link } from 'react-router';
 import reactMixin from 'react-mixin';
 import Radium from 'radium';
 
@@ -46,7 +47,7 @@ export default class extends React.Component {
       <div style={styles.container}>
         <Sheet>
           <Sheet.Heading>Sign Up</Sheet.Heading>
-          <Form>
+          <Form style={styles.form}>
             <Form.Label title="Name">
               <Form.Input type="text" valueLink={this.linkState('name')} placeholder="Name" spellCheck={false} />
             </Form.Label>
@@ -58,6 +59,9 @@ export default class extends React.Component {
             </Form.Label>
             <Form.Button title="Sign Up" onClick={this.signUp.bind(this)} />
           </Form>
+          <p style={[styles.message, styles.messageLast]}>
+            Already have an account? <Link to="signIn" style={styles.link}>Sign in</Link>
+          </p>
           {!!this.state.errorMessage ? (<p>{this.state.errorMessage}</p>) : (null)}
         </Sheet>
       </div>
@@ -72,5 +76,22 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     width: "100%"
+  },
+
+  form: {
+    marginBottom: 30
+  },
+
+  message: {
+    marginBottom: 20,
+    textAlign: "center"
+  },
+
+  messageLast: {
+    marginBottom: 0
+  },
+
+  link: {
+    color: colors.red
   }
 };

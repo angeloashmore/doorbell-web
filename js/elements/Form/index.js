@@ -13,7 +13,12 @@ export default class extends React.Component {
 
   render() {
     return (
-      <form style={styles.form}>
+      <form
+        style={[
+          styles.form,
+          this.props.style
+        ]}
+      >
         {this.props.children}
       </form>
     );
