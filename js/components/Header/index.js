@@ -63,8 +63,8 @@ export default class extends React.Component {
 const styles = {
   header: {
     alignContent: "stretch",
-    backgroundColor: colors.red,
-    color: "#fff",
+    backgroundColor: colors.get("tint"),
+    color: colors.get("white"),
     display: "flex"
   },
 

@@ -67,16 +67,16 @@ export default class extends React.Component {
 
 const styles = {
   navItem: {
-    borderLeft: `1px solid ${colors.red__dark__20}`,
+    borderLeft: `1px solid ${colors.get("shadow")}`,
     cursor: "pointer",
-    color: colors.red__dark__20,
+    color: colors.get("tintAlt"),
     marginLeft: 20,
     padding: "0 20px 0 25px",
     position: "relative"
   },
 
   navItemOpen: {
-    backgroundColor: colors.white,
+    backgroundColor: colors.get("white"),
   },
 
   profilePhoto: {
@@ -91,8 +91,8 @@ const styles = {
   },
 
   menu: {
-    backgroundColor: colors.white,
-    color: colors.gray,
+    backgroundColor: colors.get("white"),
+    color: colors.get("text"),
     display: "none",
     paddingLeft: 20,
     position: "absolute",
@@ -106,7 +106,7 @@ const styles = {
   },
 
   linkItem: {
-    borderBottom: `1px solid ${colors.gray__light}`
+    borderBottom: `1px solid ${colors.get("divider")}`
   },
 
   linkItemLast: {
@@ -119,7 +119,7 @@ const styles = {
     textDecoration: "none",
 
     ":hover": {
-      color: colors.red
+      color: colors.get("tint")
     }
   },
 

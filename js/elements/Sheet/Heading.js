@@ -16,7 +16,7 @@ export default class extends React.Component {
 
 const styles = {
   heading: {
-    color: colors.gray__dark,
+    color: colors.get("textPronounced"),
     display: "block",
     fontSize: 36,
     marginBottom: 30,

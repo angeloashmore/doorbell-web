@@ -20,7 +20,7 @@ export default class extends React.Component {
 
 const styles = {
   sheet: {
-    backgroundColor: colors.white,
+    backgroundColor: colors.get("white"),
     padding: 45,
     width: 260
   }

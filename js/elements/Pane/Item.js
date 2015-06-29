@@ -55,12 +55,12 @@ export default class extends React.Component {
   styles() {
     return {
       item: {
-        borderBottom: (this.props.last ? null : `1px solid ${colors.gray__light}`)
+        borderBottom: (this.props.last ? null : `1px solid ${colors.get("divider")}`)
       },
 
       link: {
         alignItems: "center",
-        color: ((this.props.hovered || this.props.selected) ? colors.red : null),
+        color: ((this.props.hovered || this.props.selected) ? colors.get("tint") : null),
         display: (this.props.iconOnly ? "inline-flex" : "flex"),
         margin: (this.props.iconOnly ? "16px 16px 16px 0" : null),
         padding: (this.props.iconOnly ? null : "16px 16px 16px 0"),

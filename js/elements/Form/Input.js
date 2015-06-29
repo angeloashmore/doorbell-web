@@ -17,9 +17,9 @@ export default class extends React.Component {
 
 const styles = {
   input: {
-    border: `1px solid ${colors.gray__input}`,
+    border: `1px solid ${colors.get("text")}`,
     borderRadius: 5,
-    color: colors.gray__dark,
+    color: colors.get("textPronounced"),
     fontFamily: "inherit",
     fontSize: 16,
     fontSmoothing: "antialiased",

@@ -16,7 +16,7 @@ export default class extends React.Component {
 
 const styles = {
   heading: {
-    color: colors.gray,
+    color: colors.get("text"),
     display: "block",
     fontSize: 10,
     letterSpacing: 1,

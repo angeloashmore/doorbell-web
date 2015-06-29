@@ -12,11 +12,15 @@ export default class extends React.Component {
   static Heading = Heading;
   static Item = Item;
 
+  static propTypes = {
+    selectedKey: React.PropTypes.string
+  }
+
   constructor(props) {
     super(props);
 
     this.state = {
-      selectedKey: null
+      selectedKey: this.props.selectedKey || null
     };
   }
 
@@ -42,8 +46,8 @@ export default class extends React.Component {
 
 const styles = {
   pane: {
-    backgroundColor: colors.white,
-    borderRight: `1px solid ${Color(colors.black).alpha(0.1).rgbString()}`,
+    backgroundColor: colors.get("white"),
+    borderRight: `1px solid ${colors.get("shadow")}`,
     paddingLeft: 20,
     width: 240
   }

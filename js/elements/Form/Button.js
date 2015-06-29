@@ -20,9 +20,9 @@ export default class extends React.Component {
 
 const styles = {
   button: {
-    backgroundColor: colors.red,
+    backgroundColor: colors.get("tint"),
     borderRadius: 5,
-    color: colors.white,
+    color: colors.get("white"),
     letterSpacing: 1,
     marginTop: 10,
     padding: "13px 15px",
@@ -30,7 +30,7 @@ const styles = {
     textTransform: "uppercase",
 
     ":hover": {
-      backgroundColor: colors.red__dark__20
+      backgroundColor: colors.get("tintAction")
     }
   }
 }

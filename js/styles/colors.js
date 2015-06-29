@@ -1,12 +1,35 @@
-export default {
-  white: "#fff",
-  black: "#000",
-  gray: "#9b9b9b",
-  gray__dark: "#4a4a4a",
-  gray__light: "#f1f1f1",
-  gray__light__darker: "#e5e5e5",
-  gray__input: "#cbcbcb",
-  red: "#e43a2c",
-  red__dark: "#8c241b",
-  red__dark__20: "#d23528"
-}
+import Color from 'color';
+
+const white = "white";
+const black = "black";
+const tint = "#e43a2c";
+
+const colors = new Map();
+
+// Base
+colors.set("white", Color(white));
+colors.set("black", Color(black));
+
+// Tint
+colors.set("tint", Color(tint));
+colors.set("tintAlt", Color(tint).darken(0.5));
+colors.set("tintAction", Color(tint).darken(0.2));
+
+// Background
+colors.set("background", Color(white).darken(0.05));
+
+// Text
+colors.set("text", Color(white).darken(0.4));
+colors.set("textPronounced", Color(white).darken(0.7));
+
+// Divider
+colors.set("divider", Color(black).alpha(0.05));
+
+// Shadow
+colors.set("shadow", Color(black).alpha(0.1));
+
+colors.forEach(function(value, key) {
+  colors.set(key, value.rgbString());
+});
+
+export default colors;

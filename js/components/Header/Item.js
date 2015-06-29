@@ -52,18 +52,18 @@ const styles = {
 
   link: {
     alignItems: "center",
-    color: colors.red__dark,
+    color: colors.get("tintAlt"),
     display: "flex",
     lineHeight: "100%",
     padding: "0 20px",
     textDecoration: "none",
 
     ":hover": {
-      color: colors.white
+      color: colors.get("white")
     }
   },
 
   active: {
-    color: colors.white
+    color: colors.get("white")
   }
 }

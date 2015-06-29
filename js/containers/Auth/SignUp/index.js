@@ -92,6 +92,6 @@ const styles = {
   },
 
   link: {
-    color: colors.red
+    color: colors.get("tint")
   }
 };

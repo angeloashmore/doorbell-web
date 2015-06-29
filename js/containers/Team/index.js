@@ -17,12 +17,13 @@ export default class extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({ team: TeamsStore.withId(nextProps.params.id) });
+    this.forceUpdate();
   }
 
   render() {
     return (
       <div style={styles.container}>
-        <Pane>
+        <Pane selectedKey="info">
           <Pane.Heading>Menu</Pane.Heading>
           <Pane.Item to="teamInfo" params={this.props.params} key="info" title="Team Info" icon="team" />
           <Pane.Item to="teamProfile" params={this.props.params} key="profile" title="Profile" icon="profile" />

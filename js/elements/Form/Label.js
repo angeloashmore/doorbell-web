@@ -30,7 +30,7 @@ const styles = {
   },
 
   title: {
-    color: colors.gray,
+    color: colors.get("text"),
     letterSpacing: 1,
     fontSize: 14,
     marginBottom: 10,
