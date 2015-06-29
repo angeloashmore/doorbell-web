@@ -22,18 +22,6 @@ export default class extends React.Component {
     return TeamsStore.getState();
   }
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      selectedId: null
-    };
-  }
-
-  handleSelection(id) {
-    this.setState({ selectedId: id });
-  }
-
   render() {
     const { teams } = this.props;
 
@@ -46,8 +34,6 @@ export default class extends React.Component {
           title={teams[id].get("name")}
           to="team"
           params={{id: id}}
-          selected={this.state.selectedId == id}
-          onClick={() => this.handleSelection(id)}
         />
       );
     }
@@ -62,7 +48,6 @@ export default class extends React.Component {
             icon="plus"
             iconOnly={true}
             last={true}
-            onClick={() => this.handleSelection(null)}
           />
         </Pane>
 
