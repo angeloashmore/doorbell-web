@@ -16,7 +16,7 @@ import TeamSettings from 'containers/Team/Settings';
 import Support from 'containers/Support';
 
 export default (
-  <Route name="app" path="/" handler={ App }>
+  <Route path="/" handler={App}>
     <DefaultRoute handler={Home} />
 
     // Authentication

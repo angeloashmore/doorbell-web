@@ -30,7 +30,7 @@ export default class extends React.Component {
     var { router } = this.context;
 
     UserActions.signIn(this.state.email, this.state.password)
-      .then(() => router.transitionTo('/'))
+      .then(() => router.transitionTo('teams'))
       .catch((error) => this.setState({ errorMessage: error.message }));
   }
 

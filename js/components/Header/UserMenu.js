@@ -27,7 +27,10 @@ export default class extends React.Component {
   }
 
   signOut() {
-    UserActions.signOut();
+    var { router } = this.context;
+
+    UserActions.signOut()
+      .then(() => router.transitionTo('signIn'));
   }
 
   render() {
@@ -53,7 +56,7 @@ export default class extends React.Component {
               <Link to="/" key="userMenu__account" style={[styles.link, styles.linkFirst]}>Your Account</Link>
             </li>
             <li style={[styles.linkItem, styles.linkItemLast]}>
-              <span onClick={this.signOut} key="userMenu__signOut" style={[styles.link, styles.linkLast]}>Sign Out</span>
+              <span onClick={() => this.signOut()} key="userMenu__signOut" style={[styles.link, styles.linkLast]}>Sign Out</span>
             </li>
           </ul>
         </nav>

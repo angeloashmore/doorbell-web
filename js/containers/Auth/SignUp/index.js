@@ -37,7 +37,7 @@ export default class extends React.Component {
     };
 
     UserActions.signUp(data)
-      .then(() => router.transitionTo('/'))
+      .then(() => router.transitionTo('teams'))
       .catch((error) => this.setState({ errorMessage: error.message }));
   }
 

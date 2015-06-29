@@ -50,7 +50,7 @@ export default class extends React.Component {
     return (
       <header style={styles.header}>
         <h1 style={styles.logo}>
-          <Link to="/" style={styles.logo__link}>Doorbell</Link>
+          <Link to={!!this.props.user ? "teams" : "/"} style={styles.logo__link}>Doorbell</Link>
         </h1>
         <nav style={styles.nav}>
           {!!this.props.user ? this.navSignedIn() : this.navSignedOut()}
