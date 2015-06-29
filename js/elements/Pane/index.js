@@ -1,12 +1,17 @@
-import React from 'react';
-import { Link } from 'react-router';
-import Radium from 'radium';
-import Color from 'color';
+import React from "react";
+import Radium from "radium";
+import Color from "color";
 
-import colors from 'styles/colors';
+import Heading from "./Heading";
+import Item from "./Item";
+
+import colors from "styles/colors";
 
 @Radium
 export default class extends React.Component {
+  static Heading = Heading;
+  static Item = Item;
+
   constructor(props) {
     super(props);
 

@@ -1,5 +1,5 @@
-import React from 'react';
-import Radium from 'radium';
+import React from "react";
+import Radium from "radium";
 
 import colors from "styles/colors";
 
@@ -12,7 +12,9 @@ export default class extends React.Component {
   render() {
     return (
       <label style={styles.label}>
-        <span style={styles.title}>{this.props.title}</span>
+        <span style={styles.title}>
+          {this.props.title}
+        </span>
         {this.props.children}
       </label>
     );

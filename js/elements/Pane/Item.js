@@ -1,6 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router';
-import Radium from 'radium';
+import React from "react";
+import { Link } from "react-router";
+import Radium from "radium";
 
 import hoverable from "decorators/hoverable";
 

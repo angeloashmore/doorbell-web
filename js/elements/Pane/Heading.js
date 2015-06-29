@@ -1,5 +1,5 @@
-import React from 'react';
-import Radium from 'radium';
+import React from "react";
+import Radium from "radium";
 
 import colors from "styles/colors";
 

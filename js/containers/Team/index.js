@@ -3,9 +3,7 @@ import { RouteHandler } from 'react-router';
 import Radium from 'radium';
 
 import TeamsStore from 'stores/TeamsStore';
-import Pane from 'components/Pane';
-import PaneHeading from 'elements/PaneHeading';
-import PaneItem from 'elements/PaneItem';
+import Pane from 'elements/Pane';
 
 @Radium
 export default class extends React.Component {
@@ -25,12 +23,12 @@ export default class extends React.Component {
     return (
       <div style={styles.container}>
         <Pane>
-          <PaneHeading>Menu</PaneHeading>
-          <PaneItem to="teamInfo" params={this.props.params} key="info" title="Team Info" icon="team" />
-          <PaneItem to="teamProfile" params={this.props.params} key="profile" title="Profile" icon="profile" />
-          <PaneItem to="teamMembers" params={this.props.params} key="members" title="Members" icon="members" />
-          <PaneItem to="teamBilling" params={this.props.params} key="billing" title="Billing" icon="billing" />
-          <PaneItem to="teamSettings" params={this.props.params} key="settings" title="Settings" icon="settings" />
+          <Pane.Heading>Menu</Pane.Heading>
+          <Pane.Item to="teamInfo" params={this.props.params} key="info" title="Team Info" icon="team" />
+          <Pane.Item to="teamProfile" params={this.props.params} key="profile" title="Profile" icon="profile" />
+          <Pane.Item to="teamMembers" params={this.props.params} key="members" title="Members" icon="members" />
+          <Pane.Item to="teamBilling" params={this.props.params} key="billing" title="Billing" icon="billing" />
+          <Pane.Item to="teamSettings" params={this.props.params} key="settings" title="Settings" icon="settings" />
         </Pane>
 
         <RouteHandler />

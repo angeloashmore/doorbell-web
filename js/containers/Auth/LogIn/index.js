@@ -6,9 +6,6 @@ import UserActions from 'actions/UserActions';
 import Sheet from 'elements/Sheet';
 import SheetHeader from 'elements/SheetHeading';
 import Form from 'elements/Form';
-import FormLabel from 'elements/FormLabel';
-import FormInput from 'elements/FormInput';
-import FormButton from 'elements/FormButton';
 import colors from 'styles/colors';
 
 @reactMixin.decorate(React.addons.LinkedStateMixin)
@@ -44,13 +41,13 @@ export default class LogIn extends React.Component {
         <Sheet>
           <SheetHeader>Sign In</SheetHeader>
           <Form>
-            <FormLabel title="Username">
-              <FormInput type="text" valueLink={this.linkState('username')} placeholder="Username" spellCheck={false} />
-            </FormLabel>
-            <FormLabel title="Password">
-              <FormInput type="password" valueLink={this.linkState('password')} placeholder="Password" />
-            </FormLabel>
-            <FormButton title="Sign In" onClick={this.logIn.bind(this)} />
+            <Form.Label title="Username">
+              <Form.Input type="text" valueLink={this.linkState('username')} placeholder="Username" spellCheck={false} />
+            </Form.Label>
+            <Form.Label title="Password">
+              <Form.Input type="password" valueLink={this.linkState('password')} placeholder="Password" />
+            </Form.Label>
+            <Form.Button title="Sign In" onClick={this.logIn.bind(this)} />
           </Form>
           {!!this.state.errorMessage ? (<p>{this.state.errorMessage}</p>) : (null)}
         </Sheet>

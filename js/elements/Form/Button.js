@@ -1,5 +1,5 @@
-import React from 'react';
-import Radium from 'radium';
+import React from "react";
+import Radium from "radium";
 
 import colors from "styles/colors";
 
@@ -23,7 +23,6 @@ const styles = {
     backgroundColor: colors.red,
     borderRadius: 5,
     color: colors.white,
-    display: "block",
     letterSpacing: 1,
     padding: "13px 15px",
     textAlign: "center",
