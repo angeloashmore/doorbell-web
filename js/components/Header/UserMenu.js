@@ -4,7 +4,7 @@ import Radium from 'radium';
 import connectToStores from 'alt/utils/connectToStores';
 
 import hoverable from 'decorators/hoverable';
-import HeaderNavItem from 'elements/HeaderNavItem';
+import Item from './Item';
 import UserStore from 'stores/UserStore';
 import UserActions from 'actions/UserActions';
 
@@ -26,28 +26,22 @@ export default class extends React.Component {
     router: React.PropTypes.func
   }
 
-  arrow() {
-    if (this.props.hovered) {
-      return <img src="/assets/images/triangle-down-open.svg" />
-    } else {
-      return <img src="/assets/images/triangle-down.svg" />
-    }
-  }
-
   signOut() {
-    UserActions.logOutUser();
+    UserActions.signOut();
   }
 
   render() {
+    const arrow = <img src={`/assets/images/triangle-down${this.props.hovered ? "-open" : ""}.svg`} />
+
     return (
-      <HeaderNavItem
+      <Item
         {...this.props.hoverableProps}
         style={[
           styles.navItem,
           this.props.hovered && styles.navItemOpen
         ]}>
         <img src="/assets/images/profilePhoto.png" style={styles.profilePhoto} />
-        <div style={styles.profileArrow}>{this.arrow()}</div>
+        <div style={styles.profileArrow}>{arrow}</div>
 
         <nav
           style={[
@@ -59,11 +53,11 @@ export default class extends React.Component {
               <Link to="/" key="userMenu__account" style={[styles.link, styles.linkFirst]}>Your Account</Link>
             </li>
             <li style={[styles.linkItem, styles.linkItemLast]}>
-              <span onClick={() => this.signOut()} key="userMenu__signOut" style={[styles.link, styles.linkLast]}>Sign Out</span>
+              <span onClick={this.signOut} key="userMenu__signOut" style={[styles.link, styles.linkLast]}>Sign Out</span>
             </li>
           </ul>
         </nav>
-      </HeaderNavItem>
+      </Item>
     );
   }
 }

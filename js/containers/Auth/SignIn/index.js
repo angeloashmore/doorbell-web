@@ -24,12 +24,12 @@ export default class extends React.Component {
     };
   }
 
-  logIn(e) {
+  signIn(e) {
     e.preventDefault();
 
     var { router } = this.context;
 
-    UserActions.logInUser(this.state.username, this.state.password)
+    UserActions.signIn(this.state.username, this.state.password)
       .then(() => router.transitionTo('/'))
       .catch((error) => this.setState({ errorMessage: error.message }));
   }
@@ -46,7 +46,7 @@ export default class extends React.Component {
             <Form.Label title="Password">
               <Form.Input type="password" valueLink={this.linkState('password')} placeholder="Password" />
             </Form.Label>
-            <Form.Button title="Sign In" onClick={this.logIn.bind(this)} />
+            <Form.Button title="Sign In" onClick={this.signIn.bind(this)} />
           </Form>
           {!!this.state.errorMessage ? (<p>{this.state.errorMessage}</p>) : (null)}
         </Sheet>

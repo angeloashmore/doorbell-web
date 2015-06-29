@@ -33,14 +33,13 @@ export default class extends React.Component {
     var { router } = this.context;
 
     let data = {
-      username: this.state.username,
-      password: this.state.password,
       email: this.state.email,
+      password: this.state.password,
       name: this.state.name,
       professional: this.state.professional
     };
 
-    UserActions.signUpUser(data)
+    UserActions.signUp(data)
       .then(() => router.transitionTo('/'))
       .catch((error) => this.setState({ errorMessage: error.message }));
   }
@@ -51,14 +50,11 @@ export default class extends React.Component {
         <Sheet>
           <Sheet.Heading>Sign Up</Sheet.Heading>
           <Form>
-            <Form.Label title="Username">
-              <Form.Input type="text" valueLink={this.linkState('username')} placeholder="Username" spellCheck={false} />
+            <Form.Label title="Email">
+              <Form.Input type="email" valueLink={this.linkState('email')} placeholder="Email" />
             </Form.Label>
             <Form.Label title="Password">
               <Form.Input type="password" valueLink={this.linkState('password')} placeholder="Password" />
-            </Form.Label>
-            <Form.Label title="Email">
-              <Form.Input type="email" valueLink={this.linkState('email')} placeholder="Email" />
             </Form.Label>
             <Form.Label title="Name">
               <Form.Input type="text" valueLink={this.linkState('name')} placeholder="Name" />

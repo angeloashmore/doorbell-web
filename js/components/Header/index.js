@@ -5,13 +5,15 @@ import connectToStores from 'alt/utils/connectToStores';
 
 import UserStore from 'stores/UserStore';
 
-import UserMenu from 'components/UserMenu';
-import HeaderNavItem from 'elements/HeaderNavItem';
+import Item from './Item';
+import UserMenu from './UserMenu';
 import colors from 'styles/colors';
 
 @connectToStores
 @Radium
 export default class extends React.Component {
+  static Item = Item;
+
   static getStores() {
     return [UserStore];
   }
@@ -27,8 +29,8 @@ export default class extends React.Component {
   navSignedIn() {
     return (
       <ul style={styles.navigationItems}>
-        <HeaderNavItem link="true" to="teams">Teams</HeaderNavItem>
-        <HeaderNavItem link="true" to="support">Support</HeaderNavItem>
+        <Item link="true" to="teams">Teams</Item>
+        <Item link="true" to="support">Support</Item>
         <UserMenu />
       </ul>
     );
@@ -37,9 +39,9 @@ export default class extends React.Component {
   navSignedOut() {
     return (
       <ul style={styles.navigationItems}>
-        <HeaderNavItem link="true" to="support">Support</HeaderNavItem>
-        <HeaderNavItem link="true" to="signup">Register</HeaderNavItem>
-        <HeaderNavItem link="true" to="login">Sign In</HeaderNavItem>
+        <Item link="true" to="support">Support</Item>
+        <Item link="true" to="signUp">Register</Item>
+        <Item link="true" to="signIn">Sign In</Item>
       </ul>
     );
   }
@@ -88,28 +90,5 @@ const styles = {
 
   navigationItems: {
     display: "flex"
-  },
-
-  userMenu: {
-    borderLeft: "1px solid",
-    cursor: "pointer",
-    color: colors.red__dark__20,
-    padding: "0 20px"
-  },
-
-  userMenuHover: {
-    backgroundColor: colors.white,
-    borderColor: colors.white,
-  },
-
-  profilePhoto: {
-    borderRadius: "50em",
-    display: "block",
-    height: 30,
-    width: 30
-  },
-
-  profileArrow: {
-    marginLeft: 10
   }
 };

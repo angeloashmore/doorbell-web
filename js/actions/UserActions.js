@@ -8,7 +8,7 @@ import PlansActions from 'actions/PlansActions';
 import ProfilesActions from 'actions/ProfilesActions';
 
 class UserActions {
-  restoreCurrentUser() {
+  restoreCurrent() {
     const promise = Promise.resolve().then(() => {
       const user = Parse.User.current();
 
@@ -27,7 +27,7 @@ class UserActions {
     return promise;
   }
 
-  logInUser(username, password) {
+  signIn(username, password) {
     return Promise.resolve().then(() => {
       return Parse.User.logIn(username, password);
 
@@ -41,7 +41,7 @@ class UserActions {
     });
   }
 
-  logOutUser() {
+  signOut() {
     return Promise.resolve().then(() => {
       return Parse.User.logOut();
 
@@ -54,7 +54,7 @@ class UserActions {
     });
   }
 
-  signUpUser(attrs) {
+  signUp(attrs) {
     return Promise.resolve().then(() => {
       const user = new Parse.User;
       user.set(attrs);
@@ -66,7 +66,7 @@ class UserActions {
     });
   }
 
-  updateUser(user, data) {
+  update(user, data) {
     return Promise.resolve().then(() => {
       for (let key in data) {
         user.set(key, data[key]);

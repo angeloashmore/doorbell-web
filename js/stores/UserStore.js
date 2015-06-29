@@ -5,10 +5,10 @@ class UserStore {
   constructor() {
     this.bindListeners({
       setUser: [
-        UserActions.RESTORE_CURRENT_USER,
-        UserActions.LOG_IN_USER,
-        UserActions.SIGN_UP_USER,
-        UserActions.UPDATE_USER
+        UserActions.RESTORE_CURRENT,
+        UserActions.SIGN_IN,
+        UserActions.SIGN_UP,
+        UserActions.UPDATE
       ]
     });
 

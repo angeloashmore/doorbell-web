@@ -7,7 +7,7 @@ export default function authenticatedComponent(Component) {
       // This method is called before transitioning to this component. If the
       // user is not logged in, we'll send him or her to the Log In page.
       if (!UserStore.isLoggedIn()) {
-        transition.redirect('/login');
+        transition.redirect('/signIn');
       }
     }
 

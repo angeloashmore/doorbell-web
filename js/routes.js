@@ -3,7 +3,7 @@ import { Route, DefaultRoute, NotFoundRoute } from 'react-router';
 
 import App from 'containers/App';
 import Home from 'containers/Home';
-import AuthLogIn from 'containers/Auth/LogIn';
+import AuthSignIn from 'containers/Auth/SignIn';
 import AuthSignUp from 'containers/Auth/SignUp';
 import Teams from 'containers/Teams';
 import TeamsNew from 'containers/Teams/New';
@@ -20,8 +20,8 @@ export default (
     <DefaultRoute handler={Home} />
 
     // Authentication
-    <Route name="login" handler={AuthLogIn} />
-    <Route name="signup" handler={AuthSignUp} />
+    <Route name="signIn" handler={AuthSignIn} />
+    <Route name="signUp" handler={AuthSignUp} />
 
     // Teams
     <Route name="teams" path="teams" handler={Teams}>
