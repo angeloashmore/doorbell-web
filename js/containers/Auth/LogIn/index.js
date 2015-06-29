@@ -4,7 +4,6 @@ import Radium from 'radium';
 
 import UserActions from 'actions/UserActions';
 import Sheet from 'elements/Sheet';
-import SheetHeader from 'elements/SheetHeading';
 import Form from 'elements/Form';
 import colors from 'styles/colors';
 
@@ -39,7 +38,7 @@ export default class LogIn extends React.Component {
     return (
       <div style={styles.container}>
         <Sheet>
-          <SheetHeader>Sign In</SheetHeader>
+          <Sheet.Heading>Sign In</Sheet.Heading>
           <Form>
             <Form.Label title="Username">
               <Form.Input type="text" valueLink={this.linkState('username')} placeholder="Username" spellCheck={false} />

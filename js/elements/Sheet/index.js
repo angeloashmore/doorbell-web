@@ -1,11 +1,14 @@
-import React from 'react';
-import { Link } from 'react-router';
-import Radium from 'radium';
+import React from "react";
+import Radium from "radium";
 
-import colors from 'styles/colors';
+import Heading from "./Heading";
+
+import colors from "styles/colors";
 
 @Radium
 export default class extends React.Component {
+  static Heading = Heading;
+
   render() {
     return (
       <div style={styles.sheet}>
