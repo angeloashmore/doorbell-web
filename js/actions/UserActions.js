@@ -1,6 +1,7 @@
 import alt from 'flux/alt';
 import Parse from 'lib/Parse';
 
+import NotificationsActions from 'actions/NotificationsActions';
 import { UserNotLoggedIn } from 'errors';
 import TeamsActions from 'actions/TeamsActions';
 import BillingsActions from 'actions/BillingsActions';
@@ -48,6 +49,9 @@ class UserActions {
     }).then(() => {
       // Clear all stores.
       alt.recycle();
+
+      NotificationsActions.create({ message: "You have been successfully signed out." });
+      NotificationsActions.create({ message: "You have been successfully signed out." });
 
       this.dispatch();
 

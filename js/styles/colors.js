@@ -3,6 +3,7 @@ import Color from 'color';
 const white = "white";
 const black = "black";
 const tint = "#e43a2c";
+const notification = "#fffccc";
 
 const colors = new Map();
 
@@ -27,6 +28,11 @@ colors.set("divider", Color(black).alpha(0.05));
 
 // Shadow
 colors.set("shadow", Color(black).alpha(0.1));
+
+// Notification
+colors.set("notificationBackground", Color(notification));
+colors.set("notificationText", Color(notification).darken(0.8));
+colors.set("notificationTextAlt", Color(notification).darken(0.55));
 
 colors.forEach(function(value, key) {
   colors.set(key, value.rgbString());

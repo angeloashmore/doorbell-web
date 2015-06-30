@@ -24,7 +24,7 @@ export default class extends React.Component {
     const { teams } = this.props;
 
     const teamsPaneItems = [];
-    for (let id in this.props.teams) {
+    for (let id in teams) {
       teamsPaneItems.push(
         <Pane.Item
           key={id}

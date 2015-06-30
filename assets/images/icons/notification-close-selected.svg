@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="25px" height="26px" viewBox="0 0 25 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.2 (12043) - http://www.bohemiancoding.com/sketch -->
+    <title>notification-close-selected</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Assets" sketch:type="MSArtboardGroup" transform="translate(-178.000000, -75.000000)" fill="#5C5600">
+            <g id="Notification-Icons" sketch:type="MSLayerGroup" transform="translate(134.000000, 40.000000)">
+                <g id="notification-close-selected" transform="translate(38.000000, 29.120003)" sketch:type="MSShapeGroup">
+                    <path d="M18.5,31 C11.5963542,31 6,25.403125 6,18.5 C6,11.5963542 11.5963542,6 18.5,6 C25.4036458,6 31,11.5963542 31,18.5 C31,25.403125 25.4036458,31 18.5,31 L18.5,31 Z M18.5,7.04166667 C12.1817708,7.04166667 7.04166667,12.1817708 7.04166667,18.5 C7.04166667,24.8177083 12.1817708,29.9583333 18.5,29.9583333 C24.8182292,29.9583333 29.9583333,24.8182292 29.9583333,18.5 C29.9583333,12.1817708 24.8182292,7.04166667 18.5,7.04166667 L18.5,7.04166667 Z M19.0208333,24.75 L17.9791667,24.75 L17.9791667,19.0208333 L12.25,19.0208333 L12.25,17.9791667 L17.9791667,17.9791667 L17.9791667,12.25 L19.0208333,12.25 L19.0208333,17.9791667 L24.75,17.9791667 L24.75,19.0208333 L19.0208333,19.0208333 L19.0208333,24.75 L19.0208333,24.75 Z" id="Shape" transform="translate(18.500000, 18.500000) rotate(-45.000000) translate(-18.500000, -18.500000) "></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
