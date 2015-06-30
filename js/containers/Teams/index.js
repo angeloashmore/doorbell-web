@@ -57,7 +57,6 @@ export default class extends React.Component {
 
 const styles = {
   container: {
-    alignContent: "stretch",
     display: "flex"
   }
 };
