@@ -21,8 +21,7 @@ export default class TeamsNew extends React.Component {
 
     this.state = {
       name: '',
-      email: 'angelo@doorbell.im',
-      errorMessage: ''
+      email: 'angelo@doorbell.im'
     };
   }
 
@@ -36,7 +35,13 @@ export default class TeamsNew extends React.Component {
 
     TeamsActions.create(data)
       .then(() => this.transitionTo('teams'))
-      .catch((error) => this.setState({ errorMessage: error.message }));
+      .catch((error) => {
+        switch (error.code) {
+          default:
+            NotificationsActions.createGeneric();
+            break;
+        }
+      });
   }
 
   render() {
@@ -53,7 +58,6 @@ export default class TeamsNew extends React.Component {
             </Form.Label>
             <Form.Button title="Create Team" onClick={this.create.bind(this)} />
           </Form>
-          {!!this.state.errorMessage ? (<p>{this.state.errorMessage}</p>) : (null)}
         </Sheet>
       </div>
     );

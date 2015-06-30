@@ -51,7 +51,6 @@ class UserActions {
       alt.recycle();
 
       NotificationsActions.create({ message: "You have been successfully signed out." });
-      NotificationsActions.create({ message: "You have been successfully signed out." });
 
       this.dispatch();
 

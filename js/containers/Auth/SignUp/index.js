@@ -3,6 +3,8 @@ import { Navigation, Link } from 'react-router';
 import reactMixin from 'react-mixin';
 import Radium from 'radium';
 
+import NotificationsActions from 'actions/NotificationsActions';
+import Parse from 'lib/Parse';
 import UserActions from 'actions/UserActions';
 import Sheet from 'elements/Sheet';
 import Form from 'elements/Form';
@@ -22,8 +24,7 @@ export default class extends React.Component {
     this.state = {
       name: '',
       email: '',
-      password: '',
-      errorMessage: ''
+      password: ''
     };
   }
 
@@ -38,7 +39,16 @@ export default class extends React.Component {
 
     UserActions.signUp(data)
       .then(() => this.transitionTo('teams'))
-      .catch((error) => this.setState({ errorMessage: error.message }));
+      .catch((error) => {
+        switch (error.code) {
+          case Parse.Error.OTHER_CAUSE:
+            NotificationsActions.create({ message: error.message });
+            break;
+          default:
+            NotificationsActions.createGeneric();
+            break;
+        }
+      });
   }
 
   render() {
@@ -61,7 +71,6 @@ export default class extends React.Component {
           <p style={[styles.message, styles.messageLast]}>
             Already have an account? <Link to="signIn" style={styles.link}>Sign in</Link>
           </p>
-          {!!this.state.errorMessage ? (<p>{this.state.errorMessage}</p>) : (null)}
         </Sheet>
       </div>
     );

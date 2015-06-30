@@ -1,4 +1,5 @@
 import React from 'react';
+import NotificationsActions from 'actions/NotificationsActions';
 import UserStore from 'stores/UserStore';
 
 export default function authenticatedComponent(Component) {
@@ -8,6 +9,7 @@ export default function authenticatedComponent(Component) {
       // user is not logged in, we'll send him or her to the Log In page.
       if (!UserStore.isLoggedIn()) {
         transition.redirect('/signIn');
+        NotificationsActions.create({ message: "Oops… looks like you need to sign in first." });
       }
     }
 
