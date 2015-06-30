@@ -6,7 +6,7 @@ import Radium from 'radium';
 import UserActions from 'actions/UserActions';
 import Sheet from 'elements/Sheet';
 import Form from 'elements/Form';
-import colors from 'styles/colors';
+import commonStyles from 'styles/commonStyles';
 
 @reactMixin.decorate(Navigation)
 @reactMixin.decorate(React.addons.LinkedStateMixin)
@@ -49,10 +49,10 @@ export default class extends React.Component {
             <Form.Button title="Sign In" onClick={this.signIn.bind(this)} />
           </Form>
           <p style={styles.message}>
-            <Link to="/" style={styles.link}>Forgot password?</Link>
+            <Link to="/" key="forgotPassword" style={styles.link}>Forgot password?</Link>
           </p>
           <p style={[styles.message, styles.messageLast]}>
-            Don't have an account? <Link to="signUp" style={styles.link}>Sign up</Link>
+            Don't have an account? <Link to="signUp" key="signUp" style={styles.link}>Sign up</Link>
           </p>
           {!!this.state.errorMessage ? (<p>{this.state.errorMessage}</p>) : (null)}
         </Sheet>
@@ -83,7 +83,5 @@ const styles = {
     marginBottom: 0
   },
 
-  link: {
-    color: colors.get("tint")
-  }
+  link: commonStyles.get("link")
 };

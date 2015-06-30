@@ -6,7 +6,7 @@ import Radium from 'radium';
 import UserActions from 'actions/UserActions';
 import Sheet from 'elements/Sheet';
 import Form from 'elements/Form';
-import colors from 'styles/colors';
+import commonStyles from 'styles/commonStyles';
 
 @reactMixin.decorate(Navigation)
 @reactMixin.decorate(React.addons.LinkedStateMixin)
@@ -90,7 +90,5 @@ const styles = {
     marginBottom: 0
   },
 
-  link: {
-    color: colors.get("tint")
-  }
+  link: commonStyles.get("link")
 };
