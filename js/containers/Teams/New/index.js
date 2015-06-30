@@ -1,4 +1,5 @@
 import React from 'react/addons';
+import { Navigation } from 'react-router';
 import reactMixin from 'react-mixin';
 import Radium from 'radium';
 
@@ -7,6 +8,7 @@ import Sheet from 'elements/Sheet';
 import Form from 'elements/Form';
 import colors from 'styles/colors';
 
+@reactMixin.decorate(Navigation)
 @reactMixin.decorate(React.addons.LinkedStateMixin)
 @Radium
 export default class TeamsNew extends React.Component {
@@ -27,15 +29,13 @@ export default class TeamsNew extends React.Component {
   create(e) {
     e.preventDefault();
 
-    var { router } = this.context;
-
     let data = {
       name: this.state.name,
       email: this.state.email
     };
 
     TeamsActions.create(data)
-      .then(() => router.transitionTo('teams'))
+      .then(() => this.transitionTo('teams'))
       .catch((error) => this.setState({ errorMessage: error.message }));
   }
 

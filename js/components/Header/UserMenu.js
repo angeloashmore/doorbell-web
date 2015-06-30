@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Navigation, Link } from 'react-router';
+import reactMixin from 'react-mixin';
 import Radium from 'radium';
 import connectToStores from 'alt/utils/connectToStores';
 
@@ -12,6 +13,7 @@ import colors from 'styles/colors';
 
 @hoverable
 @connectToStores
+@reactMixin.decorate(Navigation)
 @Radium
 export default class extends React.Component {
   static getStores() {
@@ -27,10 +29,8 @@ export default class extends React.Component {
   }
 
   signOut() {
-    var { router } = this.context;
-
     UserActions.signOut()
-      .then(() => router.transitionTo('signIn'));
+      .then(() => this.transitionTo('signIn'));
   }
 
   render() {

@@ -17,7 +17,6 @@ export default class extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({ team: TeamsStore.withId(nextProps.params.id) });
-    this.forceUpdate();
   }
 
   render() {
