@@ -46,7 +46,7 @@ const styles = {
     height: 55,
     justifyContent: "space-between",
     marginBottom: 10,
-    padding: "0 15px",
+    padding: "0 15px"
   },
 
   icon: {

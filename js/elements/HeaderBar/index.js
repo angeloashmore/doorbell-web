@@ -8,11 +8,6 @@ import colors from 'styles/colors';
 export default class extends React.Component {
   static Button = Button;
 
-  static defaultProps = {
-    leftButton: <Button disabled={true}>Cancel</Button>,
-    rightButton: <Button disabled={true}>Save</Button>
-  }
-
   render() {
     return (
       <div style={styles.headerBar}>
@@ -45,7 +40,8 @@ const styles = {
     color: colors.get("textPronounced"),
     display: "flex",
     fontSize: 18,
-    justifyContent: "space-between"
+    justifyContent: "space-between",
+    minHeight: 58
   },
 
   titleContainer: {

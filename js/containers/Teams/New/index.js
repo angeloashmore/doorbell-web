@@ -4,6 +4,8 @@ import reactMixin from 'react-mixin';
 import Radium from 'radium';
 
 import TeamsActions from 'actions/TeamsActions';
+import Container from 'elements/Container';
+import HeaderBar from 'elements/HeaderBar';
 import Panel from 'elements/Panel';
 import Sheet from 'elements/Sheet';
 import Form from 'elements/Form';
@@ -47,9 +49,12 @@ export default class TeamsNew extends React.Component {
 
   render() {
     return (
-      <Panel style={styles.panel}>
-        <Sheet>
-          <Sheet.Heading>New Team</Sheet.Heading>
+      <Container>
+        <HeaderBar
+          title="New Team"
+          rightButton={<HeaderBar.Button onClick={this.create.bind(this)}>Create</HeaderBar.Button>}
+          />
+        <Panel>
           <Form>
             <Form.Label title="Name">
               <Form.Input type="text" valueLink={this.linkState('name')} placeholder="Name" spellCheck={false} />
@@ -57,17 +62,9 @@ export default class TeamsNew extends React.Component {
             <Form.Label title="Team Email">
               <Form.Input type="email" valueLink={this.linkState('email')} placeholder="Team Email" />
             </Form.Label>
-            <Form.Button title="Create Team" onClick={this.create.bind(this)} />
           </Form>
-        </Sheet>
-      </Panel>
+        </Panel>
+      </Container>
     );
   }
 }
-
-const styles = {
-  panel: {
-    alignItems: "center",
-    justifyContent: "center"
-  }
-};

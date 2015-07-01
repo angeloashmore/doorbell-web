@@ -2,6 +2,7 @@ import React from 'react';
 import Radium from 'radium';
 
 import TeamsStore from 'stores/TeamsStore';
+import Container from 'elements/Container';
 import HeaderBar from 'elements/HeaderBar';
 import Panel from 'elements/Panel';
 import Form from 'elements/Form';
@@ -27,7 +28,7 @@ export default class extends React.Component {
     );
 
     return (
-      <div style={styles.container}>
+      <Container>
         {headerBar}
         <Panel>
           <Panel.Heading>Team Name</Panel.Heading>
@@ -37,13 +38,7 @@ export default class extends React.Component {
           <p>Once you delete a team, there is no going back. Please be certain.</p>
           <Form.Button title="Delete This Team" />
         </Panel>
-      </div>
+      </Container>
     );
   }
 }
-
-const styles = {
-  container: {
-    flexGrow: 1
-  }
-};
