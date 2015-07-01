@@ -1,8 +1,11 @@
 import React from 'react';
+import Radium from 'radium';
 
 import TeamsStore from 'stores/TeamsStore';
+import HeaderBar from 'elements/HeaderBar';
 import Panel from 'elements/Panel';
 
+@Radium
 export default class extends React.Component {
   constructor(props) {
     super(props);
@@ -17,11 +20,27 @@ export default class extends React.Component {
   }
 
   render() {
+    const headerBar = (
+      <HeaderBar
+        title={this.state.team.get("name")}
+        subtitle="Info"
+      />
+    );
+
     return (
-      <Panel>
-        <Panel.Heading>Name</Panel.Heading>
-        <Panel.TextPronounced>{this.state.team.get("name")}</Panel.TextPronounced>
-      </Panel>
+      <div style={styles.container}>
+        {headerBar}
+        <Panel>
+          <Panel.Heading>Name</Panel.Heading>
+          <Panel.TextPronounced>{this.state.team.get("name")}</Panel.TextPronounced>
+        </Panel>
+      </div>
     );
   }
 }
+
+const styles = {
+  container: {
+    flexGrow: 1
+  }
+};

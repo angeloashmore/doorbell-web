@@ -9,8 +9,8 @@ export default class extends React.Component {
   static Button = Button;
 
   static defaultProps = {
-    leftButton: <Button />,
-    rightButton: <Button />
+    leftButton: <Button disabled={true}>Cancel</Button>,
+    rightButton: <Button disabled={true}>Save</Button>
   }
 
   render() {

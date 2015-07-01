@@ -31,7 +31,7 @@ export default class extends React.Component {
         {headerBar}
         <Panel>
           <Panel.Heading>Team Name</Panel.Heading>
-          <Form.Input value={this.state.team.get("name")} placeholder={Team Name} />
+          <Form.Input value={this.state.team.get("name")} placeholder="Team Name" />
 
           <Panel.Heading>Delete This Team</Panel.Heading>
           <p>Once you delete a team, there is no going back. Please be certain.</p>
