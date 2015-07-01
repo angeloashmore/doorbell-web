@@ -3,7 +3,8 @@ import { RouteHandler } from 'react-router';
 import Radium from 'radium';
 
 import TeamsStore from 'stores/TeamsStore';
-import Pane from 'elements/Pane';
+import Container from 'elements/Container';
+import MasterPanel from 'elements/MasterPanel';
 
 @Radium
 export default class extends React.Component {
@@ -21,26 +22,18 @@ export default class extends React.Component {
 
   render() {
     return (
-      <div style={styles.container}>
-        <Pane selectedKey="info">
-          <Pane.Heading>Menu</Pane.Heading>
-          <Pane.Item to="teamInfo" params={this.props.params} key="info" title="Team Info" icon="team" />
-          <Pane.Item to="teamProfile" params={this.props.params} key="profile" title="Profile" icon="profile" />
-          <Pane.Item to="teamMembers" params={this.props.params} key="members" title="Members" icon="members" />
-          <Pane.Item to="teamBilling" params={this.props.params} key="billing" title="Billing" icon="billing" />
-          <Pane.Item to="teamSettings" params={this.props.params} key="settings" title="Settings" icon="settings" />
-        </Pane>
+      <Container>
+        <MasterPanel>
+          <MasterPanel.Heading>Menu</MasterPanel.Heading>
+          <MasterPanel.Item to="teamInfo" params={this.props.params} key="info" title="Team Info" icon="team" selected={true} />
+          <MasterPanel.Item to="teamProfile" params={this.props.params} key="profile" title="Profile" icon="profile" />
+          <MasterPanel.Item to="teamMembers" params={this.props.params} key="members" title="Members" icon="members" />
+          <MasterPanel.Item to="teamBilling" params={this.props.params} key="billing" title="Billing" icon="billing" />
+          <MasterPanel.Item to="teamSettings" params={this.props.params} key="settings" title="Settings" icon="settings" />
+        </MasterPanel>
 
         <RouteHandler />
-      </div>
+      </Container>
     );
-  }
-}
-
-const styles = {
-  container: {
-    alignContent: "stretch",
-    display: "flex",
-    flexGrow: 1
   }
 }

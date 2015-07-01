@@ -20,8 +20,6 @@ export default class extends React.Component {
 
 const styles = {
   textPronounced: {
-    color: colors.get("textPronounced"),
-    display: "block",
     fontSize: 24
   }
 }

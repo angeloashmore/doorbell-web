@@ -30,9 +30,9 @@ export default class extends React.Component {
 
 const styles = {
   detailPanel: {
-    display: "flex",
-    flexDirection: "column",
-    flexGrow: 1,
-    padding: 45
+    borderRight: `1px solid ${colors.get("shadow")}`,
+    color: colors.get("textPronounced"),
+    flexShrink: 0,
+    width: 650
   }
-};
+}

@@ -6,7 +6,8 @@ import connectToStores from 'alt/utils/connectToStores';
 import authenticatedComponent from 'decorators/authenticatedComponent';
 import TeamsStore from 'stores/TeamsStore';
 
-import Pane from 'elements/Pane';
+import Container from 'elements/Container';
+import MasterPanel from 'elements/MasterPanel';
 
 @authenticatedComponent
 @connectToStores
@@ -26,7 +27,7 @@ export default class extends React.Component {
     const teamsPaneItems = [];
     for (let id in teams) {
       teamsPaneItems.push(
-        <Pane.Item
+        <MasterPanel.Item
           key={id}
           icon="team"
           title={teams[id].get("name")}
@@ -37,27 +38,20 @@ export default class extends React.Component {
     }
 
     return (
-      <div style={styles.container}>
-        <Pane>
-          <Pane.Heading>Teams</Pane.Heading>
+      <Container>
+        <MasterPanel>
+          <MasterPanel.Heading>Teams</MasterPanel.Heading>
           {teamsPaneItems}
-          <Pane.Item
+          <MasterPanel.Item
             to="teamsNew"
             icon="plus"
             iconOnly={true}
             last={true}
           />
-        </Pane>
+        </MasterPanel>
 
         <RouteHandler />
-      </div>
+      </Container>
     );
   }
 }
-
-const styles = {
-  container: {
-    display: "flex",
-    flexGrow: 1
-  }
-};

@@ -22,10 +22,8 @@ export default class extends React.Component {
 
 const styles = {
   button: {
-    alignItems: "center",
     color: colors.get("tint"),
     cursor: "pointer",
-    display: "flex",
     lineHeight: "100%",
     padding: 20,
     textDecoration: "none",

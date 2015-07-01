@@ -35,16 +35,16 @@ export default class extends React.Component {
 
 const styles = {
   toolbar: {
+    alignItems: "center",
     backgroundColor: colors.get("white"),
-    boxShadow: `0 0 0 1px ${colors.get("shadow")}`,
+    borderBottom: `1px solid ${colors.get("shadow")}`,
     display: "flex",
     fontSize: 18,
     justifyContent: "space-between",
-    minHeight: 58
+    minHeight: 58,
   },
 
   titleContainer: {
-    alignSelf: "center",
     alignItems: "center",
     display: "flex",
     flexDirection: "column",
@@ -62,10 +62,10 @@ const styles = {
   },
 
   leftItem: {
-    alignSelf: "flex-start"
+    alignSelf: "flex-start",
   },
 
   rightItem: {
-    alignSelf: "flex-end"
+    alignSelf: "flex-end",
   }
 };

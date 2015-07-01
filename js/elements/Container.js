@@ -20,7 +20,6 @@ export default class extends React.Component {
 const styles = {
   container: {
     display: "flex",
-    flexDirection: "column",
     flexGrow: 1
   }
 };

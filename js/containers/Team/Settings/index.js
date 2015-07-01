@@ -6,9 +6,10 @@ import Radium from 'radium';
 import NotificationsActions from 'actions/NotificationsActions';
 import TeamsActions from 'actions/TeamsActions';
 import TeamsStore from 'stores/TeamsStore';
+
 import Container from 'elements/Container';
-import HeaderBar from 'elements/HeaderBar';
-import Panel from 'elements/Panel';
+import DetailPanel from 'elements/DetailPanel';
+import Toolbar from 'elements/Toolbar';
 import Form from 'elements/Form';
 
 @reactMixin.decorate(Navigation)
@@ -49,37 +50,44 @@ export default class extends React.Component {
   }
 
   render() {
-    const headerBar = (
-      <HeaderBar
-        title={this.state.team.get("name")}
-        subtitle="Settings"
-        leftButton={<HeaderBar.Button disabled={true}>Cancel</HeaderBar.Button>}
-        rightButton={<HeaderBar.Button type="submit" onClick={this.updateTeam.bind(this)}>Save</HeaderBar.Button>}
-      />
-    );
+    const { team } = this.state;
 
     return (
-      <Container>
+      <DetailPanel>
         <Form>
-          {headerBar}
-          <Panel>
-            <Panel.Group>
+          <Toolbar
+            title={team.get("name")}
+            subtitle="Settings"
+            leftButton={<Toolbar.Button disabled={true}>Cancel</Toolbar.Button>}
+            rightButton={<Toolbar.Button type="submit" onClick={this.updateTeam.bind(this)}>Save</Toolbar.Button>}
+            />
+          <Container style={styles.container}>
+            <DetailPanel.Group>
               <Form.Label title="Team Name">
                 <Form.Input valueLink={this.linkState('name')} placeholder="Team Name" />
               </Form.Label>
+
               <Form.Label title="Team Email" last={true}>
                 <Form.Input valueLink={this.linkState('email')} placeholder="Team Email" />
               </Form.Label>
-            </Panel.Group>
+            </DetailPanel.Group>
 
-            <Panel.Group>
-              <Panel.Heading>Delete This Team</Panel.Heading>
-              <Panel.p>Once you delete a team, there is no going back. Please be certain.</Panel.p>
-              <Form.Button title="Delete This Team" />
-            </Panel.Group>
-          </Panel>
+            <DetailPanel.Group>
+              <DetailPanel.Heading>Delete This Team</DetailPanel.Heading>
+              <DetailPanel.p>Once you delete a team, there is no going back. Please be certain.</DetailPanel.p>
+              <Form.Button>Delete This Team</Form.Button>
+            </DetailPanel.Group>
+          </Container>
         </Form>
-      </Container>
+      </DetailPanel>
     );
   }
 }
+
+const styles = {
+  container: {
+    alignItems: "stretch",
+    flexDirection: "column",
+    padding: 45
+  }
+};

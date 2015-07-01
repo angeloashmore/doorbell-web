@@ -12,7 +12,7 @@ export default class extends React.Component {
         style={[
           styles.input,
           this.props.style
-        ]}>
+        ]}
         />
     );
   }
@@ -30,7 +30,7 @@ const styles = {
     padding: "13px 15px",
 
     ":focus": {
-      border: `1px solid ${colors.get("tint")}`
+      border: `1px solid ${colors.get("textPronounced")}`
     }
   }
 }

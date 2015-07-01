@@ -4,21 +4,16 @@ import reactMixin from 'react-mixin';
 import Radium from 'radium';
 
 import TeamsActions from 'actions/TeamsActions';
+
 import Container from 'elements/Container';
-import HeaderBar from 'elements/HeaderBar';
-import Panel from 'elements/Panel';
-import Sheet from 'elements/Sheet';
+import DetailPanel from 'elements/DetailPanel';
+import Toolbar from 'elements/Toolbar';
 import Form from 'elements/Form';
-import colors from 'styles/colors';
 
 @reactMixin.decorate(Navigation)
 @reactMixin.decorate(React.addons.LinkedStateMixin)
 @Radium
 export default class TeamsNew extends React.Component {
-  static contextTypes = {
-    router: React.PropTypes.func
-  }
-
   constructor() {
     super();
 
@@ -49,22 +44,30 @@ export default class TeamsNew extends React.Component {
 
   render() {
     return (
-      <Container>
-        <HeaderBar
+      <DetailPanel>
+        <Form>
+        <Toolbar
           title="New Team"
-          rightButton={<HeaderBar.Button onClick={this.create.bind(this)}>Create</HeaderBar.Button>}
+          rightItem={<Toolbar.Button onClick={this.create.bind(this)}>Create</Toolbar.Button>}
           />
-        <Panel>
-          <Form>
-            <Form.Label title="Name">
-              <Form.Input type="text" valueLink={this.linkState('name')} placeholder="Name" spellCheck={false} />
-            </Form.Label>
-            <Form.Label title="Team Email">
-              <Form.Input type="email" valueLink={this.linkState('email')} placeholder="Team Email" />
-            </Form.Label>
-          </Form>
-        </Panel>
-      </Container>
+        <Container style={styles.container}>
+          <Form.Label title="Name">
+            <Form.Input type="text" valueLink={this.linkState('name')} placeholder="Name" spellCheck={false} />
+          </Form.Label>
+          <Form.Label title="Team Email">
+            <Form.Input type="email" valueLink={this.linkState('email')} placeholder="Team Email" />
+          </Form.Label>
+        </Container>
+        </Form>
+      </DetailPanel>
     );
   }
 }
+
+const styles = {
+  container: {
+    alignItems: "stretch",
+    flexDirection: "column",
+    padding: 45
+  }
+};

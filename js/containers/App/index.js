@@ -4,6 +4,7 @@ import Radium from 'radium';
 
 import Notifications from 'components/Notifications';
 import Header from 'components/Header';
+import Container from 'elements/Container';
 
 import colors from 'styles/colors';
 
@@ -15,12 +16,14 @@ export default class extends React.Component {
         <div style={styles.notifications}>
           <Notifications />
         </div>
+
         <div style={styles.header}>
           <Header />
         </div>
-        <div style={styles.body}>
+
+        <Container>
           <RouteHandler />
-        </div>
+        </Container>
       </div>
     );
   }

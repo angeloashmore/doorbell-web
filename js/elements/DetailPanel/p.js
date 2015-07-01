@@ -18,6 +18,6 @@ export default class extends React.Component {
 
 const styles = {
   p: {
-    marginBottom: 10
+    marginBottom: 20
   }
 }
