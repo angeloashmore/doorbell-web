@@ -22,6 +22,7 @@ colors.set("background", Color(white).darken(0.05));
 // Text
 colors.set("text", Color(white).darken(0.4));
 colors.set("textPronounced", Color(white).darken(0.7));
+colors.set("textUnpronounced", Color(white).darken(0.25));
 
 // Divider
 colors.set("divider", Color(black).alpha(0.05));

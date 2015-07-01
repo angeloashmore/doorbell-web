@@ -8,6 +8,7 @@ import NotificationsActions from 'actions/NotificationsActions';
 import UserActions from 'actions/UserActions';
 import Sheet from 'elements/Sheet';
 import Form from 'elements/Form';
+import BackButton from 'elements/BackButton';
 import commonStyles from 'styles/commonStyles';
 
 @reactMixin.decorate(Navigation)
@@ -42,6 +43,7 @@ export default class extends React.Component {
     return (
       <div style={styles.container}>
         <Sheet>
+          <BackButton style={styles.backButton} />
           <Sheet.Heading>Forgot Password</Sheet.Heading>
           <Form style={styles.form}>
             <Form.Label title="Email">
@@ -65,6 +67,10 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     width: "100%"
+  },
+
+  backButton: {
+    marginBottom: 10
   },
 
   form: {

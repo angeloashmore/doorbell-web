@@ -1,6 +1,7 @@
 import React from "react";
 import Radium from "radium";
 
+import Icon from "elements/Icon";
 import Heading from "./Heading";
 
 import colors from "styles/colors";
@@ -22,6 +23,7 @@ const styles = {
   sheet: {
     backgroundColor: colors.get("white"),
     padding: 45,
+    position: "relative",
     width: 260
   }
 };

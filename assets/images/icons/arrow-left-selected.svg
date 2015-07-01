@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="8px" height="13px" viewBox="0 0 8 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.2 (12043) - http://www.bohemiancoding.com/sketch -->
+    <title>arrow-left-selected</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Desktop-HD" sketch:type="MSArtboardGroup" transform="translate(-590.000000, -324.000000)" fill="#E43A2C">
+            <g id="Log-In-Content" sketch:type="MSLayerGroup" transform="translate(545.000000, 279.000000)">
+                <g id="Back-Button" transform="translate(45.000000, 44.500000)" sketch:type="MSShapeGroup">
+                    <polygon id="arrow-left-selected" transform="translate(4.000000, 6.693359) scale(1, -1) rotate(-90.000000) translate(-4.000000, -6.693359) " points="4 3.4206321 10 9.96608665 -2 9.96608665 "></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
