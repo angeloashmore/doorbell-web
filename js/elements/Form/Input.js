@@ -24,6 +24,10 @@ const styles = {
     fontSize: 16,
     fontSmoothing: "antialiased",
     margin: 0,
-    padding: "13px 15px"
+    padding: "13px 15px",
+
+    ":focus": {
+      border: `1px solid ${colors.get("tint")}`
+    }
   }
 }
