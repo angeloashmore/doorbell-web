@@ -15,7 +15,7 @@ class NotificationsActions {
       this.dispatch(data);
 
       // Destroy the notification automatically.
-      setTimeout(() => this.actions.destroy(data.id), 7000);
+      setTimeout(() => this.actions.destroy(data.id), 5000);
 
     });
   }
