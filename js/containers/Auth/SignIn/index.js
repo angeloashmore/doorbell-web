@@ -32,16 +32,7 @@ export default class extends React.Component {
 
     UserActions.signIn(this.state.email, this.state.password)
       .then(() => this.transitionTo('teams'))
-      .catch((error) => {
-        switch (error.code) {
-          case Parse.Error.OBJECT_NOT_FOUND:
-            NotificationsActions.create({ message: "Incorrect username or password." });
-            break;
-          default:
-            NotificationsActions.createGeneric();
-            break;
-        }
-      });
+      .catch((error) => NotificationsActions.create({ message: "Incorrect username or password. Forgot your password?" }));
   }
 
   render() {

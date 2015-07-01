@@ -39,16 +39,7 @@ export default class extends React.Component {
 
     UserActions.signUp(data)
       .then(() => this.transitionTo('teams'))
-      .catch((error) => {
-        switch (error.code) {
-          case Parse.Error.OTHER_CAUSE:
-            NotificationsActions.create({ message: error.message });
-            break;
-          default:
-            NotificationsActions.createGeneric();
-            break;
-        }
-      });
+      .catch((error) => NotificationsActions.createFromParseError(error));
   }
 
   render() {
