@@ -38,6 +38,7 @@ const styles = {
     alignItems: "center",
     backgroundColor: colors.get("white"),
     borderBottom: `1px solid ${colors.get("shadow")}`,
+    color: colors.get("text"),
     display: "flex",
     fontSize: 18,
     justifyContent: "space-between",

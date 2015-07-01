@@ -58,8 +58,8 @@ export default class extends React.Component {
           <Toolbar
             title={team.get("name")}
             subtitle="Settings"
-            leftButton={<Toolbar.Button disabled={true}>Cancel</Toolbar.Button>}
-            rightButton={<Toolbar.Button type="submit" onClick={this.updateTeam.bind(this)}>Save</Toolbar.Button>}
+            leftItem={<Toolbar.Button disabled={true}>Cancel</Toolbar.Button>}
+            rightItem={<Toolbar.Button type="submit" onClick={this.updateTeam.bind(this)}>Save</Toolbar.Button>}
             />
           <Container style={styles.container}>
             <DetailPanel.Group>
