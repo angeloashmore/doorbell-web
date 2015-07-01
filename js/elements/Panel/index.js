@@ -1,6 +1,7 @@
 import React from "react";
 import Radium from "radium";
 
+import Container from 'elements/Container';
 import Heading from './Heading';
 import TextPronounced from './TextPronounced';
 
@@ -13,21 +14,18 @@ export default class extends React.Component {
 
   render() {
     return (
-      <div style={[
+      <Container style={[
         styles.panel,
         this.props.style
       ]}>
         {this.props.children}
-      </div>
+      </Container>
     );
   }
 }
 
 const styles = {
   panel: {
-    display: "flex",
-    flexDirection: "column",
-    flexGrow: 1,
     padding: 45
   }
 };
