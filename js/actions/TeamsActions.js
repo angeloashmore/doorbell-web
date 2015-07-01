@@ -28,6 +28,21 @@ class TeamsActions {
     });
   }
 
+  update(id, attrs) {
+    return Promise.resolve().then(() => {
+      const query = new Parse.Query("Team");
+      return query.get(id);
+
+    }).then((team) => {
+      team.set(attrs);
+      return team.save();
+
+    }).then((team) => {
+      this.dispatch(team);
+
+    });
+  }
+
   destroy(id) {
     return Promise.resolve().then(() => {
       return Parse.Cloud.run("Team__destory", { id: id });
@@ -35,7 +50,7 @@ class TeamsActions {
     }).then((team) => {
       this.dispatch(team);
 
-    })
+    });
   }
 }
 

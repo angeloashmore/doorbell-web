@@ -5,7 +5,10 @@ class TeamsStore {
   constructor() {
     this.bindListeners({
       setTeams: TeamsActions.FETCH_ALL_FOR_CURRENT_USER,
-      setTeam: TeamsActions.CREATE
+      setTeam: [
+        TeamsActions.CREATE,
+        TeamsActions.UPDATE
+      ]
     });
 
     this.teams = {};

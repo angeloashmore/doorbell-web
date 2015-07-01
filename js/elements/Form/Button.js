@@ -9,7 +9,6 @@ export default class extends React.Component {
     return (
       <button
         {...this.props}
-        type="submit"
         style={styles.button}
         >
         {this.props.title}

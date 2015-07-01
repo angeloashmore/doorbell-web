@@ -7,7 +7,7 @@ import colors from "styles/colors";
 export default class extends React.Component {
   render() {
     return (
-      <div
+      <button
         {...this.props}
         style={[
           styles.button,
@@ -15,7 +15,7 @@ export default class extends React.Component {
           this.props.style
         ]}>
         {this.props.children}
-      </div>
+      </button>
     );
   }
 }
