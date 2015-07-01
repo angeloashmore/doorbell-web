@@ -4,6 +4,7 @@ import reactMixin from 'react-mixin';
 import Radium from 'radium';
 
 import TeamsActions from 'actions/TeamsActions';
+import Panel from 'elements/Panel';
 import Sheet from 'elements/Sheet';
 import Form from 'elements/Form';
 import colors from 'styles/colors';
@@ -46,10 +47,10 @@ export default class TeamsNew extends React.Component {
 
   render() {
     return (
-      <div style={styles.container}>
+      <Panel style={styles.panel}>
         <Sheet>
           <Sheet.Heading>New Team</Sheet.Heading>
-          <Form style={styles.form}>
+          <Form>
             <Form.Label title="Name">
               <Form.Input type="text" valueLink={this.linkState('name')} placeholder="Name" spellCheck={false} />
             </Form.Label>
@@ -59,17 +60,14 @@ export default class TeamsNew extends React.Component {
             <Form.Button title="Create Team" onClick={this.create.bind(this)} />
           </Form>
         </Sheet>
-      </div>
+      </Panel>
     );
   }
 }
 
 const styles = {
-  container: {
-    alignContent: "center",
+  panel: {
     alignItems: "center",
-    display: "flex",
-    justifyContent: "center",
-    width: "100%"
+    justifyContent: "center"
   }
 };
