@@ -10,9 +10,9 @@ export default class extends React.Component {
 
   render() {
     return (
-      <div style={styles.headerBar}>
-        <div style={styles.leftButton}>
-          {this.props.leftButton}
+      <div style={styles.toolbar}>
+        <div style={styles.leftItem}>
+          {this.props.leftItem}
         </div>
 
         <div style={styles.titleContainer}>
@@ -25,8 +25,8 @@ export default class extends React.Component {
           </span>
         </div>
 
-        <div style={styles.rightButton}>
-          {this.props.rightButton}
+        <div style={styles.rightItem}>
+          {this.props.rightItem}
         </div>
       </div>
     );
@@ -34,10 +34,9 @@ export default class extends React.Component {
 }
 
 const styles = {
-  headerBar: {
+  toolbar: {
     backgroundColor: colors.get("white"),
-    borderBottom: `1px solid ${colors.get("shadow")}`,
-    color: colors.get("textPronounced"),
+    boxShadow: `0 0 0 1px ${colors.get("shadow")}`,
     display: "flex",
     fontSize: 18,
     justifyContent: "space-between",
@@ -53,17 +52,20 @@ const styles = {
   },
 
   subtitle: {
-    color: colors.get("text"),
     fontSize: 10,
     letterSpacing: 1,
     textTransform: "uppercase"
   },
 
-  leftButton: {
+  title: {
+    color: colors.get("textPronounced"),
+  },
+
+  leftItem: {
     alignSelf: "flex-start"
   },
 
-  rightButton: {
+  rightItem: {
     alignSelf: "flex-end"
   }
 };
