@@ -12,7 +12,11 @@ export default class extends React.Component {
 
   render() {
     return (
-      <div style={styles.sheet}>
+      <div
+        style={[
+          styles.sheet,
+          this.props.style
+        ]}>
         {this.props.children}
       </div>
     );

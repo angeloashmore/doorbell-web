@@ -1,23 +1,23 @@
 import React from "react";
 import Radium from "radium";
 
-import colors from "styles/colors";
-
 @Radium
 export default class extends React.Component {
   render() {
     return (
-      <p style={styles.textPronounced}>
+      <div
+        style={[
+          styles.p,
+          this.props.style
+        ]}>
         {this.props.children}
-      </p>
+      </div>
     );
   }
 }
 
 const styles = {
-  textPronounced: {
-    color: colors.get("textPronounced"),
-    display: "block",
-    fontSize: 24
+  p: {
+    marginBottom: 10
   }
 }

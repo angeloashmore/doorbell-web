@@ -18,7 +18,7 @@ export default class extends React.Component {
           styles.form,
           this.props.style
         ]}
-      >
+        >
         {this.props.children}
       </form>
     );

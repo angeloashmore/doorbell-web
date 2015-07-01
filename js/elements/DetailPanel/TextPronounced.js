@@ -1,14 +1,16 @@
 import React from "react";
 import Radium from "radium";
 
+import colors from "styles/colors";
+
 @Radium
 export default class extends React.Component {
   render() {
     return (
       <div
         style={[
-          styles.p,
-          this.props.tyle
+          styles.textPronounced,
+          this.props.style
         ]}>
         {this.props.children}
       </div>
@@ -17,7 +19,9 @@ export default class extends React.Component {
 }
 
 const styles = {
-  p: {
-    margin: "10px 0"
+  textPronounced: {
+    color: colors.get("textPronounced"),
+    display: "block",
+    fontSize: 24
   }
 }

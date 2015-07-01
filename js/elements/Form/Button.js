@@ -9,9 +9,12 @@ export default class extends React.Component {
     return (
       <button
         {...this.props}
-        style={styles.button}
+        style={[
+          styles.button,
+          this.props.style
+        ]}
         >
-        {this.props.title}
+        {this.props.children}
       </button>
     );
   }

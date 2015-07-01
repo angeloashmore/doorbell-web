@@ -36,7 +36,12 @@ export default class extends React.Component {
 
   render() {
     return (
-      <li style={this.styles().item}>
+      <li
+        style={[
+          this.styles().item,
+          this.props.style
+        ]}
+        >
         <Link
           {...this.props.hoverableProps}
           to={this.props.to}

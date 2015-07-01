@@ -18,18 +18,21 @@ export default class extends React.Component {
 
   render() {
     return (
-      <Container style={[
-        styles.panel,
+      <div style={[
+        styles.detailPanel,
         this.props.style
       ]}>
         {this.props.children}
-      </Container>
+      </div>
     );
   }
 }
 
 const styles = {
-  panel: {
+  detailPanel: {
+    display: "flex",
+    flexDirection: "column",
+    flexGrow: 1,
     padding: 45
   }
 };

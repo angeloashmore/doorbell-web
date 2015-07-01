@@ -9,8 +9,11 @@ export default class extends React.Component {
     return (
       <input
         {...this.props}
-        style={styles.input}
-      />
+        style={[
+          styles.input,
+          this.props.style
+        ]}>
+        />
     );
   }
 }

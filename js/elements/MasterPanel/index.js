@@ -37,7 +37,12 @@ export default class extends React.Component {
     });
 
     return (
-      <div style={styles.pane}>
+      <div
+        style={[
+          styles.masterPanel,
+          this.props.style
+        ]}
+        >
         {children}
       </div>
     );
@@ -45,7 +50,7 @@ export default class extends React.Component {
 }
 
 const styles = {
-  pane: {
+  masterPanel: {
     backgroundColor: colors.get("white"),
     borderRight: `1px solid ${colors.get("shadow")}`,
     flexShrink: 0,
