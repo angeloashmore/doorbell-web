@@ -13,6 +13,11 @@ messages.set(
 );
 
 messages.set(
+  Parse.Error.EMAIL_MISSING,
+  "Please provide an email."
+);
+
+messages.set(
   Parse.Error.OBJECT_NOT_FOUND,
   "Object could not be found."
 );

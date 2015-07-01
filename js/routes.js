@@ -5,6 +5,7 @@ import App from 'containers/App';
 import Home from 'containers/Home';
 import AuthSignIn from 'containers/Auth/SignIn';
 import AuthSignUp from 'containers/Auth/SignUp';
+import AuthForgotPassword from 'containers/Auth/ForgotPassword';
 import Teams from 'containers/Teams';
 import TeamsNew from 'containers/Teams/New';
 import Team from 'containers/Team';
@@ -22,6 +23,7 @@ export default (
     // Authentication
     <Route name="signIn" handler={AuthSignIn} />
     <Route name="signUp" handler={AuthSignUp} />
+    <Route name="forgotPassword" handler={AuthForgotPassword} />
 
     // Teams
     <Route name="teams" path="teams" handler={Teams}>

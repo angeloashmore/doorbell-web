@@ -71,6 +71,16 @@ class UserActions {
     });
   }
 
+  resetPassword(email) {
+    return Promise.resolve().then(() => {
+      return Parse.User.requestPasswordReset(email);
+
+    }).then((result) => {
+      return this.actions.signOut();
+
+    });
+  }
+
   update(user, data) {
     return Promise.resolve().then(() => {
       for (let key in data) {

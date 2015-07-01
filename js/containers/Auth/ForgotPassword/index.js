@@ -27,33 +27,30 @@ export default class extends React.Component {
     };
   }
 
-  signIn(e) {
+  resetPassword(e) {
     e.preventDefault();
 
-    UserActions.signIn(this.state.email, this.state.password)
-      .then(() => this.transitionTo('teams'))
-      .catch((error) => NotificationsActions.create({ message: "Incorrect username or password. Forgot your password?" }));
+    UserActions.resetPassword(this.state.email)
+      .then(() => {
+        this.transitionTo('signIn');
+        NotificationsActions.create({ message: "An email was sent to you with a link to reset your password." });
+      })
+      .catch((error) => NotificationsActions.createFromParseError(error));
   }
 
   render() {
     return (
       <div style={styles.container}>
         <Sheet>
-          <Sheet.Heading>Sign In</Sheet.Heading>
+          <Sheet.Heading>Forgot Password</Sheet.Heading>
           <Form style={styles.form}>
             <Form.Label title="Email">
               <Form.Input type="email" valueLink={this.linkState('email')} placeholder="Email" spellCheck={false} />
             </Form.Label>
-            <Form.Label title="Password">
-              <Form.Input type="password" valueLink={this.linkState('password')} placeholder="Password" />
-            </Form.Label>
-            <Form.Button title="Sign In" onClick={this.signIn.bind(this)} />
+            <Form.Button title="Reset Password" onClick={this.resetPassword.bind(this)} />
           </Form>
-          <p style={styles.message}>
-            <Link to="forgotPassword" key="forgotPassword" style={styles.link}>Forgot password?</Link>
-          </p>
           <p style={[styles.message, styles.messageLast]}>
-            Don't have an account? <Link to="signUp" key="signUp" style={styles.link}>Sign up</Link>
+            Remembered it? <Link to="signIn" key="signIn" style={styles.link}>Sign in</Link>
           </p>
         </Sheet>
       </div>
