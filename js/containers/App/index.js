@@ -55,7 +55,6 @@ const styles = {
 
   body: {
     display: "flex",
-    flexGrow: 1,
-    width: "100%"
+    flexGrow: 1
   }
 };
