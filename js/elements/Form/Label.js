@@ -11,7 +11,12 @@ export default class extends React.Component {
 
   render() {
     return (
-      <label style={styles.label}>
+      <label
+        style={[
+          styles.label,
+          this.props.last && styles.last,
+          this.props.style
+        ]}>
         <span style={styles.title}>
           {this.props.title}
         </span>
@@ -27,6 +32,10 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     marginBottom: 20
+  },
+
+  last: {
+    marginBottom: 0
   },
 
   title: {

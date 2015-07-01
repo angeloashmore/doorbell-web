@@ -30,7 +30,8 @@ export default class extends React.Component {
 
     return {
       team: team,
-      name: team.get("name")
+      name: team.get("name"),
+      email: team.get("email")
     };
   }
 
@@ -38,7 +39,8 @@ export default class extends React.Component {
     e.preventDefault();
 
     let attrs = {
-      name: this.state.name
+      name: this.state.name,
+      email: this.state.email
     };
 
     TeamsActions.update(this.state.team.id, attrs)
@@ -62,8 +64,12 @@ export default class extends React.Component {
           {headerBar}
           <Panel>
             <Panel.Group>
-              <Panel.Heading>Team Name</Panel.Heading>
-              <Form.Input valueLink={this.linkState('name')} placeholder="Team Name" />
+              <Form.Label title="Team Name">
+                <Form.Input valueLink={this.linkState('name')} placeholder="Team Name" />
+              </Form.Label>
+              <Form.Label title="Team Email" last={true}>
+                <Form.Input valueLink={this.linkState('email')} placeholder="Team Email" />
+              </Form.Label>
             </Panel.Group>
 
             <Panel.Group>
