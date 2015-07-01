@@ -57,7 +57,7 @@ export default class extends React.Component {
             <Form.Label title="Password">
               <Form.Input type="password" valueLink={this.linkState('password')} placeholder="Password" />
             </Form.Label>
-            <Form.Button title="Sign Up" onClick={this.signUp.bind(this)} />
+            <Form.Button type="submit" onClick={this.signUp.bind(this)}>Sign Up</Form.Button>
           </Form>
           <p style={[styles.message, styles.messageLast]}>
             Already have an account? <Link to="signIn" style={styles.link}>Sign in</Link>
