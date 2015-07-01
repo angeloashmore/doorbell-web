@@ -44,7 +44,8 @@ const styles = {
     marginLeft: -325,
     position: "absolute",
     top: 32,
-    width: 650
+    width: 650,
+    zIndex: 1
   },
 
   header: {

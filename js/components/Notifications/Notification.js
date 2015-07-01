@@ -2,9 +2,12 @@ import React from 'react';
 import Radium from 'radium';
 
 import NotificationsActions from 'actions/NotificationsActions';
+import hoverable from 'decorators/hoverable';
+import Icon from 'elements/Icon';
 
 import colors from 'styles/colors';
 
+@hoverable
 @Radium
 export default class extends React.Component {
   dismiss(id) {
@@ -13,10 +16,18 @@ export default class extends React.Component {
 
   render() {
     return (
-      <li style={styles.notification}>
-        <img src="/assets/images/icons/notification-alert.svg" style={styles.icon} />
+      <li
+        {...this.props.hoverableProps}
+        style={styles.notification}
+        >
+        <Icon name="notification-alert" style={styles.icon} />
         <span style={styles.message}>{this.props.children}</span>
-        <img src="/assets/images/icons/notification-close.svg" style={styles.dismiss} onClick={() => this.dismiss(this.props.id)} />
+        <Icon
+          name="notification-close"
+          selected={this.props.hovered}
+          onClick={() => this.dismiss(this.props.id)}
+          style={styles.dismiss}
+          />
       </li>
     );
   }
