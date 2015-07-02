@@ -33,6 +33,7 @@ const styles = {
     borderRight: `1px solid ${colors.get("shadow")}`,
     color: colors.get("textPronounced"),
     flexShrink: 0,
+    overflowY: "auto",
     width: 650
   }
 }

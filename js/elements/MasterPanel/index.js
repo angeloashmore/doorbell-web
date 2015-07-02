@@ -31,6 +31,7 @@ const styles = {
     backgroundColor: colors.get("white"),
     borderRight: `1px solid ${colors.get("shadow")}`,
     flexShrink: 0,
+    overflowY: "auto",
     paddingLeft: 20,
     width: 240
   }

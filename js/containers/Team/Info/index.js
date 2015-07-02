@@ -31,8 +31,10 @@ export default class extends React.Component {
           subtitle="Info"
           />
         <Container style={styles.container}>
-          <DetailPanel.Heading>Name</DetailPanel.Heading>
-          <DetailPanel.TextPronounced>{team.get("name")}</DetailPanel.TextPronounced>
+          <DetailPanel.Group>
+            <DetailPanel.Heading>Name</DetailPanel.Heading>
+            <DetailPanel.TextPronounced>{team.get("name")}</DetailPanel.TextPronounced>
+          </DetailPanel.Group>
         </Container>
       </DetailPanel>
     );
