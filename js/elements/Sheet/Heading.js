@@ -22,7 +22,7 @@ const styles = {
   heading: {
     color: colors.get("textPronounced"),
     display: "block",
-    fontSize: 36,
+    fontSize: 42,
     marginBottom: 30,
     overflow: "hidden",
     textOverflow: "ellipsis",
