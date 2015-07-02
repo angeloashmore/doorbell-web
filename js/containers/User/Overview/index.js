@@ -2,6 +2,7 @@ import React from 'react';
 import connectToStores from 'alt/utils/connectToStores';
 import Radium from 'radium';
 
+import authenticatedComponent from 'decorators/authenticatedComponent';
 import BillingsStore from 'stores/BillingsStore';
 import PlansStore from 'stores/PlansStore';
 import UserStore from 'stores/UserStore';
@@ -12,6 +13,7 @@ import DetailPanel from 'elements/DetailPanel';
 import Toolbar from 'elements/Toolbar';
 import Group from 'elements/Group';
 
+@authenticatedComponent
 @connectToStores
 @Radium
 export default class extends React.Component {

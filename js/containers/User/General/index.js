@@ -3,6 +3,7 @@ import { Navigation } from 'react-router';
 import reactMixin from 'react-mixin';
 import Radium from 'radium';
 
+import authenticatedComponent from 'decorators/authenticatedComponent';
 import NotificationsActions from 'actions/NotificationsActions';
 import UserStore from 'stores/UserStore';
 import UserActions from 'actions/UserActions';
@@ -13,6 +14,7 @@ import Toolbar from 'elements/Toolbar';
 import Form from 'elements/Form';
 import Group from 'elements/Group';
 
+@authenticatedComponent
 @reactMixin.decorate(Navigation)
 @reactMixin.decorate(React.addons.LinkedStateMixin)
 @Radium

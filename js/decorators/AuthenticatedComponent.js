@@ -3,7 +3,7 @@ import NotificationsActions from 'actions/NotificationsActions';
 import UserStore from 'stores/UserStore';
 
 export default function authenticatedComponent(Component) {
-  class AuthenticatedComponent extends React.Component {
+  return class extends React.Component {
     static willTransitionTo(transition) {
       // This method is called before transitioning to this component. If the
       // user is not logged in, we'll send him or her to the Log In page.
@@ -14,9 +14,9 @@ export default function authenticatedComponent(Component) {
     }
 
     render() {
-      return React.createElement(Component);
+      return (
+        <Component {...this.props} />
+      );
     }
   }
-
-  return AuthenticatedComponent;
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import Radium from 'radium';
 
+import authenticatedComponent from 'decorators/authenticatedComponent';
 import TeamsStore from 'stores/TeamsStore';
 
 import Container from 'elements/Container';
@@ -8,6 +9,7 @@ import DetailPanel from 'elements/DetailPanel';
 import Toolbar from 'elements/Toolbar';
 import Group from 'elements/Group';
 
+@authenticatedComponent
 @Radium
 export default class extends React.Component {
   constructor(props) {

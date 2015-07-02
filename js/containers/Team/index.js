@@ -2,10 +2,12 @@ import React from 'react';
 import { RouteHandler } from 'react-router';
 import Radium from 'radium';
 
+import authenticatedComponent from 'decorators/authenticatedComponent';
 import TeamsStore from 'stores/TeamsStore';
 import Container from 'elements/Container';
 import MasterPanel from 'elements/MasterPanel';
 
+@authenticatedComponent
 @Radium
 export default class extends React.Component {
   constructor(props) {
