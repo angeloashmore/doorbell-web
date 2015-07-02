@@ -29,8 +29,8 @@ export default class extends React.Component {
   }
 
   signOut() {
-    UserActions.signOut()
-      .then(() => this.transitionTo('signIn'));
+    this.transitionTo("signIn");
+    UserActions.signOut();
   }
 
   render() {
