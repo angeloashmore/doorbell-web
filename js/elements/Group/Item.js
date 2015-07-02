@@ -36,7 +36,7 @@ const styles = {
   },
 
   title: {
-    color: colors.get("textPronounced"),
+    color: colors.get("text"),
     flexShrink: 0,
     marginRight: 20,
     width: 100

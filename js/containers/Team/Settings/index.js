@@ -74,8 +74,6 @@ export default class extends React.Component {
 
           <Container style={styles.container}>
             <DetailPanel.Group>
-              <DetailPanel.Heading>Delete This Team</DetailPanel.Heading>
-              <DetailPanel.p>Once you delete a team, there is no going back. Please be certain.</DetailPanel.p>
               <Form.Button>Delete This Team</Form.Button>
             </DetailPanel.Group>
           </Container>

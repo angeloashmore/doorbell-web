@@ -34,6 +34,7 @@ const styles = {
     alignItems: "stretch",
     backgroundColor: colors.get("background"),
     color: colors.get("text"),
+    cursor: "default",
     display: "flex",
     flexFlow: "column nowrap",
     fontFamily: "DIN1451W01-Mittelschrif",
