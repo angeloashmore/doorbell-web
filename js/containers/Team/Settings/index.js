@@ -11,6 +11,7 @@ import Container from 'elements/Container';
 import DetailPanel from 'elements/DetailPanel';
 import Toolbar from 'elements/Toolbar';
 import Form from 'elements/Form';
+import Group from 'elements/Group';
 
 @reactMixin.decorate(Navigation)
 @reactMixin.decorate(React.addons.LinkedStateMixin)
@@ -61,23 +62,24 @@ export default class extends React.Component {
             leftItem={<Toolbar.Button disabled={true}>Cancel</Toolbar.Button>}
             rightItem={<Toolbar.Button type="submit" onClick={this.updateTeam.bind(this)}>Save</Toolbar.Button>}
             />
+
+          <Group header="General">
+            <Group.Item title="Team Name">
+              <Form.Input valueLink={this.linkState('name')} placeholder="Team Name" chromeless={true} hasTitle={true} />
+            </Group.Item>
+            <Group.Item title="Team Email">
+              <Form.Input valueLink={this.linkState('email')} placeholder="Team Email" chromeless={true} hasTitle={true} />
+            </Group.Item>
+          </Group>
+
           <Container style={styles.container}>
-            <DetailPanel.Group>
-              <Form.Label title="Team Name">
-                <Form.Input valueLink={this.linkState('name')} placeholder="Team Name" />
-              </Form.Label>
-
-              <Form.Label title="Team Email" last={true}>
-                <Form.Input valueLink={this.linkState('email')} placeholder="Team Email" />
-              </Form.Label>
-            </DetailPanel.Group>
-
             <DetailPanel.Group>
               <DetailPanel.Heading>Delete This Team</DetailPanel.Heading>
               <DetailPanel.p>Once you delete a team, there is no going back. Please be certain.</DetailPanel.p>
               <Form.Button>Delete This Team</Form.Button>
             </DetailPanel.Group>
           </Container>
+
         </Form>
       </DetailPanel>
     );
@@ -88,6 +90,6 @@ const styles = {
   container: {
     alignItems: "stretch",
     flexDirection: "column",
-    padding: 45
+    padding: 30
   }
 };

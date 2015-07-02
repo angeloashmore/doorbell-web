@@ -6,10 +6,10 @@ import Radium from 'radium';
 import NotificationsActions from 'actions/NotificationsActions';
 import TeamsActions from 'actions/TeamsActions';
 
-import Container from 'elements/Container';
 import DetailPanel from 'elements/DetailPanel';
 import Toolbar from 'elements/Toolbar';
 import Form from 'elements/Form';
+import Group from 'elements/Group';
 
 @reactMixin.decorate(Navigation)
 @reactMixin.decorate(React.addons.LinkedStateMixin)
@@ -41,18 +41,21 @@ export default class TeamsNew extends React.Component {
     return (
       <DetailPanel>
         <Form>
-        <Toolbar
-          title="New Team"
-          rightItem={<Toolbar.Button onClick={this.create.bind(this)}>Create</Toolbar.Button>}
-          />
-        <Container style={styles.container}>
-          <Form.Label title="Name">
-            <Form.Input type="text" valueLink={this.linkState('name')} placeholder="Name" spellCheck={false} />
-          </Form.Label>
-          <Form.Label title="Team Email">
-            <Form.Input type="email" valueLink={this.linkState('email')} placeholder="Team Email" />
-          </Form.Label>
-        </Container>
+
+          <Toolbar
+            title="New Team"
+            rightItem={<Toolbar.Button onClick={this.create.bind(this)}>Create</Toolbar.Button>}
+            />
+
+          <Group header="General">
+            <Group.Item title="Name">
+              <Form.Input type="text" valueLink={this.linkState('name')} placeholder="Name" spellCheck={false} chromeless={true} hasTitle={true} />
+            </Group.Item>
+            <Group.Item title="Email" last={true}>
+              <Form.Input type="email" valueLink={this.linkState('email')} placeholder="Team Email" chromeless={true} hasTitle={true} />
+            </Group.Item>
+          </Group>
+
         </Form>
       </DetailPanel>
     );
