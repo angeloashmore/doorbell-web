@@ -11,6 +11,7 @@ import Container from 'elements/Container';
 import DetailPanel from 'elements/DetailPanel';
 import Toolbar from 'elements/Toolbar';
 import Form from 'elements/Form';
+import Group from 'elements/Group';
 
 @reactMixin.decorate(Navigation)
 @reactMixin.decorate(React.addons.LinkedStateMixin)
@@ -51,17 +52,17 @@ export default class extends React.Component {
             leftItem={<Toolbar.Button disabled={true}>Cancel</Toolbar.Button>}
             rightItem={<Toolbar.Button type="submit" onClick={this.update.bind(this)}>Save</Toolbar.Button>}
             />
-          <Container style={styles.container}>
-            <DetailPanel.Group>
-              <Form.Label title="Name">
-                <Form.Input valueLink={this.linkState('name')} placeholder="Name" />
-              </Form.Label>
 
-              <Form.Label title="Email" last={true}>
-                <Form.Input valueLink={this.linkState('email')} placeholder="Email" />
-              </Form.Label>
-            </DetailPanel.Group>
-          </Container>
+          <Group header="General">
+            <Group.Item title="Name">
+              <Form.Input valueLink={this.linkState('name')} placeholder="Name" chromeless={true} hasTitle={true} />
+            </Group.Item>
+
+            <Group.Item title="Email" last={true}>
+              <Form.Input valueLink={this.linkState('email')} placeholder="email" type="email" chromeless={true} hasTitle={true} />
+            </Group.Item>
+          </Group>
+
         </Form>
       </DetailPanel>
     );
