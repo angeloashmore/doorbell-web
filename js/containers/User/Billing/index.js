@@ -8,6 +8,7 @@ import UserActions from 'actions/UserActions';
 import Container from 'elements/Container';
 import DetailPanel from 'elements/DetailPanel';
 import Toolbar from 'elements/Toolbar';
+import Group from 'elements/Group';
 
 @connectToStores
 @Radium

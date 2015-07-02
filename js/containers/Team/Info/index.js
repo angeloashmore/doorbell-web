@@ -6,6 +6,7 @@ import TeamsStore from 'stores/TeamsStore';
 import Container from 'elements/Container';
 import DetailPanel from 'elements/DetailPanel';
 import Toolbar from 'elements/Toolbar';
+import Group from 'elements/Group';
 
 @Radium
 export default class extends React.Component {
@@ -27,15 +28,14 @@ export default class extends React.Component {
     return (
       <DetailPanel>
         <Toolbar
-          title={team.get("name")}
-          subtitle="Info"
+          title="Team Info"
+          subtitle={this.state.team.get("name")}
           />
-        <Container style={styles.container}>
-          <DetailPanel.Group>
-            <DetailPanel.Heading>Name</DetailPanel.Heading>
-            <DetailPanel.TextPronounced>{team.get("name")}</DetailPanel.TextPronounced>
-          </DetailPanel.Group>
-        </Container>
+
+        <Group header="General">
+          <Group.Item title="Name">{team.get("name")}</Group.Item>
+          <Group.Item title="Team Email" last={true}>{team.get("email")}</Group.Item>
+        </Group>
       </DetailPanel>
     );
   }

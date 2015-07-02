@@ -57,17 +57,17 @@ export default class extends React.Component {
       <DetailPanel>
         <Form>
           <Toolbar
-            title={team.get("name")}
-            subtitle="Settings"
+            title="Settings"
+            subtitle={this.state.team.get("name")}
             leftItem={<Toolbar.Button disabled={true}>Cancel</Toolbar.Button>}
             rightItem={<Toolbar.Button type="submit" onClick={this.updateTeam.bind(this)}>Save</Toolbar.Button>}
             />
 
           <Group header="General">
-            <Group.Item title="Team Name">
-              <Form.Input valueLink={this.linkState('name')} placeholder="Team Name" chromeless={true} hasTitle={true} />
+            <Group.Item title="Name">
+              <Form.Input valueLink={this.linkState('name')} placeholder="Name" chromeless={true} hasTitle={true} />
             </Group.Item>
-            <Group.Item title="Team Email">
+            <Group.Item title="Team Email" last={true}>
               <Form.Input valueLink={this.linkState('email')} placeholder="Team Email" chromeless={true} hasTitle={true} />
             </Group.Item>
           </Group>

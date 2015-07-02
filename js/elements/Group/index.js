@@ -33,6 +33,10 @@ export default class extends React.Component {
 }
 
 const styles = {
+  group: {
+    color: colors.get("text")
+  },
+
   header: {
     color: colors.get("text"),
     display: "block",

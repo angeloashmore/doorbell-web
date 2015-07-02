@@ -10,6 +10,7 @@ import UserActions from 'actions/UserActions';
 import Container from 'elements/Container';
 import DetailPanel from 'elements/DetailPanel';
 import Toolbar from 'elements/Toolbar';
+import Group from 'elements/Group';
 
 @connectToStores
 @Radium
@@ -33,22 +34,23 @@ export default class extends React.Component {
           title="Overview"
           subtitle="Account"
           />
-        <Container style={styles.container}>
-          <DetailPanel.Group>
-            <DetailPanel.Heading>Name</DetailPanel.Heading>
-            <DetailPanel.TextPronounced>{user.get("name")}</DetailPanel.TextPronounced>
-          </DetailPanel.Group>
 
-          <DetailPanel.Group>
-            <DetailPanel.Heading>Email</DetailPanel.Heading>
-            <DetailPanel.TextPronounced>{user.get("email")}</DetailPanel.TextPronounced>
-          </DetailPanel.Group>
+        <Group header="General">
+          <Group.Item title="Name">
+            {user.get("name")}
+          </Group.Item>
 
-          <DetailPanel.Group>
-            <DetailPanel.Heading>Plan</DetailPanel.Heading>
-            <DetailPanel.TextPronounced>{plan.get("name")}</DetailPanel.TextPronounced>
-          </DetailPanel.Group>
-        </Container>
+          <Group.Item title="Email" last={true}>
+            {user.get("email")}
+          </Group.Item>
+        </Group>
+
+        <Group header="Plan & Billing">
+          <Group.Item title="Plan" last={true}>
+            {plan.get("name")}
+          </Group.Item>
+        </Group>
+
       </DetailPanel>
     );
   }

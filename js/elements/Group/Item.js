@@ -28,15 +28,15 @@ export default class extends React.Component {
 
 const styles = {
   item: {
-    alignItems: "center",
     borderBottom: `1px solid ${colors.get("divider")}`,
     display: "flex",
     justifyContent: "stretch",
-    marginLeft: 30
+    marginLeft: 30,
+    padding: "16px 30px 16px 0"
   },
 
   title: {
-    color: colors.get("text"),
+    color: colors.get("textPronounced"),
     flexShrink: 0,
     marginRight: 20,
     width: 100
@@ -44,7 +44,12 @@ const styles = {
 
   children: {
     display: "flex",
-    flexGrow: 1
+    flexGrow: 1,
+    justifyContent: "flex-end",
+    overflow: "hidden",
+    textAlign: "right",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap"
   },
 
   last: {

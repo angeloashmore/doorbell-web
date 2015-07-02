@@ -59,7 +59,7 @@ export default class extends React.Component {
             </Group.Item>
 
             <Group.Item title="Email" last={true}>
-              <Form.Input valueLink={this.linkState('email')} placeholder="email" type="email" chromeless={true} hasTitle={true} />
+              <Form.Input valueLink={this.linkState('email')} placeholder="Email" type="email" chromeless={true} hasTitle={true} />
             </Group.Item>
           </Group>
 

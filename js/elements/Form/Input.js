@@ -45,7 +45,7 @@ const styles = {
     display: "flex",
     flexGrow: 1,
     margin: 0,
-    padding: "16px 20px"
+    padding: 0
   },
 
   hasTitle: {

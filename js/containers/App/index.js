@@ -36,6 +36,7 @@ const styles = {
     color: colors.get("text"),
     display: "flex",
     flexFlow: "column nowrap",
+    fontFamily: "DIN1451W01-Mittelschrif",
     fontSize: 18,
     height: "100%",
     position: "relative",
