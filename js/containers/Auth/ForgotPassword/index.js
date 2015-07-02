@@ -49,7 +49,7 @@ export default class extends React.Component {
             <Form.Label title="Email">
               <Form.Input type="email" valueLink={this.linkState('email')} placeholder="Email" spellCheck={false} />
             </Form.Label>
-            <Form.Button title="Reset Password" onClick={this.resetPassword.bind(this)} />
+            <Form.Button onClick={this.resetPassword.bind(this)}>Reset Password</Form.Button>
           </Form>
           <p style={[styles.message, styles.messageLast]}>
             Remembered it? <Link to="signIn" key="signIn" style={styles.link}>Sign in</Link>
