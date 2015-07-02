@@ -28,6 +28,6 @@ const styles = {
     backgroundColor: colors.get("white"),
     padding: 45,
     position: "relative",
-    width: 260
+    width: 310
   }
 };
