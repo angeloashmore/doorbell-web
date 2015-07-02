@@ -36,7 +36,7 @@ const styles = {
     color: colors.get("text"),
     display: "flex",
     flexFlow: "column nowrap",
-    fontSize: 16,
+    fontSize: 18,
     height: "100%",
     position: "relative",
     width: "100%"

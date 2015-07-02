@@ -54,7 +54,6 @@ const styles = {
     alignItems: "center",
     color: colors.get("tintAlt"),
     display: "flex",
-    fontSize: 18,
     lineHeight: "100%",
     padding: "0 20px",
     textDecoration: "none",

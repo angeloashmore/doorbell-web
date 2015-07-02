@@ -24,7 +24,7 @@ const styles = {
     borderRadius: 5,
     color: colors.get("textPronounced"),
     fontFamily: "inherit",
-    fontSize: 16,
+    fontSize: 18,
     fontSmoothing: "antialiased",
     margin: 0,
     padding: "13px 15px",
