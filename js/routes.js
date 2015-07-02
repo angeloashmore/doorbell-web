@@ -3,9 +3,16 @@ import { Route, DefaultRoute, NotFoundRoute } from 'react-router';
 
 import App from 'containers/App';
 import Home from 'containers/Home';
+
 import AuthSignIn from 'containers/Auth/SignIn';
 import AuthSignUp from 'containers/Auth/SignUp';
 import AuthResetPassword from 'containers/Auth/ResetPassword';
+
+import User from 'containers/User';
+import UserOverview from 'containers/User/Overview';
+import UserGeneral from 'containers/User/General';
+import UserBilling from 'containers/User/Billing';
+
 import Teams from 'containers/Teams';
 import TeamsNew from 'containers/Teams/New';
 import Team from 'containers/Team';
@@ -14,6 +21,7 @@ import TeamProfile from 'containers/Team/Profile';
 import TeamMembers from 'containers/Team/Members';
 import TeamBilling from 'containers/Team/Billing';
 import TeamSettings from 'containers/Team/Settings';
+
 import Support from 'containers/Support';
 
 export default (
@@ -24,6 +32,13 @@ export default (
     <Route name="signIn" handler={AuthSignIn} />
     <Route name="signUp" handler={AuthSignUp} />
     <Route name="resetPassword" handler={AuthResetPassword} />
+
+    // User
+    <Route name="user" handler={User}>
+      <Route name="userOverview" path="overview" handler={UserOverview} />
+      <Route name="userGeneral" path="general" handler={UserGeneral} />
+      <Route name="userBilling" path="billing" handler={UserBilling} />
+    </Route>
 
     // Teams
     <Route name="teams" path="teams" handler={Teams}>

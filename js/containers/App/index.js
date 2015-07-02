@@ -48,7 +48,7 @@ const styles = {
     position: "absolute",
     top: 32,
     width: 650,
-    zIndex: 1
+    zIndex: 3
   },
 
   header: {

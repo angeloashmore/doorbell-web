@@ -48,6 +48,11 @@ class PlansStore {
   static forOrganizations() {
     return this._plansWithType("organization");
   }
+
+  static withId(id) {
+    const { plans } = this.getState();
+    return plans[id];
+  }
 }
 
 export default alt.createStore(PlansStore, 'PlansStore');

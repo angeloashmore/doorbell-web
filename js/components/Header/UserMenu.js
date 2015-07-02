@@ -53,7 +53,7 @@ export default class extends React.Component {
           ]}>
           <ul>
             <li style={styles.linkItem}>
-              <Link to="/" key="userMenu__account" style={[styles.link, styles.linkFirst]}>Your Account</Link>
+              <Link to="user" key="userMenu__account" style={[styles.link, styles.linkFirst]}>Your Account</Link>
             </li>
             <li style={[styles.linkItem, styles.linkItemLast]}>
               <span onClick={() => this.signOut()} key="userMenu__signOut" style={[styles.link, styles.linkLast]}>Sign Out</span>

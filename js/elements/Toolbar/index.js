@@ -65,7 +65,7 @@ const styles = {
   },
 
   title: {
-    color: colors.get("textPronounced"),
+    color: colors.get("textPronounced")
   },
 
   leftItem: {

@@ -3,6 +3,7 @@ import { Navigation } from 'react-router';
 import reactMixin from 'react-mixin';
 import Radium from 'radium';
 
+import NotificationsActions from 'actions/NotificationsActions';
 import TeamsActions from 'actions/TeamsActions';
 
 import Container from 'elements/Container';
@@ -33,13 +34,7 @@ export default class TeamsNew extends React.Component {
 
     TeamsActions.create(data)
       .then(() => this.transitionTo('teams'))
-      .catch((error) => {
-        switch (error.code) {
-          default:
-            NotificationsActions.createGeneric();
-            break;
-        }
-      });
+      .catch((error) => NotificationsActions.createFromParseError(error));
   }
 
   render() {

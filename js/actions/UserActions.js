@@ -83,10 +83,7 @@ class UserActions {
 
   update(user, data) {
     return Promise.resolve().then(() => {
-      for (let key in data) {
-        user.set(key, data[key]);
-      }
-
+      user.set(data);
       return user.save();
 
     }).then((user) => {

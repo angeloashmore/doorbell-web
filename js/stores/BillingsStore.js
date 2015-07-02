@@ -32,32 +32,34 @@ class BillingsStore {
 
 
   // MARK: Private methods
-  _billingsWithType(type) {
+
+
+  // MARK: Public methods
+  static billingsWithType(type) {
+    const { billings } = this.getState();
     const filteredBillings = {};
 
-    for (let key in this.billings) {
+    for (let key in billings) {
       let billing = billings[key];
-      if (billing.get("type") == type) filteredBillings[billing.id] = billing;
+      if (this.typeForId(key) == type) filteredBillings[billing.id] = billing;
     }
 
     return filteredBillings;
   }
 
-
-  // MARK: Public methods
   static forId(id) {
     const { billings } = this.getState();
     return billings[id];
   }
 
   static forCurrentUser() {
-    let billings = this._billingsWithType("user");
-    let id = Billing.keys(billings)[0];
+    let billings = this.billingsWithType("user");
+    let id = Object.keys(billings)[0];
     return billings[id];
   }
 
   static forOrganizationWithId(id) {
-    const billings = this._billingsWithType("organization");
+    const billings = this.billingsWithType("organization");
     for (let key in billings) {
       let billing = billings[key];
       if (billing.get("relation").get("billingId") == id) return billing;
@@ -67,6 +69,17 @@ class BillingsStore {
   static hasCardForId(id) {
     const billing = BillingStore.forId(id);
     return !!billing.get("last4");
+  }
+
+  static typeForId(id) {
+    const billing = this.forId(id);
+    if (billing.get("user")) {
+      return "user";
+    } else if (billing.get("organization")) {
+      return "organization";
+    }
+
+    throw new Error("Could not determine type");
   }
 }
 
