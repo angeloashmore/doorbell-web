@@ -7,7 +7,12 @@ import colors from "styles/colors";
 export default class extends React.Component {
   render() {
     return (
-      <span style={styles.heading}>
+      <span
+        style={[
+          styles.heading,
+          this.props.style
+        ]}
+        >
         {this.props.children}
       </span>
     );
