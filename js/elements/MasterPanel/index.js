@@ -31,8 +31,10 @@ const styles = {
     backgroundColor: colors.get("white"),
     borderRight: `1px solid ${colors.get("shadow")}`,
     flexShrink: 0,
+    minWidth: 200,
+    maxWidth: 300,
     overflowY: "auto",
     paddingLeft: 20,
-    width: 240
+    width: "20vw"
   }
 };
