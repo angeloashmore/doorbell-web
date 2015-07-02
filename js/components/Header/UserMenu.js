@@ -77,6 +77,7 @@ const styles = {
 
   navItemOpen: {
     backgroundColor: colors.get("white"),
+    borderLeft: `1px solid ${colors.get("white")}`
   },
 
   profilePhoto: {
@@ -92,6 +93,8 @@ const styles = {
 
   menu: {
     backgroundColor: colors.get("white"),
+    borderBottom: `1px solid ${colors.get("shadow")}`,
+    borderLeft: `1px solid ${colors.get("shadow")}`,
     color: colors.get("text"),
     display: "none",
     paddingLeft: 20,
