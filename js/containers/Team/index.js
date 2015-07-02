@@ -25,7 +25,7 @@ export default class extends React.Component {
       <Container>
         <MasterPanel>
           <MasterPanel.Heading>Menu</MasterPanel.Heading>
-          <MasterPanel.Item to="teamInfo" params={this.props.params} key="info" title="Team Info" icon="team" selected={true} />
+          <MasterPanel.Item to="teamInfo" params={this.props.params} key="info" title="Team Info" icon="team" />
           <MasterPanel.Item to="teamProfile" params={this.props.params} key="profile" title="Profile" icon="profile" />
           <MasterPanel.Item to="teamMembers" params={this.props.params} key="members" title="Members" icon="members" />
           <MasterPanel.Item to="teamBilling" params={this.props.params} key="billing" title="Billing" icon="billing" />

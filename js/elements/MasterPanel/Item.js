@@ -1,5 +1,6 @@
 import React from "react";
-import { Link } from "react-router";
+import { Link, State } from "react-router";
+import reactMixin from "react-mixin";
 import Radium from "radium";
 
 import hoverable from "decorators/hoverable";
@@ -7,6 +8,7 @@ import hoverable from "decorators/hoverable";
 import colors from "styles/colors";
 
 @hoverable
+@reactMixin.decorate(State)
 @Radium
 export default class extends React.Component {
   static propTypes = {
@@ -28,8 +30,16 @@ export default class extends React.Component {
     selected: false
   }
 
+  selected() {
+    return (
+      !!this.props.hovered ||
+      !!this.props.selected ||
+      this.isActive(this.props.to, this.props.params, this.props.query)
+    );
+  }
+
   icon() {
-    const selected = ((this.props.hovered || this.props.selected) ? "-selected" : "");
+    const selected = (this.selected() ? "-selected" : "");
     const src = `/assets/images/icons/${this.props.icon}${selected}.svg`;
     return <img src={src} width="25" height="25" style={this.styles().icon} />;
   }
@@ -65,7 +75,7 @@ export default class extends React.Component {
 
       link: {
         alignItems: "center",
-        color: ((this.props.hovered || this.props.selected) ? colors.get("tint") : null),
+        color: (this.selected() ? colors.get("tint") : null),
         display: (this.props.iconOnly ? "inline-flex" : "flex"),
         margin: (this.props.iconOnly ? "16px 16px 16px 0" : null),
         padding: (this.props.iconOnly ? null : "16px 16px 16px 0"),

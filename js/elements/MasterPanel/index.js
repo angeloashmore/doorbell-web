@@ -12,30 +12,7 @@ export default class extends React.Component {
   static Heading = Heading;
   static Item = Item;
 
-  static propTypes = {
-    selectedKey: React.PropTypes.string
-  }
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      selectedKey: this.props.selectedKey || null
-    };
-  }
-
-  selectKey(key) {
-    this.setState({ selectedKey: key });
-  }
-
   render() {
-    const children = React.Children.map(this.props.children, (child) => {
-      return React.cloneElement(child, {
-        selected: (child.key && this.state.selectedKey == child.key),
-        onClick: () => this.selectKey(child.key)
-      })
-    });
-
     return (
       <div
         style={[
@@ -43,7 +20,7 @@ export default class extends React.Component {
           this.props.style
         ]}
         >
-        {children}
+        {this.props.children}
       </div>
     );
   }
