@@ -44,7 +44,10 @@ export default class extends React.Component {
       <div style={styles.container}>
         <Sheet>
           <BackButton style={styles.backButton} />
-          <Sheet.Heading>Forgot Password</Sheet.Heading>
+          <Sheet.Heading>Reset Password</Sheet.Heading>
+          <p style={styles.message}>
+            We'll send an email to you with a link to reset your password.
+          </p>
           <Form style={styles.form}>
             <Form.Label title="Email">
               <Form.Input type="email" valueLink={this.linkState('email')} placeholder="Email" spellCheck={false} />

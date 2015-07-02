@@ -50,7 +50,7 @@ export default class extends React.Component {
             <Form.Button type="submit" onClick={this.signIn.bind(this)}>Sign In</Form.Button>
           </Form>
           <p style={styles.message}>
-            <Link to="forgotPassword" key="forgotPassword" style={styles.link}>Forgot password?</Link>
+            <Link to="resetPassword" key="resetPassword" style={styles.link}>Forgot password?</Link>
           </p>
           <p style={[styles.message, styles.messageLast]}>
             Don't have an account? <Link to="signUp" key="signUp" style={styles.link}>Sign up</Link>
