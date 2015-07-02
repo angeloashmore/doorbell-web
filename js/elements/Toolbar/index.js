@@ -43,13 +43,19 @@ const styles = {
     fontSize: 18,
     justifyContent: "space-between",
     minHeight: 58,
+    position: "relative"
   },
 
   titleContainer: {
     alignItems: "center",
     display: "flex",
     flexDirection: "column",
-    justifyContent: "center"
+    height: "100%",
+    left: 0,
+    justifyContent: "center",
+    position: "absolute",
+    top: 0,
+    width: "100%"
   },
 
   subtitle: {
@@ -64,9 +70,13 @@ const styles = {
 
   leftItem: {
     alignSelf: "flex-start",
+    position: "relative",
+    zIndex: 1
   },
 
   rightItem: {
     alignSelf: "flex-end",
+    position: "relative",
+    zIndex: 1
   }
 };

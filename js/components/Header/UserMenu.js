@@ -101,7 +101,8 @@ const styles = {
     position: "absolute",
     right: 0,
     top: "100%",
-    width: 180
+    width: 180,
+    zIndex: 2
   },
 
   menuOpen: {
