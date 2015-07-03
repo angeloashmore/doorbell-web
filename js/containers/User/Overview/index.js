@@ -37,7 +37,7 @@ export default class extends React.Component {
           subtitle="Account"
           />
 
-        <Group header="General" footer="Your email is kept private and only used for communication from us.">
+        <Group header="General" footer="Your email is kept private and is only used for communication from us.">
           <Group.Item title="Name">
             {user.get("name")}
           </Group.Item>
