@@ -67,7 +67,7 @@ class BillingsStore {
   }
 
   static hasCardForId(id) {
-    const billing = BillingStore.forId(id);
+    const billing = this.forId(id);
     return !!billing.get("last4");
   }
 
