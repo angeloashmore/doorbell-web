@@ -3,13 +3,17 @@ import connectToStores from 'alt/utils/connectToStores';
 import Radium from 'radium';
 
 import authenticatedComponent from 'decorators/authenticatedComponent';
+import NotificationsActions from 'actions/NotificationsActions';
 import UserStore from 'stores/UserStore';
 import UserActions from 'actions/UserActions';
+import BillingsStore from 'stores/BillingsStore';
+import BillingsActions from 'actions/BillingsActions';
+import PlansStore from 'stores/PlansStore';
 
-import Container from 'elements/Container';
 import DetailPanel from 'elements/DetailPanel';
 import Toolbar from 'elements/Toolbar';
 import Group from 'elements/Group';
+import StripeCheckoutButton from 'elements/StripeCheckoutButton';
 
 @authenticatedComponent
 @connectToStores
@@ -23,8 +27,17 @@ export default class extends React.Component {
     return UserStore.getState();
   }
 
+  addCard(token) {
+    const billing = BillingsStore.forCurrentUser();
+    BillingsActions.addCardWithTokenForId(billing.id, token)
+      .catch((error) => NotificationsActions.createGeneric());
+  }
+
   render() {
     const { user } = this.props;
+    const billing = BillingsStore.forCurrentUser();
+    const hasCard = BillingsStore.hasCardForId(billing.id);
+    const plan = PlansStore.withId(billing.get("plan").id);
 
     return (
       <DetailPanel>
@@ -32,12 +45,18 @@ export default class extends React.Component {
           title="Billing"
           subtitle="Account"
           />
-        <Container style={styles.container}>
-          <DetailPanel.Group>
-            <DetailPanel.Heading>Name</DetailPanel.Heading>
-            <DetailPanel.TextPronounced>{user.get("name")}</DetailPanel.TextPronounced>
-          </DetailPanel.Group>
-        </Container>
+        <Group header="Plan">
+          <Group.Item title="Name">{plan.get("name")}</Group.Item>
+        </Group>
+
+        <Group header="Payment Info">
+          <Group.Item title="Brand">{hasCard ? billing.get("brand") : "None"}</Group.Item>
+          <Group.Item title="Last 4">{hasCard ? billing.get("last4") : "None"}</Group.Item>
+          <Group.Item title="Exp Date">{hasCard ? `${billing.get("expMonth")}/${billing.get("expYear")}` : "None"}</Group.Item>
+          <Group.Button>
+            <StripeCheckoutButton title={hasCard ? "Change Card" : "Add Card"} onSuccess={this.addCard} />
+          </Group.Button>
+        </Group>
       </DetailPanel>
     );
   }

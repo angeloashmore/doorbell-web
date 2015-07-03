@@ -1,5 +1,7 @@
 import React from 'react';
+import reactMixin from 'react-mixin';
 import ReactScriptLoader from 'react-script-loader';
+import Radium from 'radium';
 
 import config from 'config';
 
@@ -8,6 +10,9 @@ import UserStore from 'stores/UserStore';
 
 const ReactScriptLoaderMixin = ReactScriptLoader.ReactScriptLoaderMixin;
 
+// @reactMixin.decorate(StripeCheckoutButton.prototype)
+@reactMixin.decorate(ReactScriptLoaderMixin)
+@Radium
 export default class StripeCheckoutButton extends React.Component {
   constructor() {
     super();
@@ -44,22 +49,33 @@ export default class StripeCheckoutButton extends React.Component {
   onClick(e) {
     e.preventDefault();
 
+    const { user } = UserStore.getState();
+
     this.handler().open({
       name: "Doorbell",
       description: "Subscription",
       panelLabel: "Add Card",
       allowRememberMe: false,
-      email: UserStore.getState().user.get("email")
+      email: user.get("email")
     });
   }
 
   render() {
     return (
-      <div>
+      <div
+        style={[
+          styles.container,
+          this.state.scriptLoading && styles.loading,
+          this.props.style
+        ]}>
         {this.state.scriptLoading ? (
-          <p>Loading...</p>
+          <span style={styles.loadingMessage}>
+            Loading&hellip;
+          </span>
         ) : (
-          <button onClick={this.onClick.bind(this)}>New card</button>
+          <button style={styles.button} onClick={this.onClick.bind(this)}>
+            {this.props.title}
+          </button>
         )}
       </div>
     );
@@ -67,4 +83,19 @@ export default class StripeCheckoutButton extends React.Component {
 
 }
 
-reactMixin(StripeCheckoutButton.prototype, ReactScriptLoaderMixin);
+const styles = {
+  container: {
+    alignItems: "stretch",
+    alignContent: "stretch",
+    display: "flex",
+    flexGrow: 1
+  },
+
+  loadingMessage: {
+    flexGrow: 1
+  },
+
+  button: {
+    flexGrow: 1
+  }
+};
