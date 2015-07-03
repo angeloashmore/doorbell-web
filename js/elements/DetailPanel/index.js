@@ -30,6 +30,7 @@ export default class extends React.Component {
 
 const styles = {
   detailPanel: {
+    backgroundColor: colors.get("background"),
     borderRight: `1px solid ${colors.get("shadow")}`,
     color: colors.get("textPronounced"),
     flexShrink: 0,
