@@ -2,12 +2,14 @@ import React from "react";
 import Radium from "radium";
 
 import Item from "./Item";
+import Button from "./Button";
 
 import colors from "styles/colors";
 
 @Radium
 export default class extends React.Component {
   static Item = Item;
+  static Button = Button;
 
   render() {
     return (
