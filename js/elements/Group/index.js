@@ -16,17 +16,21 @@ export default class extends React.Component {
           styles.group,
           this.props.style
         ]}>
-        <div style={styles.header}>
-          {this.props.header}
-        </div>
+        {this.props.header !== undefined ? (
+          <div style={styles.header}>
+            {this.props.header}
+          </div>
+        ) : ""}
 
         <div style={styles.children}>
           {this.props.children}
         </div>
 
-        <div style={styles.footer}>
-          {this.props.footer}
-        </div>
+        {this.props.footer !== undefined ? (
+          <div style={styles.footer}>
+            {this.props.footer}
+          </div>
+        ) : ""}
       </div>
     );
   }
@@ -34,7 +38,8 @@ export default class extends React.Component {
 
 const styles = {
   group: {
-    color: colors.get("text")
+    color: colors.get("text"),
+    margin: "30px 30px 0 30px"
   },
 
   header: {
@@ -43,20 +48,26 @@ const styles = {
     fontSize: 14,
     letterSpacing: 1,
     marginBottom: 10,
-    marginTop: 30,
     overflow: "hidden",
-    paddingLeft: 30,
+    paddingLeft: 20,
     textOverflow: "ellipsis",
     textTransform: "uppercase",
     whiteSpace: "nowrap"
   },
 
+  footer: {
+    color: colors.get("text"),
+    display: "block",
+    fontSize: 14,
+    marginTop: 10,
+    paddingLeft: 20,
+  },
+
   children: {
     alignItems: "stretch",
     backgroundColor: colors.get("white"),
-    borderTop: `1px solid ${colors.get("shadow")}`,
-    borderBottom: `1px solid ${colors.get("shadow")}`,
+    borderRadius: 5,
     display: "flex",
-    flexDirection: "column"
+    flexDirection: "column",
   }
 }

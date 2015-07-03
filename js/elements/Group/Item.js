@@ -30,8 +30,7 @@ const styles = {
   item: {
     borderBottom: `1px solid ${colors.get("divider")}`,
     display: "flex",
-    marginLeft: 30,
-    padding: "16px 30px 16px 0"
+    padding: "16px 20px"
   },
 
   title: {
