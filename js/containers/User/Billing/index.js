@@ -29,7 +29,7 @@ export default class extends React.Component {
 
   addCard(token) {
     const billing = BillingsStore.forCurrentUser();
-    BillingsActions.addCardWithTokenForId(billing.id, token)
+    BillingsActions.addCardWithTokenForId(billing.id, token.id)
       .catch((error) => NotificationsActions.createGeneric());
   }
 

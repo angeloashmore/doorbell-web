@@ -74,22 +74,12 @@ export default class extends React.Component {
             </Group.Item>
           </Group>
 
-          <Container style={styles.container}>
-            <DetailPanel.Group>
-              <Form.Button>Delete This Team</Form.Button>
-            </DetailPanel.Group>
-          </Container>
+          <Group>
+            <Form.Button>Delete This Team</Form.Button>
+          </Group>
 
         </Form>
       </DetailPanel>
     );
   }
 }
-
-const styles = {
-  container: {
-    alignItems: "stretch",
-    flexDirection: "column",
-    padding: 30
-  }
-};
