@@ -20,17 +20,20 @@ import StripeCheckoutButton from 'elements/StripeCheckoutButton';
 @Radium
 export default class extends React.Component {
   static getStores() {
-    return [UserStore];
+    return [UserStore, BillingsStore];
   }
 
   static getPropsFromStores(props) {
-    return UserStore.getState();
+    return Object.assign(
+      UserStore.getState(),
+      BillingsStore.getState()
+    );
   }
 
   addCard(token) {
     const billing = BillingsStore.forCurrentUser();
     BillingsActions.addCardWithTokenForId(billing.id, token.id)
-      .catch((error) => NotificationsActions.createGeneric());
+      .catch((error) => NotificationsActions.createFromParseError(error));
   }
 
   render() {
