@@ -3,6 +3,7 @@ import Radium from 'radium';
 
 import authenticatedComponent from 'decorators/authenticatedComponent';
 import TeamsStore from 'stores/TeamsStore';
+import ProfilesStore from 'stores/ProfilesStore';
 
 import Container from 'elements/Container';
 import DetailPanel from 'elements/DetailPanel';
@@ -15,8 +16,11 @@ export default class extends React.Component {
   constructor(props) {
     super(props);
 
+    const team = TeamsStore.withId(props.params.id);
+
     this.state = {
-      team: TeamsStore.withId(props.params.id),
+      team: team,
+      profile: ProfilesStore.forTeamWithId(team.id)
     }
   }
 
@@ -25,7 +29,7 @@ export default class extends React.Component {
   }
 
   render() {
-    const { team } = this.state;
+    const { team, profile } = this.state;
 
     return (
       <DetailPanel>
@@ -37,6 +41,10 @@ export default class extends React.Component {
         <Group header="General">
           <Group.Item title="Name">{team.get("name")}</Group.Item>
           <Group.Item title="Team Email" last={true}>{team.get("email")}</Group.Item>
+        </Group>
+
+        <Group header="Profile">
+          <Group.Item title="Title">{profile.get("title")}</Group.Item>
         </Group>
       </DetailPanel>
     );

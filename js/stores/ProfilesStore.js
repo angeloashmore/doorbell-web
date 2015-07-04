@@ -4,7 +4,8 @@ import ProfilesActions from 'actions/ProfilesActions';
 class ProfilesStore {
   constructor() {
     this.bindListeners({
-      setProfiles: ProfilesActions.FETCH_ALL_FOR_CURRENT_USER
+      setProfiles: ProfilesActions.FETCH_ALL_FOR_CURRENT_USER,
+      setProfile: ProfilesActions.UPDATE
     });
 
     this.profiles = {};
@@ -30,11 +31,11 @@ class ProfilesStore {
 
 
   // MARK: Public methods
-  static forOrganizationWithId(id) {
+  static forTeamWithId(id) {
     const { profiles } = this.getState();
     for (let key in profiles) {
       let profile = profiles[key];
-      if (profile.get("organization").id == id) return profile;
+      if (profile.get("team").id == id) return profile;
     }
   }
 }

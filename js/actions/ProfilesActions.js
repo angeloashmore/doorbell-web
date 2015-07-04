@@ -18,6 +18,21 @@ class ProfilesActions {
 
     });
   }
+
+  update(id, attrs) {
+    return Promise.resolve().then(() => {
+      const query = new Parse.Query("Profile");
+      return query.get(id);
+
+    }).then((profile) => {
+      profile.set(attrs);
+      return profile.save();
+
+    }).then((profile) => {
+      this.dispatch(profile);
+
+    });
+  }
 }
 
 export default alt.createActions(ProfilesActions);
