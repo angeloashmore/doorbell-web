@@ -31,12 +31,12 @@ export default class extends React.Component {
   resetPassword(e) {
     e.preventDefault();
 
-    UserActions.resetPassword(this.state.email)
+    UserActions.resetPassword(this.state.email, this.state.password)
       .then(() => {
         this.transitionTo('signIn');
-        NotificationsActions.create({ message: "An email was sent to you with a link to reset your password." });
+        NotificationsActions.create({ message: "An email was sent to you with a link to activate your new password." });
       })
-      .catch((error) => NotificationsActions.createFromParseError(error));
+      .catch((error) => console.log(error));
   }
 
   render() {
@@ -46,11 +46,14 @@ export default class extends React.Component {
           <BackButton style={styles.backButton} />
           <Sheet.Heading>Reset Password</Sheet.Heading>
           <p style={styles.message}>
-            We'll send an email to you with a link to reset your password.
+            Enter your new password below and we'll email you a link to activate it.
           </p>
           <Form style={styles.form}>
             <Form.Label title="Email">
               <Form.Input type="email" valueLink={this.linkState('email')} placeholder="Email" spellCheck={false} />
+            </Form.Label>
+            <Form.Label title="New Password">
+              <Form.Input type="password" valueLink={this.linkState('password')} placeholder="New Password" spellCheck={false} />
             </Form.Label>
             <Form.Button onClick={this.resetPassword.bind(this)}>Reset Password</Form.Button>
           </Form>

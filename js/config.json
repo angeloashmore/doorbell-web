@@ -5,5 +5,9 @@
   },
   "Stripe": {
     "PUBLISHABLE_KEY": "pk_test_ULJPlMTxKNqHQJp3qt9c7Jz9"
+  },
+  "Auth0": {
+    "DOMAIN": "doorbell-api-dev.auth0.com",
+    "CLIENT_ID": "HWhD1xqXD4FOKpsrQCZv3AO9pO9W2ZTN"
   }
 }

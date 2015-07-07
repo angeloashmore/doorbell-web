@@ -31,15 +31,9 @@ export default class extends React.Component {
   signUp(e) {
     e.preventDefault();
 
-    let data = {
-      name: this.state.name,
-      email: this.state.email,
-      password: this.state.password
-    };
-
-    UserActions.signUp(data)
+    UserActions.signUp(this.state.email, this.state.password, this.state.name)
       .then(() => this.transitionTo('teams'))
-      .catch((error) => NotificationsActions.createFromParseError(error));
+      .catch(error => console.log(error));
   }
 
   render() {

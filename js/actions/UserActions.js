@@ -1,5 +1,6 @@
 import alt from 'flux/alt';
 import Parse from 'lib/Parse';
+import Auth0 from 'lib/Auth0';
 
 import NotificationsActions from 'actions/NotificationsActions';
 import { UserNotLoggedIn } from 'errors';
@@ -9,74 +10,77 @@ import PlansActions from 'actions/PlansActions';
 import ProfilesActions from 'actions/ProfilesActions';
 
 class UserActions {
-  restoreCurrent() {
-    const promise = Promise.resolve().then(() => {
-      const user = Parse.User.current();
+  restore() {
+    return Promise.resolve().then(() => {
+      const jwt = localStorage.getItem("jwt");
 
-      if (!!user) {
-        this.dispatch(user);
-        TeamsActions.fetchAllForCurrentUser();
-        BillingsActions.fetchAllForCurrentUser();
-        PlansActions.fetchAll();
-        ProfilesActions.fetchAllForCurrentUser();
-      } else {
-        throw new UserNotLoggedIn();
-      }
+      if (!jwt) throw new UserNotLoggedIn();
 
+      return this.actions.signIn(jwt);
     });
-
-    return promise;
   }
 
-  signIn(email, password) {
-    return Promise.resolve().then(() => {
-      return Parse.User.logIn(email, password);
+  generateJWT(email, password) {
+    return new Promise((resolve, reject) => {
+      Auth0.signin({
+        connection: "Username-Password-Authentication",
+        email: email,
+        password: password,
+        sso: false
+      }, (error, _user, jwt) => {
+        error ? reject(error) : resolve(jwt);
+      });
+    });
+  }
 
-    }).then((user) => {
-      this.dispatch(user);
-      TeamsActions.fetchAllForCurrentUser();
-      BillingsActions.fetchAllForCurrentUser();
-      PlansActions.fetchAll();
-      ProfilesActions.fetchAllForCurrentUser();
+  signIn(jwt) {
+    return Promise.resolve().then(() => {
+      this.dispatch(jwt);
 
     });
   }
 
-  signOut() {
+  signOut(showNotification = true) {
     return Promise.resolve().then(() => {
-      return Parse.User.logOut();
-
-    }).then(() => {
-      // Clear all stores.
-      alt.recycle();
-
-      NotificationsActions.create({ message: "You have been successfully signed out." });
-
       this.dispatch();
 
+      if (showNotification) {
+        const message = "You have been successfully signed out.";
+        NotificationsActions.create({ message: message });
+      }
     });
   }
 
-  signUp(attrs) {
-    return Promise.resolve().then(() => {
-      attrs.username = attrs.email;
+  signUp(email, password, name) {
+    return new Promise((resolve, reject) => {
+      Auth0.signup({
+        connection: "Username-Password-Authentication",
+        email: email,
+        password: password,
+        name: name,
+        sso: false
+      }, (error, _user, jwt) => {
+        error ? reject(error) : resolve(jwt);
+      });
 
-      const user = new Parse.User;
-      user.set(attrs);
-      return user.signUp();
-
-    }).then((user) => {
-      this.dispatch(user);
+    }).then((jwt) => {
+      this.dispatch(jwt);
 
     });
   }
 
-  resetPassword(email) {
-    return Promise.resolve().then(() => {
-      return Parse.User.requestPasswordReset(email);
+  resetPassword(email, password) {
+    return new Promise((resolve, reject) => {
+      Auth0.changePassword({
+        connection: "Username-Password-Authentication",
+        email: email,
+        password: password
+      }, (error, response) => {
+        error ? reject(error) : resolve(response);
+      });
 
-    }).then((result) => {
-      return this.actions.signOut();
+    }).then((response) => {
+      return this.actions.signOut(false);
 
     });
   }

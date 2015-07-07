@@ -9,7 +9,7 @@ import PlansActions from 'actions/PlansActions';
 import ProfilesActions from 'actions/ProfilesActions';
 import routes from 'routes';
 
-UserActions.restoreCurrent()
+UserActions.restore()
   .then(function() {
     if (UserStore.isLoggedIn()) {
       TeamsActions.fetchAllForCurrentUser();

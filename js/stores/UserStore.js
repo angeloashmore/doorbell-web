@@ -1,23 +1,33 @@
 import alt from 'flux/alt';
+import jwt_decode from 'jwt-decode';
+import NotificationsActions from 'actions/NotificationsActions';
 import UserActions from 'actions/UserActions';
 
 class UserStore {
   constructor() {
     this.bindListeners({
-      setUser: [
-        UserActions.RESTORE_CURRENT,
+      setJWT: [
         UserActions.SIGN_IN,
-        UserActions.SIGN_UP,
-        UserActions.UPDATE
-      ]
+        UserActions.SIGN_UP
+      ],
+      clearAllStores: UserActions.SIGN_OUT
     });
 
-    this.user = null
+    this.jwt = null;
+    this.user = null;
   }
 
   // MARK: Store methods
-  setUser(user) {
-    this.user = user;
+  setJWT(jwt) {
+    localStorage.setItem("jwt", jwt);
+
+    this.jwt = jwt;
+    this.user = jwt_decode(jwt);
+  }
+
+  clearAllStores(showNotification) {
+    localStorage.clear();
+    alt.recycle();
   }
 
 
@@ -26,8 +36,8 @@ class UserStore {
 
   // MARK: Public methods
   static isLoggedIn() {
-    const { user } = this.getState();
-    return !!user;
+    const { jwt, user } = this.getState();
+    return !!jwt && !!user;
   }
 }
 
