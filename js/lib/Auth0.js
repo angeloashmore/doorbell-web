@@ -6,7 +6,7 @@ const auth0 = new Auth0({
   clientID: config.Auth0.CLIENT_ID
 });
 
-auth0.signIn = function(options) {
+auth0.signInPromise = function(options) {
   return new Promise(function(resolve, reject) {
     auth0.login(options, function(error, _user, jwt) {
       if (error) {
@@ -18,7 +18,7 @@ auth0.signIn = function(options) {
   });
 }
 
-auth0.signUp = function(options) {
+auth0.signUpPromise = function(options) {
   return new Promise(function(resolve, reject) {
     auth0.signup(options, function(error, _user, jwt) {
       if (error) {
@@ -30,7 +30,7 @@ auth0.signUp = function(options) {
   });
 }
 
-auth0.changePassword = function(options) {
+auth0.changePasswordPromise = function(options) {
   return new Promise(function(resolve, reject) {
     auth0.changePassword(options, function(error, response) {
       if (error) {

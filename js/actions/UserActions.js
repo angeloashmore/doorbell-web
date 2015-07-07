@@ -22,7 +22,7 @@ class UserActions {
 
   signInWithCredentials(email, password) {
     return Promise.resolve().then(() => {
-      return Auth0.signIn({
+      return Auth0.signInPromise({
         connection: "Username-Password-Authentication",
         email: email,
         password: password,
@@ -55,7 +55,7 @@ class UserActions {
 
   signUp(email, password, name) {
     return Promise.resolve().then(() => {
-      return Auth0.signUp({
+      return Auth0.signUpPromise({
         connection: "Username-Password-Authentication",
         email: email,
         password: password,
@@ -71,7 +71,7 @@ class UserActions {
 
   resetPassword(email, password) {
     return Promise.resolve().then(() => {
-      return Auth0.changePassword({
+      return Auth0.changePasswordPromise({
         connection: "Username-Password-Authentication",
         email: email,
         password: password
