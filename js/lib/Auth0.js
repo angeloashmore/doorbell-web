@@ -6,4 +6,40 @@ const auth0 = new Auth0({
   clientID: config.Auth0.CLIENT_ID
 });
 
+auth0.signIn = function(options) {
+  return new Promise(function(resolve, reject) {
+    auth0.login(options, function(error, _user, jwt) {
+      if (error) {
+        reject(error)
+      } else {
+        resolve(jwt)
+      }
+    });
+  });
+}
+
+auth0.signUp = function(options) {
+  return new Promise(function(resolve, reject) {
+    auth0.signup(options, function(error, _user, jwt) {
+      if (error) {
+        reject(error)
+      } else {
+        resolve(jwt)
+      }
+    });
+  });
+}
+
+auth0.changePassword = function(options) {
+  return new Promise(function(resolve, reject) {
+    auth0.changePassword(options, function(error, response) {
+      if (error) {
+        reject(error)
+      } else {
+        resolve(response)
+      }
+    });
+  });
+}
+
 export default auth0;

@@ -20,16 +20,18 @@ class UserActions {
     });
   }
 
-  generateJWT(email, password) {
-    return new Promise((resolve, reject) => {
-      Auth0.signin({
+  signInWithCredentials(email, password) {
+    return Promise.resolve().then(() => {
+      return Auth0.signIn({
         connection: "Username-Password-Authentication",
         email: email,
         password: password,
         sso: false
-      }, (error, _user, jwt) => {
-        error ? reject(error) : resolve(jwt);
       });
+
+    }).then((jwt) => {
+      return this.actions.signIn(jwt);
+
     });
   }
 
@@ -52,15 +54,13 @@ class UserActions {
   }
 
   signUp(email, password, name) {
-    return new Promise((resolve, reject) => {
-      Auth0.signup({
+    return Promise.resolve().then(() => {
+      return Auth0.signUp({
         connection: "Username-Password-Authentication",
         email: email,
         password: password,
         name: name,
         sso: false
-      }, (error, _user, jwt) => {
-        error ? reject(error) : resolve(jwt);
       });
 
     }).then((jwt) => {
@@ -70,13 +70,11 @@ class UserActions {
   }
 
   resetPassword(email, password) {
-    return new Promise((resolve, reject) => {
-      Auth0.changePassword({
+    return Promise.resolve().then(() => {
+      return Auth0.changePassword({
         connection: "Username-Password-Authentication",
         email: email,
         password: password
-      }, (error, response) => {
-        error ? reject(error) : resolve(response);
       });
 
     }).then((response) => {
