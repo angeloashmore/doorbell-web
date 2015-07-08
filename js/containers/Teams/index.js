@@ -30,7 +30,7 @@ export default class extends React.Component {
         <MasterPanel.Item
           key={id}
           icon="team"
-          title={teams[id].get("name")}
+          title={teams[id].name}
           to="team"
           params={{id: id}}
         />

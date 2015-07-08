@@ -1,3 +1,4 @@
+import 'whatwg-fetch';
 import alt from 'flux/alt';
 import Parse from 'lib/Parse';
 import UserStore from 'stores/UserStore';
@@ -5,11 +6,18 @@ import UserStore from 'stores/UserStore';
 class TeamsActions {
   fetchAllForCurrentUser() {
     return Promise.resolve().then(() => {
-      const query = new Parse.Query("Team");
-      return query.find();
+      const { jwt } = UserStore.getState();
+      return fetch("http://localhost:5000/api/v1/teams", {
+        headers: {
+          "Authorization": `Bearer ${jwt}`
+        }
+      });
 
-    }).then((teams) => {
-      this.dispatch(teams);
+    }).then((response) => {
+      return response.json();
+
+    }).then((json) => {
+      this.dispatch(json.teams);
 
     });
   }

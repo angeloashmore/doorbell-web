@@ -35,12 +35,12 @@ export default class extends React.Component {
       <DetailPanel>
         <Toolbar
           title="Team Info"
-          subtitle={this.state.team.get("name")}
+          subtitle={this.state.team.name}
           />
 
         <Group header="General">
-          <Group.Item title="Name">{team.get("name")}</Group.Item>
-          <Group.Item title="Team Email" last={true}>{team.get("email")}</Group.Item>
+          <Group.Item title="Name">{team.name}</Group.Item>
+          <Group.Item title="Team Email" last={true}>{team.email}</Group.Item>
         </Group>
 
         <Group header="Profile">

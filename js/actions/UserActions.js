@@ -38,6 +38,7 @@ class UserActions {
   signIn(jwt) {
     return Promise.resolve().then(() => {
       this.dispatch(jwt);
+      TeamsActions.fetchAllForCurrentUser();
 
     });
   }

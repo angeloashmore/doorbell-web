@@ -34,8 +34,8 @@ export default class extends React.Component {
 
     return {
       team: team,
-      name: team.get("name"),
-      email: team.get("email")
+      name: team.name,
+      email: team.email
     };
   }
 
@@ -60,7 +60,7 @@ export default class extends React.Component {
         <Form>
           <Toolbar
             title="Settings"
-            subtitle={this.state.team.get("name")}
+            subtitle={this.state.team.name}
             leftItem={<Toolbar.Button disabled={true}>Cancel</Toolbar.Button>}
             rightItem={<Toolbar.Button type="submit" onClick={this.updateTeam.bind(this)}>Save</Toolbar.Button>}
             />
