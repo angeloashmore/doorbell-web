@@ -8,7 +8,8 @@ class TeamsStore {
       setTeam: [
         TeamsActions.CREATE,
         TeamsActions.UPDATE
-      ]
+      ],
+      destroyTeam: TeamsActions.DESTROY
     });
 
     this.teams = {};

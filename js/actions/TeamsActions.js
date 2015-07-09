@@ -24,11 +24,21 @@ class TeamsActions {
 
   create(attrs) {
     return Promise.resolve().then(() => {
-      let data = {
-        name: attrs.name,
-        email: attrs.email
-      };
-      return Parse.Cloud.run("Team__create", data);
+      const { jwt } = UserStore.getState();
+      return fetch("http://localhost:5000/api/v1/teams", {
+        method: "post",
+        headers: {
+          "Authorization": `Bearer ${jwt}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          name: attrs.name,
+          email: attrs.email
+        })
+      });
+
+    }).then((response) => {
+      return response.json();
 
     }).then((team) => {
       this.dispatch(team);
@@ -38,12 +48,21 @@ class TeamsActions {
 
   update(id, attrs) {
     return Promise.resolve().then(() => {
-      const query = new Parse.Query("Team");
-      return query.get(id);
+      const { jwt } = UserStore.getState();
+      return fetch(`http://localhost:5000/api/v1/teams/${id}`, {
+        method: "put",
+        headers: {
+          "Authorization": `Bearer ${jwt}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          name: attrs.name,
+          email: attrs.email
+        })
+      });
 
-    }).then((team) => {
-      team.set(attrs);
-      return team.save();
+    }).then((response) => {
+      return response.json();
 
     }).then((team) => {
       this.dispatch(team);
@@ -53,7 +72,17 @@ class TeamsActions {
 
   destroy(id) {
     return Promise.resolve().then(() => {
-      return Parse.Cloud.run("Team__destory", { id: id });
+      const { jwt } = UserStore.getState();
+      return fetch(`http://localhost:5000/api/v1/teams/${id}`, {
+        method: "delete",
+        headers: {
+          "Authorization": `Bearer ${jwt}`,
+          "Content-Type": "application/json"
+        }
+      });
+
+    }).then((response) => {
+      return response.json();
 
     }).then((team) => {
       this.dispatch(team);

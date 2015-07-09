@@ -52,6 +52,16 @@ export default class extends React.Component {
       .catch((error) => NotificationsActions.createFromParseError(error));
   }
 
+  destroyTeam(e) {
+    e.preventDefault();
+
+    this.transitionTo("teams");
+
+    TeamsActions.destroy(this.state.team.id)
+      .then(() => NotificationsActions.create({ message: "Your team was successfully deleted." }))
+      .catch((error) => console.log(error));
+  }
+
   render() {
     const { team } = this.state;
 
@@ -75,7 +85,7 @@ export default class extends React.Component {
           </Group>
 
           <Group>
-            <Form.Button>Delete This Team</Form.Button>
+            <Form.Button onClick={this.destroyTeam.bind(this)}>Delete This Team</Form.Button>
           </Group>
 
         </Form>

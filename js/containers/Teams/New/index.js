@@ -36,7 +36,7 @@ export default class TeamsNew extends React.Component {
 
     TeamsActions.create(data)
       .then(() => this.transitionTo('teams'))
-      .catch((error) => NotificationsActions.createFromParseError(error));
+      .catch((error) => console.log(error));
   }
 
   render() {
