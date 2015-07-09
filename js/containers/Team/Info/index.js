@@ -44,7 +44,7 @@ export default class extends React.Component {
         </Group>
 
         <Group header="Profile">
-          <Group.Item title="Title">{profile.get("title")}</Group.Item>
+          <Group.Item title="Title">{profile.title}</Group.Item>
         </Group>
       </DetailPanel>
     );

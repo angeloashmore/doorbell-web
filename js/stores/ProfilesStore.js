@@ -35,7 +35,7 @@ class ProfilesStore {
     const { profiles } = this.getState();
     for (let key in profiles) {
       let profile = profiles[key];
-      if (profile.get("team").id == id) return profile;
+      if (profile.team_id == id) return profile;
     }
   }
 }

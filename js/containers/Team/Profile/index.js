@@ -38,7 +38,7 @@ export default class extends React.Component {
     return {
       team: team,
       profile: profile,
-      title: profile.get("title")
+      title: profile.title
     };
   }
 
@@ -62,7 +62,7 @@ export default class extends React.Component {
         <Form>
           <Toolbar
             title="Profile"
-            subtitle={this.state.team.get("name")}
+            subtitle={this.state.team.name}
             leftItem={<Toolbar.Button disabled={true}>Cancel</Toolbar.Button>}
             rightItem={<Toolbar.Button type="submit" onClick={this.updateTeam.bind(this)}>Save</Toolbar.Button>}
             />

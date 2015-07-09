@@ -5,8 +5,10 @@ import UserStore from 'stores/UserStore';
 
 class TeamsActions {
   fetchAllForCurrentUser() {
+    const { jwt } = UserStore.getState();
+    if (!jwt) throw new UserNotLoggedIn();
+
     return Promise.resolve().then(() => {
-      const { jwt } = UserStore.getState();
       return fetch("http://localhost:5000/api/v1/teams", {
         headers: {
           "Authorization": `Bearer ${jwt}`

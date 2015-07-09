@@ -5,28 +5,42 @@ import UserStore from 'stores/UserStore';
 
 class ProfilesActions {
   fetchAllForCurrentUser() {
-    const currentUser = UserStore.getState().user;
-    if (!currentUser) throw new UserNotLoggedIn();
+    const { jwt } = UserStore.getState();
+    if (!jwt) throw new UserNotLoggedIn();
 
     return Promise.resolve().then(() => {
-      const query = new Parse.Query("Profile");
-      query.equalTo("user", currentUser);
-      return query.find();
+      return fetch("http://localhost:5000/api/v1/profiles", {
+        headers: {
+          "Authorization": `Bearer ${jwt}`
+        }
+      });
 
-    }).then((results) => {
-      this.dispatch(results);
+    }).then((response) => {
+      return response.json();
+
+    }).then((json) => {
+      this.dispatch(json.profiles);
 
     });
   }
 
   update(id, attrs) {
     return Promise.resolve().then(() => {
-      const query = new Parse.Query("Profile");
-      return query.get(id);
+      const { jwt } = UserStore.getState();
+      return fetch(`http://localhost:5000/api/v1/profiles/${id}`, {
+        method: "put",
+        headers: {
+          "Authorization": `Bearer ${jwt}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          title: attrs.title,
+          private: attrs.private
+        })
+      });
 
-    }).then((profile) => {
-      profile.set(attrs);
-      return profile.save();
+    }).then((response) => {
+      return response.json();
 
     }).then((profile) => {
       this.dispatch(profile);
