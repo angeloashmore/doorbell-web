@@ -6,7 +6,7 @@ class BillingsStore {
     this.bindListeners({
       setBillings: BillingsActions.FETCH_ALL_FOR_CURRENT_USER,
       setBilling: [
-        BillingsActions.ADD_CARD_WITH_TOKEN_FOR_ID,
+        BillingsActions.REPLACE_CARD_WITH_TOKEN_FOR_ID,
         BillingsActions.SUBSCRIBE_TO_PLAN_WITH_ID_FOR_ID
       ]
     });

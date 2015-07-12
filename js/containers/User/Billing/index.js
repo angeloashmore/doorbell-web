@@ -30,9 +30,9 @@ export default class extends React.Component {
     );
   }
 
-  addCard(token) {
+  replaceCard(token) {
     const billing = BillingsStore.forCurrentUser();
-    BillingsActions.addCardWithTokenForId(billing.id, token.id)
+    BillingsActions.replaceCardWithTokenForId(billing.id, token.id)
       .catch((error) => NotificationsActions.createFromParseError(error));
   }
 
@@ -64,7 +64,7 @@ export default class extends React.Component {
           {hasCard ? cardInfo : ""}
 
           <Group.Button>
-            <StripeCheckoutButton title={hasCard ? "Change Card" : "Add Card"} onSuccess={this.addCard} />
+            <StripeCheckoutButton title={hasCard ? "Change Card" : "Add Card"} onSuccess={this.replaceCard} />
           </Group.Button>
         </Group>
       </DetailPanel>

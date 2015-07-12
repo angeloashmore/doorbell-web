@@ -48,11 +48,25 @@ class BillingsActions {
     });
   }
 
-  addCardWithTokenForId(id, token) {
+  replaceCardWithTokenForId(id, token) {
     return Promise.resolve().then(() => {
+      const { jwt } = UserStore.getState();
+      return fetch(`http://localhost:5000/api/v1/billings/${id}/card`, {
+        method: "put",
+        headers: {
+          "Authorization": `Bearer ${jwt}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          stripe_token: token
+        })
+      });
 
-    // }).then((billing) => {
-    //   this.dispatch(billing);
+    }).then((response) => {
+      return response.json();
+
+    }).then((billing) => {
+      this.dispatch(billing);
 
     });
   }
