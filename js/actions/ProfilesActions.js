@@ -6,9 +6,10 @@ import UserStore from 'stores/UserStore';
 class ProfilesActions {
   fetchAllForCurrentUser() {
     const { jwt } = UserStore.getState();
-    if (!jwt) throw new UserNotLoggedIn();
 
     return Promise.resolve().then(() => {
+      if (!jwt) throw new UserNotLoggedIn();
+
       return fetch("http://localhost:5000/api/v1/profiles", {
         headers: {
           "Authorization": `Bearer ${jwt}`

@@ -8,11 +8,11 @@ const auth0 = new Auth0({
 
 auth0.signInPromise = function(options) {
   return new Promise(function(resolve, reject) {
-    auth0.login(options, function(error, _user, jwt) {
+    auth0.login(options, function(error, user, jwt) {
       if (error) {
-        reject(error)
+        reject(error);
       } else {
-        resolve(jwt)
+        resolve({ jwt: jwt, user: user });
       }
     });
   });
@@ -20,11 +20,23 @@ auth0.signInPromise = function(options) {
 
 auth0.signUpPromise = function(options) {
   return new Promise(function(resolve, reject) {
-    auth0.signup(options, function(error, _user, jwt) {
+    auth0.signup(options, function(error, user, jwt) {
       if (error) {
-        reject(error)
+        reject(error);
       } else {
-        resolve(jwt)
+        resolve({ jwt: jwt, user: user })
+      }
+    });
+  });
+}
+
+auth0.getProfilePromise = function(options) {
+  return new Promise(function(resolve, reject) {
+    auth0.getProfile(options, function(error, user) {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(user);
       }
     });
   });

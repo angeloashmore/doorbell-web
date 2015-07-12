@@ -6,11 +6,15 @@ import UserActions from 'actions/UserActions';
 class UserStore {
   constructor() {
     this.bindListeners({
-      setJWT: [
+      setJWTAndUser: [
+        UserActions.RESTORE,
         UserActions.SIGN_IN,
         UserActions.SIGN_UP
       ],
-      clearAllStores: UserActions.SIGN_OUT
+      clearAllStores: [
+        UserActions.SIGN_OUT,
+        UserActions.RESET_PASSWORD
+      ]
     });
 
     this.jwt = null;
@@ -18,11 +22,20 @@ class UserStore {
   }
 
   // MARK: Store methods
+  setJWTAndUser(params) {
+    const { jwt, user } = params;
+
+    this.setJWT(jwt);
+    this.setUser(user);
+  }
+
   setJWT(jwt) {
     localStorage.setItem("jwt", jwt);
-
     this.jwt = jwt;
-    this.user = jwt_decode(jwt);
+  }
+
+  setUser(user) {
+    this.user = user;
   }
 
   clearAllStores(showNotification) {

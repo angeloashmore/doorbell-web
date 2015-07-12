@@ -2,13 +2,15 @@ import 'whatwg-fetch';
 import alt from 'flux/alt';
 import Parse from 'lib/Parse';
 import UserStore from 'stores/UserStore';
+import { UserNotLoggedIn } from 'errors';
 
 class TeamsActions {
   fetchAllForCurrentUser() {
     const { jwt } = UserStore.getState();
-    if (!jwt) throw new UserNotLoggedIn();
 
     return Promise.resolve().then(() => {
+      if (!jwt) throw new UserNotLoggedIn();
+
       return fetch("http://localhost:5000/api/v1/teams", {
         headers: {
           "Authorization": `Bearer ${jwt}`

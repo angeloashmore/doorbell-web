@@ -4,6 +4,7 @@ import Auth0 from 'lib/Auth0';
 
 import NotificationsActions from 'actions/NotificationsActions';
 import { UserNotLoggedIn } from 'errors';
+import UserStore from 'stores/UserStore';
 import TeamsActions from 'actions/TeamsActions';
 import BillingsActions from 'actions/BillingsActions';
 import PlansActions from 'actions/PlansActions';
@@ -11,16 +12,24 @@ import ProfilesActions from 'actions/ProfilesActions';
 
 class UserActions {
   restore() {
-    return Promise.resolve().then(() => {
-      const jwt = localStorage.getItem("jwt");
+    const jwt = localStorage.getItem("jwt");
 
+    return Promise.resolve().then(() => {
       if (!jwt) throw new UserNotLoggedIn();
 
-      return this.actions.signIn(jwt);
+      return Auth0.getProfilePromise(jwt);
+
+    }).then((user) => {
+      const results = { jwt: jwt, user: user };
+      this.dispatch(results);
+
+    }).then(() => {
+      this.actions._populateOtherStores();
+
     });
   }
 
-  signInWithCredentials(email, password) {
+  signIn(email, password) {
     return Promise.resolve().then(() => {
       return Auth0.signInPromise({
         connection: "Username-Password-Authentication",
@@ -29,16 +38,11 @@ class UserActions {
         sso: false
       });
 
-    }).then((jwt) => {
-      return this.actions.signIn(jwt);
+    }).then((results) => {
+      this.dispatch(results);
 
-    });
-  }
-
-  signIn(jwt) {
-    return Promise.resolve().then(() => {
-      this.dispatch(jwt);
-      TeamsActions.fetchAllForCurrentUser();
+    }).then(() => {
+      this.actions._populateOtherStores();
 
     });
   }
@@ -64,8 +68,8 @@ class UserActions {
         sso: false
       });
 
-    }).then((jwt) => {
-      this.dispatch(jwt);
+    }).then((results) => {
+      this.dispatch(results);
 
     });
   }
@@ -79,7 +83,7 @@ class UserActions {
       });
 
     }).then((response) => {
-      return this.actions.signOut(false);
+      this.dispatch(results);
 
     });
   }
@@ -93,6 +97,15 @@ class UserActions {
       this.dispatch(user);
 
     });
+  }
+
+  _populateOtherStores() {
+    if (UserStore.isLoggedIn()) {
+      TeamsActions.fetchAllForCurrentUser();
+      BillingsActions.fetchAllForCurrentUser();
+      PlansActions.fetchAll();
+      ProfilesActions.fetchAllForCurrentUser();
+    }
   }
 }
 

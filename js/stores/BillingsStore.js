@@ -41,7 +41,7 @@ class BillingsStore {
 
     for (let key in billings) {
       let billing = billings[key];
-      if (this.typeForId(key) == type) filteredBillings[billing.id] = billing;
+      if (billing.type == type) filteredBillings[billing.id] = billing;
     }
 
     return filteredBillings;
@@ -58,28 +58,17 @@ class BillingsStore {
     return billings[id];
   }
 
-  static forOrganizationWithId(id) {
-    const billings = this.billingsWithType("organization");
+  static forTeamWithId(id) {
+    const billings = this.billingsWithType("team");
     for (let key in billings) {
       let billing = billings[key];
-      if (billing.get("relation").get("billingId") == id) return billing;
+      if (billing.relation_id == id) return billing;
     }
   }
 
   static hasCardForId(id) {
     const billing = this.forId(id);
     return !!billing.get("last4");
-  }
-
-  static typeForId(id) {
-    const billing = this.forId(id);
-    if (billing.get("user")) {
-      return "user";
-    } else if (billing.get("organization")) {
-      return "organization";
-    }
-
-    throw new Error("Could not determine type");
   }
 }
 

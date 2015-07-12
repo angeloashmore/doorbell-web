@@ -30,7 +30,7 @@ export default class extends React.Component {
   signIn(e) {
     e.preventDefault();
 
-    UserActions.signInWithCredentials(this.state.email, this.state.password)
+    UserActions.signIn(this.state.email, this.state.password)
       .then(() => this.transitionTo("teams"))
       // .catch(error => NotificationsActions.create({ message: error.details.error_description }));
       .catch(error => console.log(error));
