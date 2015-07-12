@@ -2,6 +2,7 @@ import 'whatwg-fetch';
 import alt from 'flux/alt';
 import Parse from 'lib/Parse';
 import UserStore from 'stores/UserStore';
+import ProfilesActions from 'actions/ProfilesActions';
 import { UserNotLoggedIn } from 'errors';
 
 class TeamsActions {
@@ -46,6 +47,9 @@ class TeamsActions {
 
     }).then((team) => {
       this.dispatch(team);
+
+    }).then(() => {
+      return ProfilesActions.fetchAllForCurrentUser();
 
     });
   }

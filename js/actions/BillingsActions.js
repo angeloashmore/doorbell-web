@@ -50,22 +50,18 @@ class BillingsActions {
 
   addCardWithTokenForId(id, token) {
     return Promise.resolve().then(() => {
-      const data = { id: id, token: token };
-      return Parse.Cloud.run("Billing__addCard", data);
 
-    }).then((billing) => {
-      this.dispatch(billing);
+    // }).then((billing) => {
+    //   this.dispatch(billing);
 
     });
   }
 
   subscribeToPlanWithIdForId(id, planId) {
     return Promise.resolve().then(() => {
-      const data = { id: id, planId: plan.id };
-      return Parse.Cloud.run("Billing__subscribeToPlan", data);
 
-    }).then((billing) => {
-      this.dispatch(billing);
+    // }).then((billing) => {
+    //   this.dispatch(billing);
 
     });
   }

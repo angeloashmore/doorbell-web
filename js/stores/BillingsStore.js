@@ -35,13 +35,13 @@ class BillingsStore {
 
 
   // MARK: Public methods
-  static billingsWithType(type) {
+  static forType(type) {
     const { billings } = this.getState();
     const filteredBillings = {};
 
     for (let key in billings) {
       let billing = billings[key];
-      if (billing.type == type) filteredBillings[billing.id] = billing;
+      if (billing.relation_type == type) filteredBillings[billing.id] = billing;
     }
 
     return filteredBillings;
@@ -53,13 +53,13 @@ class BillingsStore {
   }
 
   static forCurrentUser() {
-    let billings = this.billingsWithType("user");
+    let billings = this.forType("user");
     let id = Object.keys(billings)[0];
     return billings[id];
   }
 
   static forTeamWithId(id) {
-    const billings = this.billingsWithType("team");
+    const billings = this.forType("team");
     for (let key in billings) {
       let billing = billings[key];
       if (billing.relation_id == id) return billing;
@@ -68,7 +68,7 @@ class BillingsStore {
 
   static hasCardForId(id) {
     const billing = this.forId(id);
-    return !!billing.get("last4");
+    return !!billing.last4;
   }
 }
 

@@ -26,8 +26,8 @@ export default class extends React.Component {
 
     this.state = {
       user: user,
-      name: user.get("name"),
-      email: user.get("email")
+      name: user.name,
+      email: user.email
     }
   }
 
@@ -55,7 +55,7 @@ export default class extends React.Component {
             rightItem={<Toolbar.Button type="submit" onClick={this.update.bind(this)}>Save</Toolbar.Button>}
             />
 
-          <Group header="General">
+          <Group header="General" footer="Your email is kept private and is only used for communication from Doorbell.">
             <Group.Item title="Name">
               <Form.Input valueLink={this.linkState('name')} placeholder="Name" chromeless={true} hasTitle={true} />
             </Group.Item>

@@ -56,7 +56,7 @@ export default class StripeCheckoutButton extends React.Component {
       description: "Subscription",
       panelLabel: "Add Card",
       allowRememberMe: false,
-      email: user.get("email")
+      email: user.email
     });
   }
 

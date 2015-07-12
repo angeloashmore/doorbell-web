@@ -1,14 +1,25 @@
 import alt from 'flux/alt';
 import Parse from 'lib/Parse';
+import UserStore from 'stores/UserStore';
 
 class PlansActions {
   fetchAll() {
-    return Promise.resolve().then(() => {
-      const query = new Parse.Query("Plan");
-      return query.find();
+    const { jwt } = UserStore.getState();
 
-    }).then((results) => {
-      this.dispatch(results);
+    return Promise.resolve().then(() => {
+      if (!jwt) throw new UserNotLoggedIn();
+
+      return fetch("http://localhost:5000/api/v1/plans", {
+        headers: {
+          "Authorization": `Bearer ${jwt}`
+        }
+      });
+
+    }).then((response) => {
+      return response.json();
+
+    }).then((json) => {
+      this.dispatch(json.plans);
 
     });
   }

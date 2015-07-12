@@ -34,7 +34,7 @@ export default class extends React.Component {
   }
 
   render() {
-    const arrow = <img src={`/assets/images/triangle-down${this.props.hovered ? "-open" : ""}.svg`} />
+    const arrow = <img src={`/assets/images/triangle-down${this.props.hovered ? "-open" : ""}.svg`} style={styles.profileArrow} />
 
     return (
       <Item
@@ -44,7 +44,7 @@ export default class extends React.Component {
           this.props.hovered && styles.navItemOpen
         ]}>
         <img src={this.props.user.picture} style={styles.profilePhoto} />
-        <div style={styles.profileArrow}>{arrow}</div>
+        <div style={styles.profileArrowContainer}>{arrow}</div>
 
         <nav
           style={[
@@ -87,8 +87,12 @@ const styles = {
     width: 30
   },
 
-  profileArrow: {
+  profileArrowContainer: {
     marginLeft: 10
+  },
+
+  profileArrow: {
+    display: "block"
   },
 
   menu: {

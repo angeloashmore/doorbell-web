@@ -40,7 +40,15 @@ export default class extends React.Component {
     const { user } = this.props;
     const billing = BillingsStore.forCurrentUser();
     const hasCard = BillingsStore.hasCardForId(billing.id);
-    const plan = PlansStore.withId(billing.get("plan").id);
+    const plan = PlansStore.withId(billing.plan_id);
+
+    const cardInfo = (
+      <div>
+        <Group.Item title="Brand">{hasCard ? billing.brand : "None"}</Group.Item>
+        <Group.Item title="Last 4">{hasCard ? billing.last4 : "None"}</Group.Item>
+        <Group.Item title="Exp Date">{hasCard ? `${billing.exp_month}/${billing.exp_year}` : "None"}</Group.Item>
+      </div>
+    );
 
     return (
       <DetailPanel>
@@ -49,13 +57,12 @@ export default class extends React.Component {
           subtitle="Account"
           />
         <Group header="Plan">
-          <Group.Item title="Name">{plan.get("name")}</Group.Item>
+          <Group.Item title="Name">{plan.name}</Group.Item>
         </Group>
 
         <Group header="Payment Info">
-          <Group.Item title="Brand">{hasCard ? billing.get("brand") : "None"}</Group.Item>
-          <Group.Item title="Last 4">{hasCard ? billing.get("last4") : "None"}</Group.Item>
-          <Group.Item title="Exp Date">{hasCard ? `${billing.get("expMonth")}/${billing.get("expYear")}` : "None"}</Group.Item>
+          {hasCard ? cardInfo : ""}
+
           <Group.Button>
             <StripeCheckoutButton title={hasCard ? "Change Card" : "Add Card"} onSuccess={this.addCard} />
           </Group.Button>
