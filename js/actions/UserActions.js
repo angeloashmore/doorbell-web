@@ -81,7 +81,7 @@ class UserActions {
         password: password
       });
 
-    }).then((response) => {
+    }).then((results) => {
       this.dispatch(results);
 
     });
