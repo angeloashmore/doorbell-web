@@ -43,7 +43,7 @@ export default class extends React.Component {
           <Group.Item title="Team Email" last={true}>{team.email}</Group.Item>
         </Group>
 
-        <Group header="Profile">
+        <Group header="Your Profile">
           <Group.Item title="Title">{profile.title}</Group.Item>
         </Group>
       </DetailPanel>
