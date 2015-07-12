@@ -33,7 +33,7 @@ export default class extends React.Component {
   replaceCard(token) {
     const billing = BillingsStore.forCurrentUser();
     BillingsActions.replaceCardWithTokenForId(billing.id, token.id)
-      .catch((error) => NotificationsActions.createFromParseError(error));
+      .catch((error) => NotificationsActions.createGeneric());
   }
 
   render() {

@@ -51,7 +51,7 @@ export default class extends React.Component {
 
     ProfilesActions.update(this.state.profile.id, attrs)
       .then(() => this.transitionTo("teamInfo", { id: this.state.team.id }))
-      .catch((error) => NotificationsActions.createFromParseError(error));
+      .catch((error) => NotificationsActions.createGeneric());
   }
 
   render() {

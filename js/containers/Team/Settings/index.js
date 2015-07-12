@@ -49,7 +49,7 @@ export default class extends React.Component {
 
     TeamsActions.update(this.state.team.id, attrs)
       .then(() => this.transitionTo("teamInfo", { id: this.state.team.id }))
-      .catch((error) => NotificationsActions.createFromParseError(error));
+      .catch((error) => NotificationsActions.createGeneric());
   }
 
   destroyTeam(e) {

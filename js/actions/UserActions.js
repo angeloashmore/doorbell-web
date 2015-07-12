@@ -1,5 +1,4 @@
 import alt from 'flux/alt';
-import Parse from 'lib/Parse';
 import Auth0 from 'lib/Auth0';
 
 import NotificationsActions from 'actions/NotificationsActions';

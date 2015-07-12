@@ -1,5 +1,4 @@
 import alt from 'flux/alt';
-import Parse from 'lib/Parse';
 import { UserNotLoggedIn } from 'errors';
 import UserStore from 'stores/UserStore';
 

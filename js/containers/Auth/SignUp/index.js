@@ -4,7 +4,6 @@ import reactMixin from 'react-mixin';
 import Radium from 'radium';
 
 import NotificationsActions from 'actions/NotificationsActions';
-import Parse from 'lib/Parse';
 import UserActions from 'actions/UserActions';
 import Sheet from 'elements/Sheet';
 import Form from 'elements/Form';

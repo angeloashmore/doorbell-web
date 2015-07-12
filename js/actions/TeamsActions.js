@@ -1,6 +1,5 @@
 import 'whatwg-fetch';
 import alt from 'flux/alt';
-import Parse from 'lib/Parse';
 import UserStore from 'stores/UserStore';
 import ProfilesActions from 'actions/ProfilesActions';
 import { UserNotLoggedIn } from 'errors';

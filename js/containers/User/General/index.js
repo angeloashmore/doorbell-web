@@ -41,7 +41,7 @@ export default class extends React.Component {
 
     UserActions.update(this.state.user, attrs)
       .then(() => this.transitionTo("userOverview"))
-      .catch((error) => NotificationsActions.createFromParseError(error));
+      .catch((error) => NotificationsActions.createGeneric());
   }
 
   render() {
