@@ -5,10 +5,13 @@ class ProfilesStore {
   constructor() {
     this.bindListeners({
       setProfiles: ProfilesActions.FETCH_ALL_FOR_CURRENT_USER,
-      setProfile: ProfilesActions.UPDATE
+      setProfile: [
+        ProfilesActions.FETCH_WITH_ID,
+        ProfilesActions.UPDATE
+      ]
     });
 
-    this.profiles = {};
+    this.profiles = new Map();
   }
 
 
@@ -20,23 +23,39 @@ class ProfilesStore {
   }
 
   setProfile(profile) {
-    this.profiles[profile.id] = profile;
+    this.profiles.set(profile.id, profile);
   }
 
   destroyProfile(profile) {
-    delete this.profiles[profile.id];
+    this.profiles.delete(profile.id);
   }
 
   // MARK: Private methods
 
 
   // MARK: Public methods
+  static withFilter(block, profiles = this.getState().profiles) {
+    return new Map([...profiles].filter((entry) => block(entry[1])))
+  }
+
+  static withId(id) {
+    return this.getState().profiles.get(id);
+  }
+
+  static forUserWithId(id) {
+    return this.withFilter(profile => profile.user_id == id);
+  }
+
   static forTeamWithId(id) {
-    const { profiles } = this.getState();
-    for (let key in profiles) {
-      let profile = profiles[key];
-      if (profile.team_id == id) return profile;
-    }
+    return this.withFilter(profile => profile.team_id == id);
+  }
+
+  static forUserWithIdforTeamWithId(user_id, team_id) {
+    const profiles = this.withFilter(profile => {
+      return profile.user_id == user_id &&
+             profile.team_id == team_id
+    });
+    return profiles.values().next().value;
   }
 }
 

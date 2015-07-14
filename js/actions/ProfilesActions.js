@@ -24,6 +24,26 @@ class ProfilesActions {
     });
   }
 
+  fetchWithId(id) {
+    return Promise.resolve().then(() => {
+      const { jwt } = UserStore.getState();
+      return fetch(`http://localhost:5000/api/v1/profiles/${id}`, {
+        method: "get",
+        headers: {
+          "Authorization": `Bearer ${jwt}`,
+          "Content-Type": "application/json"
+        }
+      });
+
+    }).then((response) => {
+      return response.json();
+
+    }).then((profile) => {
+      this.dispatch(profile);
+
+    });
+  }
+
   update(id, attrs) {
     return Promise.resolve().then(() => {
       const { jwt } = UserStore.getState();

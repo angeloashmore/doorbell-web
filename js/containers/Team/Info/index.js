@@ -2,6 +2,7 @@ import React from 'react';
 import Radium from 'radium';
 
 import authenticatedComponent from 'decorators/authenticatedComponent';
+import UserStore from 'stores/UserStore';
 import TeamsStore from 'stores/TeamsStore';
 import ProfilesStore from 'stores/ProfilesStore';
 
@@ -20,7 +21,7 @@ export default class extends React.Component {
 
     this.state = {
       team: team,
-      profile: ProfilesStore.forTeamWithId(team.id)
+      profile: ProfilesStore.forUserWithIdforTeamWithId(UserStore.getState().user.remote_id, team.id)
     }
   }
 

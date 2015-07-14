@@ -5,6 +5,7 @@ import Radium from 'radium';
 
 import authenticatedComponent from 'decorators/authenticatedComponent';
 import NotificationsActions from 'actions/NotificationsActions';
+import UserStore from 'stores/UserStore';
 import TeamsActions from 'actions/TeamsActions';
 import TeamsStore from 'stores/TeamsStore';
 import ProfilesActions from 'actions/ProfilesActions';
@@ -33,7 +34,7 @@ export default class extends React.Component {
 
   setupState(id) {
     const team = TeamsStore.withId(id);
-    const profile = ProfilesStore.forTeamWithId(team.id);
+    const profile = ProfilesStore.forUserWithIdforTeamWithId(UserStore.getState().user.remote_id, team.id);
 
     return {
       team: team,
