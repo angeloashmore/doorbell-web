@@ -26,7 +26,7 @@ class ProfilesStore {
     this.profiles.set(profile.id, profile);
   }
 
-  destroyProfile(profile) {
+  deleteProfile(profile) {
     this.profiles.delete(profile.id);
   }
 
@@ -35,7 +35,7 @@ class ProfilesStore {
 
   // MARK: Public methods
   static withFilter(block, profiles = this.getState().profiles) {
-    return new Map([...profiles].filter((entry) => block(entry[1])))
+    return new Map([...profiles].filter((entry) => block(entry[1])));
   }
 
   static withId(id) {
