@@ -9,11 +9,7 @@ import PlansActions from 'actions/PlansActions';
 import ProfilesActions from 'actions/ProfilesActions';
 import routes from 'routes';
 
-import ProfilesStore from 'stores/ProfilesStore';
-
-UserActions.restore().then(function() {
-  console.log(ProfilesStore.forUserWithId(1));
-});
+UserActions.restore();
 
 Router.run(routes, function (Handler) {
   React.render(<Handler />, document.body);
