@@ -17,7 +17,7 @@ export default class extends React.Component {
   constructor(props) {
     super(props);
 
-    const team = TeamsStore.withId(props.params.id);
+    const team = TeamsStore.withId(parseInt(props.params.id));
 
     this.state = {
       team: team,

@@ -22,11 +22,11 @@ export default class extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = this.setupState(this.props.params.id);
+    this.state = this.setupState(parseInt(this.props.params.id));
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState(this.setupState(nextProps.params.id));
+    this.setState(this.setupState(parseInt(nextProps.params.id)));
   }
 
   setupState(id) {

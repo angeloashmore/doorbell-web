@@ -49,7 +49,7 @@ export default class extends React.Component {
   render() {
     const { billing } = this.state;
 
-    const team = TeamsStore.withId(this.props.params.id);
+    const team = TeamsStore.withId(parseInt(this.props.params.id));
     const hasCard = BillingsStore.hasCardForId(billing.id);
     const plan = PlansStore.withId(billing.plan_id);
 

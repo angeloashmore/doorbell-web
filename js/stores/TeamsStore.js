@@ -41,7 +41,7 @@ class TeamsStore {
   }
 
   static withId(id) {
-    return this.getState().teams.get(parseInt(id));
+    return this.getState().teams.get(id);
   }
 }
 
