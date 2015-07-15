@@ -33,8 +33,7 @@ export default class extends React.Component {
     const memberGroupItems = [];
     profiles.forEach(profile => {
       memberGroupItems.push(
-        <Group.Item
-          title="Title">
+        <Group.Item>
           {profile.title}
         </Group.Item>
       );

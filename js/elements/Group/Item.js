@@ -6,6 +6,12 @@ import colors from "styles/colors";
 @Radium
 export default class extends React.Component {
   render() {
+    const title = (
+      <div style={styles.title}>
+        {this.props.title}
+      </div>
+    );
+
     return (
       <div
         {...this.props}
@@ -14,11 +20,13 @@ export default class extends React.Component {
           this.props.last && styles.last,
           this.props.style
         ]}>
-        <div style={styles.title}>
-          {this.props.title}
-        </div>
+        {!!this.props.title ? title : ""}
 
-        <div style={styles.children}>
+        <div
+          style={[
+            styles.children,
+            !!this.props.title && styles.childrenWithTitle
+          ]}>
           {this.props.children}
         </div>
       </div>
@@ -43,11 +51,14 @@ const styles = {
   children: {
     display: "flex",
     flexGrow: 1,
-    justifyContent: "flex-end",
     overflow: "hidden",
-    textAlign: "right",
     textOverflow: "ellipsis",
     whiteSpace: "nowrap"
+  },
+
+  childrenWithTitle: {
+    justifyContent: "flex-end",
+    textAlign: "right"
   },
 
   last: {
