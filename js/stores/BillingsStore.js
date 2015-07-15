@@ -11,7 +11,7 @@ class BillingsStore {
       ]
     });
 
-    this.billings = {}
+    this.billings = new Map();
   }
 
 
@@ -23,11 +23,11 @@ class BillingsStore {
   }
 
   setBilling(billing) {
-    this.billings[billing.id] = billing;
+    this.billings.set(billing.id, billing);
   }
 
-  destroyBilling(billing) {
-    delete this.billings[billing.id];
+  deleteBilling(billing) {
+    this.billings.delete(billing.id);
   }
 
 
@@ -35,40 +35,32 @@ class BillingsStore {
 
 
   // MARK: Public methods
-  static forType(type) {
-    const { billings } = this.getState();
-    const filteredBillings = {};
-
-    for (let key in billings) {
-      let billing = billings[key];
-      if (billing.relation_type == type) filteredBillings[billing.id] = billing;
-    }
-
-    return filteredBillings;
+  static withFilter(block, billings = this.getState().billings) {
+    return new Map([...billings].filter((entry) => block(entry[1])));
   }
 
   static forId(id) {
-    const { billings } = this.getState();
-    return billings[id];
+    return this.getState().billings.get(id);
+  }
+
+  static forType(type) {
+    return this.withFilter(billing => billing.relation_type == type);
   }
 
   static forCurrentUser() {
-    let billings = this.forType("user");
-    let id = Object.keys(billings)[0];
-    return billings[id];
+    return this.forType("user").values().next().value;
   }
 
   static forTeamWithId(id) {
-    const billings = this.forType("team");
-    for (let key in billings) {
-      let billing = billings[key];
-      if (billing.relation_id == id) return billing;
-    }
+    const billings = this.withFilter(billing => {
+      return billing.relation_type == "team" &&
+             billing.relation_id == id
+    });
+    return billings.values().next().value;
   }
 
   static hasCardForId(id) {
-    const billing = this.forId(id);
-    return !!billing.last4;
+    return !!this.forId(id).last4;
   }
 }
 

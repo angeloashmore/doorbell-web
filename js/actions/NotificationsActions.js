@@ -14,12 +14,12 @@ class NotificationsActions {
       this.dispatch(data);
 
       // Destroy the notification automatically.
-      setTimeout(() => this.actions.destroy(data.id), 5000);
+      setTimeout(() => this.actions.delete(data.id), 5000);
 
     });
   }
 
-  destroy(id) {
+  delete(id) {
     return Promise.resolve().then(() => {
       this.dispatch(id);
 

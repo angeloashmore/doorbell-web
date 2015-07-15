@@ -12,7 +12,7 @@ class TeamsStore {
       destroyTeam: TeamsActions.DESTROY
     });
 
-    this.teams = {};
+    this.teams = new Map();
   }
 
 
@@ -24,11 +24,11 @@ class TeamsStore {
   }
 
   setTeam(team) {
-    this.teams[team.id] = team;
+    this.teams.set(team.id, team);
   }
 
   destroyTeam(team) {
-    delete this.teams[team.id];
+    this.teams.delete(team.id);
   }
 
 
@@ -36,9 +36,12 @@ class TeamsStore {
 
 
   // MARK: Public methods
+  static withFilter(block, teams = this.getState().teams) {
+    return new Map([...teams].filter((entry) => block(entry[1])));
+  }
+
   static withId(id) {
-    const { teams } = this.getState();
-    return teams[id];
+    return this.getState().teams.get(parseInt(id));
   }
 }
 

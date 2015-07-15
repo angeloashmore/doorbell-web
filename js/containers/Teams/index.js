@@ -25,17 +25,17 @@ export default class extends React.Component {
     const { teams } = this.props;
 
     const teamsPaneItems = [];
-    for (let id in teams) {
+    teams.forEach((team, id) => {
       teamsPaneItems.push(
         <MasterPanel.Item
           key={id}
           icon="team"
-          title={teams[id].name}
+          title={team.name}
           to="team"
           params={{id: id}}
         />
       );
-    }
+    })
 
     return (
       <Container>

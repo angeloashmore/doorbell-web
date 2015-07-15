@@ -7,7 +7,7 @@ class PlansStore {
       setPlans: PlansActions.FETCH_ALL
     });
 
-    this.plans = {}
+    this.plans = new Map();
   }
 
 
@@ -19,39 +19,36 @@ class PlansStore {
   }
 
   setPlan(plan) {
-    this.plans[plan.id] = plan;
+    this.plans.set(plan.id, plan);
   }
 
   destroyPlan(plan) {
-    delete this.plans[plan.id];
+    this.plans.delete(plan.id);
   }
 
 
   // MARK: Private methods
-  _plansWithType(type) {
-    const filteredPlans = {};
-
-    for (let key in this.plans) {
-      let plan = plans[key];
-      if (plan.get("type") == type) filteredPlans[plan.id] = plan;
-    }
-
-    return filteredPlans;
-  }
 
 
   // MARK: Public methods
-  static forUsers() {
-    return this._plansWithType("user");
-  }
-
-  static forOrganizations() {
-    return this._plansWithType("organization");
+  static withFilter(block, plans = this.getState().plans) {
+    return new Map([...plans].filter((entry) => block(entry[1])));
   }
 
   static withId(id) {
-    const { plans } = this.getState();
-    return plans[id];
+    return this.getState().plans.get(id);
+  }
+
+  static withType(type) {
+    return this.withFilter(plan => plan.type == type);
+  }
+
+  static forUsers() {
+    return this.withType("user");
+  }
+
+  static forTeam() {
+    return this.withType("team");
   }
 }
 

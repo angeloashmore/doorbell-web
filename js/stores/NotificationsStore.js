@@ -8,10 +8,10 @@ class NotificationsStore {
         NotificationsActions.CREATE,
         NotificationsActions.CREATE_GENERIC
       ],
-      destroyNotification: NotificationsActions.DESTROY
+      deleteNotification: NotificationsActions.DELETE
     });
 
-    this.notifications = [];
+    this.notifications = new Map();
   }
 
 
@@ -23,11 +23,11 @@ class NotificationsStore {
   }
 
   setNotification(notification) {
-    this.notifications[notification.id] = notification;
+    this.notifications.set(notification.id, notification);
   }
 
-  destroyNotification(id) {
-    delete this.notifications[id];
+  deleteNotification(id) {
+    this.notifications.delete(id);
   }
 }
 
