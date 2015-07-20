@@ -5,6 +5,7 @@ import Radium from 'radium';
 import Notifications from 'components/Notifications';
 import Header from 'components/Header';
 import Container from 'elements/Container';
+import Footerbar from 'elements/Footerbar';
 
 import colors from 'styles/colors';
 
@@ -24,6 +25,20 @@ export default class extends React.Component {
         <Container>
           <RouteHandler />
         </Container>
+
+        <div style={styles.footerbar}>
+          <Footerbar
+            leftItems={[
+              <Footerbar.Button>Home</Footerbar.Button>,
+              <Footerbar.Button>About</Footerbar.Button>,
+              <Footerbar.Button>Support</Footerbar.Button>
+            ]}
+            rightItems={[
+              <Footerbar.Button>Version 0.1.0</Footerbar.Button>,
+              <Footerbar.Button>Copyright Doorbell Technologies.</Footerbar.Button>,
+            ]}
+            />
+        </div>
       </div>
     );
   }
@@ -54,12 +69,10 @@ const styles = {
   },
 
   header: {
-    flexShrink: 0,
-    width: "100%"
+    flexShrink: 0
   },
 
-  body: {
-    display: "flex",
-    flexGrow: 1
+  footerbar: {
+    flexShrink: 0
   }
 };
