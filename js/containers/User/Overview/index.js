@@ -37,21 +37,23 @@ export default class extends React.Component {
           subtitle="Account"
           />
 
-        <Group header="General" footer="Your email is kept private and is only used for communication from Doorbell.">
-          <Group.Item title="Name">
-            {user.name}
-          </Group.Item>
+        <DetailPanel.Body>
+          <Group header="General" footer="Your email is kept private and is only used for communication from Doorbell.">
+            <Group.Item title="Name">
+              {user.name}
+            </Group.Item>
 
-          <Group.Item title="Email" last={true}>
-            {user.email}
-          </Group.Item>
-        </Group>
+            <Group.Item title="Email" last={true}>
+              {user.email}
+            </Group.Item>
+          </Group>
 
-        <Group header="Plan & Billing">
-          <Group.Item title="Plan" last={true}>
-            {plan.name}
-          </Group.Item>
-        </Group>
+          <Group header="Plan & Billing">
+            <Group.Item title="Plan" last={true}>
+              {plan.name}
+            </Group.Item>
+          </Group>
+        </DetailPanel.Body>
 
       </DetailPanel>
     );

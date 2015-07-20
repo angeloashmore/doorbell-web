@@ -49,14 +49,16 @@ export default class TeamsNew extends React.Component {
             rightItem={<Toolbar.Button onClick={this.create.bind(this)}>Create</Toolbar.Button>}
             />
 
-          <Group header="General">
-            <Group.Item title="Name">
-              <Form.Input type="text" valueLink={this.linkState('name')} placeholder="Name" spellCheck={false} chromeless={true} hasTitle={true} />
-            </Group.Item>
-            <Group.Item title="Email" last={true}>
-              <Form.Input type="email" valueLink={this.linkState('email')} placeholder="Team Email" chromeless={true} hasTitle={true} />
-            </Group.Item>
-          </Group>
+          <DetailPanel.Body>
+            <Group header="General">
+              <Group.Item title="Name">
+                <Form.Input type="text" valueLink={this.linkState('name')} placeholder="Name" spellCheck={false} chromeless={true} hasTitle={true} />
+              </Group.Item>
+              <Group.Item title="Email" last={true}>
+                <Form.Input type="email" valueLink={this.linkState('email')} placeholder="Team Email" chromeless={true} hasTitle={true} />
+              </Group.Item>
+            </Group>
+          </DetailPanel.Body>
 
         </Form>
       </DetailPanel>

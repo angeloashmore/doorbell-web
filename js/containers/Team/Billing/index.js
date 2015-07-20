@@ -67,17 +67,20 @@ export default class extends React.Component {
           title="Billing"
           subtitle={team.name}
           />
-        <Group header="Plan">
-          <Group.Item title="Name">{plan.name}</Group.Item>
-        </Group>
 
-        <Group header="Payment Info">
-          {hasCard ? cardInfo : ""}
+        <DetailPanel.Body>
+          <Group header="Plan">
+            <Group.Item title="Name">{plan.name}</Group.Item>
+          </Group>
 
-          <Group.Button>
-            <StripeCheckoutButton title={hasCard ? "Change Card" : "Add Card"} onSuccess={this.replaceCard.bind(this)} />
-          </Group.Button>
-        </Group>
+          <Group header="Payment Info">
+            {hasCard ? cardInfo : ""}
+
+            <Group.Button>
+              <StripeCheckoutButton title={hasCard ? "Change Card" : "Add Card"} onSuccess={this.replaceCard.bind(this)} />
+            </Group.Button>
+          </Group>
+        </DetailPanel.Body>
       </DetailPanel>
     );
   }

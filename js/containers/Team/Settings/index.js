@@ -75,19 +75,20 @@ export default class extends React.Component {
             rightItem={<Toolbar.Button type="submit" onClick={this.updateTeam.bind(this)}>Save</Toolbar.Button>}
             />
 
-          <Group header="General">
-            <Group.Item title="Name">
-              <Form.Input valueLink={this.linkState('name')} placeholder="Name" chromeless={true} hasTitle={true} />
-            </Group.Item>
-            <Group.Item title="Team Email" last={true}>
-              <Form.Input valueLink={this.linkState('email')} placeholder="Team Email" chromeless={true} hasTitle={true} />
-            </Group.Item>
-          </Group>
+          <DetailPanel.Body>
+            <Group header="General">
+              <Group.Item title="Name">
+                <Form.Input valueLink={this.linkState('name')} placeholder="Name" chromeless={true} hasTitle={true} />
+              </Group.Item>
+              <Group.Item title="Team Email" last={true}>
+                <Form.Input valueLink={this.linkState('email')} placeholder="Team Email" chromeless={true} hasTitle={true} />
+              </Group.Item>
+            </Group>
 
-          <Group>
-            <Form.Button onClick={this.destroyTeam.bind(this)}>Delete This Team</Form.Button>
-          </Group>
-
+            <Group>
+              <Form.Button onClick={this.destroyTeam.bind(this)}>Delete This Team</Form.Button>
+            </Group>
+          </DetailPanel.Body>
         </Form>
       </DetailPanel>
     );

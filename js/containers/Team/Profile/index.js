@@ -68,12 +68,13 @@ export default class extends React.Component {
             rightItem={<Toolbar.Button type="submit" onClick={this.updateTeam.bind(this)}>Save</Toolbar.Button>}
             />
 
-          <Group header="General">
-            <Group.Item title="Title" last={true}>
-              <Form.Input valueLink={this.linkState('title')} placeholder="Title" chromeless={true} hasTitle={true} />
-            </Group.Item>
-          </Group>
-
+          <DetailPanel.Body>
+            <Group header="General">
+              <Group.Item title="Title" last={true}>
+                <Form.Input valueLink={this.linkState('title')} placeholder="Title" chromeless={true} hasTitle={true} />
+              </Group.Item>
+            </Group>
+          </DetailPanel.Body>
         </Form>
       </DetailPanel>
     );

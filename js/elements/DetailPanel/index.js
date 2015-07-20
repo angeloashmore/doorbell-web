@@ -2,6 +2,7 @@ import React from "react";
 import Radium from "radium";
 
 import Container from 'elements/Container';
+import Body from './Body';
 import Group from './Group';
 import Heading from './Heading';
 import TextPronounced from './TextPronounced';
@@ -11,6 +12,7 @@ import colors from "styles/colors";
 
 @Radium
 export default class extends React.Component {
+  static Body = Body;
   static Group = Group;
   static Heading = Heading;
   static TextPronounced = TextPronounced;
@@ -33,10 +35,11 @@ const styles = {
     backgroundColor: colors.get("background"),
     borderRight: `1px solid ${colors.get("shadow")}`,
     color: colors.get("textPronounced"),
+    display: "flex",
+    flexDirection: "column",
     flexShrink: 0,
     minWidth: 400,
     maxWidth: 650,
-    overflowY: "auto",
     width: "50vw"
   }
 }

@@ -41,6 +41,7 @@ export default class extends React.Component {
 const styles = {
   group: {
     color: colors.get("text"),
+    flexShrink: 0,
     margin: "30px 30px 0 30px"
   },
 

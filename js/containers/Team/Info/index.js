@@ -39,14 +39,16 @@ export default class extends React.Component {
           subtitle={this.state.team.name}
           />
 
-        <Group header="General">
-          <Group.Item title="Name">{team.name}</Group.Item>
-          <Group.Item title="Team Email" last={true}>{team.email}</Group.Item>
-        </Group>
+        <DetailPanel.Body>
+          <Group header="General">
+            <Group.Item title="Name">{team.name}</Group.Item>
+            <Group.Item title="Team Email" last={true}>{team.email}</Group.Item>
+          </Group>
 
-        <Group header="Your Profile">
-          <Group.Item title="Title">{profile.title}</Group.Item>
-        </Group>
+          <Group header="Your Profile">
+            <Group.Item title="Title">{profile.title}</Group.Item>
+          </Group>
+        </DetailPanel.Body>
       </DetailPanel>
     );
   }

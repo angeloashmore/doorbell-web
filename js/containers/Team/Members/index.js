@@ -46,9 +46,11 @@ export default class extends React.Component {
           subtitle={this.state.team.name}
           />
 
-        <Group header="Members">
-          {[memberGroupItems]}
-        </Group>
+        <DetailPanel.Body>
+          <Group header="Members">
+            {[memberGroupItems]}
+          </Group>
+        </DetailPanel.Body>
       </DetailPanel>
     );
   }

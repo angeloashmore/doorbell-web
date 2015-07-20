@@ -55,15 +55,17 @@ export default class extends React.Component {
             rightItem={<Toolbar.Button type="submit" onClick={this.update.bind(this)}>Save</Toolbar.Button>}
             />
 
-          <Group header="General" footer="Your email is kept private and is only used for communication from Doorbell.">
-            <Group.Item title="Name">
-              <Form.Input valueLink={this.linkState('name')} placeholder="Name" chromeless={true} hasTitle={true} />
-            </Group.Item>
+          <DetailPanel.Body>
+            <Group header="General" footer="Your email is kept private and is only used for communication from Doorbell.">
+              <Group.Item title="Name">
+                <Form.Input valueLink={this.linkState('name')} placeholder="Name" chromeless={true} hasTitle={true} />
+              </Group.Item>
 
-            <Group.Item title="Email" last={true}>
-              <Form.Input valueLink={this.linkState('email')} placeholder="Email" type="email" chromeless={true} hasTitle={true} />
-            </Group.Item>
-          </Group>
+              <Group.Item title="Email" last={true}>
+                <Form.Input valueLink={this.linkState('email')} placeholder="Email" type="email" chromeless={true} hasTitle={true} />
+              </Group.Item>
+            </Group>
+          </DetailPanel.Body>
 
         </Form>
       </DetailPanel>
