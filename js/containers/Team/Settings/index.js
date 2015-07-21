@@ -55,11 +55,13 @@ export default class extends React.Component {
   destroyTeam(e) {
     e.preventDefault();
 
-    this.transitionTo("teams");
+    if (confirm(`Are you sure you want to delete ${this.state.team.name}?`)) {
+      this.transitionTo("teams");
 
-    TeamsActions.destroy(this.state.team.id)
-      .then(() => NotificationsActions.create({ message: "Your team was successfully deleted." }))
-      .catch((error) => console.log(error));
+      TeamsActions.destroy(this.state.team.id)
+        .then(() => NotificationsActions.create({ message: "Your team was successfully deleted." }))
+        .catch((error) => console.log(error));
+    }
   }
 
   render() {
