@@ -16,6 +16,7 @@ export default class extends React.Component {
       <div
         style={[
           styles.group,
+          this.props.last && styles.last,
           this.props.style
         ]}>
         {this.props.header !== undefined ? (
@@ -43,6 +44,10 @@ const styles = {
     color: colors.get("text"),
     flexShrink: 0,
     margin: "30px 30px 0 30px"
+  },
+
+  last: {
+    margin: "30px"
   },
 
   header: {

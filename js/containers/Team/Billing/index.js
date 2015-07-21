@@ -104,7 +104,7 @@ export default class extends React.Component {
               </Group.Item>
             </Group>
 
-            <Group header="Payment Info">
+            <Group header="Payment Info" last={true}>
               {hasCard ? cardInfo : ""}
 
               <Group.Button last={true}>

@@ -37,7 +37,7 @@ const styles = {
   toolbar: {
     alignItems: "center",
     backgroundColor: colors.get("white"),
-    borderBottom: `1px solid ${colors.get("shadow")}`,
+    boxShadow: `0 1px ${colors.get("shadow")}`,
     color: colors.get("text"),
     display: "flex",
     fontSize: 18,
