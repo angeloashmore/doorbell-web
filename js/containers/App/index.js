@@ -2,10 +2,8 @@ import React from 'react';
 import { Link, RouteHandler } from 'react-router';
 import Radium from 'radium';
 
-import Notifications from 'components/Notifications';
-import Header from 'components/Header';
-import Container from 'elements/Container';
-import Footerbar from 'elements/Footerbar';
+import { Header, Notifications } from 'components';
+import { Container, Footerbar } from 'components';
 
 import colors from 'styles/colors';
 
