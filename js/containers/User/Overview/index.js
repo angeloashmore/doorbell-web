@@ -3,9 +3,7 @@ import connectToStores from 'alt/utils/connectToStores';
 import Radium from 'radium';
 
 import authenticatedComponent from 'decorators/authenticatedComponent';
-import BillingsStore from 'stores/BillingsStore';
-import PlansStore from 'stores/PlansStore';
-import UserStore from 'stores/UserStore';
+import Stores from 'stores';
 
 import Container from 'elements/Container';
 import DetailPanel from 'elements/DetailPanel';
@@ -17,17 +15,17 @@ import Group from 'elements/Group';
 @Radium
 export default class extends React.Component {
   static getStores() {
-    return [UserStore];
+    return [Stores.User];
   }
 
   static getPropsFromStores(props) {
-    return UserStore.getState();
+    return Stores.User.getState();
   }
 
   render() {
     const { user } = this.props;
-    const billing = BillingsStore.forCurrentUser();
-    const plan = PlansStore.withId(billing.plan_id);
+    const billing = Stores.Billings.forCurrentUser();
+    const plan = Stores.Plans.withId(billing.plan_id);
 
     return (
       <DetailPanel>

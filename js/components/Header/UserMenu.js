@@ -6,7 +6,7 @@ import connectToStores from 'alt/utils/connectToStores';
 
 import hoverable from 'decorators/hoverable';
 import Item from './Item';
-import UserStore from 'stores/UserStore';
+import Stores from 'stores';
 import Actions from 'actions';
 
 import colors from 'styles/colors';
@@ -17,11 +17,11 @@ import colors from 'styles/colors';
 @Radium
 export default class extends React.Component {
   static getStores() {
-    return [UserStore];
+    return [Stores.User];
   }
 
   static getPropsFromStores(props) {
-    return UserStore.getState();
+    return Stores.User.getState();
   }
 
   static contextTypes = {

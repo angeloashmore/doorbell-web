@@ -3,7 +3,7 @@ import { RouteHandler } from 'react-router';
 import Radium from 'radium';
 
 import authenticatedComponent from 'decorators/authenticatedComponent';
-import TeamsStore from 'stores/TeamsStore';
+import Stores from 'stores';
 import Container from 'elements/Container';
 import MasterPanel from 'elements/MasterPanel';
 
@@ -14,12 +14,12 @@ export default class extends React.Component {
     super(props);
 
     this.state = {
-      team: TeamsStore.withId(props.params.id),
+      team: Stores.Teams.withId(props.params.id),
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ team: TeamsStore.withId(nextProps.params.id) });
+    this.setState({ team: Stores.Teams.withId(nextProps.params.id) });
   }
 
   render() {

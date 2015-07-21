@@ -4,7 +4,7 @@ import Radium from 'radium';
 import connectToStores from 'alt/utils/connectToStores';
 
 import authenticatedComponent from 'decorators/authenticatedComponent';
-import UserStore from 'stores/UserStore';
+import Stores from 'stores';
 
 import Container from 'elements/Container';
 import MasterPanel from 'elements/MasterPanel';
@@ -14,11 +14,11 @@ import MasterPanel from 'elements/MasterPanel';
 @Radium
 export default class extends React.Component {
   static getStores() {
-    return [UserStore];
+    return [Stores.User];
   }
 
   static getPropsFromStores(props) {
-    return UserStore.getState();
+    return Stores.User.getState();
   }
 
   render() {

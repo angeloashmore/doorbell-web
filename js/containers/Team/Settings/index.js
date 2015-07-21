@@ -5,7 +5,7 @@ import Radium from 'radium';
 
 import Actions from 'actions';
 import authenticatedComponent from 'decorators/authenticatedComponent';
-import TeamsStore from 'stores/TeamsStore';
+import Stores from 'stores';
 
 import Container from 'elements/Container';
 import DetailPanel from 'elements/DetailPanel';
@@ -29,7 +29,7 @@ export default class extends React.Component {
   }
 
   setupState(id) {
-    const team = TeamsStore.withId(id);
+    const team = Stores.Teams.withId(id);
 
     return {
       team: team,

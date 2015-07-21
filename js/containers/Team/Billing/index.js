@@ -6,9 +6,7 @@ import Radium from 'radium';
 
 import Actions from 'actions';
 import authenticatedComponent from 'decorators/authenticatedComponent';
-import TeamsStore from 'stores/TeamsStore';
-import BillingsStore from 'stores/BillingsStore';
-import PlansStore from 'stores/PlansStore';
+import Stores from 'stores';
 
 import DetailPanel from 'elements/DetailPanel';
 import Toolbar from 'elements/Toolbar';
@@ -23,11 +21,11 @@ import StripeCheckoutButton from 'elements/StripeCheckoutButton';
 @Radium
 export default class extends React.Component {
   static getStores() {
-    return [BillingsStore];
+    return [Stores.Billings];
   }
 
   static getPropsFromStores(props) {
-    return BillingsStore.getState();
+    return Stores.Billings.getState();
   }
 
   constructor(props) {
@@ -40,8 +38,8 @@ export default class extends React.Component {
   }
 
   setupState(props) {
-    const team = TeamsStore.withId(parseInt(props.params.id));
-    const billing = BillingsStore.forTeamWithId(props.params.id);
+    const team = Stores.Teams.withId(parseInt(props.params.id));
+    const billing = Stores.Billings.forTeamWithId(props.params.id);
 
     return {
       team,
@@ -70,9 +68,9 @@ export default class extends React.Component {
   render() {
     const { billing } = this.state;
 
-    const team = TeamsStore.withId(parseInt(this.props.params.id));
-    const hasCard = BillingsStore.hasCardForId(billing.id);
-    const plan = PlansStore.withId(billing.plan_id);
+    const team = Stores.Teams.withId(parseInt(this.props.params.id));
+    const hasCard = Stores.Billings.hasCardForId(billing.id);
+    const plan = Stores.Plans.withId(billing.plan_id);
 
     const cardInfo = (
       <div>

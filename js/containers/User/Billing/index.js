@@ -4,9 +4,7 @@ import Radium from 'radium';
 
 import Actions from 'actions';
 import authenticatedComponent from 'decorators/authenticatedComponent';
-import UserStore from 'stores/UserStore';
-import BillingsStore from 'stores/BillingsStore';
-import PlansStore from 'stores/PlansStore';
+import Stores from 'stores';
 
 import DetailPanel from 'elements/DetailPanel';
 import Toolbar from 'elements/Toolbar';
@@ -18,27 +16,27 @@ import StripeCheckoutButton from 'elements/StripeCheckoutButton';
 @Radium
 export default class extends React.Component {
   static getStores() {
-    return [UserStore, BillingsStore];
+    return [Stores.User, Stores.Billings];
   }
 
   static getPropsFromStores(props) {
     return Object.assign(
-      UserStore.getState(),
-      BillingsStore.getState()
+      Stores.User.getState(),
+      Stores.Billings.getState()
     );
   }
 
   replaceCard(token) {
-    const billing = BillingsStore.forCurrentUser();
+    const billing = Stores.Billings.forCurrentUser();
     Actions.Billings.replaceCardWithTokenForId(billing.id, token.id)
       .catch((error) => Actions.Notifications.createGeneric());
   }
 
   render() {
     const { user } = this.props;
-    const billing = BillingsStore.forCurrentUser();
-    const hasCard = BillingsStore.hasCardForId(billing.id);
-    const plan = PlansStore.withId(billing.plan_id);
+    const billing = Stores.Billings.forCurrentUser();
+    const hasCard = Stores.Billings.hasCardForId(billing.id);
+    const plan = Stores.Plans.withId(billing.plan_id);
 
     const cardInfo = (
       <div>

@@ -5,7 +5,7 @@ import Radium from 'radium';
 
 import Actions from 'actions';
 import authenticatedComponent from 'decorators/authenticatedComponent';
-import UserStore from 'stores/UserStore';
+import Stores from 'stores';
 
 import Container from 'elements/Container';
 import DetailPanel from 'elements/DetailPanel';
@@ -21,7 +21,7 @@ export default class extends React.Component {
   constructor() {
     super();
 
-    const { user } = UserStore.getState();
+    const { user } = Stores.User.getState();
 
     this.state = {
       user: user,

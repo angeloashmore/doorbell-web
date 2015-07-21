@@ -2,8 +2,6 @@ import React from 'react';
 import Radium from 'radium';
 import gravatar from 'gravatar';
 
-import UserStore from 'stores/UserStore';
-
 @Radium
 export default class extends React.Component {
   static propTypes = {

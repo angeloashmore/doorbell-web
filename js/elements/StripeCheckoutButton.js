@@ -5,7 +5,7 @@ import Radium from 'radium';
 
 import config from 'config';
 
-import UserStore from 'stores/UserStore';
+import Stores from 'stores';
 
 const ReactScriptLoaderMixin = ReactScriptLoader.ReactScriptLoaderMixin;
 
@@ -48,7 +48,7 @@ export default class StripeCheckoutButton extends React.Component {
   onClick(e) {
     e.preventDefault();
 
-    const { user } = UserStore.getState();
+    const { user } = Stores.User.getState();
 
     this.handler().open({
       name: "Doorbell",

@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import Radium from 'radium';
 import connectToStores from 'alt/utils/connectToStores';
 
-import UserStore from 'stores/UserStore';
+import Stores from 'stores';
 
 import Item from './Item';
 import UserMenu from './UserMenu';
@@ -15,11 +15,11 @@ export default class extends React.Component {
   static Item = Item;
 
   static getStores() {
-    return [UserStore];
+    return [Stores.User];
   }
 
   static getPropsFromStores(props) {
-    return UserStore.getState();
+    return Stores.User.getState();
   }
 
   static contextTypes = {
