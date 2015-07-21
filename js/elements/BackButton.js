@@ -3,7 +3,7 @@ import { Navigation } from 'react-router';
 import reactMixin from 'react-mixin';
 import Radium from "radium";
 
-import hoverable from 'decorators/hoverable';
+import { hoverable } from 'decorators';
 import Icon from "elements/Icon";
 import colors from "styles/colors";
 

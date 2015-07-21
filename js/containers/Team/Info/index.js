@@ -1,7 +1,7 @@
 import React from 'react';
 import Radium from 'radium';
 
-import authenticatedComponent from 'decorators/authenticatedComponent';
+import { authenticatedComponent } from 'decorators';
 import Stores from 'stores';
 
 import { Container, DetailPanel, Toolbar, Group } from 'elements';

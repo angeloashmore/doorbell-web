@@ -2,7 +2,7 @@ import React from 'react';
 import { RouteHandler } from 'react-router';
 import Radium from 'radium';
 
-import authenticatedComponent from 'decorators/authenticatedComponent';
+import { authenticatedComponent } from 'decorators';
 import Stores from 'stores';
 import { Container, MasterPanel } from 'elements';
 

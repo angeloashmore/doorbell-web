@@ -2,7 +2,7 @@ import React from 'react';
 import Radium from 'radium';
 
 import Actions from 'actions';
-import hoverable from 'decorators/hoverable';
+import { hoverable } from 'decorators';
 import { Icon } from 'elements';
 
 import colors from 'styles/colors';

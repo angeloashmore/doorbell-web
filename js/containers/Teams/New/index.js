@@ -3,7 +3,7 @@ import { Navigation } from 'react-router';
 import reactMixin from 'react-mixin';
 import Radium from 'radium';
 
-import authenticatedComponent from 'decorators/authenticatedComponent';
+import { authenticatedComponent } from 'decorators';
 
 import { DetailPanel, Toolbar, Form, Group } from 'elements';
 

@@ -4,7 +4,7 @@ import reactMixin from 'react-mixin';
 import Radium from 'radium';
 import connectToStores from 'alt/utils/connectToStores';
 
-import hoverable from 'decorators/hoverable';
+import { hoverable } from 'decorators';
 import Item from './Item';
 import Stores from 'stores';
 import Actions from 'actions';

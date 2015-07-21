@@ -4,7 +4,7 @@ import reactMixin from 'react-mixin';
 import Radium from 'radium';
 
 import Actions from 'actions';
-import authenticatedComponent from 'decorators/authenticatedComponent';
+import { authenticatedComponent } from 'decorators';
 import Stores from 'stores';
 
 import { Container, DetailPanel, Toolbar, Form, Group } from 'elements';

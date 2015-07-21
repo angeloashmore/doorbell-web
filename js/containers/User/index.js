@@ -3,7 +3,7 @@ import { Link, RouteHandler } from 'react-router';
 import Radium from 'radium';
 import connectToStores from 'alt/utils/connectToStores';
 
-import authenticatedComponent from 'decorators/authenticatedComponent';
+import { authenticatedComponent } from 'decorators';
 import Stores from 'stores';
 
 import { Container, MasterPanel } from 'elements';

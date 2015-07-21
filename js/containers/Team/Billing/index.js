@@ -4,7 +4,7 @@ import connectToStores from 'alt/utils/connectToStores';
 import reactMixin from 'react-mixin';
 import Radium from 'radium';
 
-import authenticatedComponent from 'decorators/authenticatedComponent';
+import { authenticatedComponent } from 'decorators';
 import Actions from 'actions';
 import Stores from 'stores';
 
