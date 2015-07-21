@@ -1,9 +1,9 @@
 import alt from 'flux/alt';
 import Auth0 from 'lib/Auth0';
 
-import NotificationsActions from 'actions/NotificationsActions';
 import { UserNotLoggedIn } from 'errors';
-import UserStore from 'stores/UserStore';
+import Stores from 'stores';
+import NotificationsActions from 'actions/NotificationsActions';
 import TeamsActions from 'actions/TeamsActions';
 import BillingsActions from 'actions/BillingsActions';
 import PlansActions from 'actions/PlansActions';
@@ -100,7 +100,7 @@ class UserActions {
   }
 
   _populateOtherStores() {
-    if (UserStore.isLoggedIn()) {
+    if (Stores.User.isLoggedIn()) {
       TeamsActions.fetchAllForCurrentUser();
       BillingsActions.fetchAllForCurrentUser();
       PlansActions.fetchAll();

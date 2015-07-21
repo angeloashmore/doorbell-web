@@ -1,9 +1,9 @@
 import alt from 'flux/alt';
-import UserStore from 'stores/UserStore';
+import Stores from 'stores';
 
 class PlansActions {
   fetchAll() {
-    const { jwt } = UserStore.getState();
+    const { jwt } = Stores.User.getState();
 
     return Promise.resolve().then(() => {
       if (!jwt) throw new UserNotLoggedIn();

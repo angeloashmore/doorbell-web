@@ -1,8 +1,9 @@
 import React from 'react';
 import Router from 'react-router';
 
+import Stores from 'stores';
 import Actions from 'actions';
-import UserStore from 'stores/UserStore';
+
 import routes from 'routes';
 
 Actions.User.restore();
