@@ -62,7 +62,7 @@ export default class extends React.Component {
       <DetailPanel>
         <Form>
           <Toolbar
-            title="Profile"
+            title="My Profile"
             subtitle={this.state.team.name}
             leftItem={<Toolbar.Button disabled={true}>Cancel</Toolbar.Button>}
             rightItem={<Toolbar.Button type="submit" onClick={this.updateTeam.bind(this)}>Save</Toolbar.Button>}
