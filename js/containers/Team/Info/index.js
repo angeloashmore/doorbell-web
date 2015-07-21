@@ -4,10 +4,7 @@ import Radium from 'radium';
 import authenticatedComponent from 'decorators/authenticatedComponent';
 import Stores from 'stores';
 
-import Container from 'elements/Container';
-import DetailPanel from 'elements/DetailPanel';
-import Toolbar from 'elements/Toolbar';
-import Group from 'elements/Group';
+import { Container, DetailPanel, Toolbar, Group } from 'elements';
 
 @authenticatedComponent
 @Radium

@@ -3,7 +3,7 @@ import Radium from 'radium';
 
 import Actions from 'actions';
 import hoverable from 'decorators/hoverable';
-import Icon from 'elements/Icon';
+import { Icon } from 'elements';
 
 import colors from 'styles/colors';
 

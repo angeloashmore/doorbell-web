@@ -4,9 +4,7 @@ import reactMixin from 'react-mixin';
 import Radium from 'radium';
 
 import Actions from 'actions';
-import Sheet from 'elements/Sheet';
-import Form from 'elements/Form';
-import BackButton from 'elements/BackButton';
+import { Sheet, Form, BackButton } from 'elements';
 import commonStyles from 'styles/commonStyles';
 
 @reactMixin.decorate(Navigation)

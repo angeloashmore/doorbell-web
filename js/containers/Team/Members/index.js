@@ -4,10 +4,7 @@ import Radium from 'radium';
 import authenticatedComponent from 'decorators/authenticatedComponent';
 import Stores from 'stores';
 
-import DetailPanel from 'elements/DetailPanel';
-import Toolbar from 'elements/Toolbar';
-import Group from 'elements/Group';
-import ProfilePhoto from 'elements/ProfilePhoto';
+import { DetailPanel, Toolbar, Group, ProfilePhoto } from 'elements';
 import colors from "styles/colors";
 
 @authenticatedComponent

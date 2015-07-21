@@ -7,11 +7,7 @@ import Actions from 'actions';
 import authenticatedComponent from 'decorators/authenticatedComponent';
 import Stores from 'stores';
 
-import Container from 'elements/Container';
-import DetailPanel from 'elements/DetailPanel';
-import Toolbar from 'elements/Toolbar';
-import Form from 'elements/Form';
-import Group from 'elements/Group';
+import { Container, DetailPanel, Toolbar, Form, Group } from 'elements';
 
 @authenticatedComponent
 @reactMixin.decorate(Navigation)

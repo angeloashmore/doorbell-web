@@ -4,8 +4,7 @@ import Radium from 'radium';
 
 import authenticatedComponent from 'decorators/authenticatedComponent';
 import Stores from 'stores';
-import Container from 'elements/Container';
-import MasterPanel from 'elements/MasterPanel';
+import { Container, MasterPanel } from 'elements';
 
 @authenticatedComponent
 @Radium

@@ -4,15 +4,11 @@ import connectToStores from 'alt/utils/connectToStores';
 import reactMixin from 'react-mixin';
 import Radium from 'radium';
 
-import Actions from 'actions';
 import authenticatedComponent from 'decorators/authenticatedComponent';
+import Actions from 'actions';
 import Stores from 'stores';
 
-import DetailPanel from 'elements/DetailPanel';
-import Toolbar from 'elements/Toolbar';
-import Group from 'elements/Group';
-import Form from 'elements/Form';
-import StripeCheckoutButton from 'elements/StripeCheckoutButton';
+import { DetailPanel, Toolbar, Group, Form, StripeCheckoutButton } from 'elements';
 
 @authenticatedComponent
 @connectToStores

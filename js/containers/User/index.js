@@ -6,8 +6,7 @@ import connectToStores from 'alt/utils/connectToStores';
 import authenticatedComponent from 'decorators/authenticatedComponent';
 import Stores from 'stores';
 
-import Container from 'elements/Container';
-import MasterPanel from 'elements/MasterPanel';
+import { Container, MasterPanel } from 'elements';
 
 @authenticatedComponent
 @connectToStores

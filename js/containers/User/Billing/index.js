@@ -6,10 +6,7 @@ import Actions from 'actions';
 import authenticatedComponent from 'decorators/authenticatedComponent';
 import Stores from 'stores';
 
-import DetailPanel from 'elements/DetailPanel';
-import Toolbar from 'elements/Toolbar';
-import Group from 'elements/Group';
-import StripeCheckoutButton from 'elements/StripeCheckoutButton';
+import { DetailPanel, Toolbar, Group, StripeCheckoutButton } from 'elements';
 
 @authenticatedComponent
 @connectToStores

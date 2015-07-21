@@ -5,10 +5,7 @@ import Radium from 'radium';
 
 import authenticatedComponent from 'decorators/authenticatedComponent';
 
-import DetailPanel from 'elements/DetailPanel';
-import Toolbar from 'elements/Toolbar';
-import Form from 'elements/Form';
-import Group from 'elements/Group';
+import { DetailPanel, Toolbar, Form, Group } from 'elements';
 
 @authenticatedComponent
 @reactMixin.decorate(Navigation)
