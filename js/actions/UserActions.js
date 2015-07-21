@@ -8,6 +8,7 @@ import TeamsActions from 'actions/TeamsActions';
 import BillingsActions from 'actions/BillingsActions';
 import PlansActions from 'actions/PlansActions';
 import ProfilesActions from 'actions/ProfilesActions';
+import UsersActions from 'actions/UsersActions';
 
 class UserActions {
   restore() {
@@ -103,6 +104,7 @@ class UserActions {
       TeamsActions.fetchAllForCurrentUser();
       BillingsActions.fetchAllForCurrentUser();
       PlansActions.fetchAll();
+      UsersActions.fetchAllForCurrentUser();
       ProfilesActions.fetchAllForCurrentUser();
     }
   }

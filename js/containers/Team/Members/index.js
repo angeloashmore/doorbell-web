@@ -4,6 +4,7 @@ import Radium from 'radium';
 import authenticatedComponent from 'decorators/authenticatedComponent';
 import TeamsStore from 'stores/TeamsStore';
 import ProfilesStore from 'stores/ProfilesStore';
+import UsersStore from 'stores/UsersStore';
 
 import DetailPanel from 'elements/DetailPanel';
 import Toolbar from 'elements/Toolbar';
@@ -34,6 +35,8 @@ export default class extends React.Component {
 
     const memberGroupItems = [];
     profiles.forEach(profile => {
+      let user = UsersStore.withId(profile.user_id);
+
       memberGroupItems.push(
         <Group.Item>
           <ProfilePhoto
@@ -41,7 +44,7 @@ export default class extends React.Component {
             style={styles.photo}
             />
           <div style={styles.nameAndTitle}>
-            <span style={styles.name}>{profile.email}</span>
+            <span style={styles.name}>{user.name}</span>
             <span style={styles.title}>{profile.title}</span>
           </div>
         </Group.Item>
