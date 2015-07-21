@@ -49,6 +49,7 @@ const styles = {
   },
 
   children: {
+    alignItems: "center",
     display: "flex",
     flexGrow: 1,
     overflow: "hidden",

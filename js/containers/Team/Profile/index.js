@@ -39,7 +39,8 @@ export default class extends React.Component {
     return {
       team: team,
       profile: profile,
-      title: profile.title
+      title: profile.title,
+      email: profile.email
     };
   }
 
@@ -47,7 +48,8 @@ export default class extends React.Component {
     e.preventDefault();
 
     let attrs = {
-      title: this.state.title
+      title: this.state.title,
+      email: this.state.email
     };
 
     ProfilesActions.update(this.state.profile.id, attrs)
@@ -70,8 +72,11 @@ export default class extends React.Component {
 
           <DetailPanel.Body>
             <Group header="General">
-              <Group.Item title="Title" last={true}>
+              <Group.Item title="Title">
                 <Form.Input valueLink={this.linkState('title')} placeholder="Title" chromeless={true} hasTitle={true} />
+              </Group.Item>
+              <Group.Item title="Email" last={true}>
+                <Form.Input valueLink={this.linkState('email')} placeholder="Email" chromeless={true} hasTitle={true} />
               </Group.Item>
             </Group>
           </DetailPanel.Body>
