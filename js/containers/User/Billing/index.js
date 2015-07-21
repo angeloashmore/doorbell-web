@@ -2,12 +2,10 @@ import React from 'react';
 import connectToStores from 'alt/utils/connectToStores';
 import Radium from 'radium';
 
+import Actions from 'actions';
 import authenticatedComponent from 'decorators/authenticatedComponent';
-import NotificationsActions from 'actions/NotificationsActions';
 import UserStore from 'stores/UserStore';
-import UserActions from 'actions/UserActions';
 import BillingsStore from 'stores/BillingsStore';
-import BillingsActions from 'actions/BillingsActions';
 import PlansStore from 'stores/PlansStore';
 
 import DetailPanel from 'elements/DetailPanel';
@@ -32,8 +30,8 @@ export default class extends React.Component {
 
   replaceCard(token) {
     const billing = BillingsStore.forCurrentUser();
-    BillingsActions.replaceCardWithTokenForId(billing.id, token.id)
-      .catch((error) => NotificationsActions.createGeneric());
+    Actions.Billings.replaceCardWithTokenForId(billing.id, token.id)
+      .catch((error) => Actions.Notifications.createGeneric());
   }
 
   render() {

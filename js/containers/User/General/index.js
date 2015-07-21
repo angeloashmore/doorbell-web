@@ -3,10 +3,9 @@ import { Navigation } from 'react-router';
 import reactMixin from 'react-mixin';
 import Radium from 'radium';
 
+import Actions from 'actions';
 import authenticatedComponent from 'decorators/authenticatedComponent';
-import NotificationsActions from 'actions/NotificationsActions';
 import UserStore from 'stores/UserStore';
-import UserActions from 'actions/UserActions';
 
 import Container from 'elements/Container';
 import DetailPanel from 'elements/DetailPanel';
@@ -39,9 +38,9 @@ export default class extends React.Component {
       email: this.state.email
     };
 
-    UserActions.update(this.state.user, attrs)
+    Actions.User.update(this.state.user, attrs)
       .then(() => this.transitionTo("userOverview"))
-      .catch((error) => NotificationsActions.createGeneric());
+      .catch((error) => Actions.Notifications.createGeneric());
   }
 
   render() {

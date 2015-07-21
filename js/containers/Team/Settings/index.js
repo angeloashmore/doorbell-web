@@ -3,9 +3,8 @@ import { Navigation } from 'react-router';
 import reactMixin from 'react-mixin';
 import Radium from 'radium';
 
+import Actions from 'actions';
 import authenticatedComponent from 'decorators/authenticatedComponent';
-import NotificationsActions from 'actions/NotificationsActions';
-import TeamsActions from 'actions/TeamsActions';
 import TeamsStore from 'stores/TeamsStore';
 
 import Container from 'elements/Container';
@@ -58,8 +57,8 @@ export default class extends React.Component {
     if (confirm(`Are you sure you want to delete ${this.state.team.name}?`)) {
       this.transitionTo("teams");
 
-      TeamsActions.destroy(this.state.team.id)
-        .then(() => NotificationsActions.create({ message: "Your team was successfully deleted." }))
+      Actions.Teams.destroy(this.state.team.id)
+        .then(() => Actions.Notifications.create({ message: "Your team was successfully deleted." }))
         .catch((error) => console.log(error));
     }
   }

@@ -3,12 +3,10 @@ import { Navigation } from 'react-router';
 import reactMixin from 'react-mixin';
 import Radium from 'radium';
 
+import Actions from 'actions';
 import authenticatedComponent from 'decorators/authenticatedComponent';
-import NotificationsActions from 'actions/NotificationsActions';
 import UserStore from 'stores/UserStore';
-import TeamsActions from 'actions/TeamsActions';
 import TeamsStore from 'stores/TeamsStore';
-import ProfilesActions from 'actions/ProfilesActions';
 import ProfilesStore from 'stores/ProfilesStore';
 
 import Container from 'elements/Container';
@@ -52,9 +50,9 @@ export default class extends React.Component {
       email: this.state.email
     };
 
-    ProfilesActions.update(this.state.profile.id, attrs)
+    Actions.Profiles.update(this.state.profile.id, attrs)
       .then(() => this.transitionTo("teamInfo", { id: this.state.team.id }))
-      .catch((error) => NotificationsActions.createGeneric());
+      .catch((error) => Actions.Notifications.createGeneric());
   }
 
   render() {

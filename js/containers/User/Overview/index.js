@@ -6,7 +6,6 @@ import authenticatedComponent from 'decorators/authenticatedComponent';
 import BillingsStore from 'stores/BillingsStore';
 import PlansStore from 'stores/PlansStore';
 import UserStore from 'stores/UserStore';
-import UserActions from 'actions/UserActions';
 
 import Container from 'elements/Container';
 import DetailPanel from 'elements/DetailPanel';

@@ -4,11 +4,10 @@ import connectToStores from 'alt/utils/connectToStores';
 import reactMixin from 'react-mixin';
 import Radium from 'radium';
 
+import Actions from 'actions';
 import authenticatedComponent from 'decorators/authenticatedComponent';
-import NotificationsActions from 'actions/NotificationsActions';
 import TeamsStore from 'stores/TeamsStore';
 import BillingsStore from 'stores/BillingsStore';
-import BillingsActions from 'actions/BillingsActions';
 import PlansStore from 'stores/PlansStore';
 
 import DetailPanel from 'elements/DetailPanel';
@@ -58,14 +57,14 @@ export default class extends React.Component {
       email: this.state.email
     };
 
-    BillingsActions.update(this.state.billing.id, attrs)
+    Actions.Billings.update(this.state.billing.id, attrs)
       .then(() => this.transitionTo("teamInfo", { id: this.state.team.id }))
-      .catch((error) => NotificationsActions.createGeneric());
+      .catch((error) => Actions.Notifications.createGeneric());
   }
 
   replaceCard(token) {
-    BillingsActions.replaceCardWithTokenForId(this.state.billing.id, token.id)
-      .catch((error) => NotificationsActions.createGeneric());
+    Actions.Billings.replaceCardWithTokenForId(this.state.billing.id, token.id)
+      .catch((error) => Actions.Notifications.createGeneric());
   }
 
   render() {

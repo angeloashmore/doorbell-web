@@ -1,7 +1,7 @@
 import React from 'react';
 import Radium from 'radium';
 
-import NotificationsActions from 'actions/NotificationsActions';
+import Actions from 'actions';
 import hoverable from 'decorators/hoverable';
 import Icon from 'elements/Icon';
 
@@ -11,7 +11,7 @@ import colors from 'styles/colors';
 @Radium
 export default class extends React.Component {
   dismiss(id) {
-    NotificationsActions.destroy(id);
+    Actions.Notifications.destroy(id);
   }
 
   render() {

@@ -5,7 +5,6 @@ import Radium from 'radium';
 
 import config from 'config';
 
-import UserActions from 'actions/UserActions';
 import UserStore from 'stores/UserStore';
 
 const ReactScriptLoaderMixin = ReactScriptLoader.ReactScriptLoaderMixin;

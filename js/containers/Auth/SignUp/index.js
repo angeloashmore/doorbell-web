@@ -3,8 +3,7 @@ import { Navigation, Link } from 'react-router';
 import reactMixin from 'react-mixin';
 import Radium from 'radium';
 
-import NotificationsActions from 'actions/NotificationsActions';
-import UserActions from 'actions/UserActions';
+import Actions from 'actions';
 import Sheet from 'elements/Sheet';
 import Form from 'elements/Form';
 import commonStyles from 'styles/commonStyles';
@@ -30,7 +29,7 @@ export default class extends React.Component {
   signUp(e) {
     e.preventDefault();
 
-    UserActions.signUp(this.state.email, this.state.password, this.state.name)
+    Actions.User.signUp(this.state.email, this.state.password, this.state.name)
       .then(() => this.transitionTo('teams'))
       .catch(error => console.log(error));
   }

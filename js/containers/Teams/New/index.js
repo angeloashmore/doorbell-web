@@ -4,8 +4,6 @@ import reactMixin from 'react-mixin';
 import Radium from 'radium';
 
 import authenticatedComponent from 'decorators/authenticatedComponent';
-import NotificationsActions from 'actions/NotificationsActions';
-import TeamsActions from 'actions/TeamsActions';
 
 import DetailPanel from 'elements/DetailPanel';
 import Toolbar from 'elements/Toolbar';
@@ -34,7 +32,7 @@ export default class TeamsNew extends React.Component {
       email: this.state.email
     };
 
-    TeamsActions.create(data)
+    Actions.Teams.create(data)
       .then(() => this.transitionTo('teams'))
       .catch((error) => console.log(error));
   }

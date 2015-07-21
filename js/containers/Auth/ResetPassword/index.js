@@ -3,8 +3,7 @@ import { Navigation, Link } from 'react-router';
 import reactMixin from 'react-mixin';
 import Radium from 'radium';
 
-import NotificationsActions from 'actions/NotificationsActions';
-import UserActions from 'actions/UserActions';
+import Actions from 'actions';
 import Sheet from 'elements/Sheet';
 import Form from 'elements/Form';
 import BackButton from 'elements/BackButton';
@@ -30,10 +29,10 @@ export default class extends React.Component {
   resetPassword(e) {
     e.preventDefault();
 
-    UserActions.resetPassword(this.state.email, this.state.password)
+    Actions.User.resetPassword(this.state.email, this.state.password)
       .then(() => {
         this.transitionTo('signIn');
-        NotificationsActions.create({ message: "An email was sent to you with a link to activate your new password." });
+        Actions.Notifications.create({ message: "An email was sent to you with a link to activate your new password." });
       })
       .catch((error) => console.log(error));
   }

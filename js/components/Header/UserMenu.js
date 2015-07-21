@@ -7,7 +7,7 @@ import connectToStores from 'alt/utils/connectToStores';
 import hoverable from 'decorators/hoverable';
 import Item from './Item';
 import UserStore from 'stores/UserStore';
-import UserActions from 'actions/UserActions';
+import Actions from 'actions';
 
 import colors from 'styles/colors';
 
@@ -30,7 +30,7 @@ export default class extends React.Component {
 
   signOut() {
     this.transitionTo("signIn");
-    UserActions.signOut();
+    Actions.User.signOut();
   }
 
   render() {
