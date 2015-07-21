@@ -1,5 +1,7 @@
 import React from 'react';
+import { Navigation } from 'react-router';
 import connectToStores from 'alt/utils/connectToStores';
+import reactMixin from 'react-mixin';
 import Radium from 'radium';
 
 import authenticatedComponent from 'decorators/authenticatedComponent';
@@ -12,10 +14,13 @@ import PlansStore from 'stores/PlansStore';
 import DetailPanel from 'elements/DetailPanel';
 import Toolbar from 'elements/Toolbar';
 import Group from 'elements/Group';
+import Form from 'elements/Form';
 import StripeCheckoutButton from 'elements/StripeCheckoutButton';
 
 @authenticatedComponent
 @connectToStores
+@reactMixin.decorate(Navigation)
+@reactMixin.decorate(React.addons.LinkedStateMixin)
 @Radium
 export default class extends React.Component {
   static getStores() {
@@ -36,9 +41,26 @@ export default class extends React.Component {
   }
 
   setupState(props) {
+    const team = TeamsStore.withId(parseInt(props.params.id));
+    const billing = BillingsStore.forTeamWithId(props.params.id);
+
     return {
-      billing: BillingsStore.forTeamWithId(props.params.id)
+      team,
+      billing,
+      email: billing.email
     };
+  }
+
+  updateBilling(e) {
+    e.preventDefault();
+
+    let attrs = {
+      email: this.state.email
+    };
+
+    BillingsActions.update(this.state.billing.id, attrs)
+      .then(() => this.transitionTo("teamInfo", { id: this.state.team.id }))
+      .catch((error) => NotificationsActions.createGeneric());
   }
 
   replaceCard(token) {
@@ -63,24 +85,34 @@ export default class extends React.Component {
 
     return (
       <DetailPanel>
-        <Toolbar
-          title="Billing"
-          subtitle={team.name}
-          />
+        <Form>
+          <Toolbar
+            title="Billing"
+            subtitle={team.name}
+            leftItem={<Toolbar.Button disabled={true}>Cancel</Toolbar.Button>}
+            rightItem={<Toolbar.Button type="submit" onClick={this.updateBilling.bind(this)}>Save</Toolbar.Button>}
+            />
 
-        <DetailPanel.Body>
-          <Group header="Plan">
-            <Group.Item title="Name">{plan.name}</Group.Item>
-          </Group>
+          <DetailPanel.Body>
+            <Group header="Plan">
+              <Group.Item title="Name" last={true}>{plan.name}</Group.Item>
+            </Group>
 
-          <Group header="Payment Info">
-            {hasCard ? cardInfo : ""}
+            <Group header="Contact" footer="This email is used for all billing communication including invoices and receipts.">
+              <Group.Item title="Email" last={true}>
+                <Form.Input valueLink={this.linkState('email')} placeholder="Email" chromeless={true} hasTitle={true} />
+              </Group.Item>
+            </Group>
 
-            <Group.Button>
-              <StripeCheckoutButton title={hasCard ? "Change Card" : "Add Card"} onSuccess={this.replaceCard.bind(this)} />
-            </Group.Button>
-          </Group>
-        </DetailPanel.Body>
+            <Group header="Payment Info">
+              {hasCard ? cardInfo : ""}
+
+              <Group.Button>
+                <StripeCheckoutButton title={hasCard ? "Change Card" : "Add Card"} onSuccess={this.replaceCard.bind(this)} />
+              </Group.Button>
+            </Group>
+          </DetailPanel.Body>
+        </Form>
       </DetailPanel>
     );
   }
