@@ -107,7 +107,7 @@ export default class extends React.Component {
             <Group header="Payment Info">
               {hasCard ? cardInfo : ""}
 
-              <Group.Button>
+              <Group.Button last={true}>
                 <StripeCheckoutButton title={hasCard ? "Change Card" : "Add Card"} onSuccess={this.replaceCard.bind(this)} />
               </Group.Button>
             </Group>
