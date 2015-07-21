@@ -4,8 +4,9 @@ import Radium from 'radium';
 import connectToStores from 'alt/utils/connectToStores';
 
 import Stores from 'stores';
-import Notification from './Notification';
 import colors from 'styles/colors';
+
+import Notification from './Notification';
 
 @connectToStores
 @Radium

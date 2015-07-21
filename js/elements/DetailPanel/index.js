@@ -1,14 +1,14 @@
 import React from "react";
 import Radium from "radium";
 
-import Container from 'elements/Container';
+import colors from "styles/colors";
+
+import { Container } from 'elements';
 import Body from './Body';
 import Group from './Group';
 import Heading from './Heading';
 import TextPronounced from './TextPronounced';
 import p from './p';
-
-import colors from "styles/colors";
 
 @Radium
 export default class extends React.Component {

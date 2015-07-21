@@ -4,7 +4,6 @@ import ReactScriptLoader from 'react-script-loader';
 import Radium from 'radium';
 
 import config from 'config';
-
 import Stores from 'stores';
 
 const ReactScriptLoaderMixin = ReactScriptLoader.ReactScriptLoaderMixin;

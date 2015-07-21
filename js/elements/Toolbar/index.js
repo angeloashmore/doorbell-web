@@ -1,8 +1,9 @@
 import React from 'react';
 import Radium from 'radium';
 
-import Button from './Button';
 import colors from 'styles/colors';
+
+import Button from './Button';
 
 @Radium
 export default class extends React.Component {

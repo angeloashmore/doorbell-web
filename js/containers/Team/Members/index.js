@@ -1,11 +1,11 @@
 import React from 'react';
 import Radium from 'radium';
 
-import { authenticatedComponent } from 'decorators';
 import Stores from 'stores';
+import { authenticatedComponent } from 'decorators';
+import colors from "styles/colors";
 
 import { DetailPanel, Toolbar, Group, ProfilePhoto } from 'elements';
-import colors from "styles/colors";
 
 @authenticatedComponent
 @Radium

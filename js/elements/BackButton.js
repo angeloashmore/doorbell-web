@@ -4,8 +4,9 @@ import reactMixin from 'react-mixin';
 import Radium from "radium";
 
 import { hoverable } from 'decorators';
-import Icon from "elements/Icon";
 import colors from "styles/colors";
+
+import { Icon } from "elements";
 
 @hoverable
 @reactMixin.decorate(Navigation)

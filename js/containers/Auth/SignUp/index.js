@@ -4,8 +4,9 @@ import reactMixin from 'react-mixin';
 import Radium from 'radium';
 
 import Actions from 'actions';
-import { Sheet, From } from 'elements';
 import commonStyles from 'styles/commonStyles';
+
+import { Sheet, From } from 'elements';
 
 @reactMixin.decorate(Navigation)
 @reactMixin.decorate(React.addons.LinkedStateMixin)

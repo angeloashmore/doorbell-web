@@ -3,8 +3,8 @@ import connectToStores from 'alt/utils/connectToStores';
 import Radium from 'radium';
 
 import Actions from 'actions';
-import { authenticatedComponent } from 'decorators';
 import Stores from 'stores';
+import { authenticatedComponent } from 'decorators';
 
 import { DetailPanel, Toolbar, Group, StripeCheckoutButton } from 'elements';
 

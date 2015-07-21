@@ -4,10 +4,10 @@ import Radium from 'radium';
 import connectToStores from 'alt/utils/connectToStores';
 
 import Stores from 'stores';
+import colors from 'styles/colors';
 
 import Item from './Item';
 import UserMenu from './UserMenu';
-import colors from 'styles/colors';
 
 @connectToStores
 @Radium

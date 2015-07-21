@@ -1,10 +1,10 @@
 import React from "react";
 import Radium from "radium";
 
-import Icon from "elements/Icon";
-import Heading from "./Heading";
-
 import colors from "styles/colors";
+
+import { Icon } from "elements";
+import Heading from "./Heading";
 
 @Radium
 export default class extends React.Component {

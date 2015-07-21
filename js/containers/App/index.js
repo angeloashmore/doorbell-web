@@ -2,10 +2,10 @@ import React from 'react';
 import { Link, RouteHandler } from 'react-router';
 import Radium from 'radium';
 
-import { Header, Notifications } from 'components';
-import { Container, Footerbar } from 'components';
-
 import colors from 'styles/colors';
+
+import { Header, Notifications } from 'components';
+import { Container, Footerbar } from 'elements';
 
 @Radium
 export default class extends React.Component {

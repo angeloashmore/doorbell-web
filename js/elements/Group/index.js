@@ -1,10 +1,10 @@
 import React from "react";
 import Radium from "radium";
 
+import colors from "styles/colors";
+
 import Item from "./Item";
 import Button from "./Button";
-
-import colors from "styles/colors";
 
 @Radium
 export default class extends React.Component {
