@@ -1,15 +1,15 @@
 import alt from 'flux/alt';
-import TeamsActions from 'actions/TeamsActions';
+import Actions from 'actions';
 
 class TeamsStore {
   constructor() {
     this.bindListeners({
-      setTeams: TeamsActions.FETCH_ALL_FOR_CURRENT_USER,
+      setTeams: Actions.Teams.FETCH_ALL_FOR_CURRENT_USER,
       setTeam: [
-        TeamsActions.CREATE,
-        TeamsActions.UPDATE
+        Actions.Teams.CREATE,
+        Actions.Teams.UPDATE
       ],
-      destroyTeam: TeamsActions.DESTROY
+      destroyTeam: Actions.Teams.DESTROY
     });
 
     this.teams = new Map();

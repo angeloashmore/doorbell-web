@@ -1,19 +1,18 @@
 import alt from 'flux/alt';
 import jwt_decode from 'jwt-decode';
-import NotificationsActions from 'actions/NotificationsActions';
-import UserActions from 'actions/UserActions';
+import Actions from 'actions';
 
 class UserStore {
   constructor() {
     this.bindListeners({
       setJWTAndUser: [
-        UserActions.RESTORE,
-        UserActions.SIGN_IN,
-        UserActions.SIGN_UP
+        Actions.User.RESTORE,
+        Actions.User.SIGN_IN,
+        Actions.User.SIGN_UP
       ],
       clearAllStores: [
-        UserActions.SIGN_OUT,
-        UserActions.RESET_PASSWORD
+        Actions.User.SIGN_OUT,
+        Actions.User.RESET_PASSWORD
       ]
     });
 

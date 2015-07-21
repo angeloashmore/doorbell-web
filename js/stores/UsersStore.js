@@ -1,11 +1,11 @@
 import alt from 'flux/alt';
-import UsersActions from 'actions/UsersActions';
+import Actions from 'actions';
 
 class UsersStore {
   constructor() {
     this.bindListeners({
-      setUsers: UsersActions.FETCH_ALL_FOR_CURRENT_USER,
-      setUser: UsersActions.FETCH_WITH_ID
+      setUsers: Actions.Users.FETCH_ALL_FOR_CURRENT_USER,
+      setUser: Actions.Users.FETCH_WITH_ID
     });
 
     this.users = new Map();

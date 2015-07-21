@@ -1,13 +1,13 @@
 import alt from 'flux/alt';
-import ProfilesActions from 'actions/ProfilesActions';
+import Actions from 'actions';
 
 class ProfilesStore {
   constructor() {
     this.bindListeners({
-      setProfiles: ProfilesActions.FETCH_ALL_FOR_CURRENT_USER,
+      setProfiles: Actions.Profiles.FETCH_ALL_FOR_CURRENT_USER,
       setProfile: [
-        ProfilesActions.FETCH_WITH_ID,
-        ProfilesActions.UPDATE
+        Actions.Profiles.FETCH_WITH_ID,
+        Actions.Profiles.UPDATE
       ]
     });
 
