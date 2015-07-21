@@ -1,11 +1,11 @@
-import Billings from './BillingsActions';
-import Notifications from './NotificationsActions';
-import Plans from './PlansActions';
-import Profiles from './ProfilesActions';
-import Roles from './RolesActions';
-import Teams from './TeamsActions';
-import User from './UserActions';
-import Users from './UsersActions';
+import Billings from 'actions/BillingsActions';
+import Notifications from 'actions/NotificationsActions';
+import Plans from 'actions/PlansActions';
+import Profiles from 'actions/ProfilesActions';
+import Roles from 'actions/RolesActions';
+import Teams from 'actions/TeamsActions';
+import User from 'actions/UserActions';
+import Users from 'actions/UsersActions';
 
 export default {
   Billings,
