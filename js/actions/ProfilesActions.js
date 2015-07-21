@@ -55,6 +55,7 @@ class ProfilesActions {
         },
         body: JSON.stringify({
           title: attrs.title,
+          email: attrs.email,
           private: attrs.private
         })
       });

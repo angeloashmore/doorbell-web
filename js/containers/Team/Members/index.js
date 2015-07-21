@@ -8,23 +8,25 @@ import ProfilesStore from 'stores/ProfilesStore';
 import DetailPanel from 'elements/DetailPanel';
 import Toolbar from 'elements/Toolbar';
 import Group from 'elements/Group';
+import ProfilePhoto from 'elements/ProfilePhoto';
+import colors from "styles/colors";
 
 @authenticatedComponent
 @Radium
 export default class extends React.Component {
   constructor(props) {
     super(props);
-    this.state = this.setupState(props.params.id);
+    this.state = this.setupState(props);
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState(this.setupState(nextProps.params.id));
+    this.setState(this.setupState(nextProps));
   }
 
-  setupState(id) {
-    const team = TeamsStore.withId(parseInt(id));
+  setupState(props) {
+    const team = TeamsStore.withId(parseInt(props.params.id));
     const profiles = ProfilesStore.forTeamWithId(team.id);
-    return { team: team, profiles: profiles };
+    return { team, profiles };
   }
 
   render() {
@@ -34,7 +36,14 @@ export default class extends React.Component {
     profiles.forEach(profile => {
       memberGroupItems.push(
         <Group.Item>
-          {profile.title}
+          <ProfilePhoto
+            profile={profile}
+            style={styles.photo}
+            />
+          <div style={styles.nameAndTitle}>
+            <span style={styles.name}>{profile.email}</span>
+            <span style={styles.title}>{profile.title}</span>
+          </div>
         </Group.Item>
       );
     });
@@ -53,5 +62,27 @@ export default class extends React.Component {
         </DetailPanel.Body>
       </DetailPanel>
     );
+  }
+}
+
+const styles = {
+  photo: {
+    height: 40,
+    marginRight: 10,
+    width: 40
+  },
+
+  nameAndTitle: {
+    marginRight: 15,
+  },
+
+  name: {
+    color: colors.get("textPronounced"),
+    display: "block"
+  },
+
+  title: {
+    fontSize: 12,
+    display: "block"
   }
 }
