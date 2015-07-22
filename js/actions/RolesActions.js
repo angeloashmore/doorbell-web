@@ -24,6 +24,34 @@ class RolesActions {
     });
   }
 
+  create(attrs) {
+    return Promise.resolve().then(() => {
+      const { jwt } = UserStore.getState();
+      return fetch("http://localhost:5000/api/v1/roles", {
+        method: "post",
+        headers: {
+          "Authorization": `Bearer ${jwt}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          team_id: attrs.team_id,
+          email: attrs.email
+        })
+      });
+
+    }).then((response) => {
+      return response.json();
+
+    }).then((role) => {
+      this.dispatch(role);
+
+    }).then(() => {
+      return ProfilesActions.fetchAllForCurrentUser();
+
+    });
+  }
+
+
   update(id, attrs) {
     return Promise.resolve().then(() => {
       const { jwt } = UserStore.getState();
