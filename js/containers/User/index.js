@@ -1,28 +1,15 @@
 import React from 'react';
-import { Link, RouteHandler } from 'react-router';
+import { RouteHandler } from 'react-router';
 import Radium from 'radium';
-import connectToStores from 'alt/utils/connectToStores';
 
-import { UserStore } from 'stores';
 import { authenticatedComponent } from 'decorators';
 
 import { Container, MasterPanel } from 'elements';
 
 @authenticatedComponent
-@connectToStores
 @Radium
 export default class extends React.Component {
-  static getStores() {
-    return [UserStore];
-  }
-
-  static getPropsFromStores(props) {
-    return UserStore.getState();
-  }
-
   render() {
-    const { user } = this.props;
-
     return (
       <Container>
         <MasterPanel>

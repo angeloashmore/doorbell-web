@@ -1,5 +1,4 @@
 import React from 'react';
-import connectToStores from 'alt/utils/connectToStores';
 import Radium from 'radium';
 
 import { BillingsStore, PlansStore, UserStore } from 'stores';
@@ -8,19 +7,10 @@ import { authenticatedComponent } from 'decorators';
 import { Container, DetailPanel, Toolbar, Group } from 'elements';
 
 @authenticatedComponent
-@connectToStores
 @Radium
 export default class extends React.Component {
-  static getStores() {
-    return [UserStore];
-  }
-
-  static getPropsFromStores(props) {
-    return UserStore.getState();
-  }
-
   render() {
-    const { user } = this.props;
+    const { user } = UserStore.getState();
     const billing = BillingsStore.forCurrentUser();
     const plan = PlansStore.withId(billing.plan_id);
 

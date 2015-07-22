@@ -1,37 +1,28 @@
 import React from 'react';
-import connectToStores from 'alt/utils/connectToStores';
 import Radium from 'radium';
 
 import { BillingsActions } from 'actions';
-import { BillingsStore, PlansStore, UserStore } from 'stores';
+import { BillingsStore, PlansStore } from 'stores';
 import { authenticatedComponent } from 'decorators';
 
 import { DetailPanel, Toolbar, Group, StripeCheckoutButton } from 'elements';
 
 @authenticatedComponent
-@connectToStores
 @Radium
 export default class extends React.Component {
-  static getStores() {
-    return [UserStore, BillingsStore];
-  }
-
-  static getPropsFromStores(props) {
-    return Object.assign(
-      UserStore.getState(),
-      BillingsStore.getState()
-    );
+  constructor(props) {
+    super(props);
+    const billing = BillingsStore.forCurrentUser();
+    this.state = { billing };
   }
 
   replaceCard(token) {
-    const billing = BillingsStore.forCurrentUser();
-    BillingsActions.replaceCardWithTokenForId(billing.id, token.id)
-      .catch((error) => Actions.Notifications.createGeneric());
+    BillingsActions.replaceCardWithTokenForId(this.state.billing.id, token.id)
+      .catch((error) => NotificationsActions.createGeneric());
   }
 
   render() {
-    const { user } = this.props;
-    const billing = BillingsStore.forCurrentUser();
+    const { billing } = this.state;
     const hasCard = BillingsStore.hasCardForId(billing.id);
     const plan = PlansStore.withId(billing.plan_id);
 

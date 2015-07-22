@@ -20,7 +20,7 @@ export default class extends React.Component {
     const { user } = UserStore.getState();
 
     this.state = {
-      user: user,
+      user,
       name: user.name,
       email: user.email
     }
