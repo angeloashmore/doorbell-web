@@ -22,6 +22,7 @@ export default class extends React.Component {
   setupState(props) {
     const team = TeamsStore.withId(parseInt(props.params.id));
     const profiles = ProfilesStore.forTeamWithId(team.id);
+
     return { team, profiles };
   }
 
@@ -50,7 +51,7 @@ export default class extends React.Component {
       <DetailPanel>
         <Toolbar
           title="Members"
-          subtitle={this.state.team.name}
+          subtitle={team.name}
           />
 
         <DetailPanel.Body>

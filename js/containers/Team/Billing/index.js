@@ -11,19 +11,10 @@ import { authenticatedComponent } from 'decorators';
 import { DetailPanel, Toolbar, Group, Form, StripeCheckoutButton } from 'elements';
 
 @authenticatedComponent
-@connectToStores
 @reactMixin.decorate(Navigation)
 @reactMixin.decorate(React.addons.LinkedStateMixin)
 @Radium
 export default class extends React.Component {
-  static getStores() {
-    return [BillingsStore];
-  }
-
-  static getPropsFromStores(props) {
-    return BillingsStore.getState();
-  }
-
   constructor(props) {
     super(props);
     this.state = this.setupState(props);
@@ -34,12 +25,12 @@ export default class extends React.Component {
   }
 
   setupState(props) {
+    const billing = BillingsStore.forTeamWithId(parseInt(props.params.id));
+    const plan = PlansStore.withId(billing.plan_id);
     const team = TeamsStore.withId(parseInt(props.params.id));
-    const billing = BillingsStore.forTeamWithId(props.params.id);
 
     return {
-      team,
-      billing,
+      billing, plan, team,
       email: billing.email
     };
   }
@@ -62,11 +53,8 @@ export default class extends React.Component {
   }
 
   render() {
-    const { billing } = this.state;
-
-    const team = TeamsStore.withId(parseInt(this.props.params.id));
+    const { billing, plan, team } = this.state;
     const hasCard = BillingsStore.hasCardForId(billing.id);
-    const plan = PlansStore.withId(billing.plan_id);
 
     const cardInfo = (
       <div>

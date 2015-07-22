@@ -2,7 +2,6 @@ import React from 'react';
 import { RouteHandler } from 'react-router';
 import Radium from 'radium';
 
-import { TeamsStore } from 'stores';
 import { authenticatedComponent } from 'decorators';
 
 import { Container, MasterPanel } from 'elements';
@@ -10,18 +9,6 @@ import { Container, MasterPanel } from 'elements';
 @authenticatedComponent
 @Radium
 export default class extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      team: TeamsStore.withId(props.params.id),
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.setState({ team: TeamsStore.withId(nextProps.params.id) });
-  }
-
   render() {
     return (
       <Container>

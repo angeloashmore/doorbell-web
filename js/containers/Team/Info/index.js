@@ -11,17 +11,21 @@ import { Container, DetailPanel, Toolbar, Group } from 'elements';
 export default class extends React.Component {
   constructor(props) {
     super(props);
-
-    const team = TeamsStore.withId(parseInt(props.params.id));
-
-    this.state = {
-      team: team,
-      profile: ProfilesStore.forUserWithIdforTeamWithId(UserStore.getState().user.remote_id, team.id)
-    }
+    this.state = this.setupState(props);
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ team: TeamsStore.withId(parseInt(nextProps.params.id)) });
+    this.setState(this.setupState(nextProps));
+  }
+
+  setupState(props) {
+    const { user } = UserStore.getState();
+    const team = TeamsStore.withId(parseInt(props.params.id));
+    const profile = ProfilesStore.forUserWithIdforTeamWithId(user.remote_id, team.id);
+
+    return {
+      team, profile
+    };
   }
 
   render() {
@@ -31,7 +35,7 @@ export default class extends React.Component {
       <DetailPanel>
         <Toolbar
           title="Team Info"
-          subtitle={this.state.team.name}
+          subtitle={team.name}
           />
 
         <DetailPanel.Body>

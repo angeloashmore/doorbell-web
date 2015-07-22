@@ -16,19 +16,18 @@ import { Container, DetailPanel, Toolbar, Form, Group } from 'elements';
 export default class extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = this.setupState(parseInt(this.props.params.id));
+    this.state = this.setupState(props);
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState(this.setupState(parseInt(nextProps.params.id)));
+    this.setState(this.setupState(nextprops));
   }
 
-  setupState(id) {
-    const team = TeamsStore.withId(id);
+  setupState(props) {
+    const team = TeamsStore.withId(parseInt(props.params.id));
 
     return {
-      team: team,
+      team,
       name: team.name,
       email: team.email
     };
@@ -67,7 +66,7 @@ export default class extends React.Component {
         <Form>
           <Toolbar
             title="Settings"
-            subtitle={this.state.team.name}
+            subtitle={team.name}
             leftItem={<Toolbar.Button disabled={true}>Cancel</Toolbar.Button>}
             rightItem={<Toolbar.Button type="submit" onClick={this.updateTeam.bind(this)}>Save</Toolbar.Button>}
             />

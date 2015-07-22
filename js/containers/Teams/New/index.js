@@ -13,8 +13,8 @@ import { DetailPanel, Toolbar, Form, Group } from 'elements';
 @reactMixin.decorate(React.addons.LinkedStateMixin)
 @Radium
 export default class TeamsNew extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       name: '',
