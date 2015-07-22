@@ -1,5 +1,7 @@
 import React from 'react';
+import Radium from 'radium';
 
+@Radium
 export default class extends React.Component {
   static propTypes = {
     name: React.PropTypes.string,
@@ -17,7 +19,17 @@ export default class extends React.Component {
       <img
         {...this.props}
         src={src}
+        style={[
+          styles.icon,
+          this.props.style
+        ]}
       />
     );
   }
 }
+
+const styles = {
+  icon: {
+    verticalAlign: "bottom"
+  }
+};

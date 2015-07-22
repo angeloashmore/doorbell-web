@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import Radium from 'radium';
 
 import colors from "styles/colors";
@@ -7,23 +8,22 @@ import colors from "styles/colors";
 export default class extends React.Component {
   render() {
     return (
-      <button
+      <Link
         {...this.props}
         style={[
-          styles.button,
+          styles.link,
           this.props.disabled && styles.disabled,
           this.props.style
         ]}>
         {this.props.children}
-      </button>
+      </Link>
     );
   }
 }
 
 const styles = {
-  button: {
+  link: {
     color: colors.get("tint"),
-    cursor: "pointer",
     lineHeight: "100%",
     padding: 20,
     textDecoration: "none",
