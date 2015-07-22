@@ -1,19 +1,19 @@
-import Billings from 'actions/BillingsActions';
-import Notifications from 'actions/NotificationsActions';
-import Plans from 'actions/PlansActions';
-import Profiles from 'actions/ProfilesActions';
-import Roles from 'actions/RolesActions';
-import Teams from 'actions/TeamsActions';
-import User from 'actions/UserActions';
-import Users from 'actions/UsersActions';
+import BillingsActions from 'actions/BillingsActions';
+import NotificationsActions from 'actions/NotificationsActions';
+import PlansActions from 'actions/PlansActions';
+import ProfilesActions from 'actions/ProfilesActions';
+import RolesActions from 'actions/RolesActions';
+import TeamsActions from 'actions/TeamsActions';
+import UserActions from 'actions/UserActions';
+import UsersActions from 'actions/UsersActions';
 
-export default {
-  Billings,
-  Notifications,
-  Plans,
-  Profiles,
-  Roles,
-  Teams,
-  User,
-  Users
+export {
+  BillingsActions,
+  NotificationsActions,
+  PlansActions,
+  ProfilesActions,
+  RolesActions,
+  TeamsActions,
+  UserActions,
+  UsersActions
 }

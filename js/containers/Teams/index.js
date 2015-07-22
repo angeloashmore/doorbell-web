@@ -3,7 +3,7 @@ import { Link, RouteHandler } from 'react-router';
 import Radium from 'radium';
 import connectToStores from 'alt/utils/connectToStores';
 
-import Stores from 'stores';
+import { TeamsStore } from 'stores';
 import { authenticatedComponent } from 'decorators';
 
 import { Container, MasterPanel } from 'elements';
@@ -13,11 +13,11 @@ import { Container, MasterPanel } from 'elements';
 @Radium
 export default class extends React.Component {
   static getStores() {
-    return [Stores.Teams];
+    return [TeamsStore];
   }
 
   static getPropsFromStores(props) {
-    return Stores.Teams.getState();
+    return TeamsStore.getState();
   }
 
   render() {

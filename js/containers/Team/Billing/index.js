@@ -4,8 +4,8 @@ import connectToStores from 'alt/utils/connectToStores';
 import reactMixin from 'react-mixin';
 import Radium from 'radium';
 
-import Actions from 'actions';
-import Stores from 'stores';
+import { BillingsActions } from 'actions';
+import { BillingsStore, PlansStore, TeamsStore } from 'stores';
 import { authenticatedComponent } from 'decorators';
 
 import { DetailPanel, Toolbar, Group, Form, StripeCheckoutButton } from 'elements';
@@ -17,11 +17,11 @@ import { DetailPanel, Toolbar, Group, Form, StripeCheckoutButton } from 'element
 @Radium
 export default class extends React.Component {
   static getStores() {
-    return [Stores.Billings];
+    return [BillingsStore];
   }
 
   static getPropsFromStores(props) {
-    return Stores.Billings.getState();
+    return BillingsStore.getState();
   }
 
   constructor(props) {
@@ -34,8 +34,8 @@ export default class extends React.Component {
   }
 
   setupState(props) {
-    const team = Stores.Teams.withId(parseInt(props.params.id));
-    const billing = Stores.Billings.forTeamWithId(props.params.id);
+    const team = TeamsStore.withId(parseInt(props.params.id));
+    const billing = BillingsStore.forTeamWithId(props.params.id);
 
     return {
       team,
@@ -51,22 +51,22 @@ export default class extends React.Component {
       email: this.state.email
     };
 
-    Actions.Billings.update(this.state.billing.id, attrs)
+    BillingsActions.update(this.state.billing.id, attrs)
       .then(() => this.transitionTo("teamInfo", { id: this.state.team.id }))
-      .catch((error) => Actions.Notifications.createGeneric());
+      .catch((error) => NotificationsActions.createGeneric());
   }
 
   replaceCard(token) {
-    Actions.Billings.replaceCardWithTokenForId(this.state.billing.id, token.id)
-      .catch((error) => Actions.Notifications.createGeneric());
+    BillingsActions.replaceCardWithTokenForId(this.state.billing.id, token.id)
+      .catch((error) => NotificationsActions.createGeneric());
   }
 
   render() {
     const { billing } = this.state;
 
-    const team = Stores.Teams.withId(parseInt(this.props.params.id));
-    const hasCard = Stores.Billings.hasCardForId(billing.id);
-    const plan = Stores.Plans.withId(billing.plan_id);
+    const team = TeamsStore.withId(parseInt(this.props.params.id));
+    const hasCard = BillingsStore.hasCardForId(billing.id);
+    const plan = PlansStore.withId(billing.plan_id);
 
     const cardInfo = (
       <div>

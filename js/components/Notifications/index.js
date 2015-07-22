@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import Radium from 'radium';
 import connectToStores from 'alt/utils/connectToStores';
 
-import Stores from 'stores';
+import { NotificationsStore } from 'stores';
 import colors from 'styles/colors';
 
 import Notification from './Notification';
@@ -14,11 +14,11 @@ export default class extends React.Component {
   static Notification = Notification;
 
   static getStores() {
-    return [Stores.Notifications];
+    return [NotificationsStore];
   }
 
   static getPropsFromStores(props) {
-    return Stores.Notifications.getState();
+    return NotificationsStore.getState();
   }
 
   render() {

@@ -2,7 +2,7 @@ import React from 'react';
 import { RouteHandler } from 'react-router';
 import Radium from 'radium';
 
-import Stores from 'stores';
+import { TeamsStore } from 'stores';
 import { authenticatedComponent } from 'decorators';
 
 import { Container, MasterPanel } from 'elements';
@@ -14,12 +14,12 @@ export default class extends React.Component {
     super(props);
 
     this.state = {
-      team: Stores.Teams.withId(props.params.id),
+      team: TeamsStore.withId(props.params.id),
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ team: Stores.Teams.withId(nextProps.params.id) });
+    this.setState({ team: TeamsStore.withId(nextProps.params.id) });
   }
 
   render() {

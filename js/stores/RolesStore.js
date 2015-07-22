@@ -1,10 +1,10 @@
 import alt from 'flux/alt';
-import Actions from 'actions';
+import { RolesActions } from 'actions';
 
 class RolesStore {
   constructor() {
     this.bindListeners({
-      setRoles: Actions.Roles.FETCH_ALL_FOR_CURRENT_USER
+      setRoles: RolesActions.FETCH_ALL_FOR_CURRENT_USER
     });
 
     this.roles = new Map();

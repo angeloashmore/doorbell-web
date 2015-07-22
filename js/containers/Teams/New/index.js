@@ -3,6 +3,7 @@ import { Navigation } from 'react-router';
 import reactMixin from 'react-mixin';
 import Radium from 'radium';
 
+import { TeamsActions } from 'actions';
 import { authenticatedComponent } from 'decorators';
 
 import { DetailPanel, Toolbar, Form, Group } from 'elements';
@@ -29,7 +30,7 @@ export default class TeamsNew extends React.Component {
       email: this.state.email
     };
 
-    Actions.Teams.create(data)
+    TeamsActions.create(data)
       .then(() => this.transitionTo('teams'))
       .catch((error) => console.log(error));
   }

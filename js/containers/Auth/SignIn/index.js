@@ -3,7 +3,7 @@ import { Navigation, Link } from 'react-router';
 import reactMixin from 'react-mixin';
 import Radium from 'radium';
 
-import Actions from 'actions';
+import { UserActions } from 'actions';
 import commonStyles from 'styles/commonStyles';
 
 import { Sheet, Form } from 'elements';
@@ -28,7 +28,7 @@ export default class extends React.Component {
   signIn(e) {
     e.preventDefault();
 
-    Actions.User.signIn(this.state.email, this.state.password)
+    UserActions.signIn(this.state.email, this.state.password)
       .then(() => this.transitionTo("teams"))
       // .catch(error => Actions.Notifications.create({ message: error.details.error_description }));
       .catch(error => console.log(error));

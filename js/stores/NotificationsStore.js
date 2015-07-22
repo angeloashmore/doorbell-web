@@ -1,14 +1,14 @@
 import alt from 'flux/alt';
-import Actions from 'actions'
+import { NotificationsActions } from 'actions'
 
 class NotificationsStore {
   constructor() {
     this.bindListeners({
       setNotification: [
-        Actions.Notifications.CREATE,
-        Actions.Notifications.CREATE_GENERIC
+        NotificationsActions.CREATE,
+        NotificationsActions.CREATE_GENERIC
       ],
-      deleteNotification: Actions.Notifications.DELETE
+      deleteNotification: NotificationsActions.DELETE
     });
 
     this.notifications = new Map();

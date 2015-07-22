@@ -4,12 +4,12 @@ import reactMixin from 'react-mixin';
 import Radium from 'radium';
 import connectToStores from 'alt/utils/connectToStores';
 
+import { UserStore } from 'stores';
+import { UserActions } from 'actions';
 import { hoverable } from 'decorators';
-import Item from './Item';
-import Stores from 'stores';
-import Actions from 'actions';
-
 import colors from 'styles/colors';
+
+import Item from './Item';
 
 @hoverable
 @connectToStores
@@ -17,11 +17,11 @@ import colors from 'styles/colors';
 @Radium
 export default class extends React.Component {
   static getStores() {
-    return [Stores.User];
+    return [UserStore];
   }
 
   static getPropsFromStores(props) {
-    return Stores.User.getState();
+    return UserStore.getState();
   }
 
   static contextTypes = {
@@ -30,7 +30,7 @@ export default class extends React.Component {
 
   signOut() {
     this.transitionTo("signIn");
-    Actions.User.signOut();
+    UserActions.signOut();
   }
 
   render() {

@@ -1,10 +1,10 @@
 import alt from 'flux/alt';
 import { UserNotLoggedIn } from 'errors';
-import Stores from 'stores';
+import { UserStore } from 'stores';
 
 class UsersActions {
   fetchAllForCurrentUser() {
-    const { jwt } = Stores.User.getState();
+    const { jwt } = UserStore.getState();
 
     return Promise.resolve().then(() => {
       if (!jwt) throw new UserNotLoggedIn();
@@ -26,7 +26,7 @@ class UsersActions {
 
   fetchWithId(id) {
     return Promise.resolve().then(() => {
-      const { jwt } = Stores.User.getState();
+      const { jwt } = UserStore.getState();
       return fetch(`http://localhost:5000/api/v1/users/${id}`, {
         method: "get",
         headers: {

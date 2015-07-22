@@ -1,14 +1,14 @@
 import alt from 'flux/alt';
-import Actions from 'actions';
+import { BillingsActions } from 'actions';
 
 class BillingsStore {
   constructor() {
     this.bindListeners({
-      setBillings: Actions.Billings.FETCH_ALL_FOR_CURRENT_USER,
+      setBillings: BillingsActions.FETCH_ALL_FOR_CURRENT_USER,
       setBilling: [
-        Actions.Billings.UPDATE,
-        Actions.Billings.REPLACE_CARD_WITH_TOKEN_FOR_ID,
-        Actions.Billings.SUBSCRIBE_TO_PLAN_WITH_ID_FOR_ID
+        BillingsActions.UPDATE,
+        BillingsActions.REPLACE_CARD_WITH_TOKEN_FOR_ID,
+        BillingsActions.SUBSCRIBE_TO_PLAN_WITH_ID_FOR_ID
       ]
     });
 

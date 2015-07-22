@@ -1,10 +1,10 @@
 import alt from 'flux/alt';
-import Actions from 'actions';
+import { PlansActions } from 'actions';
 
 class PlansStore {
   constructor() {
     this.bindListeners({
-      setPlans: Actions.Plans.FETCH_ALL
+      setPlans: PlansActions.FETCH_ALL
     });
 
     this.plans = new Map();

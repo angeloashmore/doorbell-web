@@ -3,8 +3,8 @@ import { Navigation } from 'react-router';
 import reactMixin from 'react-mixin';
 import Radium from 'radium';
 
-import Actions from 'actions';
-import Stores from 'stores';
+import { NotificationsActions, ProfilesActions } from 'actions';
+import { ProfilesStore, TeamsStore, UserStore } from 'stores';
 import { authenticatedComponent } from 'decorators';
 
 import { Container, DetailPanel, Toolbar, Form, Group } from 'elements';
@@ -25,8 +25,8 @@ export default class extends React.Component {
   }
 
   setupState(id) {
-    const team = Stores.Teams.withId(id);
-    const profile = Stores.Profiles.forUserWithIdforTeamWithId(Stores.User.getState().user.remote_id, team.id);
+    const team = TeamsStore.withId(id);
+    const profile = ProfilesStore.forUserWithIdforTeamWithId(UserStore.getState().user.remote_id, team.id);
 
     return {
       team: team,
@@ -44,9 +44,9 @@ export default class extends React.Component {
       email: this.state.email
     };
 
-    Actions.Profiles.update(this.state.profile.id, attrs)
+    ProfilesActions.update(this.state.profile.id, attrs)
       .then(() => this.transitionTo("teamInfo", { id: this.state.team.id }))
-      .catch((error) => Actions.Notifications.createGeneric());
+      .catch((error) => NotificationsActions.createGeneric());
   }
 
   render() {

@@ -1,7 +1,7 @@
 import React from 'react';
 import Radium from 'radium';
 
-import Stores from 'stores';
+import { ProfilesStore, TeamsStore, UsersStore } from 'stores';
 import { authenticatedComponent } from 'decorators';
 import colors from "styles/colors";
 
@@ -20,8 +20,8 @@ export default class extends React.Component {
   }
 
   setupState(props) {
-    const team = Stores.Teams.withId(parseInt(props.params.id));
-    const profiles = Stores.Profiles.forTeamWithId(team.id);
+    const team = TeamsStore.withId(parseInt(props.params.id));
+    const profiles = ProfilesStore.forTeamWithId(team.id);
     return { team, profiles };
   }
 
@@ -30,7 +30,7 @@ export default class extends React.Component {
 
     const memberGroupItems = [];
     profiles.forEach(profile => {
-      let user = Stores.Users.withId(profile.user_id);
+      let user = UsersStore.withId(profile.user_id);
 
       memberGroupItems.push(
         <Group.Item>

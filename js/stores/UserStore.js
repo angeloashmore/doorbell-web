@@ -1,18 +1,18 @@
 import alt from 'flux/alt';
 import jwt_decode from 'jwt-decode';
-import Actions from 'actions';
+import { UserActions } from 'actions';
 
 class UserStore {
   constructor() {
     this.bindListeners({
       setJWTAndUser: [
-        Actions.User.RESTORE,
-        Actions.User.SIGN_IN,
-        Actions.User.SIGN_UP
+        UserActions.RESTORE,
+        UserActions.SIGN_IN,
+        UserActions.SIGN_UP
       ],
       clearAllStores: [
-        Actions.User.SIGN_OUT,
-        Actions.User.RESET_PASSWORD
+        UserActions.SIGN_OUT,
+        UserActions.RESET_PASSWORD
       ]
     });
 
@@ -37,7 +37,7 @@ class UserStore {
     this.user = user;
   }
 
-  clearAllStores(showNotification) {
+  clearAllStores() {
     localStorage.clear();
     alt.recycle();
   }

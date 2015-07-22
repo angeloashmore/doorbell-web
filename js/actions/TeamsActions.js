@@ -1,12 +1,12 @@
 import 'whatwg-fetch';
 import alt from 'flux/alt';
-import Stores from 'stores';
-import ProfilesActions from 'actions/ProfilesActions';
+import { UserStore } from 'stores';
+import { ProfilesActions } from 'actions';
 import { UserNotLoggedIn } from 'errors';
 
 class TeamsActions {
   fetchAllForCurrentUser() {
-    const { jwt } = Stores.User.getState();
+    const { jwt } = UserStore.getState();
 
     return Promise.resolve().then(() => {
       if (!jwt) throw new UserNotLoggedIn();
@@ -28,7 +28,7 @@ class TeamsActions {
 
   create(attrs) {
     return Promise.resolve().then(() => {
-      const { jwt } = Stores.User.getState();
+      const { jwt } = UserStore.getState();
       return fetch("http://localhost:5000/api/v1/teams", {
         method: "post",
         headers: {
@@ -79,7 +79,7 @@ class TeamsActions {
 
   destroy(id) {
     return Promise.resolve().then(() => {
-      const { jwt } = Stores.User.getState();
+      const { jwt } = UserStore.getState();
       return fetch(`http://localhost:5000/api/v1/teams/${id}`, {
         method: "delete",
         headers: {

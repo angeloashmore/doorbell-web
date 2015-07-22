@@ -3,8 +3,8 @@ import { Navigation } from 'react-router';
 import reactMixin from 'react-mixin';
 import Radium from 'radium';
 
-import Actions from 'actions';
-import Stores from 'stores';
+import { NotificationsActions, TeamsActions } from 'actions';
+import { TeamsStore } from 'stores';
 import { authenticatedComponent } from 'decorators';
 
 import { Container, DetailPanel, Toolbar, Form, Group } from 'elements';
@@ -25,7 +25,7 @@ export default class extends React.Component {
   }
 
   setupState(id) {
-    const team = Stores.Teams.withId(id);
+    const team = TeamsStore.withId(id);
 
     return {
       team: team,

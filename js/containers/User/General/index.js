@@ -3,8 +3,8 @@ import { Navigation } from 'react-router';
 import reactMixin from 'react-mixin';
 import Radium from 'radium';
 
-import Actions from 'actions';
-import Stores from 'stores';
+import { NotificationsActions, UserActions } from 'actions';
+import { UserStore } from 'stores';
 import { authenticatedComponent } from 'decorators';
 
 import { Container, DetailPanel, Toolbar, Form, Group } from 'elements';
@@ -17,7 +17,7 @@ export default class extends React.Component {
   constructor() {
     super();
 
-    const { user } = Stores.User.getState();
+    const { user } = UserStore.getState();
 
     this.state = {
       user: user,
@@ -34,9 +34,9 @@ export default class extends React.Component {
       email: this.state.email
     };
 
-    Actions.User.update(this.state.user, attrs)
+    UserActions.update(this.state.user, attrs)
       .then(() => this.transitionTo("userOverview"))
-      .catch((error) => Actions.Notifications.createGeneric());
+      .catch((error) => NotificationsActions.createGeneric());
   }
 
   render() {
