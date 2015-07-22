@@ -4,10 +4,12 @@ import Radium from 'radium';
 import colors from 'styles/colors';
 
 import Button from './Button';
+import Link from './Link';
 
 @Radium
 export default class extends React.Component {
   static Button = Button;
+  static Link = Link;
 
   render() {
     return (
@@ -70,13 +72,11 @@ const styles = {
   },
 
   leftItem: {
-    alignSelf: "flex-start",
     position: "relative",
     zIndex: 1
   },
 
   rightItem: {
-    alignSelf: "flex-end",
     position: "relative",
     zIndex: 1
   }

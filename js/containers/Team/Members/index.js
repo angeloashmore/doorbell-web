@@ -1,5 +1,6 @@
 import React from 'react';
 import reactMixin from 'react-mixin';
+import { Navigation } from 'react-router';
 import Radium from 'radium';
 
 import { NotificationsActions, RolesActions } from 'actions';
@@ -7,9 +8,10 @@ import { ProfilesStore, TeamsStore, UsersStore } from 'stores';
 import { authenticatedComponent } from 'decorators';
 import colors from "styles/colors";
 
-import { DetailPanel, Form, Toolbar, Group, ProfilePhoto } from 'elements';
+import { DetailPanel, Form, Icon, Toolbar, Group, ProfilePhoto } from 'elements';
 
 @authenticatedComponent
+@reactMixin.decorate(Navigation)
 @reactMixin.decorate(React.addons.LinkedStateMixin)
 @Radium
 export default class extends React.Component {
@@ -71,21 +73,13 @@ export default class extends React.Component {
         <Toolbar
           title="Members"
           subtitle={team.name}
+          rightItem={<Toolbar.Link to="teamMembersAdd" params={this.props.params}><Icon name="add" /></Toolbar.Link>}
           />
 
         <DetailPanel.Body>
           <Group header="Members">
             {[memberGroupItems]}
           </Group>
-
-          <Form>
-            <Group header="Add Member">
-              <Group.Item title="Email">
-                <Form.Input valueLink={this.linkState('email')} placeholder="Email" chromeless={true} hasTitle={true} />
-              </Group.Item>
-              <Group.Button type="submit" onClick={this.addMember.bind(this)} last={true}>Add Member</Group.Button>
-            </Group>
-          </Form>
         </DetailPanel.Body>
       </DetailPanel>
     );

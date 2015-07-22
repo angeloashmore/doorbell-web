@@ -1,27 +1,12 @@
-import DetailPanel from 'elements/DetailPanel';
-import Footerbar from 'elements/Footerbar';
-import Form from 'elements/Form';
-import Group from 'elements/Group';
-import MasterPanel from 'elements/MasterPanel';
-import Sheet from 'elements/Sheet';
-import Toolbar from 'elements/Toolbar';
-import BackButton from 'elements/BackButton';
-import Container from 'elements/Container';
-import Icon from 'elements/Icon';
-import StripeCheckoutButton from 'elements/StripeCheckoutButton';
-import ProfilePhoto from 'elements/ProfilePhoto';
-
-export default {
-  DetailPanel,
-  Footerbar,
-  Form,
-  Group,
-  MasterPanel,
-  Sheet,
-  Toolbar,
-  BackButton,
-  Container,
-  Icon,
-  StripeCheckoutButton,
-  ProfilePhoto
-}
+export DetailPanel from 'elements/DetailPanel';
+export Footerbar from 'elements/Footerbar';
+export Form from 'elements/Form';
+export Group from 'elements/Group';
+export MasterPanel from 'elements/MasterPanel';
+export Sheet from 'elements/Sheet';
+export Toolbar from 'elements/Toolbar';
+export BackButton from 'elements/BackButton';
+export Container from 'elements/Container';
+export Icon from 'elements/Icon';
+export StripeCheckoutButton from 'elements/StripeCheckoutButton';
+export ProfilePhoto from 'elements/ProfilePhoto';
