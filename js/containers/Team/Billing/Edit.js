@@ -6,7 +6,7 @@ import { BillingsActions, NotificationsActions } from 'actions';
 import { BillingsStore, PlansStore } from 'stores';
 import { authenticatedComponent } from 'decorators';
 
-import { Group, StripeCheckoutButton } from 'elements';
+import { Form, Group, Toolbar, StripeCheckoutButton } from 'elements';
 
 @authenticatedComponent
 @reactMixin.decorate(React.addons.LinkedStateMixin)

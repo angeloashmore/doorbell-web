@@ -6,7 +6,7 @@ import { BillingsActions } from 'actions';
 import { BillingsStore, PlansStore } from 'stores';
 import { authenticatedComponent } from 'decorators';
 
-import { Group } from 'elements';
+import { Group, Toolbar } from 'elements';
 
 import Edit from './Edit';
 
