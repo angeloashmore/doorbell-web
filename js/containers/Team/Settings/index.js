@@ -1,91 +1,24 @@
 import React from 'react';
-import { Navigation } from 'react-router';
-import reactMixin from 'react-mixin';
-import Radium from 'radium';
 
-import { NotificationsActions, TeamsActions } from 'actions';
-import { TeamsStore } from 'stores';
-import { authenticatedComponent } from 'decorators';
+import { TeamsStore } from 'stores'
 
-import { Container, DetailPanel, Toolbar, Form, Group } from 'elements';
+import { Navigator } from 'components';
+import { DetailPanel } from 'elements';
 
-@authenticatedComponent
-@reactMixin.decorate(Navigation)
-@reactMixin.decorate(React.addons.LinkedStateMixin)
-@Radium
+import Home from './Home';
+
 export default class extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = this.setupState(props);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.setState(this.setupState(nextprops));
-  }
-
-  setupState(props) {
-    const team = TeamsStore.withId(parseInt(props.params.id));
-
-    return {
-      team,
-      name: team.name,
-      email: team.email
-    };
-  }
-
-  updateTeam(e) {
-    e.preventDefault();
-
-    let attrs = {
-      name: this.state.name,
-      email: this.state.email
-    };
-
-    TeamsActions.update(this.state.team.id, attrs)
-      .then(() => this.transitionTo("teamInfo", { id: this.state.team.id }))
-      .catch((error) => NotificationsActions.createGeneric());
-  }
-
-  destroyTeam(e) {
-    e.preventDefault();
-
-    if (confirm(`Are you sure you want to delete ${this.state.team.name}?`)) {
-      this.transitionTo("teams");
-
-      Actions.Teams.destroy(this.state.team.id)
-        .then(() => Actions.Notifications.create({ message: "Your team was successfully deleted." }))
-        .catch((error) => console.log(error));
-    }
-  }
-
   render() {
-    const { team } = this.state;
+    const team = TeamsStore.withId(parseInt(this.props.params.id));
 
     return (
       <DetailPanel>
-        <Form>
-          <Toolbar
-            title="Settings"
-            subtitle={team.name}
-            leftItem={<Toolbar.Button disabled={true}>Cancel</Toolbar.Button>}
-            rightItem={<Toolbar.Button type="submit" onClick={this.updateTeam.bind(this)}>Save</Toolbar.Button>}
-            />
-
-          <DetailPanel.Body>
-            <Group header="General">
-              <Group.Item title="Name">
-                <Form.Input valueLink={this.linkState('name')} placeholder="Name" chromeless={true} hasTitle={true} />
-              </Group.Item>
-              <Group.Item title="Team Email" last={true}>
-                <Form.Input valueLink={this.linkState('email')} placeholder="Team Email" chromeless={true} hasTitle={true} />
-              </Group.Item>
-            </Group>
-
-            <Group>
-              <Form.Button onClick={this.destroyTeam.bind(this)}>Delete This Team</Form.Button>
-            </Group>
-          </DetailPanel.Body>
-        </Form>
+        <Navigator
+          subtitle={team.name}
+          views={[
+            <Home team={team} />
+          ]}
+          />
       </DetailPanel>
     );
   }

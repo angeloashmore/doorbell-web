@@ -55,7 +55,7 @@ class TeamsActions {
 
   update(id, attrs) {
     return Promise.resolve().then(() => {
-      const { jwt } = Store.User.getState();
+      const { jwt } = UserStore.getState();
       return fetch(`http://localhost:5000/api/v1/teams/${id}`, {
         method: "put",
         headers: {

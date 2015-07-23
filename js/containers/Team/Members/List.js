@@ -6,7 +6,7 @@ import { ProfilesStore, TeamsStore, UsersStore } from 'stores';
 import { authenticatedComponent } from 'decorators';
 import colors from "styles/colors";
 
-import { DetailPanel, Form, Icon, Toolbar, Group, ProfilePhoto } from 'elements';
+import { Group, ProfilePhoto, Toolbar } from 'elements';
 
 import Add from './Add';
 
@@ -16,12 +16,7 @@ export default class extends React.Component {
   constructor(props) {
     super(props);
 
-    const { team, navigator } = props;
-
-    this.state = {
-      team,
-      profiles: ProfilesStore.forTeamWithId(team.id),
-    };
+    const { navigator } = props;
 
     navigator.setTitle("Members");
     navigator.setLeftItem(null);
@@ -35,12 +30,13 @@ export default class extends React.Component {
 
   handleAddButton() {
     this.props.navigator.pushView(
-      <Add team={this.state.team} />
+      <Add team={this.props.team} />
     );
   }
 
   render() {
-    const { team, profiles } = this.state;
+    const { team } = this.props;
+    const profiles = ProfilesStore.forTeamWithId(team.id);
 
     const memberGroupItems = [];
     profiles.forEach(profile => {

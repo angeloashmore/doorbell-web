@@ -7,7 +7,7 @@ import { ProfilesStore, TeamsStore, UsersStore } from 'stores';
 import { authenticatedComponent } from 'decorators';
 import colors from "styles/colors";
 
-import { DetailPanel, Form, Toolbar, Group, ProfilePhoto } from 'elements';
+import { Form, Group, ProfilePhoto, Toolbar } from 'elements';
 
 @authenticatedComponent
 @reactMixin.decorate(React.addons.LinkedStateMixin)
@@ -16,10 +16,9 @@ export default class extends React.Component {
   constructor(props) {
     super(props);
 
-    const { team, navigator } = props;
+    const { navigator } = props;
 
     this.state = {
-      team,
       email: '',
       role: "member"
     };
@@ -47,7 +46,7 @@ export default class extends React.Component {
     e.preventDefault();
 
     let attrs = {
-      team_id: this.state.team.id,
+      team_id: this.props.team.id,
       email: this.state.email,
       role: this.state.role
     };
@@ -58,7 +57,7 @@ export default class extends React.Component {
   }
 
   render() {
-    const { team } = this.state;
+    const { team } = this.props;
 
     return (
       <div>

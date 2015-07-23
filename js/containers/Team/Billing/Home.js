@@ -6,7 +6,7 @@ import { BillingsActions } from 'actions';
 import { BillingsStore, PlansStore } from 'stores';
 import { authenticatedComponent } from 'decorators';
 
-import { DetailPanel, Toolbar, Group, Form, StripeCheckoutButton } from 'elements';
+import { Group } from 'elements';
 
 import Edit from './Edit';
 

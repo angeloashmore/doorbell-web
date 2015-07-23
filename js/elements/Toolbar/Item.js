@@ -14,7 +14,7 @@ export default class extends React.Component {
   }
 
   renderContent() {
-    const { elType, hovered, icon, iconLeft, iconRight } = this.props;
+    const { hovered, icon, iconLeft, iconRight } = this.props;
 
     if (!!icon) {
       return <Icon name={icon} selected={hovered} />;
@@ -38,21 +38,21 @@ export default class extends React.Component {
   }
 
   render() {
-    const { hoverableProps, disabled } = this.props;
+    const { elType, hoverableProps, disabled } = this.props;
 
-    return (
-      <elType
-        {...this.props}
-        {...hoverableProps}
-        style={[
+    const props = Object.assign(
+      {...this.props},
+      {...hoverableProps},
+      {
+        style: [
           styles.item,
           disabled && styles.disabled,
           this.props.style
-        ]}
-        >
-        {this.renderContent()}
-      </elType>
+        ]
+      }
     );
+
+    return React.createElement(elType, props, this.renderContent());
   }
 }
 
