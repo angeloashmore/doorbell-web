@@ -3,13 +3,11 @@ import Radium from 'radium';
 
 import colors from 'styles/colors';
 
-import Button from './Button';
-import Link from './Link';
+import Item from './Item';
 
 @Radium
 export default class extends React.Component {
-  static Button = Button;
-  static Link = Link;
+  static Item = Item;
 
   render() {
     return (

@@ -1,6 +1,5 @@
 import React from 'react';
 import reactMixin from 'react-mixin';
-import { Navigation } from 'react-router';
 import Radium from 'radium';
 
 import { NotificationsActions, RolesActions } from 'actions';
@@ -11,27 +10,29 @@ import colors from "styles/colors";
 import { DetailPanel, Form, Toolbar, Group, ProfilePhoto } from 'elements';
 
 @authenticatedComponent
-@reactMixin.decorate(Navigation)
 @reactMixin.decorate(React.addons.LinkedStateMixin)
 @Radium
 export default class extends React.Component {
   constructor(props) {
     super(props);
-    this.state = this.setupState(props);
-  }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState(this.setupState(nextProps));
-  }
+    const { team, navigator } = props;
 
-  setupState(props) {
-    const team = TeamsStore.withId(parseInt(props.params.id));
-    const profiles = ProfilesStore.forTeamWithId(team.id);
-
-    return {
-      team, profiles,
+    this.state = {
+      team,
       email: ''
     };
+
+    navigator.setTitle("Add Member");
+    navigator.setRightItem(
+      <Toolbar.Item
+        elType="button"
+        type="submit"
+        onClick={this.addMember.bind(this)}
+        >
+        Add
+      </Toolbar.Item>
+    );
   }
 
   addMember(e) {
@@ -51,24 +52,13 @@ export default class extends React.Component {
     const { team } = this.state;
 
     return (
-      <DetailPanel>
-        <Form>
-          <Toolbar
-            title="Add Member"
-            subtitle={team.name}
-            leftItem={<Toolbar.Link to="teamMembers" params={this.props.params}>Cancel</Toolbar.Link>}
-            rightItem={<Toolbar.Button type="submit" onClick={this.addMember.bind(this)}>Add</Toolbar.Button>}
-            />
-
-          <DetailPanel.Body>
-            <Group header="Member Details">
-              <Group.Item title="Email">
-                <Form.Input valueLink={this.linkState('email')} placeholder="Email" chromeless={true} hasTitle={true} />
-              </Group.Item>
-            </Group>
-          </DetailPanel.Body>
-        </Form>
-      </DetailPanel>
+      <div>
+        <Group header="Member Details" last={true}>
+          <Group.Item title="Email">
+            <Form.Input valueLink={this.linkState('email')} placeholder="Email" chromeless={true} hasTitle={true} />
+          </Group.Item>
+        </Group>
+      </div>
     );
   }
 }
@@ -93,4 +83,4 @@ const styles = {
     fontSize: 14,
     display: "block"
   }
-}
+};
