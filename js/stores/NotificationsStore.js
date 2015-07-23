@@ -8,7 +8,7 @@ class NotificationsStore {
         NotificationsActions.CREATE,
         NotificationsActions.CREATE_GENERIC
       ],
-      deleteNotification: NotificationsActions.DELETE
+      destroyNotification: NotificationsActions.DESTROY
     });
 
     this.notifications = new Map();
@@ -26,7 +26,7 @@ class NotificationsStore {
     this.notifications.set(notification.id, notification);
   }
 
-  deleteNotification(id) {
+  destroyNotification(id) {
     this.notifications.delete(id);
   }
 }

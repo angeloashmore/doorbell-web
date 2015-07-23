@@ -49,7 +49,7 @@ class BillingsActions {
 
   replaceCardWithTokenForId(id, token) {
     return Promise.resolve().then(() => {
-      const { jwt } = Store.User.getState();
+      const { jwt } = UserStore.getState();
       return fetch(`http://localhost:5000/api/v1/billings/${id}/card`, {
         method: "put",
         headers: {

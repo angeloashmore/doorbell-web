@@ -20,10 +20,18 @@ export default class extends React.Component {
 
     this.state = {
       team,
-      email: ''
+      email: '',
+      role: "member"
     };
 
     navigator.setTitle("Add Member");
+    navigator.setLeftItem(
+      <Toolbar.Item
+        onClick={this.props.navigator.popView.bind(navigator)}
+        >
+        Cancel
+      </Toolbar.Item>
+    );
     navigator.setRightItem(
       <Toolbar.Item
         elType="button"
@@ -40,7 +48,8 @@ export default class extends React.Component {
 
     let attrs = {
       team_id: this.state.team.id,
-      email: this.state.email
+      email: this.state.email,
+      role: this.state.role
     };
 
     RolesActions.create(attrs)
@@ -53,9 +62,15 @@ export default class extends React.Component {
 
     return (
       <div>
-        <Group header="Member Details" last={true}>
+        <Group header="Member Details">
           <Group.Item title="Email">
             <Form.Input valueLink={this.linkState('email')} placeholder="Email" chromeless={true} hasTitle={true} />
+          </Group.Item>
+        </Group>
+
+        <Group header="Role Details" last={true}>
+          <Group.Item title="Role">
+            <Form.Input valueLink={this.linkState('role')} placeholder="Role" chromeless={true} hasTitle={true} />
           </Group.Item>
         </Group>
       </div>

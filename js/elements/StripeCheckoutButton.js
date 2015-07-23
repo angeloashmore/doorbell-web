@@ -1,14 +1,11 @@
 import React from 'react';
 import reactMixin from 'react-mixin';
-import ReactScriptLoader from 'react-script-loader';
+import { ReactScriptLoaderMixin } from 'react-script-loader';
 import Radium from 'radium';
 
 import config from 'config';
-import Stores from 'stores';
+import { UserStore } from 'stores';
 
-const ReactScriptLoaderMixin = ReactScriptLoader.ReactScriptLoaderMixin;
-
-// @reactMixin.decorate(StripeCheckoutButton.prototype)
 @reactMixin.decorate(ReactScriptLoaderMixin)
 @Radium
 export default class StripeCheckoutButton extends React.Component {
@@ -22,7 +19,7 @@ export default class StripeCheckoutButton extends React.Component {
   }
 
   getScriptURL() {
-    return 'https://checkout.stripe.com/checkout.js';
+    return "https://checkout.stripe.com/checkout.js";
   }
 
   onScriptLoaded() {
@@ -47,7 +44,7 @@ export default class StripeCheckoutButton extends React.Component {
   onClick(e) {
     e.preventDefault();
 
-    const { user } = Stores.User.getState();
+    const { user } = UserStore.getState();
 
     this.handler().open({
       name: "Doorbell",
@@ -71,9 +68,9 @@ export default class StripeCheckoutButton extends React.Component {
             Loading&hellip;
           </span>
         ) : (
-          <button style={styles.button} onClick={this.onClick.bind(this)}>
+          <span style={styles.button} onClick={this.onClick.bind(this)}>
             {this.props.title}
-          </button>
+          </span>
         )}
       </div>
     );

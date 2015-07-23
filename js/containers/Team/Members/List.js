@@ -24,6 +24,7 @@ export default class extends React.Component {
     };
 
     navigator.setTitle("Members");
+    navigator.setLeftItem(null);
     navigator.setRightItem(
       <Toolbar.Item
         icon="add"

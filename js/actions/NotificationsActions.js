@@ -19,7 +19,7 @@ class NotificationsActions {
     });
   }
 
-  delete(id) {
+  destroy(id) {
     return Promise.resolve().then(() => {
       this.dispatch(id);
 

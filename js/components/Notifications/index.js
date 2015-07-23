@@ -25,11 +25,11 @@ export default class extends React.Component {
     const { notifications } = this.props;
 
     const notificationItems = [];
-    for (let id in notifications) {
+    notifications.forEach((notification, id) => {
       notificationItems.push(
-        <Notification key={id} id={id}>{notifications[id].message}</Notification>
+        <Notification key={id} id={id}>{notification.message}</Notification>
       );
-    }
+    })
 
     return (
       <ul>

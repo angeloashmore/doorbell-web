@@ -34,7 +34,7 @@ export default class extends React.Component {
           params={{id: id}}
         />
       );
-    })
+    });
 
     return (
       <Container>
