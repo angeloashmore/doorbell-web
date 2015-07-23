@@ -1,11 +1,15 @@
 import React from 'react';
 import Radium from 'radium';
 
-import { Container, Form, Toolbar } from 'elements';
+import { Form, Toolbar } from 'elements';
 
 @Radium
 export default class extends React.Component {
   static propTypes = {
+    title: React.PropTypes.string,
+    subtitle: React.PropTypes.string,
+    leftItem: React.PropTypes.element,
+    rightItem: React.PropTypes.element,
     views: React.PropTypes.array
   }
 
@@ -15,13 +19,8 @@ export default class extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      views: this.props.views,
-      title: this.props.title,
-      subtitle: this.props.subtitle,
-      leftItem: this.props.leftItem,
-      rightItem: this.props.rightItem
-    };
+    const { title, subtitle, leftItem, rightItem, views } = this.props;
+    this.state = { title, subtitle, leftItem, rightItem, views };
   }
 
   setTitle(title) {
@@ -81,33 +80,23 @@ export default class extends React.Component {
     const { views } = this.state;
 
     return (
-      <Container
-        style={[
-          styles.container,
-          this.props.style
-        ]}>
-        <Form>
-          <Toolbar
-            title={this.state.title}
-            subtitle={this.state.subtitle}
-            leftItem={this.state.leftItem || this.renderBackButton()}
-            rightItem={this.state.rightItem}
-            />
+      <Form>
+        <Toolbar
+          title={this.state.title}
+          subtitle={this.state.subtitle}
+          leftItem={this.state.leftItem || this.renderBackButton()}
+          rightItem={this.state.rightItem}
+          />
 
-          <Container style={[styles.container, styles.body]}>
-            {this.viewToMount()}
-          </Container>
-        </Form>
-      </Container>
+        <div style={styles.body}>
+          {this.viewToMount()}
+        </div>
+      </Form>
     );
   }
 }
 
 const styles = {
-  container: {
-    flexDirection: "column"
-  },
-
   body: {
     overflowY: "auto"
   }
