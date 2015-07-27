@@ -6,10 +6,7 @@ import { ProfilesStore, TeamsStore, UsersStore } from 'stores';
 import { authenticatedComponent } from 'decorators';
 import colors from "styles/colors";
 
-import { Group, ProfilePhoto, Toolbar } from 'elements';
-
-import Add from './Add';
-import Edit from './Edit';
+import { Group, Icon, ProfilePhoto, Toolbar } from 'elements';
 
 @authenticatedComponent
 @Radium
@@ -19,32 +16,18 @@ export default class extends React.Component {
 
     const { navigator } = props;
 
-    navigator.setTitle("Members");
+    navigator.setTitle("Edit Members");
     navigator.setLeftItem(
       <Toolbar.Item
-        onClick={this.handleEditButton.bind(this)}
+        onClick={this.props.navigator.popView.bind(navigator)}
         >
-        Edit
+        Done
       </Toolbar.Item>
     );
-    navigator.setRightItem(
-      <Toolbar.Item
-        icon="add"
-        onClick={this.handleAddButton.bind(this)}
-      />
-    );
+    navigator.setRightItem(null);
   }
 
-  handleEditButton() {
-    this.props.navigator.pushView(
-      <Edit team={this.props.team} />
-    );
-  }
-
-  handleAddButton() {
-    this.props.navigator.pushView(
-      <Add team={this.props.team} />
-    );
+  deleteMember(id) {
   }
 
   render() {
@@ -57,6 +40,7 @@ export default class extends React.Component {
 
       memberGroupItems.push(
         <Group.Item>
+          <Icon name="delete" style={styles.deleteButton} />
           <ProfilePhoto
             profile={profile}
             style={styles.photo}
@@ -80,6 +64,10 @@ export default class extends React.Component {
 }
 
 const styles = {
+  deleteButton: {
+    marginRight: 15
+  },
+
   photo: {
     height: 40,
     marginRight: 15,
