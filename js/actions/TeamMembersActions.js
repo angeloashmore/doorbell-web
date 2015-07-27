@@ -1,5 +1,6 @@
 import alt from 'flux/alt';
 import { UserNotLoggedIn } from 'errors';
+import { UsersActions } from 'actions';
 import { UserStore } from 'stores';
 
 class TeamMembersActions {
@@ -46,7 +47,7 @@ class TeamMembersActions {
       this.dispatch(team_member);
 
     }).then(() => {
-      return ProfilesActions.fetchAllForCurrentUser();
+      return UsersActions.fetchAllForCurrentUser();
 
     });
   }

@@ -4,7 +4,11 @@ import { TeamMembersActions } from 'actions';
 class TeamMembersStore {
   constructor() {
     this.bindListeners({
-      setTeamMembers: TeamMembersActions.FETCH_ALL_FOR_CURRENT_USER
+      setTeamMembers: TeamMembersActions.FETCH_ALL_FOR_CURRENT_USER,
+      setTeamMember: [
+        TeamMembersActions.CREATE,
+        TeamMembersActions.UPDATE
+      ]
     });
 
     this.team_members = new Map();
