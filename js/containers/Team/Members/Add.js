@@ -59,17 +59,29 @@ export default class extends React.Component {
   render() {
     const { team } = this.props;
 
+    const roleFooter = (
+      <ul>
+        <li>Owner &ndash; Manage everything.</li>
+        <li>Admin &ndash; Manage members.</li>
+        <li>Member &ndash; Available to chat and manage profile.</li>
+      </ul>
+    );
+
     return (
       <div>
-        <Group header="Member Details">
+        <Group header="Member Details" footer="Please ensure an account with this email address already exists.">
           <Group.Item title="Email">
             <Form.Input valueLink={this.linkState('email')} placeholder="Email" chromeless={true} hasTitle={true} />
           </Group.Item>
         </Group>
 
-        <Group header="Role Details" last={true}>
+        <Group header="Role Details" footer={roleFooter} last={true}>
           <Group.Item title="Role">
-            <Form.Input valueLink={this.linkState('role')} placeholder="Role" chromeless={true} hasTitle={true} />
+            <Form.Select valueLink={this.linkState('role')} selected="member" chromeless={true} hasTitle={true}>
+              <option value="owner">Owner</option>
+              <option value="admin">Admin</option>
+              <option value="member">Member</option>
+            </Form.Select>
           </Group.Item>
         </Group>
       </div>
