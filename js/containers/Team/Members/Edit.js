@@ -1,7 +1,8 @@
 import React from 'react';
+import connectToStores from 'alt/utils/connectToStores';
 import Radium from 'radium';
 
-import { NotificationsActions } from 'actions';
+import { NotificationsActions, TeamMembersActions } from 'actions';
 import { TeamMembersStore, TeamsStore, UsersStore } from 'stores';
 import { authenticatedComponent } from 'decorators';
 import colors from "styles/colors";
@@ -9,8 +10,17 @@ import colors from "styles/colors";
 import { Group, Icon, ProfilePhoto, Toolbar } from 'elements';
 
 @authenticatedComponent
+@connectToStores
 @Radium
 export default class extends React.Component {
+  static getStores() {
+    return [TeamMembersStore];
+  }
+
+  static getPropsFromStores() {
+    return TeamMembersStore.getState();
+  }
+
   constructor(props) {
     super(props);
 
@@ -28,6 +38,11 @@ export default class extends React.Component {
   }
 
   deleteMember(id) {
+    if (confirm("Are you sure you want to delete this member?")) {
+      TeamMembersActions.destroy(id)
+        .then(() => NotificationsActions.create({ message: "Member deleted successfully." }))
+        .catch((error) => NotificationsActions.createGeneric());
+    }
   }
 
   render() {
@@ -40,7 +55,7 @@ export default class extends React.Component {
 
       memberGroupItems.push(
         <Group.Item>
-          <Icon name="delete" style={styles.deleteButton} />
+          <Icon name="delete" style={styles.deleteButton} onClick={() => this.deleteMember(team_member.id)} />
           <ProfilePhoto
             team_member={team_member}
             style={styles.photo}

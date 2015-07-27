@@ -52,7 +52,6 @@ class TeamMembersActions {
     });
   }
 
-
   update(id, attrs) {
     return Promise.resolve().then(() => {
       const { jwt } = UserStore.getState();
@@ -66,6 +65,26 @@ class TeamMembersActions {
           title: attrs.title,
           email: attrs.email
         })
+      });
+
+    }).then((response) => {
+      return response.json();
+
+    }).then((team_member) => {
+      this.dispatch(team_member);
+
+    });
+  }
+
+  destroy(id, attrs) {
+    return Promise.resolve().then(() => {
+      const { jwt } = UserStore.getState();
+      return fetch(`http://localhost:5000/api/v1/team_members/${id}`, {
+        method: "delete",
+        headers: {
+          "Authorization": `Bearer ${jwt}`,
+          "Content-Type": "application/json"
+        }
       });
 
     }).then((response) => {

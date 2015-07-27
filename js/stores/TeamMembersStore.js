@@ -8,7 +8,8 @@ class TeamMembersStore {
       setTeamMember: [
         TeamMembersActions.CREATE,
         TeamMembersActions.UPDATE
-      ]
+      ],
+      deleteTeamMember: TeamMembersActions.DESTROY
     });
 
     this.team_members = new Map();
