@@ -1,8 +1,11 @@
 import React from 'react';
+import { Navigation } from 'react-router';
+import reactMixin from 'react-mixin';
 import Radium from 'radium';
 
 import { Form, Toolbar } from 'elements';
 
+@reactMixin.decorate(Navigation)
 @Radium
 export default class extends React.Component {
   static propTypes = {
@@ -48,7 +51,12 @@ export default class extends React.Component {
   popView() {
     const views = this.state.views.slice(0);
     views.pop();
-    this.setState({ views });
+
+    if (views.length > 0) {
+      this.setState({ views });
+    } else if(!!this.props.container) {
+      this.goBack();
+    }
   }
 
   viewToMount() {
