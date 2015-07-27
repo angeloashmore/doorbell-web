@@ -2,7 +2,7 @@ import React from 'react';
 import Radium from 'radium';
 
 import { authenticatedComponent } from 'decorators';
-import { ProfilesStore, TeamsStore, UserStore } from 'stores';
+import { TeamMembersStore, TeamsStore, UserStore } from 'stores';
 
 import { Group } from 'elements';
 
@@ -12,7 +12,7 @@ export default class extends React.Component {
   render() {
     const { team } = this.props;
     const { user } = UserStore.getState();
-    const profile = ProfilesStore.forUserWithIdforTeamWithId(user.remote_id, team.id);
+    const team_member = TeamMembersStore.forUserWithIdforTeamWithId(user.remote_id, team.id);
 
     return (
       <div>
@@ -22,7 +22,7 @@ export default class extends React.Component {
         </Group>
 
         <Group header="Your Profile" last={true}>
-          <Group.Item title="Title" last={true}>{profile.title}</Group.Item>
+          <Group.Item title="Title" last={true}>{team_member.title}</Group.Item>
         </Group>
       </div>
     );

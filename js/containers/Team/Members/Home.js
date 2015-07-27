@@ -2,7 +2,7 @@ import React from 'react';
 import Radium from 'radium';
 
 import { NotificationsActions } from 'actions';
-import { ProfilesStore, TeamsStore, UsersStore } from 'stores';
+import { TeamMembersStore, TeamsStore, UsersStore } from 'stores';
 import { authenticatedComponent } from 'decorators';
 import colors from "styles/colors";
 
@@ -49,21 +49,21 @@ export default class extends React.Component {
 
   render() {
     const { team } = this.props;
-    const profiles = ProfilesStore.forTeamWithId(team.id);
+    const team_members = TeamMembersStore.forTeamWithId(team.id);
 
     const memberGroupItems = [];
-    profiles.forEach(profile => {
-      let user = UsersStore.withId(profile.user_id);
+    team_members.forEach(team_member => {
+      let user = UsersStore.withId(team_member.user_id);
 
       memberGroupItems.push(
         <Group.Item>
           <ProfilePhoto
-            profile={profile}
+            team_member={team_member}
             style={styles.photo}
             />
           <div style={styles.nameAndTitle}>
             <span style={styles.name}>{user.name}</span>
-            <span style={styles.title}>{profile.title}</span>
+            <span style={styles.title}>{team_member.title}</span>
           </div>
         </Group.Item>
       );

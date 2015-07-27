@@ -2,8 +2,8 @@ import React from 'react';
 import reactMixin from 'react-mixin';
 import Radium from 'radium';
 
-import { NotificationsActions, ProfilesActions } from 'actions';
-import { ProfilesStore, UserStore } from 'stores';
+import { NotificationsActions, TeamMembersActions } from 'actions';
+import { TeamMembersStore, UserStore } from 'stores';
 import { authenticatedComponent } from 'decorators';
 
 import { Form, Group, Toolbar  } from 'elements';
@@ -17,12 +17,12 @@ export default class extends React.Component {
 
     const { team, navigator } = props;
     const { user } = UserStore.getState();
-    const profile = ProfilesStore.forUserWithIdforTeamWithId(user.remote_id, team.id);
+    const team_member = TeamMembersStore.forUserWithIdforTeamWithId(user.remote_id, team.id);
 
     this.state = {
-      profile,
-      title: profile.title,
-      email: profile.email
+      team_member,
+      title: team_member.title,
+      email: team_member.email
     };
 
     navigator.setTitle("Edit My Profile");
@@ -37,14 +37,14 @@ export default class extends React.Component {
       <Toolbar.Item
         elType="button"
         type="submit"
-        onClick={this.updateProfile.bind(this)}
+        onClick={this.updateTeamMember.bind(this)}
         >
         Save
       </Toolbar.Item>
     );
   }
 
-  updateProfile(e) {
+  updateTeamMember(e) {
     e.preventDefault();
 
     let attrs = {
@@ -52,7 +52,7 @@ export default class extends React.Component {
       email: this.state.email
     };
 
-    ProfilesActions.update(this.state.profile.id, attrs)
+    TeamMembersActions.update(this.state.team_member.id, attrs)
       .then(this.props.navigator.popView.bind(this.props.navigator))
       .then(() => NotificationsActions.create({ message: "Profile updated successfully." }))
       .catch((error) => NotificationsActions.createGeneric());

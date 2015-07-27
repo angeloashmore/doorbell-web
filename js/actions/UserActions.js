@@ -4,9 +4,9 @@ import Auth0 from 'lib/Auth0';
 import {
   NotificationsActions,
   TeamsActions,
+  TeamMembersActions,
   BillingsActions,
   PlansActions,
-  ProfilesActions,
   UsersActions
 } from 'actions';
 import { UserStore } from 'stores';
@@ -104,10 +104,10 @@ class UserActions {
   _populateOtherStores() {
     if (UserStore.isLoggedIn()) {
       TeamsActions.fetchAllForCurrentUser();
+      TeamMembersActions.fetchAllForCurrentUser();
       BillingsActions.fetchAllForCurrentUser();
       PlansActions.fetchAll();
       UsersActions.fetchAllForCurrentUser();
-      ProfilesActions.fetchAllForCurrentUser();
     }
   }
 }

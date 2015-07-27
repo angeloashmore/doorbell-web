@@ -2,14 +2,14 @@ import alt from 'flux/alt';
 import { UserNotLoggedIn } from 'errors';
 import { UserStore } from 'stores';
 
-class RolesActions {
+class TeamMembersActions {
   fetchAllForCurrentUser() {
     const { jwt } = UserStore.getState();
 
     return Promise.resolve().then(() => {
       if (!jwt) throw new UserNotLoggedIn();
 
-      return fetch("http://localhost:5000/api/v1/roles", {
+      return fetch("http://localhost:5000/api/v1/team_members", {
         headers: {
           "Authorization": `Bearer ${jwt}`
         }
@@ -19,7 +19,7 @@ class RolesActions {
       return response.json();
 
     }).then((json) => {
-      this.dispatch(json.roles);
+      this.dispatch(json.team_members);
 
     });
   }
@@ -27,7 +27,7 @@ class RolesActions {
   create(attrs) {
     return Promise.resolve().then(() => {
       const { jwt } = UserStore.getState();
-      return fetch("http://localhost:5000/api/v1/roles", {
+      return fetch("http://localhost:5000/api/v1/team_members", {
         method: "post",
         headers: {
           "Authorization": `Bearer ${jwt}`,
@@ -42,8 +42,8 @@ class RolesActions {
     }).then((response) => {
       return response.json();
 
-    }).then((role) => {
-      this.dispatch(role);
+    }).then((team_member) => {
+      this.dispatch(team_member);
 
     }).then(() => {
       return ProfilesActions.fetchAllForCurrentUser();
@@ -55,24 +55,26 @@ class RolesActions {
   update(id, attrs) {
     return Promise.resolve().then(() => {
       const { jwt } = UserStore.getState();
-      return fetch(`http://localhost:5000/api/v1/roles/${id}`, {
+      return fetch(`http://localhost:5000/api/v1/team_members/${id}`, {
         method: "put",
         headers: {
           "Authorization": `Bearer ${jwt}`,
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
+          title: attrs.title,
+          email: attrs.email
         })
       });
 
     }).then((response) => {
       return response.json();
 
-    }).then((role) => {
-      this.dispatch(role);
+    }).then((team_member) => {
+      this.dispatch(team_member);
 
     });
   }
 }
 
-export default alt.createActions(RolesActions);
+export default alt.createActions(TeamMembersActions);

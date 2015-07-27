@@ -5,7 +5,7 @@ import { TeamsStore } from 'stores'
 import { Navigator } from 'components';
 import { DetailPanel } from 'elements';
 
-import List from './List';
+import Home from './Home';
 
 export default class extends React.Component {
   constructor(props) {
@@ -23,7 +23,7 @@ export default class extends React.Component {
         <Navigator
           subtitle={team.name}
           views={[
-            <List team={team} />
+            <Home team={team} />
           ]}
           />
       </DetailPanel>

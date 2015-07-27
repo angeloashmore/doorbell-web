@@ -1,7 +1,7 @@
 import React from 'react';
 import Radium from 'radium';
 
-import { ProfilesStore, UserStore } from 'stores';
+import { TeamMembersStore, UserStore } from 'stores';
 import { authenticatedComponent } from 'decorators';
 
 import { Form, Group, Toolbar  } from 'elements';
@@ -36,13 +36,13 @@ export default class extends React.Component {
   render() {
     const { team } = this.props;
     const { user } = UserStore.getState();
-    const profile = ProfilesStore.forUserWithIdforTeamWithId(user.remote_id, team.id);
+    const team_member = TeamMembersStore.forUserWithIdforTeamWithId(user.remote_id, team.id);
 
     return (
       <div>
         <Group header="General" last={true}>
-          <Group.Item title="Title">{profile.title}</Group.Item>
-          <Group.Item title="Email" last={true}>{profile.email}</Group.Item>
+          <Group.Item title="Title">{team_member.title || "None"}</Group.Item>
+          <Group.Item title="Email" last={true}>{team_member.email}</Group.Item>
         </Group>
       </div>
     );

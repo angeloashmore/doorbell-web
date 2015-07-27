@@ -2,12 +2,12 @@ import React from 'react';
 import reactMixin from 'react-mixin';
 import Radium from 'radium';
 
-import { NotificationsActions, RolesActions } from 'actions';
-import { ProfilesStore, TeamsStore, UsersStore } from 'stores';
+import { NotificationsActions, TeamMembersActions } from 'actions';
+import { TeamMembersStore, TeamsStore, UsersStore } from 'stores';
 import { authenticatedComponent } from 'decorators';
 import colors from "styles/colors";
 
-import { Form, Group, ProfilePhoto, Toolbar } from 'elements';
+import { Form, Group, Toolbar } from 'elements';
 
 @authenticatedComponent
 @reactMixin.decorate(React.addons.LinkedStateMixin)
@@ -47,11 +47,10 @@ export default class extends React.Component {
 
     let attrs = {
       team_id: this.props.team.id,
-      email: this.state.email,
-      role: this.state.role
+      email: this.state.email
     };
 
-    RolesActions.create(attrs)
+    TeamMembersActions.create(attrs)
       .then(() => NotificationsActions.create({ message: "Member added successfully." }))
       .catch((error) => NotificationsActions.createGeneric());
   }
@@ -63,7 +62,7 @@ export default class extends React.Component {
       <ul>
         <li>Owner &ndash; Manage everything.</li>
         <li>Admin &ndash; Manage members.</li>
-        <li>Member &ndash; Available to chat and manage profile.</li>
+        <li>Member &ndash; Available to chat and manage team_member.</li>
       </ul>
     );
 
@@ -77,7 +76,7 @@ export default class extends React.Component {
 
         <Group header="Role Details" footer={roleFooter} last={true}>
           <Group.Item title="Role">
-            <Form.Select valueLink={this.linkState('role')} selected="member" chromeless={true} hasTitle={true}>
+            <Form.Select valueLink={this.linkState('role')} chromeless={true} hasTitle={true}>
               <option value="owner">Owner</option>
               <option value="admin">Admin</option>
               <option value="member">Member</option>

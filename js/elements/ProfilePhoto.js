@@ -5,11 +5,11 @@ import gravatar from 'gravatar';
 @Radium
 export default class extends React.Component {
   static propTypes = {
-    profile: React.PropTypes.object.isRequired
+    team_member: React.PropTypes.object.isRequired
   }
 
   render() {
-    const src = gravatar.url(this.props.profile.email);
+    const src = gravatar.url(this.props.team_member.email);
 
     return (
       <img
