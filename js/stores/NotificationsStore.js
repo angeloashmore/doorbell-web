@@ -4,10 +4,7 @@ import { NotificationsActions } from 'actions'
 class NotificationsStore {
   constructor() {
     this.bindListeners({
-      setNotification: [
-        NotificationsActions.CREATE,
-        NotificationsActions.CREATE_GENERIC
-      ],
+      setNotification: NotificationsActions.CREATE,
       destroyNotification: NotificationsActions.DESTROY
     });
 

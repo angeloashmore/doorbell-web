@@ -53,7 +53,7 @@ export default class extends React.Component {
     TeamMembersActions.create(attrs)
       .then(this.props.navigator.popView.bind(this.props.navigator))
       .then(() => NotificationsActions.create({ message: "Member added successfully." }))
-      .catch((error) => NotificationsActions.createGeneric());
+      .catch(NotificationsActions.create);
   }
 
   render() {

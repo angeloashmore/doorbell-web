@@ -57,7 +57,7 @@ export default class extends React.Component {
     TeamsActions.update(this.props.team.id, attrs)
       .then(this.props.navigator.popView.bind(this.props.navigator))
       .then(() => NotificationsActions.create({ message: "Team updated successfully." }))
-      .catch(console.log);
+      .catch(NotificationsActions.create);
   }
 
   destroyTeam(e) {
@@ -68,7 +68,7 @@ export default class extends React.Component {
     if (confirm(`Are you sure you want to delete ${team.name}?`)) {
       TeamsActions.destroy(team.id)
         .then(() => NotificationsActions.create({ message: "Your team was successfully deleted." }))
-        .catch(console.log);
+        .catch(NotificationsActions.create);
     }
   }
 

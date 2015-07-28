@@ -55,7 +55,7 @@ export default class extends React.Component {
     TeamMembersActions.update(this.state.team_member.id, attrs)
       .then(this.props.navigator.popView.bind(this.props.navigator))
       .then(() => NotificationsActions.create({ message: "Profile updated successfully." }))
-      .catch((error) => NotificationsActions.createGeneric());
+      .catch(NotificationsActions.create);
   }
 
   render() {

@@ -3,7 +3,7 @@ import { Navigation, Link } from 'react-router';
 import reactMixin from 'react-mixin';
 import Radium from 'radium';
 
-import { UserActions } from 'actions';
+import { NotificationsActions, UserActions } from 'actions';
 import commonStyles from 'styles/commonStyles';
 
 import { Sheet, Form, BackButton } from 'elements';
@@ -29,11 +29,9 @@ export default class extends React.Component {
     e.preventDefault();
 
     UserActions.resetPassword(this.state.email, this.state.password)
-      .then(() => {
-        this.transitionTo('signIn');
-        Actions.Notifications.create({ message: "An email was sent to you with a link to activate your new password." });
-      })
-      .catch((error) => console.log(error));
+      .then(() => NotificationsActions.create({ message: "An email was sent to you with a link to activate your new password." }))
+      .then(() => this.transitionTo('signIn'))
+      .catch(NotificationsActions.create);
   }
 
   render() {

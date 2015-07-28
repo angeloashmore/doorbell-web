@@ -3,7 +3,7 @@ import { Navigation } from 'react-router';
 import reactMixin from 'react-mixin';
 import Radium from 'radium';
 
-import { TeamsActions } from 'actions';
+import { NotificationsActions, TeamsActions } from 'actions';
 import { UserStore } from 'stores';
 import { authenticatedComponent } from 'decorators';
 
@@ -55,7 +55,7 @@ export default class TeamsNew extends React.Component {
     TeamsActions.create(data)
       .then(this.props.navigator.popView.bind(this.props.navigator))
       .then(() => NotificationsActions.create({ message: "Team created successfully." }))
-      .catch((error) => console.log(error));
+      .catch(NotificationsActions.create);
   }
 
   render() {

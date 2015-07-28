@@ -41,7 +41,7 @@ export default class extends React.Component {
     if (confirm("Are you sure you want to delete this member?")) {
       TeamMembersActions.destroy(id)
         .then(() => NotificationsActions.create({ message: "Member deleted successfully." }))
-        .catch((error) => NotificationsActions.createGeneric());
+        .catch(NotificationsActions.create);
     }
   }
 

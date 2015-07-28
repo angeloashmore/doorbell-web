@@ -3,10 +3,10 @@ import { Navigation, Link } from 'react-router';
 import reactMixin from 'react-mixin';
 import Radium from 'radium';
 
-import { UserActions } from 'actions';
+import { NotificationsActions, UserActions } from 'actions';
 import commonStyles from 'styles/commonStyles';
 
-import { Sheet, From } from 'elements';
+import { Sheet, Form } from 'elements';
 
 @reactMixin.decorate(Navigation)
 @reactMixin.decorate(React.addons.LinkedStateMixin)
@@ -31,7 +31,7 @@ export default class extends React.Component {
 
     UserActions.signUp(this.state.email, this.state.password, this.state.name)
       .then(() => this.transitionTo('teams'))
-      .catch(error => console.log(error));
+      .catch(NotificationsActions.create);
   }
 
   render() {

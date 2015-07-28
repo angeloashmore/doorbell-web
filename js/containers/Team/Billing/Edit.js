@@ -54,7 +54,7 @@ export default class extends React.Component {
     BillingsActions.update(this.state.billing.id, attrs)
       .then(this.props.navigator.popView.bind(this.props.navigator))
       .then(() => NotificationsActions.create({ message: "Billing updated successfully." }))
-      .catch(console.log);
+      .catch(NotificationsActions.create);
   }
 
   replaceCard(token) {
