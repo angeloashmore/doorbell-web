@@ -27,13 +27,13 @@ export default class extends React.Component {
         <div style={styles.footerbar}>
           <Footerbar
             leftItems={[
-              <Footerbar.Button>Home</Footerbar.Button>,
-              <Footerbar.Button>About</Footerbar.Button>,
-              <Footerbar.Button>Support</Footerbar.Button>
+              <Footerbar.Link to="/" key="home">Home</Footerbar.Link>,
+              <Footerbar.Link to="/" key="about">About</Footerbar.Link>,
+              <Footerbar.Link to="/" key="support">Support</Footerbar.Link>
             ]}
             rightItems={[
-              <Footerbar.Button>Version 0.1.0</Footerbar.Button>,
-              <Footerbar.Button>Copyright Doorbell Technologies.</Footerbar.Button>,
+              <Footerbar.Link to="/" key="version">Version 0.1.0</Footerbar.Link>,
+              <Footerbar.Link to="/" key="copyright">Copyright Doorbell Technologies.</Footerbar.Link>,
             ]}
             />
         </div>
