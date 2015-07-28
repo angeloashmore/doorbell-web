@@ -18,7 +18,7 @@ export default class extends React.Component {
 
   replaceCard(token) {
     BillingsActions.replaceCardWithTokenForId(this.state.billing.id, token.id)
-      .catch((error) => NotificationsActions.createGeneric());
+      .catch(NotificationsActions.create);
   }
 
   render() {
