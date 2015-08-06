@@ -9,7 +9,7 @@ class UsersActions {
     return Promise.resolve().then(() => {
       if (!jwt) throw new UserNotLoggedIn();
 
-      return fetch("http://localhost:5000/api/v1/users", {
+      return fetch("https://doorbell-api-dev.herokuapp.com/api/v1/users", {
         headers: {
           "Authorization": `Bearer ${jwt}`
         }
@@ -27,7 +27,7 @@ class UsersActions {
   fetchWithId(id) {
     return Promise.resolve().then(() => {
       const { jwt } = UserStore.getState();
-      return fetch(`http://localhost:5000/api/v1/users/${id}`, {
+      return fetch(`https://doorbell-api-dev.herokuapp.com/api/v1/users/${id}`, {
         method: "get",
         headers: {
           "Authorization": `Bearer ${jwt}`,

@@ -9,7 +9,7 @@ class BillingsActions {
     return Promise.resolve().then(() => {
       if (!jwt) throw new UserNotLoggedIn();
 
-      return fetch("http://localhost:5000/api/v1/billings", {
+      return fetch("https://doorbell-api-dev.herokuapp.com/api/v1/billings", {
         headers: {
           "Authorization": `Bearer ${jwt}`
         }
@@ -27,7 +27,7 @@ class BillingsActions {
   update(id, attrs) {
     return Promise.resolve().then(() => {
       const { jwt } = UserStore.getState();
-      return fetch(`http://localhost:5000/api/v1/billings/${id}`, {
+      return fetch(`https://doorbell-api-dev.herokuapp.com/api/v1/billings/${id}`, {
         method: "put",
         headers: {
           "Authorization": `Bearer ${jwt}`,
@@ -50,7 +50,7 @@ class BillingsActions {
   replaceCardWithTokenForId(id, token) {
     return Promise.resolve().then(() => {
       const { jwt } = UserStore.getState();
-      return fetch(`http://localhost:5000/api/v1/billings/${id}/card`, {
+      return fetch(`https://doorbell-api-dev.herokuapp.com/api/v1/billings/${id}/card`, {
         method: "put",
         headers: {
           "Authorization": `Bearer ${jwt}`,

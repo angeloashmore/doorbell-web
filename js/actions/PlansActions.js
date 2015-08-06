@@ -8,7 +8,7 @@ class PlansActions {
     return Promise.resolve().then(() => {
       if (!jwt) throw new UserNotLoggedIn();
 
-      return fetch("http://localhost:5000/api/v1/plans", {
+      return fetch("https://doorbell-api-dev.herokuapp.com/api/v1/plans", {
         headers: {
           "Authorization": `Bearer ${jwt}`
         }

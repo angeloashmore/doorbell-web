@@ -10,7 +10,7 @@ class TeamMembersActions {
     return Promise.resolve().then(() => {
       if (!jwt) throw new UserNotLoggedIn();
 
-      return fetch("http://localhost:5000/api/v1/team_members", {
+      return fetch("https://doorbell-api-dev.herokuapp.com/api/v1/team_members", {
         headers: {
           "Authorization": `Bearer ${jwt}`
         }
@@ -28,7 +28,7 @@ class TeamMembersActions {
   create(attrs) {
     return Promise.resolve().then(() => {
       const { jwt } = UserStore.getState();
-      return fetch("http://localhost:5000/api/v1/team_members", {
+      return fetch("https://doorbell-api-dev.herokuapp.com/api/v1/team_members", {
         method: "post",
         headers: {
           "Authorization": `Bearer ${jwt}`,
@@ -55,7 +55,7 @@ class TeamMembersActions {
   update(id, attrs) {
     return Promise.resolve().then(() => {
       const { jwt } = UserStore.getState();
-      return fetch(`http://localhost:5000/api/v1/team_members/${id}`, {
+      return fetch(`https://doorbell-api-dev.herokuapp.com/api/v1/team_members/${id}`, {
         method: "put",
         headers: {
           "Authorization": `Bearer ${jwt}`,
@@ -79,7 +79,7 @@ class TeamMembersActions {
   destroy(id, attrs) {
     return Promise.resolve().then(() => {
       const { jwt } = UserStore.getState();
-      return fetch(`http://localhost:5000/api/v1/team_members/${id}`, {
+      return fetch(`https://doorbell-api-dev.herokuapp.com/api/v1/team_members/${id}`, {
         method: "delete",
         headers: {
           "Authorization": `Bearer ${jwt}`,
