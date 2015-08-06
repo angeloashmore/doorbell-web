@@ -6,7 +6,6 @@ module.exports = {
   entry: {
     main : [
       __dirname + "/node_modules/babel-core/browser-polyfill.js",
-      "webpack/hot/only-dev-server",
       "./js/app.js"
     ]
   },
@@ -23,7 +22,7 @@ module.exports = {
 
   module: {
     loaders: [
-      { test: /\.js?$/, loaders: ["react-hot", "babel"], exclude: /node_modules/ },
+      { test: /\.js?$/, loader: "babel", exclude: /node_modules/ },
       { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader?stage=0"},
       { test: /\.json?$/, loader: "json" },
       { test: /\.css$/, loader: "style!css" }
