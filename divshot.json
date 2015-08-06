@@ -1,3 +1,6 @@
 {
-  "name": "doorbell-web"
+  "name": "doorbell-web",
+  "root": "build",
+  "clean_urls": true,
+  "error_page": "error.html"
 }
