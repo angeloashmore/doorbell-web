@@ -5,40 +5,22 @@ import { UserActions } from 'actions';
 class UserStore {
   constructor() {
     this.bindListeners({
-      setJWTAndUser: [
+      setAuthData: [
         UserActions.RESTORE,
         UserActions.SIGN_IN,
-        UserActions.SIGN_UP
       ],
-      clearAllStores: [
-        UserActions.SIGN_OUT,
-        UserActions.RESET_PASSWORD
-      ]
+      clearAllStores: UserActions.SIGN_OUT
     });
 
-    this.jwt = null;
     this.user = null;
   }
 
   // MARK: Store methods
-  setJWTAndUser(params) {
-    const { jwt, user } = params;
-
-    this.setJWT(jwt);
-    this.setUser(user);
-  }
-
-  setJWT(jwt) {
-    localStorage.setItem("jwt", jwt);
-    this.jwt = jwt;
-  }
-
-  setUser(user) {
-    this.user = user;
+  setAuthData(authData) {
+    this.user = authData;
   }
 
   clearAllStores() {
-    localStorage.clear();
     alt.recycle();
   }
 
@@ -48,8 +30,14 @@ class UserStore {
 
   // MARK: Public methods
   static isLoggedIn() {
-    const { jwt, user } = this.getState();
-    return !!jwt && !!user;
+    const { user } = this.getState();
+    return !!user;
+  }
+
+  static isExpired() {
+    if (!UserStore.isLoggedIn()) throw new Error('Client not authenticated');
+    const { user } = this.getState();
+    return user.expires >= Date.now();
   }
 }
 

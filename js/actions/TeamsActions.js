@@ -1,5 +1,6 @@
 import 'whatwg-fetch';
 import alt from 'flux/alt';
+import Firebase from 'lib/Firebase';
 import { UserStore } from 'stores';
 import { TeamMembersActions } from 'actions';
 import { UserNotLoggedIn } from 'errors';
@@ -28,28 +29,10 @@ class TeamsActions {
 
   create(attrs) {
     return Promise.resolve().then(() => {
-      const { jwt } = UserStore.getState();
-      return fetch("http://localhost:5000/api/v1/teams", {
-        method: "post",
-        headers: {
-          "Authorization": `Bearer ${jwt}`,
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          name: attrs.name,
-          email: attrs.email
-        })
+      Firebase.addTaskToQueue('teams__create', {
+        name: attrs.name,
+        email: attrs.email
       });
-
-    }).then((response) => {
-      return response.json();
-
-    }).then((team) => {
-      this.dispatch(team);
-
-    }).then(() => {
-      return TeamMembersActions.fetchAllForCurrentUser();
-
     });
   }
 

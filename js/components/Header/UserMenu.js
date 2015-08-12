@@ -43,7 +43,7 @@ export default class extends React.Component {
           styles.navItem,
           this.props.hovered && styles.navItemOpen
         ]}>
-        <img src={this.props.user.picture} style={styles.profilePhoto} />
+        <img src={this.props.user.password.profileImageURL} style={styles.profilePhoto} />
         <div style={styles.profileArrowContainer}>{arrow}</div>
 
         <nav

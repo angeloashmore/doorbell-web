@@ -3,6 +3,7 @@ import Router from 'react-router';
 
 import 'stores';
 import { UserActions } from 'actions';
+import { UserStore } from 'stores';
 import routes from 'routes';
 
 UserActions.restore();

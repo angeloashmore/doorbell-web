@@ -1,5 +1,5 @@
 import alt from 'flux/alt';
-import Auth0 from 'lib/Auth0';
+import Firebase from 'lib/Firebase';
 
 import {
   NotificationsActions,
@@ -14,92 +14,67 @@ import { UserNotLoggedIn } from 'errors';
 
 class UserActions {
   restore() {
-    const jwt = localStorage.getItem("jwt");
-
     return Promise.resolve().then(() => {
-      if (!jwt) throw new UserNotLoggedIn();
-
-      return Auth0.getProfilePromise(jwt);
-
-    }).then((user) => {
-      const results = { jwt: jwt, user: user };
-      this.dispatch(results);
-
-    }).then(() => {
-      this.actions._populateOtherStores();
-
+      this.dispatch(Firebase.getAuth());
     });
   }
 
   signIn(email, password) {
-    return Promise.resolve().then(() => {
-      return Auth0.signInPromise({
-        connection: "Username-Password-Authentication",
-        email: email,
-        password: password,
-        sso: false
+    return new Promise((resolve, reject) => {
+      const attrs = { email, password };
+      Firebase.authWithPassword(attrs, (error, authData) => {
+        if (error) reject(error);
+        resolve(authData);
       });
-
-    }).then((results) => {
-      this.dispatch(results);
-
-    }).then(() => {
-      this.actions._populateOtherStores();
+    }).then(authData => {
+      this.dispatch(authData);
 
     });
   }
 
   signOut(showNotification = true) {
     return Promise.resolve().then(() => {
+      return Firebase.unauth();
+    }).then(() => {
       this.dispatch();
 
-      if (showNotification) {
-        const message = "You have been successfully signed out.";
-        NotificationsActions.create({ message: message });
-      }
     });
   }
 
   signUp(email, password, name) {
-    return Promise.resolve().then(() => {
-      return Auth0.signUpPromise({
-        connection: "Username-Password-Authentication",
-        email: email,
-        password: password,
-        name: name,
-        sso: false
+    return new Promise((resolve, reject) => {
+      const attrs = { email, password };
+      Firebase.createUser(attrs, (error, userData) => {
+        if (error) reject(error);
+        resolve(userData);
       });
 
-    }).then((results) => {
-      this.dispatch(results);
+    }).then(() => {
+      this.actions.signIn(email, password);
 
     });
   }
 
-  resetPassword(email, password) {
-    return Promise.resolve().then(() => {
-      return Auth0.changePasswordPromise({
-        connection: "Username-Password-Authentication",
-        email: email,
-        password: password
+  resetPassword(email) {
+    return new Promise((resolve, reject) => {
+      const attrs = { email };
+      Firebase.resetPassword(attrs, error => {
+        if (error) reject(error);
+        resolve();
       });
-
-    }).then((results) => {
-      this.dispatch(results);
-
     });
   }
 
-  update(user, data) {
-    return Promise.resolve().then(() => {
-      user.set(data);
-      return user.save();
-
-    }).then((user) => {
-      this.dispatch(user);
-
-    });
-  }
+  // update(user, data) {
+  //   return Promise.resolve().then(() => {
+  //     user.set(data);
+  //     return user.save();
+  //
+  //   }).then((user) => {
+  //     this.dispatch(user);
+  //
+  //   });
+  // }
 
   _populateOtherStores() {
     if (UserStore.isLoggedIn()) {
