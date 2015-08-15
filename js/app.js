@@ -4,6 +4,7 @@ import Router from 'react-router';
 import 'stores';
 import { UserActions } from 'actions';
 import routes from 'routes';
+import 'lib/RethinkDB';
 
 UserActions.restore();
 

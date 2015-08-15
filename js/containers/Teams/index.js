@@ -1,37 +1,43 @@
 import React from 'react';
 import { Link, RouteHandler } from 'react-router';
 import Radium from 'radium';
-import connectToStores from 'alt/utils/connectToStores';
+import reactMixin from 'react-mixin';
+import { r, QueryRequest, DefaultMixin as RethinkMixin } from 'react-rethinkdb';
 
-import { TeamsStore } from 'stores';
 import { authenticatedComponent } from 'decorators';
+import { UserStore } from 'stores';
 
 import { Container, MasterPanel } from 'elements';
 
 @authenticatedComponent
-@connectToStores
+@reactMixin.decorate(RethinkMixin)
 @Radium
 export default class extends React.Component {
-  static getStores() {
-    return [TeamsStore];
+  isMounted() {
+    return true;
   }
 
-  static getPropsFromStores(props) {
-    return TeamsStore.getState();
+  observe() {
+    const { user } = UserStore.getState();
+    const query = r.table('teams').filter(team => team('users').contains(user.user_id));
+
+    return {
+      teams: new QueryRequest({ query, changes: true, initial: [] }),
+    };
   }
 
   render() {
-    const { teams } = this.props;
+    const { teams } = this.data;
 
     const teamsPaneItems = [];
-    teams.forEach((team, id) => {
+    teams.value().forEach((team, id) => {
       teamsPaneItems.push(
         <MasterPanel.Item
           key={id}
           icon="team"
           title={team.name}
           to="team"
-          params={{id: id}}
+          params={{id: team.id}}
         />
       );
     });

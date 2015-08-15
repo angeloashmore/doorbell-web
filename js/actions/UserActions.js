@@ -1,5 +1,6 @@
 import alt from 'flux/alt';
 import Auth0 from 'lib/Auth0';
+import RethinkDB from 'lib/RethinkDB';
 
 import {
   NotificationsActions,
@@ -103,6 +104,7 @@ class UserActions {
 
   _populateOtherStores() {
     if (UserStore.isLoggedIn()) {
+      RethinkDB();
       TeamsActions.fetchAllForCurrentUser();
       TeamMembersActions.fetchAllForCurrentUser();
       BillingsActions.fetchAllForCurrentUser();
