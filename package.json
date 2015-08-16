@@ -19,17 +19,18 @@
     "webpack-dev-server": "^1.8.2"
   },
   "dependencies": {
-    "alt": "^0.16.2",
     "auth0-js": "^6.4.2",
     "color": "^0.9.0",
     "gravatar": "^1.3.0",
     "jwt-decode": "^1.1.1",
     "radium": "0.13.0",
     "react": "^0.13.2",
-    "react-mixin": "^1.2.2",
-    "react-rethinkdb": "^0.4.0",
-    "react-router": "^0.13.3",
-    "rethinkdb-websocket-client": "^0.4.2",
-    "whatwg-fetch": "^0.9.0"
+    "react-mixin": "^1.7.0",
+    "react-redux": "^0.8.2",
+    "react-router": "1.0.0-beta3",
+    "redux": "^1.0.1",
+    "redux-logger": "0.0.3",
+    "redux-thunk": "^0.1.0",
+    "rethinkdb-websocket-client": "^0.4.2"
   }
 }

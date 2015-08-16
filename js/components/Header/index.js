@@ -1,37 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router';
 import Radium from 'radium';
-import connectToStores from 'alt/utils/connectToStores';
 
-import { UserStore } from 'stores';
 import colors from 'styles/colors';
 
 import Item from './Item';
 import UserMenu from './UserMenu';
 
-@connectToStores
 @Radium
 export default class extends React.Component {
   static Item = Item;
-
-  static getStores() {
-    return [UserStore];
-  }
-
-  static getPropsFromStores(props) {
-    return UserStore.getState();
-  }
-
-  static contextTypes = {
-    router: React.PropTypes.func
-  }
 
   navSignedIn() {
     return (
       <ul style={styles.navigationItems}>
         <Item link="true" to="teams">Teams</Item>
         <Item link="true" to="support">Support</Item>
-        <UserMenu />
+        <UserMenu user={this.props.user} />
       </ul>
     );
   }

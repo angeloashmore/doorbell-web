@@ -7,7 +7,7 @@ module.exports = {
     main : [
       __dirname + "/node_modules/babel-core/browser-polyfill.js",
       "webpack/hot/only-dev-server",
-      "./js/app.js"
+      "./js/index.js"
     ]
   },
 

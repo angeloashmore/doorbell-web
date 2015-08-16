@@ -2,32 +2,16 @@ import React from 'react';
 import { Navigation, Link } from 'react-router';
 import reactMixin from 'react-mixin';
 import Radium from 'radium';
-import connectToStores from 'alt/utils/connectToStores';
 
-import { UserStore } from 'stores';
-import { UserActions } from 'actions';
 import { hoverable } from 'decorators';
 import colors from 'styles/colors';
 
 import Item from './Item';
 
 @hoverable
-@connectToStores
 @reactMixin.decorate(Navigation)
 @Radium
 export default class extends React.Component {
-  static getStores() {
-    return [UserStore];
-  }
-
-  static getPropsFromStores(props) {
-    return UserStore.getState();
-  }
-
-  static contextTypes = {
-    router: React.PropTypes.func
-  }
-
   signOut() {
     this.transitionTo("signIn");
     UserActions.signOut();

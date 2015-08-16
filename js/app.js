@@ -1,13 +1,29 @@
-import React from 'react';
-import Router from 'react-router';
+import React, { Component } from 'react';
+import configureStore from 'store/configureStore';
+import { Provider } from 'react-redux';
+import rootReducer from 'reducers';
+import logger from 'redux-logger';
 
-import 'stores';
-import { UserActions } from 'actions';
-import routes from 'routes';
-import 'lib/RethinkDB';
+import { Router, Route } from 'react-router';
+import { history } from 'react-router/lib/HashHistory';
 
-UserActions.restore();
+import Main from 'containers/Main';
+import * as Auth from 'containers/Auth';
 
-Router.run(routes, function (Handler) {
-  React.render(<Handler />, document.body);
-});
+const store = configureStore();
+
+export default class App extends Component {
+  render() {
+    return (
+      <Provider store={store}>
+        { () =>
+          <Router history={history}>
+            <Route path='/' component={Main}>
+              <Route path='signIn' component={Auth.SignIn} />
+            </Route>
+          </Router>
+        }
+      </Provider>
+    );
+  }
+}

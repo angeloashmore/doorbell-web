@@ -1,7 +1,6 @@
 import React from 'react';
 import Radium from 'radium';
 
-import { NotificationsActions } from 'actions';
 import { hoverable } from 'decorators';
 import colors from 'styles/colors';
 
@@ -10,10 +9,6 @@ import { Icon } from 'elements';
 @hoverable
 @Radium
 export default class extends React.Component {
-  dismiss(id) {
-    NotificationsActions.destroy(id);
-  }
-
   render() {
     return (
       <li

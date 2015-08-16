@@ -4,7 +4,6 @@ import { ReactScriptLoaderMixin } from 'react-script-loader';
 import Radium from 'radium';
 
 import config from 'config';
-import { UserStore } from 'stores';
 
 @reactMixin.decorate(ReactScriptLoaderMixin)
 @Radium
@@ -44,14 +43,11 @@ export default class StripeCheckoutButton extends React.Component {
   onClick(e) {
     e.preventDefault();
 
-    const { user } = UserStore.getState();
-
     this.handler().open({
       name: "Doorbell",
       description: "Subscription",
       panelLabel: "Add Card",
-      allowRememberMe: false,
-      email: user.email
+      allowRememberMe: false
     });
   }
 

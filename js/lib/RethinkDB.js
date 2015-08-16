@@ -9,9 +9,9 @@ class RethinkDB {
   }
 
   connect() {
-    if (this.isConnected()) throw new Error('Already connected to database');
+    if (this.isConnected()) return Promise.resolve(this.conn);
 
-    const { jwt } = UserStore.getState();
+    const jwt = localStorage.getItem('jwt');
 
     const options = {
       host: 'localhost',
@@ -26,7 +26,28 @@ class RethinkDB {
   }
 
   runQuery(query) {
-    return query.run(this.conn);
+    return this.connect()
+      .then(conn => query.run(conn));
+  }
+
+  runStatic(query) {
+    return this.runQuery(query)
+      .then(cur => cur.toArray());
+  }
+
+  runChanges(query) {
+    return this.runQuery(query.changes({ includeStates: true }))
+      .then(cur => {
+        let feedStateReady = false;
+        cur.each((err, row) => {
+          if (err) throw err;
+          if (row.state) {
+            feedStateReady = row.state === 'ready';
+          } else if (feedStateReady) {
+            return row;
+          }
+        });
+      });
   }
 
   isConnected() {
