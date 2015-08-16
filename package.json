@@ -29,6 +29,7 @@
     "react-mixin": "^1.2.2",
     "react-rethinkdb": "^0.4.0",
     "react-router": "^0.13.3",
+    "rethinkdb-websocket-client": "^0.4.2",
     "whatwg-fetch": "^0.9.0"
   }
 }

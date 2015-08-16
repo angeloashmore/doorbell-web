@@ -104,12 +104,12 @@ class UserActions {
 
   _populateOtherStores() {
     if (UserStore.isLoggedIn()) {
-      RethinkDB();
-      TeamsActions.fetchAllForCurrentUser();
-      TeamMembersActions.fetchAllForCurrentUser();
-      BillingsActions.fetchAllForCurrentUser();
-      PlansActions.fetchAll();
-      UsersActions.fetchAllForCurrentUser();
+      RethinkDB.connect()
+        .then(() => TeamsActions.fetchAllForCurrentUser());
+      // TeamMembersActions.fetchAllForCurrentUser();
+      // BillingsActions.fetchAllForCurrentUser();
+      // PlansActions.fetchAll();
+      // UsersActions.fetchAllForCurrentUser();
     }
   }
 }
